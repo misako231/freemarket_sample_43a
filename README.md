@@ -15,6 +15,7 @@ Things you may want to cover:
 ### device
 
 
+##takumi
 YAMADA TSUYOSHI
 ## Fukumoto Masashi
 # 犬丸美沙子
