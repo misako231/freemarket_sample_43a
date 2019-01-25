@@ -5,10 +5,10 @@ application up and running.
 
 Things you may want to cover:
 
-* Rubyバージョン
+## Rubyバージョン
 ### 2.5.1
 
-* デフォルトに追加したgem
+## デフォルトに追加したgem
 ### pry-rails
 ### haml-rails
 ### kaminari
