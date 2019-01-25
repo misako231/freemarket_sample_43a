@@ -15,3 +15,4 @@ Things you may want to cover:
 ### device
 
 ## Fukumoto Masashi
+# 犬丸美沙子
