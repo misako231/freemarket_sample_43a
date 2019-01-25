@@ -6,10 +6,10 @@ application up and running.
 Things you may want to cover:
 
 * Rubyバージョン
-###2.5.1
+### 2.5.1
 
 * デフォルトに追加したgem
-###pry-rails
-###haml-rails
-###kaminari
-###device
+### pry-rails
+### haml-rails
+### kaminari
+### device
