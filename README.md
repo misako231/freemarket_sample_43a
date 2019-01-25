@@ -14,4 +14,5 @@ Things you may want to cover:
 ### kaminari
 ### device
 
+## Fukumoto Masashi
 # 犬丸美沙子
