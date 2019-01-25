@@ -13,3 +13,6 @@ Things you may want to cover:
 ### haml-rails
 ### kaminari
 ### device
+
+YAMADA TSUYOSHI
+
