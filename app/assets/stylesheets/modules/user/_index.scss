@@ -2,7 +2,6 @@
   margin: 40px auto 0px auto;
   padding-bottom: 40px;
   width: 1020px;
-  border-style: solid;
   color: $black-f;
   line-height: 1;
   &__content{
@@ -12,7 +11,6 @@
   &__side{
     width: 280px;
     margin-right: 40px;
-    border: solid 10px red;
 
     &__nav{
       &__list{
