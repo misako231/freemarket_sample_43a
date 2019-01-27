@@ -11,38 +11,134 @@
         .item-container__item--main-content__item-photo__sub-containts
         .item-container__item--main-content__item-photo__sub-containts
 
-  .item-container__item--main-content__
-  %table.item-detail
-    %tr
-      %th 出品者
-      %td aaa
-    %tr
-      %th カテゴリー
-      %td メンズ
-    %tr
-      %th ブランド
-      %td コーチ
-    %tr
-      %th 商品の状態
-      %td めっちゃキレイ
-    %tr
-      %th 配送料の負担
-      %td 送料込み(出品者負担)
-    %tr
-      %th 配送の方法
-      %td らくらくメルカリ便
-    %tr
-      %th 配送元地域
-      %td 大阪府
-    %tr
-      %th 発送日の目安
-      %td 1~2日で発送
+  .item-container__item--main-content
+    %table.item-container__item-detail
+      %tr
+        %th 出品者
+        %td aaa
+      %tr
+        %th カテゴリー
+        %td メンズ
+      %tr
+        %th ブランド
+        %td コーチ
+      %tr
+        %th 商品の状態
+        %td めっちゃキレイ
+      %tr
+        %th 配送料の負担
+        %td 送料込み(出品者負担)
+      %tr
+        %th 配送の方法
+        %td らくらくメルカリ便
+      %tr
+        %th 配送元地域
+        %td 大阪府
+      %tr
+        %th 発送日の目安
+        %td 1~2日で発送
 
-  .item-price-container
-    .item-price-container__item-price ¥3,380
-    .item-price-container__item-tax (税込み)
-    .item-price-container__item-shipping-fee 送料込み
+  .item-container__item-price-container
+    .item-container__item-price-container__item-price ¥3,380
+    .item-container__item-price-container__item-tax (税込み)
+    .item-container__item-price-container__item-shipping-fee 送料込み
 
-  .item-buy-btn
+  .item-container__item-buy-btn 購入画面に進む
 
-  .item-description
+  .item-container__item-description
+    %p ■商品ご覧頂き、誠にありがとうございます。
+    ※今だけ、フォロワーになって下さった方に、300円のお値引きサービス中！！
+    %br
+    %br 私の商品検索は、
+    #Boon・バッグ
+    検索してください。
+    %br
+    %br
+    質問がありましたらコメントでよろしくお願いします！
+    %br
+    ■ 商品説明 ■
+    %br
+    まずはプロフを確認してください☆
+    %br
+    %br
+    ■ 商品詳細 ■
+    シンプルな落ち着いたお色味でどんな場面にも合い、
+    どんな服にも合わせやすいお鞄です。使用感有！角擦れはございませんが
+    多少の汚れはあります。内側はとても綺麗です☆
+    使わなくなったのでどなたか使っていただける方お願いします。
+    製造番号  H2K-9294
+    %br
+    %br
+    【ブランド】
+    COACH  コーチ
+    %br
+    %br
+    【商品名】
+    コーチ大き目シンプル
+    %br
+    %br
+    【仕様】
+    外ポケット１  内ポケット４
+    %br
+    %br
+    【サイズ】
+    %br 縦：32
+    %br 横：31
+    %br 幅：7
+    %br 紐：130 多少調節可能
+    %br ＊他にも数多くの商品を出品しているので、ぜひご覧ください。
+    %br ＊複数購入、お取り置き(５日まで)もできるので、お気軽にお声がけくださいませ。
+    %br ＊中古品になりますので、予めご理解いただきますよう、お願い致します^_^
+    %br ※自宅保管、素人検品、素人寸法の誤差などにご理解がない方、神経質な方、完璧な物が欲しい方は購入お控えください。
+    、お願い致します^_^
+    %br ※自宅保管、素人検品、素人寸法の誤差などにご理解がない方、神経質な方、完璧な物が欲しい方は購入お控えください。
+    %br #シンプル #かわいい #大き目 #かばん #バッグ
+
+  .item-container__various-btn
+    .item-container__various-btn__likes
+      %span ♡
+      %span いいね
+      %span 6
+    .item-container__various-btn__report
+      %span △
+      %span 不適切な商品の報告
+    .item-container__various-btn__safety
+      %span ◯
+      %span あんしん・あんぜんへの取り組み
+
+.comment-container
+  .comment-container__message-container
+    =image_tag('non_pics_icon.png',class: "non_pics_icon")
+    .comment-container__message-container__body
+      .comment-container__message-container__body-text はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
+      .comment-container__message-container__body-icons
+        .comment-container__message-icons_time ◯
+        %span 99日前
+        .comment-container__message-icons_flag △
+
+  %form.message-form{action: "#", method: "POST"}
+    %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+    %input{name: "item_id", type: "hidden"}
+    %textarea{type: "text name=", class: "textarea"}
+    %button.comment-submit-button{type: "submit"}
+      %span コメントする
+
+%ul.nav-item-link
+  %li.nav-item-link__nav-item-link-prev
+    =link_to "アイコン", "#", class: "nav-item-link-prev"
+    =link_to "ディズニーヴィランズ 2個セット バッジ バッチ Villains 2018", "#", class: "nav-item-link-prev"
+  %li.nav-item-link__nav-item-link-next
+    =link_to "バーにかかってきた電話/東 直己", "#", class: "nav-item-link-next"
+    =link_to "アイコン", "#", class: "nav-item-link-prev"
+
+.social-media-container
+  %ul.social-media-container_box
+    %li
+      =link_to "#" do
+        %span.fa-icon
+      =link_to "#" do
+        %span.fa-icon
+      =link_to "#" do
+        %span.fa-icon
+      =link_to "#" do
+        %span.fa-icon
