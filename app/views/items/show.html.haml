@@ -39,9 +39,9 @@
         %td 1~2日で発送
 
   .item-container__item-price-container
-    .item-container__item-price-container__item-price ¥3,380
-    .item-container__item-price-container__item-tax (税込み)
-    .item-container__item-price-container__item-shipping-fee 送料込み
+    %span.item-price ¥3,380
+    %span.item-tax (税込み)
+    %span.item-shipping-fee 送料込み
 
   .item-container__item-buy-btn 購入画面に進む
 
@@ -95,16 +95,17 @@
     %br #シンプル #かわいい #大き目 #かばん #バッグ
 
   .item-container__various-btn
-    .item-container__various-btn__likes
-      %span ♡
-      %span いいね
-      %span 6
-    .item-container__various-btn__report
-      %span △
-      %span 不適切な商品の報告
+    .item-container__various-btn__left
+      %button.item-container__various-btn__left__likes
+        %span ♡
+        %span いいね!
+        %span 6
+      %button.item-container__various-btn__left__report
+        %span △
+        %span 不適切な商品の報告
     .item-container__various-btn__safety
-      %span ◯
-      %span あんしん・あんぜんへの取り組み
+      =link_to "◯", "#", class: "key-icon"
+      =link_to "あんしん・あんぜんへの取り組み", "#", class: "text__safety"
 
 .comment-container
   .comment-container__message-container
