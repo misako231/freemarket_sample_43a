@@ -1,20 +1,20 @@
 header.mercari-header {
-  height: 100px;
+  height: 90px;
+  background-color: #fff;
   .header-conteiner {
     padding-top: 10px;
     margin: 0 auto;
     width: 1020px;
-    height: 100px;
-    &-top {
+    height: 90px;
+    &__search {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      h1.header-conteiner-top__left {
+      &--left {
         .logo-link {
-
         }
       }
-      form.header-conteiner-top__right {
+      &--right {
         position: relative;
         display: flex;
         margin-left: 20px;
@@ -24,15 +24,106 @@ header.mercari-header {
           border-radius: 3px;
           height: 39px;
           width: 100%;
-          padding: 5px 10px;
+          padding: 5px 35px 5px 10px;
         }
-        .index-search-btn {
-          position: absolute;
-          top: 0;
-          right: 0;
+        .index-search-icon {
+            position: absolute;
+            display: block;
+            top: 0;
+            right: 0;
+            line-height: 39px;
+          .index-search-btn {
+          }
         }
       }
-
+    }
+    &__navber {
+      height: 45px;
+      display: flex;
+      justify-content: space-between;
+      .left-nav{
+        width: 400px;
+        .search-nav {
+          display: flex;
+          flex-direction: row;
+          &__list {
+            line-height: 45px;
+            margin-right: 10px;
+            h2.search-nav__list__title {
+              a.search-nav__list__link {
+                color: $black-f;
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+      .rigth-nav {
+        width: 400px;
+        .user-nav {
+          display: flex;
+          justify-content: flex-end;
+          &__list {
+            line-height: 45px;
+            margin-left: 10px;
+            a.user-nav__list__link {
+              text-decoration: none;
+              color: $black-f;
+              display: flex;
+              flex-direction: row;
+              figure.mypage-icon {
+                margin: 0 10px 0 0;
+                .mypage-icon__conteiner {
+                  height: 45px;
+                  padding-top: 8px;
+                  img {
+                    display: block;
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 50%;
+                  }
+                }
+              }
+              .far {
+                line-height: 45px;
+                font-size: 15px;
+                margin-right: 10px;
+              }
+              .fas {
+                line-height: 45px;
+                font-size: 15px;
+                margin-right: 10px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
+
+nav.bread-crumbs {
+  background-color: #fff;
+  border-top: solid 1px #eee;
+  height: 50px;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  .bread-crumbs__items{
+    margin: 0 auto;
+    width: 1020px;
+    display: flex;
+    .bread-crumbs__item__value{
+      margin-right: 5px;
+      line-height: 50px;
+      .bread-crumbs__link {
+        margin-right: 5px;
+        text-decoration: none;
+        color: $black-f;
+      }
+    }
+  }
+}
+
+
+
+
+
