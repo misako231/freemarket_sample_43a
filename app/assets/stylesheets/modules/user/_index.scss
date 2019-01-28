@@ -1,0 +1,22 @@
+.mypage{
+  margin: 40px auto 0px auto;
+  padding-bottom: 40px;
+  width: 1020px;
+  color: $black-f;
+  line-height: 1;
+  &__content{
+    width: 700px;
+    background-color: $gray-b;
+  }
+  &__side{
+    width: 280px;
+    margin-right: 40px;
+
+    &__nav{
+      &__list{
+
+      }
+    }
+  }
+}
+
