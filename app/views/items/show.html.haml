@@ -11,7 +11,6 @@
         .item-container__item--main-content__item-photo__sub-containts
         .item-container__item--main-content__item-photo__sub-containts
 
-  .item-container__item--main-content
     %table.item-container__item-detail
       %tr
         %th 出品者
@@ -97,7 +96,7 @@
   .item-container__various-btn
     .item-container__various-btn__left
       %button.item-container__various-btn__left__likes
-        %span ♡
+        %i.fa.fa-heart-o
         %span いいね!
         %span 6
       %button.item-container__various-btn__left__report
@@ -110,12 +109,14 @@
 .comment-container
   .comment-container__message-container
     =image_tag('non_pics_icon.png',class: "non_pics_icon")
-    .comment-container__message-container__body
-      .comment-container__message-container__body-text はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
-      .comment-container__message-container__body-icons
-        .comment-container__message-icons_time ◯
-        %span 99日前
-        .comment-container__message-icons_flag △
+    .comment-container__message-container-right
+      .comment-container__message-container-right__name みっちゃ
+      .comment-container__message-container-right__body
+        .comment-container__message-container-right__body-text はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
+        .comment-container__message-container-right__body-icons
+          .comment-container__message-icons_time ◯
+          %span 99日前
+          .comment-container__message-icons_flag △
 
   %form.message-form{action: "#", method: "POST"}
     %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
@@ -124,22 +125,22 @@
     %button.comment-submit-button{type: "submit"}
       %span コメントする
 
-%ul.nav-item-link
-  %li.nav-item-link__nav-item-link-prev
-    =link_to "アイコン", "#", class: "nav-item-link-prev"
+.nav-item-link
+  .nav-item-link-prev
+    %i.fa.fa-angle-left
     =link_to "ディズニーヴィランズ 2個セット バッジ バッチ Villains 2018", "#", class: "nav-item-link-prev"
-  %li.nav-item-link__nav-item-link-next
+  .nav-item-link-next
     =link_to "バーにかかってきた電話/東 直己", "#", class: "nav-item-link-next"
-    =link_to "アイコン", "#", class: "nav-item-link-prev"
+    %i.fa.fa-angle-right
 
 .social-media-container
   %ul.social-media-container__box
-    %li
-      =link_to "#" do
-        %span.fa-icon
-      =link_to "#" do
-        %span.fa-icon
-      =link_to "#" do
-        %span.fa-icon
-      =link_to "#" do
-        %span.fa-icon
+    %li.social-media-container__box__icon__f
+      %i.fa.fa-facebook-official.social-icon__f
+    %li.social-media-container__box__icon__t
+      %i.fa.fa-twitter-square.social-icon__t
+    %li.social-media-container__box__icon__p
+      %i.fa.fa-pinterest-square.social-icon__p
+    %li.social-media-container__box__icon
+      / %i.fa.fa-line.social-icon__l
+      =fa_icon "line"
