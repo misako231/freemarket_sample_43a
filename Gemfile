@@ -73,3 +73,10 @@ gem 'devise'
 gem "haml-rails", "~> 1.0"
 gem 'kaminari'
 gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.6.1'
+gem 'font_awesome5_rails'
+
+
+
+
+
