@@ -1,0 +1,11 @@
+%header.mercari-header
+  .header-conteiner
+    .header-conteiner-top
+      %h1.header-conteiner-top__left
+        = link_to "https://www.mercari.com/jp/", class: "logo-link" do
+          = image_tag 'mercari-logo.svg', width: "134", height: "36"
+      %form.header-conteiner-top__right{ action: "https://www.mercari.com/jp/search/" }
+        %input.input-default{ type: "serch", values: "", name: "keyword", placeholder: "キーワードから探す" }
+        %input.index-search-btn{ type: "submit" }
+    .mercari-header__conteiner-bown
+
