@@ -23,7 +23,7 @@
 
     }
 
-    table.item-container__item-detail {
+    .item-container__item-detail {
       width:300px;
       height:375px;
       border-collapse:collapse;
@@ -80,7 +80,7 @@
   }
 
   &__various-btn {
-    background-color:#7fffd4;
+    // background-color:#7fffd4;
     display:flex;
     align-items:baseline;
     margin: 16px 0 0;
@@ -89,21 +89,24 @@
       width:300px;
 
       &__likes {
-        padding:8px 16px;
+        padding:7.5px 16px;
+        font-size:13px;
         border:1px solid $gray-b;
         border-radius:40px;
         background-color:$gray-b;
-        font-size:14px;
-        line-height:14px;
+        line-height:13px;
         cursor:pointer;
       }
 
       &__report {
+        padding:7.5px 16px;
+        font-size:13px;
         border:1px solid $gray-b;
         border-radius:40px;
         background-color:$gray-b;
-        margin-left:16px;
+        line-height:13px;
         cursor:pointer;
+        margin-left:13px;
       }
     }
 
@@ -120,11 +123,12 @@
 
 .comment-container {
   width:700px;
-  padding:24px;
   background-color:$white-b;
 
   &__message-container {
     margin-top:1.5em;
+    overflow:hidden;
+    padding:24px;
 
     .non_pics_icon {
       height:40px;
@@ -136,6 +140,7 @@
     &-right {
       width:600px;
       margin-left:auto;
+      float:right;
 
       &__name {
         display:inline-block;
@@ -163,7 +168,8 @@
   }
 
   .message-form {
-    margin:8px 0 0;
+    clear:both;
+    padding:24px;
 
     p {
       padding:8px;
@@ -187,7 +193,6 @@
       line-height:48px;
       margin:8px 0 0;
     }
-
 
   }
 
