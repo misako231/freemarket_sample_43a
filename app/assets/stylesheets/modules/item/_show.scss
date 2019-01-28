@@ -166,19 +166,18 @@
   }
 
 
-  .social-media-container {
-    width:700px;
-    height:150px;
-    background-color:yellow;
-
-    ul
-    &__box {
-      background-color:yellow;
-      }
-
-  }
-
 
 }
 
+.social-media-container {
+  width:700px;
+  height:150px;
+  background-color:yellow;
+
+  ul
+  &__box {
+    background-color:yellow;
+    }
+
+}
 
