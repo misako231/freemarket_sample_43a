@@ -1,0 +1,38 @@
+header.mercari-header {
+  height: 100px;
+  .header-conteiner {
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 1020px;
+    height: 100px;
+    &-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      h1.header-conteiner-top__left {
+        .logo-link {
+
+        }
+      }
+      form.header-conteiner-top__right {
+        position: relative;
+        display: flex;
+        margin-left: 20px;
+        width: calc(100% - 140px);
+        .input-default {
+          display: block;
+          border-radius: 3px;
+          height: 39px;
+          width: 100%;
+          padding: 5px 10px;
+        }
+        .index-search-btn {
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+
+    }
+  }
+}
