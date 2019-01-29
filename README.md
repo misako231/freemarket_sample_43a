@@ -136,12 +136,11 @@ t.index [:user_id, :block_id], unique: true
 |------|----|----|------|
 |purchaser_id|int|F|afk/ai|
 |seller_id|int|F|afk/ai|
-|status-list_id|ref|F|fk|
+|status|int|F|| (※enumで管理 例：1→orderd等)
 |item_id|ref|F|fk|
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :status-list
 - has_one :point_record
 - has_one :money_record
 
@@ -224,10 +223,3 @@ has_many :users
 |parent_id|int|T||
 ### Association
 - has_many :items
-
-##19.status-list
-|Column|Type|Null|Option|
-|------|----|----|------|
-|status|str|F||
-### Association
-- has_many :order_status
