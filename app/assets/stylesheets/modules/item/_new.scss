@@ -152,22 +152,20 @@
                 vertical-align: top;
               }
             }
-            div {
-              .input__default {
-                margin: 8px 0 0;
-                padding: 10px 16px 8px;
-                height: 48px;
-                width: 100%;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                background-color: $white-f;
-                line-height: 1.5;
-                font-size: 16px;
-                color: inherit;
-                outline: 0;
-                &:focus {
-                  border-color: $blue-link-f;
-                }
+            .input__default {
+              margin: 8px 0 0;
+              padding: 10px 16px 8px;
+              height: 48px;
+              width: 100%;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              background-color: $white-f;
+              line-height: 1.5;
+              font-size: 16px;
+              color: inherit;
+              outline: 0;
+              &:focus {
+                border-color: $blue-link-f;
               }
             }
             .textarea__default {
@@ -245,11 +243,11 @@
                 }
                 .price__form {
                   display: flex;
-                  .l__left {
+                  .label__left {
                     width: 50%;
                     line-height: 48px;
                   }
-                  .l__right {
+                  .label__right {
                     width: 50%;
                   }
                   .sell__price__input {
@@ -274,10 +272,10 @@
               }
               .bold {
                 font-weight: bold;
-                .l__left {
+                .label__left {
                   font-size: 16px;
                 }
-                .l__right {
+                .label__right {
                   font-size: 34px;
                 }
               }
