@@ -1,0 +1,38 @@
+.single__footer {
+  margin: 0 auto;
+  padding: 40px 0;
+  height: 220px;
+  width: 456px;
+  text-align: center;
+  nav {
+    height: 12px;
+    .navigation-bar {
+      font-size: 0;
+      li {
+        margin: 0 0 0 16px;
+        display: inline-block;
+        font-size: 12px;
+        &:child {
+          margin: 0;
+        }
+        .navigation-link {
+          display: block;
+          color: $black-f;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  &__logo {
+    display: block;
+    margin: 40px auto 0;
+    height: 65px;
+    width: 80px;
+  }
+  p {
+    margin: 8px 0 0;
+    small {
+      font-size: 11px;
+    }
+  }
+}
