@@ -174,7 +174,7 @@ has_many :users
 |region_id|ref|F|fk|
 |days_to_ship_id|ref|F|fk|
 |price|int|F||
-|condition-list_id|ref|F|fk|
+|condition|int|F||
 |user_id|ref|F|fk|
 |closed|bln|F|default:false|
 ### Association
@@ -185,8 +185,9 @@ has_many :users
 - belongs_to :user
 - belongs_to :category
 - belongs_to :days-to-ship
-- belongs_to :condition-list
 - belongs_to :item
+### Option
+- conditionカラムはenumで管理
 
 ##14.item-photo
 |Column|Type|Null|Option|
@@ -200,13 +201,6 @@ has_many :users
 |Column|Type|Null|Option|
 |------|----|----|------|
 |days|str|F||
-### Association
-- has_many :items
-
-##16.condition-list
-|Column|Type|Null|Option|
-|------|----|----|------|
-|status|str|F||
 ### Association
 - has_many :items
 
