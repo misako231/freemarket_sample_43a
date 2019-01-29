@@ -112,9 +112,16 @@
 
     &__safety {
       display:inline;
-      margin-left: 60px;
+      margin-left: 80px;
       cursor:pointer;
+      color:$blue-link-f;
+
+      &__link-contents {
+        color:$blue-link-f;
+        text-decoration: none;
+      }
     }
+
   }
 
 
@@ -126,7 +133,7 @@
   background-color:$white-b;
 
   &__message-container {
-    margin-top:1.5em;
+    margin-top:0.5em;
     overflow:hidden;
     padding:24px;
 
@@ -149,15 +156,26 @@
 
 
       &__body {
-          width:600px;
-          padding:16px;
-          border-radius: 15px;
-          background-color: #eef0f4;
+        width:600px;
+        padding:16px;
+        border-radius: 15px;
+        background-color: #eef0f4;
 
         &-text {
 
         }
         &-icons {
+          margin-top:8px;
+          color:#aaa;
+
+          &__time {
+            display:inline-block;
+          }
+
+          &__flag {
+            display:inline-block;
+            margin-left:480px;
+          }
 
         }
 
@@ -199,10 +217,12 @@
 
 .nav-item-link {
   width:700px;
+  display:flex;
+  justify-content:space-between;
 
   &-prev {
-    background-color:red;
-    color:red;
+    word-wrap:break-word;
+    width:45%;
 
     i.fa-angle-left {
       display:inline-block;
@@ -215,6 +235,8 @@
 
   &-next {
     margin-right:0 0 0 auto;
+    word-wrap:break-word;
+    width:45%;
 
   }
 
@@ -250,16 +272,10 @@
       border-width:0;
       background-color:#385185;
       border-radius:5px;
-      font-size:18px;
+      font-size:20px;
       color:$white-f;
       line-height: 44px;
       margin:0 8px 8px 0;
-
-
-
-      .social-icon {
-        display:inline-block;
-      }
 
 
     }
@@ -269,15 +285,37 @@
       height:44px;
       border-style: solid;
       border-width:0;
-      background-color:#5d9dc9;
+      border-color:#5d9dc9;
+      background-color:$white-f;
       border-radius:5px;
-      font-size:18px;
-      color:$white-f;
+      font-size:50px;
+      color:#5d9dc9;
       line-height: 44px;
-      margin:0 8px 8px 0;
+      margin:0 0px 8px 0;
+
+        &-twitter {
+
+        }
 
     }
 
+    &__icon__l {
+      width:44px;
+      height:44px;
+      border-style: solid;
+      border-width:0;
+      background-color:$white-f;
+      border-radius:5px;
+      font-size:50px;
+      color:#00c137;
+      line-height: 44px;
+      margin:0 8px 8px 0;
+
+      &-line {
+
+      }
+
+    }
 
     &__icon__p {
       width:44px;
@@ -286,15 +324,115 @@
       border-width:0;
       background-color:#aa262a;
       border-radius:5px;
-      font-size:18px;
+      font-size:20px;
       color:$white-f;
       line-height: 44px;
       margin:0 8px 8px 0;
 
     }
 
+  }
+
+}
+
+
+
+.items-in-user-profile {
+
+
+  &__items-box-container {
+    // display:flex;
+    // align-content:stretch;
+
+    &__head {
+      font-size:22px;
+      margin:24px 0 8px;
+      line-height:1.4;
+      // display:block;
+
+    }
+
+    &__items-box-content {
+
+      &__box {
+        width:220px;
+        height:330px;
+        margin-bottom:20px;
+
+        &__photo {
+          height:220px;
+          overflow: hidden;
+
+          &__-box {
+            height:220px;
+
+          }
+
+        }
+
+
+        &__body {
+          height:110px;
+          padding:16px;
+          background-color:$white-b;
+
+
+          &-text {
+            font-size:16px;
+            margin:8px 0 0 0;
+            display:inline-block;
+            width:188px;
+            height:48px;
+        }
+
+          &__tb {
+            height:28px;
+
+            &-top {
+              display:inline-block;
+              display:flex;
+              justify-content:space-between;
+
+              &__price {
+                font-weight:600;
+              }
+
+
+              &__right {
+
+                &__heart {
+                  color:#ccc;
+                }
+
+
+                &__like-count {
+                  display:inline-block;
+                  font-size:16px;
+                }
+
+              }
+
+            }
+
+            &__tax {
+              font-size:10px;
+
+            }
+
+          }
+
+
+
+        }
+
+
+
+      }
+    }
+
 
   }
+
 
 }
 

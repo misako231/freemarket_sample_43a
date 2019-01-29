@@ -103,8 +103,8 @@
         %span △
         %span 不適切な商品の報告
     .item-container__various-btn__safety
-      =link_to "◯", "#", class: "key-icon"
-      =link_to "あんしん・あんぜんへの取り組み", "#", class: "text__safety"
+      =link_to "#", class: "item-container__various-btn__safety__link" do
+        =fa_icon 'lock', text: 'あんしん・あんぜんへの取り組み', class:"item-container__various-btn__safety__link-contents"
 
 .comment-container
   .comment-container__message-container
@@ -114,9 +114,11 @@
       .comment-container__message-container-right__body
         .comment-container__message-container-right__body-text はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
         .comment-container__message-container-right__body-icons
-          .comment-container__message-icons_time ◯
+          .comment-container__message-container-right__body-icons__time
+            =icon 'far', 'clock'
           %span 99日前
-          .comment-container__message-icons_flag △
+          .comment-container__message-container-right__body-icons__flag
+            =fa_icon 'flag-o'
 
   %form.message-form{action: "#", method: "POST"}
     %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
@@ -127,20 +129,65 @@
 
 .nav-item-link
   .nav-item-link-prev
-    %i.fa.fa-angle-left
+    =fa_icon 'angle-left'
     =link_to "ディズニーヴィランズ 2個セット バッジ バッチ Villains 2018", "#", class: "nav-item-link-prev"
   .nav-item-link-next
     =link_to "バーにかかってきた電話/東 直己", "#", class: "nav-item-link-next"
-    %i.fa.fa-angle-right
+    =fa_icon 'angle-right'
 
 .social-media-container
-  %ul.social-media-container__box
-    %li.social-media-container__box__icon__f
-      %i.fa.fa-facebook-official.social-icon__f
-    %li.social-media-container__box__icon__t
-      %i.fa.fa-twitter-square.social-icon__t
-    %li.social-media-container__box__icon__p
-      %i.fa.fa-pinterest-square.social-icon__p
-    %li.social-media-container__box__icon
-      / %i.fa.fa-line.social-icon__l
-      =fa_icon "line"
+  .social-media-container__box
+    .social-media-container__box__icon__f
+      =fa_icon 'facebook-official'
+    .social-media-container__box__icon__t
+      =fa_icon 'twitter-square', class: 'social-media-container__box__icon__t-twitter'
+    .social-media-container__box__icon__l
+      =icon 'fab', 'line', class: '.social-media-container__box__icon__l-line'
+    .social-media-container__box__icon__p
+      =fa_icon 'pinterest'
+
+.items-in-user-profile
+  .items-in-user-profile__items-box-container
+    %h2.items-in-user-profile__items-box-container__head namikoさんのその他の出品
+
+    .items-in-user-profile__items-box-container__items-box-content
+      .items-in-user-profile__items-box-container__items-box-content__box
+        .items-in-user-profile__items-box-container__items-box-content__box__photo
+          = link_to image_tag('united1.jpg', size: "220x220"), '#'
+        .items-in-user-profile__items-box-container__items-box-content__box__body
+          %h3.items-in-user-profile__items-box-container__items-box-content__box__body-text ユナイテッド・アローズ
+          .items-in-user-profile__items-box-container__items-box-content__box__body__tb
+            .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top
+              .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__price ¥18,000
+              .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right
+                =icon 'far', 'heart', class: 'items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__heart'
+                .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__like-count 24
+            %p.items-in-user-profile__items-box-container__items-box-content__box__body__tb__tax (税込み)
+
+    .items-in-user-profile__items-box-container__items-box-content
+      .items-in-user-profile__items-box-container__items-box-content__box
+        .items-in-user-profile__items-box-container__items-box-content__box__photo
+          = link_to image_tag('h&m1.jpg', size: "220x220"), '#'
+        .items-in-user-profile__items-box-container__items-box-content__box__body
+          %h3.items-in-user-profile__items-box-container__items-box-content__box__body-text H&M ノーカラーコート
+          .items-in-user-profile__items-box-container__items-box-content__box__body__tb
+            .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top
+              .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__price ¥15,00
+              .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right
+                =icon 'far', 'heart', class: 'items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__heart'
+                .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__like-count 8
+            %p.items-in-user-profile__items-box-container__items-box-content__box__body__tb__tax (税込み)
+
+    .items-in-user-profile__items-box-container__items-box-content
+      .items-in-user-profile__items-box-container__items-box-content__box
+        .items-in-user-profile__items-box-container__items-box-content__box__photo
+          = link_to image_tag('gucchi1.jpg', size: "220x220"), '#'
+        .items-in-user-profile__items-box-container__items-box-content__box__body
+          %h3.items-in-user-profile__items-box-container__items-box-content__box__body-text グッチ！レインブーツ!
+          .items-in-user-profile__items-box-container__items-box-content__box__body__tb
+            .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top
+              .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__price ¥20,000
+              .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right
+                =icon 'far', 'heart', class: 'items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__heart'
+                .items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__like-count 5
+            %p.items-in-user-profile__items-box-container__items-box-content__box__body__tb__tax (税込み)
