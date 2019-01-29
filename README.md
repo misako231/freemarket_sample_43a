@@ -143,6 +143,8 @@ t.index [:user_id, :block_id], unique: true
 - belongs_to :item
 - has_one :point_record
 - has_one :money_record
+### Option
+- statusはenumで管理（例：1→orderd等)
 
 ##11.comment
 |Column|Type|Null|Option|
