@@ -74,22 +74,22 @@ validates :follow_id presence: true
 ### Option
 t.index [:user_id, :follow_id], unique: true
 
-##5.point_record
+##5.point-transaction-record
 |Column|Type|Null|Option|
 |------|----|----|------|
 |user_id|ref|F|fk|
 |point|int|F||
-|order_status_id|ref|F|fk|
+|order-status-id|ref|F|fk|
 ### Association
 - belongs_to :user
 - belongs_to :order-status
 
-##6.money_record
+##6.money-transaction-record
 |Column|Type|Null|Option|
 |------|----|----|------|
 |user_id|ref|F|fk|
 |money|int|F||
-|order_status_id|ref|F|fk|
+|order-status_id|ref|F|fk|
 ### Association
 - belongs_to :user
 - belongs_to :order-status
@@ -108,7 +108,7 @@ validates :block_id presence: true
 ### Option
 t.index [:user_id, :block_id], unique: true
 
-##8.user_evaluation
+##8.user-evaluation
 |Column|Type|Null|Option|
 |------|----|----|------|
 |high_count|tinyint|T||
@@ -136,15 +136,12 @@ t.index [:user_id, :block_id], unique: true
 |------|----|----|------|
 |purchaser_id|int|F|afk/ai|
 |seller_id|int|F|afk/ai|
-|ordered|bln|T||
-|paid|bln|T||
-|shipped|bln|T||
-|delivered|bln|T||
-|sold|bln|T||
+|status-list_id|ref|F|fk|
 |item_id|ref|F|fk|
 ### Association
 - belongs_to :user
 - belongs_to :item
+- belongs_to :status-list
 - has_one :point_record
 - has_one :money_record
 
@@ -176,7 +173,7 @@ has_many :users
 |region_id|ref|F|fk|
 |days_to_ship_id|ref|F|fk|
 |price|int|F||
-|item-status_id|ref|F|fk|
+|condition-list_id|ref|F|fk|
 |user_id|ref|F|fk|
 |closed|bln|F|default:false|
 ### Association
@@ -187,7 +184,7 @@ has_many :users
 - belongs_to :user
 - belongs_to :category
 - belongs_to :days-to-ship
-- belongs_to :item-status
+- belongs_to :condition-list
 - belongs_to :item
 
 ##14.item-photo
@@ -205,7 +202,7 @@ has_many :users
 ### Association
 - has_many :items
 
-##16.item-status
+##16.condition-list
 |Column|Type|Null|Option|
 |------|----|----|------|
 |status|str|F||
@@ -227,3 +224,10 @@ has_many :users
 |parent_id|int|T||
 ### Association
 - has_many :items
+
+##19.status-list
+|Column|Type|Null|Option|
+|------|----|----|------|
+|status|str|F||
+### Association
+- has_many :order_status
