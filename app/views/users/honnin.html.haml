@@ -1,26 +1,26 @@
 %section.l-chapter-container.mypage-identification
   %h2.l-chapter-head 本人情報の登録
   %p.text-center お客さまのあんしん・あんぜんな取引のため、本人情報のご登録をお願いしております。
-  %form.l-single-inner{:action => "https://www.mercari.com/jp/mypage/identification/save/", :method => "POST", :novalidate => ""}
+  %form.l-single-inner{action: "#", method: "POST", novalidate: ""}
     .form-group
       %label お名前
       %span.form-require 必須
-      %input.input-default{:name => "family_name_kanji", :placeholder => "例）山田", :type => "text", :value => "清水"}/
-      %input.input-default{:name => "first_name_kanji", :placeholder => "例）彩", :type => "text", :value => "駿佑"}/
+      %input.input-default{name: "last_name", placeholder: "例）山田", type: "text"}
+      %input.input-default{name: "first_name", placeholder: "例）彩", type: "text"}
     .form-group
       %label お名前カナ
       %span.form-require 必須
-      %input.input-default{:name => "family_name_kana", :placeholder => "例）ヤマダ", :type => "text", :value => "シミズ"}/
-      %input.input-default{:name => "first_name_kana", :placeholder => "例）アヤ", :type => "text", :value => "シュンスケ"}/
+      %input.input-default{name: "family_name_kana", placeholder: "例）ヤマダ", type: "text"}
+      %input.input-default{name: "first_name_kana", placeholder: "例）アヤ", type: "text"}
     .form-group
-      %label{:for => "zip_code"} 郵便番号
+      %label{for: "postal_code"} 郵便番号
       %span.form-arbitrary 任意
-      %input.input-default{:name => "zip_code", :placeholder => "例）1234567", :type => "text", :value => ""}/
+      %input.input-default{name: "zip_code", placeholder: "例）1234567", type: "text", value: ""}
     .form-group
-      %label{:for => "prefecture"} 都道府県
+      %label{for: "region"} 都道府県
       %span.form-require 必須
       .select-wrap
-        %select.select-default{:name => "prefecture"}
+        %select.select-default{name: "region"}
           %option 北海道
           %option 青森県
           %option 岩手県
@@ -47,7 +47,7 @@
           %option 三重県
           %option 大阪府
           %option 兵庫県
-          %option{:selected => "selected"} 京都府
+          %option 京都府
           %option 滋賀県
           %option 奈良県
           %option 和歌山県
@@ -70,44 +70,44 @@
           %option 沖縄県
         %i.icon-arrow-bottom
     .form-group
-      %label{:for => "city"} 市区町村
+      %label{for: "region"} 市区町村
       %span.form-require 必須
-      %input.input-default{:name => "city", :placeholder => "例）横浜市緑区", :type => "text", :value => "京都市山科区"}/
+      %input.input-default{name: "city", placeholder: "例）横浜市緑区", type: "text", value: "京都市山科区"}
     .form-group
-      %label{:for => "address1_label"} 番地
+      %label{for: "address1_label"} 番地
       %span.form-require 必須
-      %input.input-default{:name => "address1", :placeholder => "例）青山1−1−1", :type => "text", :value => "御陵荒巻町33-8"}/
+      %input.input-default{name: "address1", placeholder: "例）青山1−1−1", type: "text", value: "御陵荒巻町33-3"}
     .form-group
-      %label{:for => "address2_label"} 建物名
+      %label{for: "address2_label"} 建物名
       %span.form-arbitrary 任意
-      %input.input-default{:name => "address2", :placeholder => "例）柳ビル103", :type => "text", :value => ""}/
+      %input.input-default{name: "address2", placeholder: "例）柳ビル103", type: "text", value: ""}
     .form-group
-      %label{:for => "birthday"} 生年月日
+      %label{for: "birthday"} 生年月日
       %span.form-require 必須
       %br/
       .birthday-select-wrap
         .select-wrap
-          %select.select-default{:name => "year"}
+          %select.select-default{name: "year"}
           %i.icon-arrow-bottom
         %span 年
       .birthday-select-wrap
         .select-wrap.select-wrap__month
-          %select.select-default{:name => "month"}
+          %select.select-default{name: "month"}
           %i.icon-arrow-bottom
         %span 月
       .birthday-select-wrap
         .select-wrap.select-wrap__day
-          %select.select-default{:name => "day"}
+          %select.select-default{name: "day"}
           %i.icon-arrow-bottom
         %span 日
       %p.form-info-text
         ※出品されたことがある、本人情報未登録のお客さまもご対象となります。
-      %input{:name => "birthday", :type => "hidden", :value => "19900907"}/
+      %input{name: "birthday", type: "hidden", value: "19900907"}
       .clearfix
-    %button.btn-default.btn-red{:type => "submit"} 登録する
+    %button.btn-default.btn-red{type: "submit"} 登録する
     .form-group.text-right
       %p
-        %a{:href => "/jp/help_center/article/423/", :target => "_blank"}
+        %a{href: "/jp/help_center/article/423/", target: "_blank"}
           本人情報の登録について
           %i.icon-arrow-right
-    %input{:name => "__csrf_value", :type => "hidden", :value => "cf63a2bec6d44b878106275ee6b5ad8c00fc41d724a87f4d1e2e24deaf323eb2f11c2aceaede488406e151b183fe0f29c651728524647f945817a671e9e0d2014"}/
+    %input{name: "", type: "hidden", value: "cf63a2bec6d44b878106275ee6b5ad8c00fc41d724a87f4d1e2e24deaf323eb2f11c2aceaede488406e151b183fe0f29c651728524647f945817a671e9e0d2014"}/
