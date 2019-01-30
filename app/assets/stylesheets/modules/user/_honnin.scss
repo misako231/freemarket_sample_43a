@@ -1,0 +1,12 @@
+.myinfo {
+  width: 700px;
+  background: $white-b;
+  text-align: center;
+  &__head {
+    font-size: 24px;
+    font-weight: bolder;
+  }
+  &__form{
+    padding: 64px;
+  }
+}
