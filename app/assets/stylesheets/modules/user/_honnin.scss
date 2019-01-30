@@ -6,7 +6,49 @@
     font-size: 24px;
     font-weight: bolder;
   }
-  &__form{
+  &__form {
     padding: 64px;
+    &__group {
+      font-weight: bolder;
+      margin: 0 0 40px 0;
+      text-align: left;
+      &__form {
+        font-weight: normal;
+        @extend .input-default-style;
+      }
+      &__require {
+        @extend .red-label-require;
+      }
+      &__arbitraty {
+        @extend .gray-label-arbitraty;
+      }
+      &__select-wrap {
+        font-weight: normal;
+        .select__default {
+          @include select-default-style();
+        }
+      }
+      &__birth-select-wrap {
+        &__select-wrap {
+          .select__default {
+            @include select-default-style();
+          }
+        }
+      }
+    }
+    &__form-info {
+      font-weight: normal;
+      color: #888;
+    }
+    &__group-right {
+      text-align: right;
+      margin-top: 40px;
+      &__link {
+        @extend .lightblue-link-default-style;
+      }
+    }
+    &__btn {
+      @include button-default-style();
+    }
   }
 }

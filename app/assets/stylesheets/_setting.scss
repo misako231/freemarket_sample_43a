@@ -16,3 +16,85 @@ font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGoth
 font-size: 14px;
 background-color: $gray-b;
 }
+
+.red-label-require {
+  background-color: $mercarired;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin: 0 0 0 8px;
+  line-height: inherit;
+  box-sizing: inherit;
+  font-size: 12px;
+  vertical-align: text-top;
+  color: $white-f;
+}
+
+.gray-label-arbitraty {
+  background-color: #ccc;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin: 0 0 0 8px;
+  line-height: inherit;
+  box-sizing: inherit;
+  font-size: 12px;
+  vertical-align: text-top;
+  color: $white-f;
+}
+
+.input-default-style {
+  margin: 8px 0 0;
+  padding: 10px 16px 8px;
+  height: 48px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: $white-f;
+  line-height: 1.5;
+  font-size: 16px;
+  color: inherit;
+  outline: 0;
+  &:focus {
+    border-color: $blue-link-f;
+  }
+}
+
+.lightblue-link-default-style {
+  color: $blue-link-f;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+@mixin button-default-style($width:100%, $background-color:#ea352d) {
+  width: $width;
+  background-color: $background-color;
+  border: 1px solid $background-color;
+  color: white;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+}
+
+
+@mixin select-default-style($width:100%) {
+  padding: 0 16px;
+  height: 48px;
+  width: $width;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: $white-f;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  outline: 0;
+}
+
+@mixin btn-default-style($width:100%) {
+  display: block;
+  width: $width;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
