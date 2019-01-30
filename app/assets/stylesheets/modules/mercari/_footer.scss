@@ -1,0 +1,98 @@
+.app-banner {
+  background: url(https://www.mercari.com/jp/assets/img/common/jp/top/download_bg_pc.jpg?23857628);
+  background-position: center;
+  &__pc {
+    width: 750px;
+    height: 260px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    &__inner {
+      height: 166px;
+      width: 420px;
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      h2.inner-title {
+        color: $white-f;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 1.4;
+      }
+      p.inner-publicity {
+        font-size: 35px;
+        color: $white-f;
+      }
+      &__icon {
+        height: 68px;
+        margin-top: 10px;
+        display: flex;
+        figure.footer-mercari-icon {
+          margin: 0;
+          width: 70px;
+        }
+        ul.app-install-icons {
+          display: flex;
+          align-items: center;
+          li.app-install-icon {
+            margin-left: 15px;
+          }
+        }
+      }
+    }
+    figure.app-image {
+      margin: 0;
+      width: 100px;
+      margin: 5px 0 0 15px;
+    }
+  }
+}
+
+
+
+.global-footer {
+  height: 617px;
+  background-color: #212121;
+  padding: 60px 0;
+  text-align: center;
+  color: $white-f;
+  &__nav {
+    height: 402px;
+    width: 1020px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: flex;
+    &__conteiner {
+      width: 255px;
+      h2.conteiner-title {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .conteiner-cell {
+        margin-top: 5px;
+        display: flex;
+        flex-direction: column;
+        &__text {
+          margin-top: 8px;
+          text-decoration: none;
+          color: $white-f;
+          &__image {
+
+          }
+          &__country {
+
+          }
+        }
+        &__box {
+          &__text {
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+            color: $white-f;
+            &__image {
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

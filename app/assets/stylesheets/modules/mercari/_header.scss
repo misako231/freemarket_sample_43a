@@ -21,6 +21,7 @@ header.mercari-header {
         width: calc(100% - 140px);
         .input-default {
           display: block;
+          border: solid 1px #ccc;
           border-radius: 3px;
           height: 39px;
           width: 100%;
@@ -32,6 +33,7 @@ header.mercari-header {
             top: 0;
             right: 0;
             line-height: 39px;
+            padding-right: 15px;
           .index-search-btn {
           }
         }
@@ -49,8 +51,8 @@ header.mercari-header {
           &__list {
             line-height: 45px;
             margin-right: 10px;
-            h2.search-nav__list__title {
-              a.search-nav__list__link {
+            &__title {
+              &__link {
                 color: $black-f;
                 text-decoration: none;
               }
@@ -59,21 +61,46 @@ header.mercari-header {
         }
       }
       .rigth-nav {
-        width: 400px;
+        width: 600px;
         .user-nav {
           display: flex;
           justify-content: flex-end;
           &__list {
             line-height: 45px;
             margin-left: 10px;
-            a.user-nav__list__link {
+            &__link-sign-in {
+              display: block;
+              border: solid 1px $mercarired;
+              background-color: $mercarired;
+              text-decoration: none;
+              line-height: 30px;
+              height: 30px;
+              width: 90px;
+              margin-top: 5px;
+              color: $white-f;
+              text-align: center;
+              border-radius: 3px;
+            }
+            &__link-sign-up {
+              display: block;
+              border: solid 1px $blue-link-f;
+              text-decoration: none;
+              line-height: 30px;
+              height: 30px;
+              width: 90px;
+              margin-top: 5px;
+              color: $blue-link-f;
+              text-align: center;
+              border-radius: 3px;
+            }
+            &__link {
               text-decoration: none;
               color: $black-f;
               display: flex;
               flex-direction: row;
-              figure.mypage-icon {
+              .mypage-icon {
                 margin: 0 10px 0 0;
-                .mypage-icon__conteiner {
+                &__conteiner {
                   height: 45px;
                   padding-top: 8px;
                   img {
@@ -89,7 +116,7 @@ header.mercari-header {
                 font-size: 15px;
                 margin-right: 10px;
               }
-              .fas {
+              .fa {
                 line-height: 45px;
                 font-size: 15px;
                 margin-right: 10px;
@@ -102,19 +129,19 @@ header.mercari-header {
   }
 }
 
-nav.bread-crumbs {
+.bread-crumbs {
   background-color: #fff;
   border-top: solid 1px #eee;
   height: 50px;
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
-  .bread-crumbs__items{
+  &__items{
     margin: 0 auto;
     width: 1020px;
     display: flex;
-    .bread-crumbs__item__value{
+    &__value{
       margin-right: 5px;
       line-height: 50px;
-      .bread-crumbs__link {
+      &__link {
         margin-right: 5px;
         text-decoration: none;
         color: $black-f;
@@ -122,8 +149,3 @@ nav.bread-crumbs {
     }
   }
 }
-
-
-
-
-
