@@ -215,6 +215,7 @@
       margin-top:0.5em;
       overflow:hidden;
       padding:24px;
+      position:relative;
 
       .non_pics_icon {
         height:40px;
@@ -239,6 +240,15 @@
           padding:16px;
           border-radius: 15px;
           background-color: #eef0f4;
+
+          i.fas.fa-caret-right {
+            font-size:20px;
+            color:#eef0f4;
+            transform:rotate(-45deg);
+            position:absolute;
+            top:50px;
+            left:72px;
+          }
 
           &-text {
 
@@ -357,7 +367,7 @@
     width:700px;
     height:150px;
     background-color:$white-b;
-    margin-top:24px;
+    margin:24px 0 48px;
     padding:32px 0 24px;
 
     &__box {
@@ -368,7 +378,7 @@
       text-align: center;
 
       &__icon__f {
-        width:44px;
+                width:44px;
         height:44px;
         border-style: solid;
         border-width:0;
@@ -380,11 +390,10 @@
         margin:0 8px 8px 0;
 
         &-facebook {
-          color:$white-b;
 
         }
-
       }
+
 
       &__icon__t {
         width:44px;
@@ -404,27 +413,7 @@
 
       }
 
-      &__icon__l {
-        width:44px;
-        height:44px;
-        border-style: solid;
-        border-width:0;
-        background-color:#00c137;
-        border-radius:5px;
-        font-size:20px;
-        color:$white-f;
-        line-height: 44px;
-        margin:0 8px 8px 0;
 
-        &-line {
-          color:#00c137;
-          font-size:30px;
-          background-color:$white-f;
-
-
-        }
-
-      }
 
       &__icon__p {
         width:44px;
@@ -469,12 +458,16 @@
       &__items-box-content {
         display:flex;
         flex-wrap:wrap;
-        justify-content:space-between;
 
         &__box {
           width:220px;
           height:330px;
-          margin-bottom:20px;
+          margin:0 0 20px 20px;
+
+          &:nth-child(3n+1) {
+            margin-left: 0px;
+            margin-bottom:20px;
+          }
 
           &__photo {
             height:220px;
@@ -536,6 +529,15 @@
           }
 
         }
+
+
+
+
+
+
+
+
+
       }
 
 
