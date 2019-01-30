@@ -1,0 +1,11 @@
+%li
+  =link_to "#", class: "mypage__content__announce__details__notification__link" do
+    .mypage__content__announce__details__notification__link__img
+      =image_tag('beutiful.jpg', size: "48x48")
+    .mypage__content__announce__details__notification__link__text
+      フェレットさん、他4名が「［裁断済］いちばんよくわかるW...」にいいね！しました
+      .mypage__content__announce__details__notification__link__text__time
+        %time
+          %i.far.fa-clock
+          %span 2 日前
+    = fa_icon "angle-right"
