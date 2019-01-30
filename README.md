@@ -9,7 +9,7 @@
 |last_name_kana|str|F||
 |first_name_kana|str|F||
 |phone|int|F|uni|
-|paying-way_id|ref|F|fk|
+|paying-way|int|F||
 |birth_y|int|F||
 |birth_m|int|F||
 |birth_d|int|F||
@@ -35,7 +35,8 @@
 - has_many :blockings, through: :block-relationships, source: :block
 - has_many :reverse-block-relationships, class_name: 'block-relationship', foreign_key: 'blocking_id'
 - has_many :blockeds, through: :reverse-block-relationships, source: :user
-- belongs_to :paying-way
+### Option
+- paying-wayカラムはenumで管理
 
 
 ##2.address
@@ -156,14 +157,7 @@ t.index [:user_id, :block_id], unique: true
 - belongs_to :item
 - belongs_to :comment
 
-##12.paying_way
-|Column|Type|Null|Option|
-|------|----|----|------|
-|way|str|F||
-### Association
-has_many :users
-
-##13.item
+##12.item
 |Column|Type|Null|Option|
 |------|----|----|------|
 |name|str|T||
@@ -172,7 +166,7 @@ has_many :users
 |brand_id|int|T|fk|
 |shipping_fee|bln|F||
 |region_id|ref|F|fk|
-|days_to_ship_id|ref|F|fk|
+|days_to_ship|int|F||
 |price|int|F||
 |condition|int|F||
 |user_id|ref|F|fk|
@@ -184,12 +178,12 @@ has_many :users
 - belongs_to :region
 - belongs_to :user
 - belongs_to :category
-- belongs_to :days-to-ship
 - belongs_to :item
 ### Option
 - conditionカラムはenumで管理
+- days-to-shipカラムはenumで管理
 
-##14.item-photo
+##13.item-photo
 |Column|Type|Null|Option|
 |------|----|----|------|
 |image|str|F||
@@ -197,14 +191,7 @@ has_many :users
 ### Association
 - belongs_to :item
 
-##15.days-to-ship
-|Column|Type|Null|Option|
-|------|----|----|------|
-|days|str|F||
-### Association
-- has_many :items
-
-##17.category
+##14.category
 |Column|Type|Null|Option|
 |------|----|----|------|
 |name|str|F||
@@ -212,7 +199,7 @@ has_many :users
 ### Association
 - has_many :items
 
-##18.brand
+##15.brand
 |Column|Type|Null|Option|
 |------|----|----|------|
 |name|str|F||
