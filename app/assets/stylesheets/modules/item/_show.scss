@@ -22,7 +22,16 @@
       &__item-photo {
         width:300px;
         height:375px;
-        border:solid 0.5px black;
+        overflow:hidden;
+
+        &__main {
+          height:300px;
+        }
+
+        &__sub {
+          display:flex;
+          flex-direction:row;
+        }
 
       }
 
@@ -60,33 +69,30 @@
                 display:flex;
 
                 &__good {
-                  .user-ratings {
-                    text-decoration: none;
-                    .fa-laugh {
-                      color:#ef5185;
-                    }
+
+                  .fa-laugh {
+                    color:#ef5185;
                   }
+
                 }
 
                 &__soso {
                   margin-left:16px;
-                  .user-ratings {
-                    text-decoration: none;
-                    .fa-meh {
-                      color:#fba933;
-                    }
+
+                  .fa-meh {
+                    color:#fba933;
                   }
+
                 }
 
 
                 &__bad {
                   margin-left:16px;
-                  .user-ratings {
-                    text-decoration: none;
-                    .fa-frown {
-                      color:#6ab5d8;
-                    }
+
+                  .fa-frown {
+                    color:#6ab5d8;
                   }
+
                 }
 
 
@@ -137,17 +143,23 @@
       align-items:baseline;
       margin: 16px 0 0;
 
+
       &__left {
         width:300px;
+        cursor:pointer;
 
-        &__likes {
-          padding:7.5px 16px;
+
+        button,&__likes {
+          padding:8px 16px;
           font-size:13px;
           border:1px solid $gray-b;
           border-radius:40px;
           background-color:$gray-b;
           line-height:13px;
-          cursor:pointer;
+
+            i.fa-heart {
+              color:#ccc;
+            }
         }
 
         &__report {
@@ -160,17 +172,24 @@
           cursor:pointer;
           margin-left:13px;
         }
+
       }
 
       &__safety {
-        display:inline;
         margin-left: 80px;
         cursor:pointer;
         color:$blue-link-f;
 
-        &__link-contents {
-          color:$blue-link-f;
+
+        &__link {
           text-decoration: none;
+          color:$blue-link-f;
+
+
+          &-contents {
+            color:$blue-link-f;
+            text-decoration: none;
+          }
         }
       }
 
@@ -408,7 +427,6 @@
 
 
     &__items-box-container {
-
       &__head {
         font-size:22px;
         margin:24px 0 8px;
@@ -422,11 +440,9 @@
       }
 
       &__items-box-content {
-        overflow-x:auto;
-        overflow-y:hidden;
         display:flex;
-        // justify-content: space-between;
-        align-content:stretch;
+        flex-wrap:wrap;
+        justify-content:space-between;
 
         &__box {
           width:220px;
