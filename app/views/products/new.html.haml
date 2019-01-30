@@ -1,0 +1,157 @@
+= render 'shared/second_header'
+%main.single__main
+  %section.l__single__container.buy__item__container
+    .sell__container
+      %div{ 'data-reactroot': ""}
+        .sell__container--inner
+          %h2.l__single__head 商品の情報を入力
+          %form.sell__form
+            .sell__upload__box
+              %h3.sell__upload__head
+                出品画像
+                %span.form__require 必須
+              %p 最大10枚までアップロードできます
+              .sell__dropbox__container.state__image__number-4
+                .sell__upload__items__container
+                  .sell__upload__items.have__item-0
+                    %ul
+                      %li.sell__upload__item
+                        %figure.sell__upload__figure.landscape
+                          %img{ src: "http://image.jp", alt: "" }
+                        .sell__upload__button
+                          = link_to "#", class: 'sell__upload__edit' do
+                            編集
+                          = link_to "#" do
+                            削除
+                      %li.sell__upload__item
+                        %figure.sell__upload__figure.landscape
+                          %img{ src: "http://image.jp", alt: "" }
+                        .sell__upload__button
+                          = link_to "#", class: 'sell__upload__edit' do
+                            編集
+                          = link_to "#" do
+                            削除
+                .sell__upload__drop-box.have__item-0
+                  %input.sell__upload__drop-file{ type: 'file', multiple: true, name: "image1" }
+                  %pre.visible__pc
+                    ドラッグアンドドロップ
+                    またはクリックしてファイルをアップロード
+            .sell__content
+              .form__group
+                %label
+                  商品名&emsp;&emsp;
+                  %span.form__require 必須
+                %div
+                  %input.input__default{ placeholder: "商品名(必須40文字まで)" }
+              .form__group
+                %label
+                  商品の説明&emsp;&emsp;
+                  %span.form__require 必須
+                %textarea.textarea__default{ rows: '5', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" }
+            .sell__content.choice__box
+              %h3.sell__sub--head
+                商品の詳細
+              .sell__form__box
+                .form__group
+                  %label
+                    カテゴリー&emsp;&emsp;
+                    %span.form__require 必須
+                  .select__wrap
+                    %select.select__default
+                    / f.collection_select :item, Item.all, :id, :category, prompt: "---", class: 'select__default'
+                    .icon__arrow__bottom
+                      = icon 'fa', 'angle-down'
+                .form__group
+                  %label
+                    商品の状態&emsp;&emsp;
+                    %span.form__require 必須
+                  .select__wrap
+                    %select.select__default
+                    / %f.collection_select :item, :state, @items, :id, :state, prompt: "---", class: 'select__default'
+                    .icon__arrow__bottom
+                      = icon 'fa', 'angle-down'
+            .sell__content.choice__box
+              %h3.sell__sub--head
+                配送について
+                = link_to "#", target: '_blank', class: 'form__question' do
+                  ?
+              .sell__form__box
+                .form__group
+                  %label
+                    配送料の負担&emsp;&emsp;
+                    %span.form__require 必須
+                  .select__wrap
+                    %select.select__default
+                    / %f.collection_select :item, @items, :id, :delivery_fee, prompt: "---", class: 'select__default'
+                    .icon__arrow__bottom
+                      = icon 'fa', 'angle-down'
+                .form__group
+                  %label
+                    発送元の地域&emsp;&emsp;
+                    %span.form__require 必須
+                  .select__wrap
+                    %select.select__default
+                    / %f.collection_select :item, @items, :id, :area, prompt: "---", class: 'select__default'
+                    .icon__arrow__bottom
+                      = icon 'fa', 'angle-down'
+                .form__group
+                  %label
+                    発送までの日数&emsp;&emsp;
+                    %span.form__require 必須
+                  .select__wrap
+                    %select.select__default
+                    / %collection_select :item, @items, :id, :area, prompt: "---", class: 'select__default'
+                    .icon__arrow__bottom
+                      = icon 'fa', 'angle-down'
+            .sell__content.choice__box
+              %h3.sell__sub--head
+                販売価格(300〜9,999,999)
+                = link_to "#", target: '_blank', class: 'form__question' do
+                  ?
+              .sell__form__box
+                %ul.sell__price
+                  %li.form__group
+                    .price__form
+                      %label.label__left
+                        価格&emsp;&emsp;
+                        %span.form__require 必須
+                      .l__right.sell__price__input
+                        ¥
+                        %div
+                          %input.input__default{ placeholder: "例) 300" }
+                  %li.profit__group
+                    .label__left
+                      販売手数料 (10%)
+                    .label__right
+                      \-
+                  %li.profit__group.bold
+                    .label__left
+                      販売利益
+                    .label__right
+                      \-
+            .modal{ role: 'dialog', tabindex: "-1"}
+              .modal--inner
+            / 謎
+            .sell__content.sell__btn__box
+              %div
+                %p
+                  = link_to "#", target: '_blank' do
+                    禁止されている出品
+                  = link_to "#", target: '_blank' do
+                    行為
+                  を必ずご確認ください
+                %p
+                  またブランド品でシリアルナンバー等がある場合はご記載ください。
+                  = link_to "#", target: '_blank' do
+                    偽ブランドの販売
+                  は犯罪であり処罰される可能性があります。
+                %p
+                  また、出品をもちまして
+                  = link_to "#", target: '_blank' do
+                    加盟店規約
+                  に同意したことになります。
+              %input.btn__default.btn--red{ type: 'submit', value: "出品する"}
+              = link_to "#", class: 'btn__default btn--gray' do
+                もどる
+        .overlay
+= render 'shared/second_footer'

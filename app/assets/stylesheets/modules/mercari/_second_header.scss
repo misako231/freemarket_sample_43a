@@ -1,0 +1,19 @@
+.single__header {
+  height: 128px;
+  text-align: center;
+  h1 {
+    margin: 40px 0 0;
+    display: inline-block;
+    a {
+      margin: 0 8px 0 0;
+      height: 49px;
+      width: 185px;
+      line-height: 49px;
+      display: inline-block;
+      img {
+        width: 185px;
+        height: 49px;
+      }
+    }
+  }
+}
