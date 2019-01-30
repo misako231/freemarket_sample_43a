@@ -60,7 +60,7 @@
                     %select.select__default
                     / f.collection_select :item, Item.all, :id, :category, prompt: "---", class: 'select__default'
                     .icon__arrow__bottom
-                      = icon 'fa', 'angle-down'
+                      %i.fas.fa-angle-down
                 .form__group
                   %label
                     商品の状態&emsp;&emsp;
@@ -69,7 +69,7 @@
                     %select.select__default
                     / %f.collection_select :item, :state, @items, :id, :state, prompt: "---", class: 'select__default'
                     .icon__arrow__bottom
-                      = icon 'fa', 'angle-down'
+                      %i.fas.fa-angle-down
             .sell__content.choice__box
               %h3.sell__sub--head
                 配送について
@@ -84,7 +84,7 @@
                     %select.select__default
                     / %f.collection_select :item, @items, :id, :delivery_fee, prompt: "---", class: 'select__default'
                     .icon__arrow__bottom
-                      = icon 'fa', 'angle-down'
+                      %i.fas.fa-angle-down
                 .form__group
                   %label
                     発送元の地域&emsp;&emsp;
@@ -93,7 +93,7 @@
                     %select.select__default
                     / %f.collection_select :item, @items, :id, :area, prompt: "---", class: 'select__default'
                     .icon__arrow__bottom
-                      = icon 'fa', 'angle-down'
+                      %i.fas.fa-angle-down
                 .form__group
                   %label
                     発送までの日数&emsp;&emsp;
@@ -102,7 +102,7 @@
                     %select.select__default
                     / %collection_select :item, @items, :id, :area, prompt: "---", class: 'select__default'
                     .icon__arrow__bottom
-                      = icon 'fa', 'angle-down'
+                      %i.fas.fa-angle-down
             .sell__content.choice__box
               %h3.sell__sub--head
                 販売価格(300〜9,999,999)
