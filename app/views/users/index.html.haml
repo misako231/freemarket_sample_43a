@@ -1,1 +1,58 @@
-a
+= render 'shared/header'
+%main.mypage
+  .mypage__content
+    .mypage__content__user
+      .mypage__content__user__icon
+        = link_to "#", class: "mypage__content__user__icon__link" do
+          .mypage__content__user__icon__link__img
+            = image_tag 'beutiful.jpg', class: "mypage__content__user__icon__link__img__in"
+          .mypage__content__user__icon__link__name
+            %h2.bold toriisogi
+          .mypage__content__user__icon__link__num
+            .mypage__content__user__icon__link__num__review
+              評価
+              %span.mypage__content__user__icon__link__num__review__count
+                21
+            .mypage__content__user__icon__link__num__exhibits
+              出品数
+              %span.mypage__content__user__icon__link__num__exhibits__count
+                15
+    .mypage__content__announce
+      %ul.mypage__content__announce__tabs
+        %li.mypage__content__announce__tabs__notification
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-notification"}
+              お知らせ
+        %li.mypage__content__announce__tabs__todo
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-notification"}
+              やることリスト
+      .mypage__content__announce__details
+        %ul.mypage__content__announce__details__notification
+          = render 'users/announce-details'
+          = render 'users/announce-details'
+          = render 'users/announce-details'
+          = render 'users/announce-details'
+          = render 'users/announce-details'
+          %li.mypage__content__announce__details__notification__go
+            %a{:href => "/jp/mypage/notification/"} 一覧を見る
+        %ul.mypage__content__announce__details__todo
+    .mypage__content__trade
+      %h2 購入した商品
+      %ul.mypage__content__trade__tabs
+        %li.mypage__content__trade__tabs__during
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-transaction-now"}
+              取引中
+        %li.mypage__content__trade__tabs__past
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-transaction-now"}
+              過去の取引
+      .mypage__content__trade__content
+        %ul.mypage__content__trade__content__during
+          %li.mypage__content__trade__content__during__list
+            取引中の商品がありません
+        %ul.mypage__content__trade__content__past
+          %li.mypage__content__trade__content__past__list
+  = render 'users/mypage-side-nav'
+= render 'shared/footer'
