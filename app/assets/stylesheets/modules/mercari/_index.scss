@@ -6,17 +6,17 @@ main.index-conteiner {
     background-image: url(https://www.mercari.com/jp/assets/img/common/jp/top/banner-featured-hobby.jpg);
     background-position: center;
   }
-  section.pickup-container {
+  .pickup-container {
     padding: 40px 0;
-    h2.pickup-cotainer__head {
+    &__head {
       font-size: 28px;
       text-align: center;
       font-weight: bold;
     }
-    section.item-box-container {
+    .item-box-container {
       width: 940px;
       margin: 0 auto;
-      h3.item-box-container__title {
+      &__title {
         text-align: center;
         font-size: 22px;
         margin: 22px 11px;
@@ -42,17 +42,17 @@ main.index-conteiner {
             .items-box-body {
               height: 110px;
               padding: 16px;
-              h3.items-box-boby__name {
+              &__name {
                 font-size: 16px;
               }
               .items-box-body__num {
                 margin-top: 8px;
                 position: relative;
-                .items-box-body__num__price {
+                &__price {
                   font-size: 20px;
                   font-weight: 600;
                 }
-                .items-box-body__num__likes {
+                &__likes {
                   position: absolute;
                   bottom: 15px;
                   right: 10px;
@@ -60,9 +60,9 @@ main.index-conteiner {
                     font-size: 15px;
                   }
                 }
-                 p.items-box-body__tax {
+                &__tax {
                   font-size: 6px;
-                 }
+                }
               }
             }
           }
@@ -93,7 +93,7 @@ main.index-conteiner {
   color: #fff;
   text-align: center;
   text-decoration: none;
-  .btn-title {
+  &__title {
     margin-top: 32px;
   }
   .fa {
@@ -101,13 +101,3 @@ main.index-conteiner {
     margin-top: 8px;
   }
 }
-
-
-
-
-
-
-
-
-
-

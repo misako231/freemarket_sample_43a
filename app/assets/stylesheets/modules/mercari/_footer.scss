@@ -1,7 +1,7 @@
-aside.app-banner {
+.app-banner {
   background: url(https://www.mercari.com/jp/assets/img/common/jp/top/download_bg_pc.jpg?23857628);
   background-position: center;
-  .app-banner__pc {
+  &__pc {
     width: 750px;
     height: 260px;
     margin: 0 auto;
@@ -21,7 +21,7 @@ aside.app-banner {
         font-size: 35px;
         color: $white-f;
       }
-      .app-banner__pc__inner__icon {
+      &__icon {
         height: 68px;
         margin-top: 10px;
         display: flex;
@@ -94,10 +94,3 @@ footer.global-footer {
     }
   }
 }
-
-
-
-
-
-
-
