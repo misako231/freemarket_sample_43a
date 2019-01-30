@@ -1,0 +1,36 @@
+&__link{
+  min-height: 80px;
+  width: 100%;
+  padding: 16px;
+  color: $black-f;
+  display: block;
+  display: inline-flex;
+  justify-content: space-between;
+  background-color:$white-b;
+  text-decoration: none;
+  line-height: 1.4em;
+  border-bottom: 1px solid #eee;
+  &__img{
+    display: block;
+  }
+  &__text{
+    text-overflow: ellipsis;
+    margin-right: 20px;
+    max-width: 550px;
+    &__time{
+      color: #888;
+      .far{
+        margin-right: 8px;
+        font-size: 16px;
+      }
+      span{
+        font-size: 14px;
+      }
+    }
+  }
+  .fa{
+    font-size: 1.8em;
+    line-height: 48px;
+    -webkit-text-stroke: 2px white;
+  }
+}
