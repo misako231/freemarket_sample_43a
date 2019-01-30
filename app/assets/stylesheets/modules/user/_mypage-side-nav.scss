@@ -1,0 +1,49 @@
+&__side{
+  width: 280px;
+  margin-right: 40px;
+  &__nav{
+    &__list{
+      &__item{
+        background-color: $white-b;
+        display: block;
+        height: 48px;
+        padding: 0 16px;
+        border-top: 1px solid #eee;
+        list-style: none;
+        text-decoration: none;
+        color: $black-f;
+        line-height: 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &__center{
+          flex-grow:0.8;
+          display: flex;
+          flex-direction: row-reverse;
+          &__num{
+            border-radius: 50%;
+            background-color: $mercarired;
+            color: $white-b;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+          }
+        }
+        &__icon{
+          font-size: 1.8em;
+          line-height: 48px;
+          color: #ccc;
+          // カーソルを合わせると#333になる
+        }
+      }
+    }
+    &__head{
+      min-height: 48px;
+      font-weight: bold;
+      padding-top: 40px;
+      padding-bottom: 5px;
+      font-size: 16px;
+    }
+  }
+}
