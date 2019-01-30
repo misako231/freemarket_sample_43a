@@ -14,7 +14,6 @@
       background-image: url(https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?23857628);
       display: flex;
       align-items: center;
-      // justify-content: center;
       &__icon{
         width: 100%;
         &__link{
@@ -211,4 +210,3 @@
   }
   @import "./modules/user/mypage-side-nav.scss";
 }
-
