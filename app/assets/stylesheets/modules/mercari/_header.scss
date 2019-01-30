@@ -21,6 +21,7 @@ header.mercari-header {
         width: calc(100% - 140px);
         .input-default {
           display: block;
+          border: solid 1px #ccc;
           border-radius: 3px;
           height: 39px;
           width: 100%;
@@ -32,6 +33,7 @@ header.mercari-header {
             top: 0;
             right: 0;
             line-height: 39px;
+            padding-right: 15px;
           .index-search-btn {
           }
         }
@@ -59,13 +61,38 @@ header.mercari-header {
         }
       }
       .rigth-nav {
-        width: 400px;
+        width: 600px;
         .user-nav {
           display: flex;
           justify-content: flex-end;
           &__list {
             line-height: 45px;
             margin-left: 10px;
+            a.user-nav__list__link__sign-in {
+              display: block;
+              border: solid 1px $mercarired;
+              background-color: $mercarired;
+              text-decoration: none;
+              line-height: 30px;
+              height: 30px;
+              width: 90px;
+              margin-top: 5px;
+              color: $white-f;
+              text-align: center;
+              border-radius: 3px;
+            }
+            a.user-nav__list__link__sign-up {
+              display: block;
+              border: solid 1px $blue-link-f;
+              text-decoration: none;
+              line-height: 30px;
+              height: 30px;
+              width: 90px;
+              margin-top: 5px;
+              color: $blue-link-f;
+              text-align: center;
+              border-radius: 3px;
+            }
             a.user-nav__list__link {
               text-decoration: none;
               color: $black-f;
