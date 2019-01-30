@@ -176,7 +176,7 @@
       }
 
       &__safety {
-        margin-left: 80px;
+        margin-left: 90px;
         cursor:pointer;
         color:$blue-link-f;
 
@@ -187,9 +187,17 @@
 
 
           &-contents {
-            color:$blue-link-f;
-            text-decoration: none;
+
+            .lock {
+              text-decoration: none;
+              color:$blue-link-f;
+              .fa-lock {
+
+              }
+
+            }
           }
+
         }
       }
 
@@ -300,10 +308,13 @@
       .angle-left  {
         text-decoration: none;
         color:$blue-link-f;
+        display:flex;
+        align-items:center;
 
         .fa-angle-left {
           font-weight:bold;
-          font-size:20px;
+          font-size:24px;
+          -webkit-text-stroke: 1px $gray-b
         }
       }
 
@@ -318,9 +329,14 @@
       .angle-right  {
         text-decoration: none;
         color:$blue-link-f;
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+
         .fa-angle-right {
           font-weight:bold;
-          font-size:20px;
+          font-size:24px;
+          -webkit-text-stroke: 1px $gray-b
         }
       }
 
@@ -363,6 +379,10 @@
         line-height: 44px;
         margin:0 8px 8px 0;
 
+        &-facebook {
+          color:$white-b;
+
+        }
 
       }
 
@@ -371,15 +391,14 @@
         height:44px;
         border-style: solid;
         border-width:0;
-        border-color:#5d9dc9;
-        background-color:$white-f;
+        background-color:#5d9dc9;
         border-radius:5px;
-        font-size:50px;
-        color:#5d9dc9;
+        font-size:20px;
         line-height: 44px;
-        margin:0 0px 8px 0;
+        margin:0 8px 8px 0;
 
           &-twitter {
+            color:$white-b;
 
           }
 
@@ -390,14 +409,18 @@
         height:44px;
         border-style: solid;
         border-width:0;
-        background-color:$white-f;
+        background-color:#00c137;
         border-radius:5px;
-        font-size:50px;
-        color:#00c137;
+        font-size:20px;
+        color:$white-f;
         line-height: 44px;
         margin:0 8px 8px 0;
 
         &-line {
+          color:#00c137;
+          font-size:30px;
+          background-color:$white-f;
+
 
         }
 
@@ -414,6 +437,10 @@
         color:$white-f;
         line-height: 44px;
         margin:0 8px 8px 0;
+
+        &-pinterest {
+          color:$white-b;
+        }
 
       }
 
