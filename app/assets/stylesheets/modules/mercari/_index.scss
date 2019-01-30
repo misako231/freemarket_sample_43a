@@ -1,0 +1,103 @@
+main.index-conteiner {
+  height: 4450px;
+  background-color: #eee;
+  section.newregi1901-main {
+    height: 390px;
+    background-image: url(https://www.mercari.com/jp/assets/img/common/jp/top/banner-featured-hobby.jpg);
+    background-position: center;
+  }
+  .pickup-container {
+    padding: 40px 0;
+    &__head {
+      font-size: 28px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .item-box-container {
+      width: 940px;
+      margin: 0 auto;
+      &__title {
+        text-align: center;
+        font-size: 22px;
+        margin: 22px 11px;
+        font-weight: bold;
+        a {
+          text-decoration: none;
+          color: $blue-link-f;
+        }
+      }
+      .item-box-content {
+        display: flex;
+        justify-content: space-between;
+        section.items-box {
+          background-color: $white-b;
+          width: 213px;
+          a {
+            text-decoration: none;
+            color: $black-f;
+            figure.items-box__photo {
+              margin: 0;
+              height: 220px;
+            }
+            .items-box-body {
+              height: 110px;
+              padding: 16px;
+              &__name {
+                font-size: 16px;
+              }
+              .items-box-body__num {
+                margin-top: 8px;
+                position: relative;
+                &__price {
+                  font-size: 20px;
+                  font-weight: 600;
+                }
+                &__likes {
+                  position: absolute;
+                  bottom: 15px;
+                  right: 10px;
+                  .fa {
+                    font-size: 15px;
+                  }
+                }
+                &__tax {
+                  font-size: 6px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .view-all {
+        padding: 20px 0 30px;
+        width: 99.5%;
+        text-align: right;
+        a {
+          text-decoration: none;
+          color: $blue-link-f;
+        }
+      }
+    }
+  }
+}
+
+.footer-sell-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 160px;
+  height: 160px;
+  font-size: 22px;
+  border-radius: 50%;
+  background: #ea352d;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  &__title {
+    margin-top: 32px;
+  }
+  .fa {
+    font-size: 54px;
+    margin-top: 8px;
+  }
+}
