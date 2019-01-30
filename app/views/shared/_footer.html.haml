@@ -1,0 +1,120 @@
+%aside.app-banner
+  .app-banner__pc
+    .app-banner__pc__inner
+      %h2.inner-title スマホでかんたんフリマアプリ
+      %p.inner-publicity 今すぐ無料ダウンロード!
+      .app-banner__pc__inner__icon
+        %figure.footer-mercari-icon
+          = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/mercari_icon.png?1857733084", width: "68", height: "68"
+        %ul.app-install-icons
+          %li.app-install-icon
+            %a.app-install--link{ href: "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8",target: "_blank" }
+              = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?1857733084"
+          %li.app-install-icon
+            %a.app-install--link{ href: "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja", target: "_blank" }
+              = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?1857733084"
+    %figure.app-image
+      = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/jp/download_content_pc.png?1857733084", width: "300", heigth: "260"
+%footer.global-footer
+  %nav.global-footer__nav
+    .global-footer__nav__conteiner
+      %h2.conteiner-title メルカリについて
+      .conteiner-cell
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          会社概要 (運営会社)
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          プライバシーポリシー
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          メルカリ利用規約
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          メルカリ利用規約・有償ポイントに関する特約
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          あんしんスマホサポート制度に関する利用規約
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          コンプライアンスポリシー
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          個人データの安全管理に係る基本方針
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          特定商取引に関する表記
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          資金決済法に基づく表示
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          法令順守と犯罪抑止のために
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          採用情報
+
+    .global-footer__nav__conteiner
+      %h2.conteiner-title メルカリを見る
+      .conteiner-cell
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          カテゴリー一覧
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          ブランド一覧
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          出品地域一覧
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          公式ブログ
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          公式Twitter
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          公式Facebook
+
+    .global-footer__nav__conteiner
+      %h2.conteiner-title ヘルプ&ガイド
+      .conteiner-cell
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          メルカリガイド
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          メルカリロゴ利用ガイドライン
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          お知らせ
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          らくらくメルカリ便とは
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          ゆうゆうメルカリ便とは
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          大型らくらくメルカリ便とは
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          車体取引ガイド
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          返品・返金ポリシー
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          メルカリあんしん・あんぜん宣言!
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          偽ブランド品撲滅への取り組み
+        = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+          メルカリボックス
+
+    .global-footer__nav__conteiner
+      %h2.conteiner-title 国
+      .conteiner-cell
+        .conteiner-cell__box
+          = link_to "https://www.mercari.com/", class: "conteiner-cell__text" do
+            .conteiner-cell__text__image
+              = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/flag_us.png?1857733084", class: "country-logo", width: "22", heigth: "22"
+            .conteiner-cell__text__country
+              %p.country-name United States
+        .conteiner-cell__box
+          = link_to "https://www.mercari.com/uk/", class: "conteiner-cell__text" do
+            .conteiner-cell__text__image
+              = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/flag_uk.png?1857733084", class: "country-logo", width: "22", heigth: "22"
+            .conteiner-cell__text__country
+              %p.country-name United Kingdom
+        .conteiner-cell__box
+          = link_to "https://www.mercari.com/jp/", class: "conteiner-cell__text" do
+            .conteiner-cell__text__image
+              = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/flag_jp.png?1857733084", class: "country-logo", width: "22", heigth: "22"
+            .conteiner-cell__text__country
+              %p.country-name 日本
+  = link_to "https://www.mercari.com/jp/", class: "footer-logo" do
+    = image_tag "footer-log.png", width: "250", heigth: "100"
+  %p.footer-copyright
+    %small © 2019 Mercari
+
+
+
+
+
+
+
+
