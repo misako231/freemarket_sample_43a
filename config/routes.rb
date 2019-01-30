@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
 
 
+
   # shimizu
   get "users/honnin", to: "users#honnin"
+  get "users/logout", to: "users#logout"
+
 end

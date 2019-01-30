@@ -4,4 +4,7 @@ class UsersController < ApplicationController
 
   def honnin
   end
+
+  def logout
+  end
 end

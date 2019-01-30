@@ -26,12 +26,22 @@
         font-weight: normal;
         .select__default {
           @include select-default-style();
+          margin-top: 8px;
+          appearance: none;
         }
       }
       &__birth-select-wrap {
-        &__select-wrap {
+        display: inline-block;
+        .select-wrap {
+          width: 173px;
+          font-weight: normal;
           .select__default {
-            @include select-default-style();
+            @include select-default-style(140px);
+            margin-top: 8px;
+          }
+          span {
+            text-align: center;
+            margin: 0 7px;
           }
         }
       }
@@ -39,12 +49,17 @@
     &__form-info {
       font-weight: normal;
       color: #888;
+      margin-top: 8px;
     }
     &__group-right {
       text-align: right;
       margin-top: 40px;
       &__link {
         @extend .lightblue-link-default-style;
+        .fa-angle-right {
+          font-size: 16px;
+          line-height: 16px;
+        }
       }
     }
     &__btn {
