@@ -48,19 +48,19 @@
 
 
 
-footer.global-footer {
+.global-footer {
   height: 617px;
   background-color: #212121;
   padding: 60px 0;
   text-align: center;
   color: $white-f;
-  nav.global-footer__nav {
+  &__nav {
     height: 402px;
     width: 1020px;
     margin: 0 auto;
     margin-bottom: 20px;
     display: flex;
-    .global-footer__nav__conteiner {
+    &__conteiner {
       width: 255px;
       h2.conteiner-title {
         font-size: 16px;
@@ -70,22 +70,24 @@ footer.global-footer {
         margin-top: 5px;
         display: flex;
         flex-direction: column;
-        .conteiner-cell__text {
+        &__text {
           margin-top: 8px;
           text-decoration: none;
           color: $white-f;
-          .conteiner-cell__text__image {
+          &__image {
 
           }
-          .conteiner-cell__text__country {
+          &__country {
 
           }
         }
-        .conteiner-cell__box {
-          .conteiner-cell__text {
+        &__box {
+          &__text {
             display: flex;
             justify-content: center;
-            .conteiner-cell__text__image {
+            text-decoration: none;
+            color: $white-f;
+            &__image {
               margin-right: 10px;
             }
           }
