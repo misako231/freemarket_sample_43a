@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def index
   end
 
-  def honnin
+  def identification
   end
 
   def logout

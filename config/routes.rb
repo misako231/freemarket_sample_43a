@@ -3,16 +3,7 @@ Rails.application.routes.draw do
   get "mercari/index", to: "mercari#index"
   get "users/index", to: "users#index"
   get "products/new", to: "products#new"
-
-
-
-
-
-
-
-
-  # shimizu
-  get "users/honnin", to: "users#honnin"
+  get "users/identification", to: "users#identification"
   get "users/logout", to: "users#logout"
 
 end
