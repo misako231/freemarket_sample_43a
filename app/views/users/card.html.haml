@@ -1,0 +1,16 @@
+= render 'shared/header'
+%main.card
+  = render 'users/mypage-side-nav'
+  .card__content
+    .card__content__top
+      支払い方法
+    .card__content__middle
+      .card__content__middle__text
+        クレジットカード一覧
+      .card__content__middle__btn
+        .card__content__middle__btn__text
+          %i.far.fa-credit-card
+          クレジットカードを登録する
+      .card__content__middle__bottom
+        支払い方法について
+= render 'shared/footer'

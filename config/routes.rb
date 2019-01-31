@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get "users/index", to: "users#index"
   get "products/new", to: "products#new"
   get "users/logout", to: "users#logout"
+  get "users/card", to: "users#card"
 end
