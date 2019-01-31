@@ -110,7 +110,7 @@
       }
       &__details{
         &__notification{
-          @import "./modules/user/announce-details.scss";
+          @import "./modules/mypage/announce-details.scss";
           &__go{
             min-height: 80px;
             width: 100%;
@@ -208,5 +208,5 @@
       }
     }
   }
-  @import "./modules/user/mypage-side-nav.scss";
+  @import "./modules/mypage/mypage-side-nav.scss";
 }
