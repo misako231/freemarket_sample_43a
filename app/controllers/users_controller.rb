@@ -23,10 +23,9 @@ class UsersController < ApplicationController
   def logout
   end
 
-<<<<<<< HEAD
   def edit
-=======
+  end
+
   def card
->>>>>>> shunke434343/master
   end
 end
