@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load', function() {
   $(function(){
-    console.log('hey')
     $('.slider').slick({
       autoplay: true,
       adaptiveHeight: true,

@@ -1,5 +1,5 @@
 main.index-conteiner {
-  min-height: 4450px;
+  height: 4450px;
   background-color: #eee;
   .slick_container {
     background-position: center;
@@ -34,19 +34,50 @@ main.index-conteiner {
               a.top-banner.banner-new-register-2019{
                 @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/banner-bokurano-heisei.jpg");
               }
-              a.top-banner.banner-simple-app{
-                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/main_bg_pc.jpg");
+              .banner-simple-app{
+                background: url(https://www.mercari.com/jp/assets/img/common/jp/top/main_bg_pc.jpg);
                 .top-visual {
                   width: 860px;
                   margin: 0 auto;
-                  position: flex;
+                  position: relative;
                   &__content {
                     width: 480px;
                     height: 390px;
                     padding: 50px 0;
                     h2 {
-                      color: $black-f;
+                      font-size: 60px;
+                      line-height: 1.2;
+                      font-weight: bold;
                     }
+                    p {
+                      font-size: 18px;
+                      margin: 16px 0 0;
+                      line-height: 1.77778;
+                    }
+                    .top-visual__content__icons {
+                      height: 100%;
+                      display: flex;
+                      height: 100px;
+                      a {
+                        display: block;
+                        margin-top: 10px;
+                        height: 90px;
+                        width: 180px;
+                        img.banner-icon {
+                          position: relative;
+                          height: 70px;
+                          width: 170px;
+                        }
+                      }
+                    }
+                  }
+                  img {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    height: 390px;
+                    width: 450px;
+                    margin-left: 15px;
                   }
                 }
               }
