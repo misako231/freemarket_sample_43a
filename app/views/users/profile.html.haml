@@ -1,0 +1,19 @@
+= render 'shared/header'
+%main.profile
+  = render 'users/mypage-side-nav'
+  .profile__content
+    .profile__content__top
+      プロフィール
+    .profile__content__middle
+      .profile__content__middle__img
+        = image_tag 'beutiful.jpg', class: "profile__content__middle__img__in"
+      .profile__content__middle__text
+        toriisogi
+      .profile__content__middle__btn
+        .profile__content__middle__btn__text
+          %i.far.fa-credit-card
+          クレジットカードを登録する
+      .profile__content__middle__bottom
+        支払い方法について
+= render 'shared/footer'
+
