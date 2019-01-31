@@ -73,3 +73,5 @@ gem 'devise'
 gem "haml-rails", "~> 1.0"
 gem 'kaminari'
 gem "font-awesome-rails"
+gem "jquery-rails"
+gem "jquery-slick-rails"
