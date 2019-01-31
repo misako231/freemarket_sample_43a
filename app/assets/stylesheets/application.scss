@@ -4,11 +4,21 @@
 @import "./extend/extend.scss";
 @import "./mixin/mixin.scss";
 @import "./modules/user/index.scss";
+@import "./modules/user/new.scss";
+@import "./modules/user/new2.scss";
+@import "./modules/user/new3.scss";
+@import "./modules/user/new5.scss";
+@import "./modules/user/new10.scss";
 @import "./modules/user/logout.scss";
+<<<<<<< HEAD
 @import "./modules/user/card.scss";
+=======
+@import "./modules/user/header.scss";
+>>>>>>> shunke434343/master
 @import "./modules/item/new.scss";
 @import "./modules/mercari/header.scss";
 @import "./modules/mercari/index.scss";
 @import "./modules/mercari/footer.scss";
 @import "./modules/mercari/second_header.scss";
 @import "./modules/mercari/second_footer.scss";
+@import "./modules/user/honnin.scss";

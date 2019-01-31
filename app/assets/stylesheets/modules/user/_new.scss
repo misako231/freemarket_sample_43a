@@ -1,0 +1,79 @@
+.signup__main {
+  display: block;
+  .signup__container {
+    width: 700px;
+    margin: 0 auto;
+    background-color: $white-b;
+    .signup--head {
+      padding: 32px 16px;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .signup--inner {
+      padding: 64px;
+      border-top: 1px solid $gray-b;
+      .signup__content {
+        max-width: 320px;
+        margin: 0 auto;
+        .btn__default {
+          @include button-default-style();
+          border: 1px solid transparent;
+          transition: all ease-out .3s;
+          outline: 0;
+        }
+        .btn__mail {
+          position: relative;
+          background-color: #eee;
+          color: #000;
+          text-decoration: none;
+          .icon__mail {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 48px;
+            width: 48px;
+            color: #ccc;
+            font-size: 20px;
+          }
+        }
+        .btn__sns-facebook {
+          position: relative;
+          margin: 16px 0 0;
+          background-color: #385185;
+          color: $white-f;
+          .icon__facebook {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 48px;
+            width: 48px;
+            background-color: #385185;
+            color: $white-f;
+            font-size: 20px;
+          }
+        }
+        .btn__sns-google {
+          position: relative;
+          margin: 16px 0 0;
+          background-color: #dc4e41;
+          color: $white-f;
+          .icon__google-plus {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 4px;
+            height: 48px;
+            width: 48px;
+            background-color: #dc4e41;
+            color: $white-f;
+            font-size: 19px;
+          }
+        }
+      }
+    }
+  }
+}
