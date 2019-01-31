@@ -1,0 +1,18 @@
+= render 'shared/header'
+%main.profile
+  = render 'mypage/mypage-side-nav'
+  .profile__content
+    .profile__content__top
+      プロフィール
+    %form.profile__content__middle{action: "#", method: "POST", novalidate: ""}
+      .profile__content__middle__info
+        .profile__content__middle__info__img
+          = image_tag 'beutiful.jpg', class: "profile__content__middle__info__img__in"
+        %input.profile__content__middle__info__nickname{name: "user_nickname", placeholder: "例AYA☆セール中", type: "text", value: "toriisogi"}
+      .profile__content__middle__bottom
+        %textarea.profile__content__middle__bottom__text{name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
+        %input.profile__content__middle__bottom__htext{type: "hidden", value: "hidden", value: "https://www.mercari.com/jp/mypage/profile/", name: "after_save_callback"}
+        %button.profile__content__middle__bottom__btn{type: "submit"}
+          変更する
+= render 'shared/footer'
+= render 'shared/sellbtn'

@@ -29,11 +29,11 @@
               やることリスト
       .mypage__content__announce__details
         %ul.mypage__content__announce__details__notification
-          = render 'users/announce-details'
-          = render 'users/announce-details'
-          = render 'users/announce-details'
-          = render 'users/announce-details'
-          = render 'users/announce-details'
+          = render 'mypage/announce-details'
+          = render 'mypage/announce-details'
+          = render 'mypage/announce-details'
+          = render 'mypage/announce-details'
+          = render 'mypage/announce-details'
           %li.mypage__content__announce__details__notification__go
             %a{:href => "/jp/mypage/notification/"} 一覧を見る
         %ul.mypage__content__announce__details__todo
@@ -54,6 +54,6 @@
             取引中の商品がありません
         %ul.mypage__content__trade__content__past
           %li.mypage__content__trade__content__past__list
-  = render 'users/mypage-side-nav'
+  = render 'mypage/mypage-side-nav'
 = render 'shared/footer'
 = render 'shared/sellbtn'
