@@ -1,0 +1,94 @@
+.signup__done__main {
+  display: block;
+  .signup__done__container {
+    margin: 0 auto;
+    width: 700px;
+    background-color: $white-b;
+    .signup__done--head {
+      padding: 32px 16px;
+      line-height: 1.5;
+      font-size: 22px;
+      font-weight: bold;
+      border-bottom: 1px solid $gray-b;
+      text-align: center;
+    }
+    .signup__done--inner {
+      margin: 0 auto;
+      padding: 60px 0;
+      max-width: 320px;
+      text-align: center;
+      .signup__done--inner-content {
+        padding: 0 0 30px;
+        p {
+          font-size: 14px;
+        }
+      }
+      a {
+        @include button-default-style();
+        text-decoration: none;
+      }
+    }
+    .signup__done--footer {
+      background-image: url(https://www.mercari.com/jp/assets/img/common/jp/top/download_bg_pc.jpg?23857628);
+      background-position: center;
+      .footer__banner {
+        display: flex;
+        margin: 0 auto;
+        height: 260px;
+        width: 640px;
+        align-items: center;
+        .footer__banner--inner {
+          padding-top: 30px;
+          height: 166px;
+          width: 350px;
+          text-align: center;
+          text-shadow: 0 0 5px rgba(0,0,0,0.4);
+          .inner__title {
+            color: $white-f;
+            font-size: 15px;
+            line-height: 1.4;
+          }
+          .inner__publicity {
+            font-size: 28px;
+            color: $white-f;
+          }
+          .footer__banner--inner-icon {
+            display: flex;
+            justify-content: space-between;
+            height: 52px;
+            margin-top: 10px;
+            align-items: center;
+            .footer__mercari__icon {
+              margin: 0;
+              width: 52px;
+              img {
+                height: 50px;
+                width: 50px;
+            .app__install__icon {
+              .app__install__link {
+                text-decoration: underline;
+                  img {
+                    height: 40px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .app__image {
+          position: relative;
+          margin: 5px 0 0 15px;
+          height: 260px;
+          width: 100px;
+          img {
+            position: absolute;
+            bottom: 3px;
+            height: 240px;
+            width: 280px;
+          }
+        }
+      }
+    }
+  }
+}
