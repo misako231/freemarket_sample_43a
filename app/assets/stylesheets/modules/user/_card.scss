@@ -8,9 +8,6 @@
     width: 700px;
     height: 380px;
     background-color: $white-b;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
     &__top{
       font-size: 24px;
       padding: 8px 24px;
@@ -35,17 +32,30 @@
           i{
             margin-right: 16px;
             font-size: 16px;
-            // font-weight: bold;
           }
         }
       }
       &__bottom{
-        display: block;
-        margin: 40px 0 0;
-        color: #0099e8;
-        text-decoration: none;
-        float: right;
-
+        &__link{
+          display: block;
+          margin: 40px 0 0;
+          float: right;
+          text-align: right;
+          @extend .lightblue-link-default-style;
+          display: inline-flex;
+          line-height: 24px;
+        &:hover {
+          opacity: 0.7;
+        }
+          span:hover {
+            text-decoration: underline;
+          }
+            .fa-angle-right {
+            margin-left: 5px;
+            font-size: 24px;
+            -webkit-text-stroke: 1.5px white;
+          }
+        }
       }
     }
   }
