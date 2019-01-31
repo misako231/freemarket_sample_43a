@@ -5,5 +5,4 @@ Rails.application.routes.draw do
   get "products/new", to: "products#new"
   get "users/identification", to: "users#identification"
   get "users/logout", to: "users#logout"
-
 end
