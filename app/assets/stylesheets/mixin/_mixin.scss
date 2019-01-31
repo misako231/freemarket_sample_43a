@@ -21,6 +21,26 @@
   line-height: 1.5;
   cursor: pointer;
   outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &:focus {
+    border-color: $blue-link-f;
+  }
+}
+
+@mixin input-default-style($width:100%) {
+  margin: 8px 0 0;
+  padding: 10px 16px 8px;
+  height: 48px;
+  width: $width;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: $white-f;
+  line-height: 1.5;
+  font-size: 16px;
+  color: inherit;
+  outline: 0;
   &:focus {
     border-color: $blue-link-f;
   }
