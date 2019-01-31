@@ -5,16 +5,16 @@ class UsersController < ApplicationController
   def new
   end
 
-  def new2
+  def new_registration
   end
 
-  def new3
+  def new_street_address
   end
 
-  def new5
+  def new_done
   end
 
-  def new10
+  def login
   end
 
   def logout
