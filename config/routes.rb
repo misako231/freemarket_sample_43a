@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get "users/signup/done", to: "users#new_street_address"
   get "users/login", to: "users#new_done"
   get "products/new", to: "products#new"
+  get "users/identification", to: "users#identification"
   get "users/logout", to: "users#logout"
 end
