@@ -21,7 +21,7 @@
         text-align: left;
         &__form {
           font-weight: normal;
-          @extend .input-default-style;
+          @include input-default-style();
         }
         &__require {
           @extend .red-label-require;
