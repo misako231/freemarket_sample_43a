@@ -1,69 +1,105 @@
-.myinfo {
-  width: 700px;
-  background: $white-b;
-  text-align: center;
-  &__head {
-    font-size: 24px;
-    font-weight: bolder;
-  }
-  &__form {
-    padding: 64px;
-    &__group {
+.my-indentification {
+  margin: 40px auto 0px auto;
+  padding-bottom: 40px;
+  width: 1020px;
+  display: flex;
+  flex-direction: row;
+  .myinfo {
+    width: 700px;
+    background: $white-b;
+    text-align: center;
+    &__head {
+      margin: 5px 0;
+      font-size: 24px;
       font-weight: bolder;
-      margin: 0 0 40px 0;
-      text-align: left;
-      &__form {
-        font-weight: normal;
-        @extend .input-default-style;
-      }
-      &__require {
-        @extend .red-label-require;
-      }
-      &__arbitraty {
-        @extend .gray-label-arbitraty;
-      }
-      &__select-wrap {
-        font-weight: normal;
-        .select__default {
-          @include select-default-style();
-          margin-top: 8px;
-          appearance: none;
-        }
-      }
-      &__birth-select-wrap {
-        display: inline-block;
-        .select-wrap {
-          width: 173px;
+    }
+    &__form {
+      padding: 54px 64px;
+      &__group {
+        font-weight: bolder;
+        margin: 0 0 40px 0;
+        text-align: left;
+        &__form {
           font-weight: normal;
+          @extend .input-default-style;
+        }
+        &__require {
+          @extend .red-label-require;
+        }
+        &__arbitraty {
+          @extend .gray-label-arbitraty;
+        }
+        &__select-wrap {
+          font-weight: normal;
+          position: relative;
           .select__default {
-            @include select-default-style(140px);
+            @include select-default-style();
             margin-top: 8px;
           }
-          span {
-            text-align: center;
-            margin: 0 7px;
+          .fa-angle-down {
+            position: absolute;
+            line-height: 48px;
+            top: 8px;
+            left: calc(100% - 35px);
+            color: #888;
+            font-size: 30px;
+            -webkit-text-stroke: 2px white;
+          }
+        }
+        &__birth-select-wrap {
+          display: inline-block;
+          .select-wrap {
+            width: 173px;
+            font-weight: normal;
+            position: relative;
+            .select__default {
+              @include select-default-style(140px);
+              margin-top: 8px;
+            }
+            .fa-angle-down {
+              position: absolute;
+              line-height: 48px;
+              top: 8px;
+              left: calc(100% - 65px);
+              color: #888;
+              font-size: 30px;
+              -webkit-text-stroke: 2px white;
+            }
+            span {
+              text-align: center;
+              margin: 0 7px;
+            }
           }
         }
       }
-    }
-    &__form-info {
-      font-weight: normal;
-      color: #888;
-      margin-top: 8px;
-    }
-    &__group-right {
-      text-align: right;
-      margin-top: 40px;
-      &__link {
-        @extend .lightblue-link-default-style;
-        .fa-angle-right {
-          font-size: 16px;
-          line-height: 16px;
+      &__form-info {
+        font-weight: normal;
+        color: #888;
+        margin-top: 8px;
+      }
+      &__group-right {
+        text-align: right;
+        margin-top: 40px;
+        &__link {
+          text-align: right;
+          @extend .lightblue-link-default-style;
+          display: inline-flex;
+          line-height: 24px;
+        &:hover {
+          opacity: 0.7;
+        }
+          span:hover {
+            text-decoration: underline;
+          }
+          .fa-angle-right {
+            font-size: 24px;
+            -webkit-text-stroke: 1.5px white;
+          }
         }
       }
-    }
-    &__btn {
-      @include button-default-style();
+      &__btn {
+        @include button-default-style();
+      }
     }
   }
 }
