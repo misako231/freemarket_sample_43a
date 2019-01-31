@@ -1,0 +1,36 @@
+= render 'shared/second_header'
+.signup__main
+  %section.signup__container
+    %h2.signup--head 新規会員登録
+    .signup--inner
+      .signup__content
+        = link_to "#", class: 'btn__default btn__mail' do
+          .icon__mail
+            %i.far.fa-envelope
+          メールアドレスで登録
+        %button#facebook__login.btn__default.btn__sns.btn__sns-facebook
+          .icon__facebook
+            %i.fab.fa-facebook
+          Facebookで登録
+        %button#google__login.btn__default.btn__sns.btn__sns-google
+          .icon__google-plus
+            %i.fab.fa-google-plus-g
+          Googleで登録
+  %form#login__form__facebook{ novalidate: 'novalidate' }
+    %input{ type: 'hidden', name:'__crsf_value' }
+    %input{ type: 'hidden', name:'nickname' }
+    %input{ type: 'hidden', name:'email' }
+    %input{ type: 'hidden', name:'facebook_user_id' }
+    %input{ type: 'hidden', name:'facebook_access_token' }
+    %input{ type: 'hidden', name:'login_type', value:'facebook' }
+  %form#login__form__google{ novalidate: 'novalidate' }
+    %input{ type: 'hidden', name:'__crsf_value' }
+    %input{ type: 'hidden', name:'nickname' }
+    %input{ type: 'hidden', name:'email' }
+    %input{ type: 'hidden', name:'google_user_id' }
+    %input{ type: 'hidden', name:'google_access_token' }
+    %input{ type: 'hidden', name:'login_type', value:'facebook' }
+  %input#google__client__id{ type: 'hidden' }
+  %input#facebook__app__id{ type: 'hidden' }
+= render 'shared/second_footer'
+

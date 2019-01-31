@@ -17,22 +17,41 @@ main.index-conteiner {
         .fa {
           font-size: 60px;
           color: #fff;
-          opacity: .5;
+          opacity: .9;
           -webkit-text-stroke: 1px white;
         }
       }
       .slick-list.draggable {
         .slick-track {
           .slick-slide {
-            li.top-banner.banner-new-register-2019
-
             li {
-              a {
-                display: block;
-                color: transparent;
-                height: 390px;
-                background-image: url(https://www.mercari.com/jp/assets/img/common/jp/top/banner-bokurano-heisei-entertainment.png);
-                background-position: center;
+              a.top-banner.banner-featured-hobby{
+                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/banner-featured-hobby.jpg");
+              }
+              a.top-banner.banner-hajimeru-fortune{
+                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/banner-hajimeru-fortune.jpg");
+              }
+              a.top-banner.banner-new-register-2019{
+                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/banner-bokurano-heisei.jpg");
+              }
+              a.top-banner.banner-simple-app{
+                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/main_bg_pc.jpg");
+                .top-visual {
+                  width: 860px;
+                  margin: 0 auto;
+                  position: flex;
+                  &__content {
+                    width: 480px;
+                    height: 390px;
+                    padding: 50px 0;
+                    h2 {
+                      color: $black-f;
+                    }
+                  }
+                }
+              }
+              a.top-banner.banner-bokurano-heisei-entertainment{
+                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/banner-bokurano-heisei-entertainment.png");
               }
             }
           }
@@ -47,7 +66,7 @@ main.index-conteiner {
         .fa {
           font-size: 60px;
           color: #fff;
-          opacity: .5;
+          opacity: .9;
            -webkit-text-stroke: 0.1px white;
         }
       }
@@ -94,11 +113,7 @@ main.index-conteiner {
       }
     }
   }
-  // section.newregi1901-main {
-  //   height: 390px;
-  //   background-image: url(https://www.mercari.com/jp/assets/img/common/jp/top/banner-featured-hobby.jpg);
-  //   background-position: center;
-  // }
+
   .pickup-container {
     padding: 40px 0;
     &__head {
