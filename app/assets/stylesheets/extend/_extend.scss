@@ -1,0 +1,46 @@
+.red-label-require {
+  background-color: $mercarired;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin: 0 0 0 8px;
+  line-height: inherit;
+  box-sizing: inherit;
+  font-size: 12px;
+  vertical-align: text-top;
+  color: $white-f;
+}
+
+.gray-label-arbitraty {
+  background-color: #ccc;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin: 0 0 0 8px;
+  line-height: inherit;
+  box-sizing: inherit;
+  font-size: 12px;
+  vertical-align: text-top;
+  color: $white-f;
+}
+
+.input-default-style {
+  margin: 8px 0 0;
+  padding: 10px 16px 8px;
+  height: 48px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: $white-f;
+  line-height: 1.5;
+  font-size: 16px;
+  color: inherit;
+  outline: 0;
+  &:focus {
+    border-color: $blue-link-f;
+  }
+}
+
+.lightblue-link-default-style {
+  color: $blue-link-f;
+  text-decoration: none;
+  touch-action: manipulation;
+}

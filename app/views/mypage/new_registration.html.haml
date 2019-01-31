@@ -1,0 +1,32 @@
+= render 'shared/users_header'
+.member__info__main
+  %section.member__info__container
+    %h2.member__info--head 会員情報入力
+    %form.member__info--inner{ novalidate: 'novalidate' }
+      %input{ type: 'hidden', name: '__csrf_value' }
+      .member__info__content
+        .form__group
+          %label{ for: 'nickname' } ニックネーム
+          %span.form__require 必須
+          %input.input__default{ type: 'text', name: 'nickname', placeholder: "例)メルカリ太郎" }
+        .form__group
+          %label{ for: 'email' } メールアドレス
+          %span.form__require 必須
+          %input.input__default{ type: 'email', name: 'email', placeholder: "PC・携帯どちらでも可" }
+        %input{ type: 'hidden', name: 'login_type' }
+        .form__group
+          %label{ for: 'password' } パスワード
+          %span.form__require 必須
+          %input.input__default{ type: 'password', name: 'password', placeholder: "6文字以上" }
+        %input{ type: 'hidden', name: 'after_save_callback' }
+        .form__group
+          %label{ for: 'password' } パスワード(確認)
+          %span.form__require 必須
+          %input.input__default{ type: 'password', name: 'password2', placeholder: "6文字以上" }
+        %input{ type: 'hidden', name: 'after_save_callback' }
+        .form__group
+          .g-recaptcha.signup__recaptcha{ 'data-sitekey': '6LchzY0UAAAAAAqz7MrGCIh8SBad6Hep96J_naNB' }
+          %button.btn__default.btn__red{ type: 'submit' } 次へ進む
+= render 'shared/second_footer'
+
+
