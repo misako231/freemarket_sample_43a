@@ -1,0 +1,27 @@
+= render 'shared/users_header'
+.signup__done__main
+  %section.signup__done__container
+    %h2.signup__done--head 会員登録完了
+    .signup__done--inner
+      .signup__done--inner-content
+        %p ありがとうございます。
+        %p 会員登録が完了しました。
+      = link_to "#" do
+        メルカリをはじめる
+    %aside.signup__done--footer
+      .footer__banner
+        .footer__banner--inner
+          %p.inner__title ＼スマホでかんたんフリマアプリ／
+          %p.inner__publicity 今すぐ無料ダウンロード！
+          .footer__banner--inner-icon
+            %div.footer__mercari__icon
+              = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/mercari_icon.png?1857733084"
+            %div.app__install__icon
+              = link_to "#", class: 'app__install__link', target: '_blank' do
+                = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?1857733084"
+            %div.app__install__icon
+              = link_to "#", class: 'app__install__link', target: '_blank' do
+                = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?1857733084"
+        %div.app__image
+          = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/jp/download_content_pc.png?1857733084"
+= render "shared/second_footer"
