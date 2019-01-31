@@ -2,6 +2,7 @@
 // fはfont-color
 $mercarired: #ea352d;
 $gray-b: #f5f5f5;
+$white-b: #fff;
 $black-f: #333;
 $blue-link-f: #0099e8;
 $white-f: #fff;
@@ -11,8 +12,7 @@ $white-f: #fff;
 }
 
 body {
-font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+font-family: 'Source Sans Pro', 'Helvetica' , 'Arial', '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', 'sans-serif';
 font-size: 14px;
+background-color: $gray-b;
 }
-
-

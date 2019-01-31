@@ -1,0 +1,53 @@
+.member__info__main {
+  display: block;
+  .member__info__container {
+    width: 700px;
+    margin: 0 auto;
+    background-color: $white-b;
+    .member__info--head {
+      padding: 32px 16px;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .member__info--inner {
+      padding: 64px;
+      border-top: 1px solid $gray-b;
+      .member__info__content {
+        max-width: 320px;
+        margin : 0 auto;
+        .form__group {
+          margin: 40px 0 0;
+          &:first-child {
+            margin: 0;
+          }
+          label {
+            line-height: 14px;
+            font-weight: 600;
+            display: inline-block;
+          }
+          .form__require {
+            @extend .red-label-require;
+          }
+          .input__default {
+            @extend .input-default-style;
+          }
+          .signup__recaptcha {
+            transform: none;
+            transform-origin: 0 0;
+          }
+          .btn__red {
+            margin: 40px 0 0;
+            background-color: $mercarired;
+            border: 1px solid $mercarired;
+            color: $white-f;
+          }
+          .btn__default {
+            @include button-default-style();
+          }
+        }
+      }
+    }
+  }
+}

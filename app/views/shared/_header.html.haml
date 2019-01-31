@@ -1,0 +1,53 @@
+%header.mercari-header
+  .header-conteiner
+    .header-conteiner__search
+      %h1.header-conteiner__search--left
+        = link_to "https://www.mercari.com/jp/", class: "logo-link" do
+          = image_tag 'mercari-logo.svg', width: "134", height: "36"
+      %form.header-conteiner__search--right{ action: "https://www.mercari.com/jp/search/" }
+        %input.input-default{ type: "serch", values: "", name: "keyword", placeholder: "キーワードから探す" }
+        .index-search-icon
+          %label
+            %input.index-search-btn{ type: "submit", style: "display:none;" }
+            = fa_icon "search"
+    .header-conteiner__navber
+      .left-nav
+        %ul.search-nav
+          %li.search-nav__list
+            %h2.search-nav__list__title
+              = link_to "https://www.mercari.com/jp/category/", class: "search-nav__list__title__link" do
+                カテゴリから探す
+          %li.search-nav__list
+            %h2.search-nav__list__title
+              = link_to "https://www.mercari.com/jp/category/", class: "search-nav__list__title__link" do
+                ブランドから探す
+      .rigth-nav
+        %ul.user-nav
+          %li.user-nav__list
+            %a.user-nav__list__link-sign-in{ href: "https://www.mercari.com/jp/mypage/" } ログイン
+          %li.user-nav__list
+            %a.user-nav__list__link-sign-up{ href: "https://www.mercari.com/jp/mypage/" } 新規登録
+          %li.user-nav__list
+            = link_to "https://www.mercari.com/jp/mypage/", class: "user-nav__list__link" do
+              %figure.mypage-icon
+                .mypage-icon__conteiner
+                  = image_tag 'beutiful.jpg'
+              %p マイページ
+          %li.user-nav__list
+            = link_to "https://www.mercari.com/jp/mypage/", class: "user-nav__list__link" do
+              %i.far.fa-bell
+              %p お知らせ
+          %li.user-nav__list
+            = link_to "https://www.mercari.com/jp/mypage/", class: "user-nav__list__link" do
+              = fa_icon 'check'
+              %p やることリスト
+%nav.bread-crumbs
+  %ul.bread-crumbs__items
+    %li.bread-crumbs__items__value{ itemscope: "", itemtype: "http://data-vocabulary.org/Breadcrumb" }
+      = link_to "https://www.mercari.com/jp/", class: "bread-crumbs__items__value__link", itemprop: "url" do
+        %span{ itemprop: "title" } メルカリ
+      = fa_icon "angle-right"
+    %li.bread-crumbs__items__value
+      = link_to "https://www.mercari.com/jp/", class: "bread-crumbs__items__value__link", itemprop: "url" do
+        %span{ itemprop: "title" } メルカリ
+      = fa_icon "angle-right"

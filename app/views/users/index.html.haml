@@ -1,106 +1,59 @@
+= render 'shared/header'
 %main.mypage
   .mypage__content
-
-  .mypage__side
-    .mypage__side__nav
-      %ul.mypage__side__nav__list
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/"}
-            マイページ
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/notification/"}
-            お知らせ
-            %span.mypage__side__nav__list__item__number
-              6
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/todo/"}
-            やることリスト
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/like/history/"}
-            いいね！一覧
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/sell/"}
-            出品する
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/listings/listing/"}
-            出品した商品 - 出品中
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/listings/in_progress/"}
-            出品した商品 - 取引中
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/listings/completed/"}
-            出品した商品 - 売却済み
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/purchase/"}
-            購入した商品 - 取引中
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/purchased/"}
-            購入した商品 - 過去の取引
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/news/"}
-            ニュース一覧
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/review/history/"}
-            評価一覧
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/help_center/"}
-            ガイド
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/support/"}
-            お問い合わせ
-            %i.mypage__side__nav__list__item__icon-right
-
-      %h3.mypage__side__nav__head 売上・ポイント
-      %ul.mypage__side__nav__list
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/sales/"}
-            売上・振込申請
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/point/"}
-            ポイント
-            %i.mypage__side__nav__list__item__icon-right
-
-      %h3.mypage__side__nav__head 設定
-      %ul.mypage__side__nav__list
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/profile/"}
-            プロフィール
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/deliver_address/"}
-            住所変更
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/card/"}
-            支払い方法
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/email_password/"}
-            メール/パスワード
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/identification/"}
-            本人情報
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/mypage/sms_confirmation/"}
-            電話番号の確認
-            %i.mypage__side__nav__list__item__icon-right
-        %li
-          %a.mypage__side__nav__list__item{:href => "/jp/logout/"}
-            ログアウト
-            %i.mypage__side__nav__list__item__icon-right
+    .mypage__content__user
+      .mypage__content__user__icon
+        = link_to "#", class: "mypage__content__user__icon__link" do
+          .mypage__content__user__icon__link__img
+            = image_tag 'beutiful.jpg', class: "mypage__content__user__icon__link__img__in"
+          .mypage__content__user__icon__link__name
+            %h2.bold toriisogi
+          .mypage__content__user__icon__link__num
+            .mypage__content__user__icon__link__num__review
+              評価
+              %span.mypage__content__user__icon__link__num__review__count
+                21
+            .mypage__content__user__icon__link__num__exhibits
+              出品数
+              %span.mypage__content__user__icon__link__num__exhibits__count
+                15
+    .mypage__content__announce
+      %ul.mypage__content__announce__tabs
+        %li.mypage__content__announce__tabs__notification
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-notification"}
+              お知らせ
+        %li.mypage__content__announce__tabs__todo
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-notification"}
+              やることリスト
+      .mypage__content__announce__details
+        %ul.mypage__content__announce__details__notification
+          = render 'users/announce-details'
+          = render 'users/announce-details'
+          = render 'users/announce-details'
+          = render 'users/announce-details'
+          = render 'users/announce-details'
+          %li.mypage__content__announce__details__notification__go
+            %a{:href => "/jp/mypage/notification/"} 一覧を見る
+        %ul.mypage__content__announce__details__todo
+    .mypage__content__trade
+      %h2 購入した商品
+      %ul.mypage__content__trade__tabs
+        %li.mypage__content__trade__tabs__during
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-transaction-now"}
+              取引中
+        %li.mypage__content__trade__tabs__past
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-transaction-now"}
+              過去の取引
+      .mypage__content__trade__content
+        %ul.mypage__content__trade__content__during
+          %li.mypage__content__trade__content__during__list
+            取引中の商品がありません
+        %ul.mypage__content__trade__content__past
+          %li.mypage__content__trade__content__past__list
+  = render 'users/mypage-side-nav'
+= render 'shared/footer'
+= render 'shared/sellbtn'
