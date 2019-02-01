@@ -1,0 +1,150 @@
+.items__buy-cf__container {
+  width:700px;
+  background-color:$white-b;
+  margin:0 auto;
+  &__main {
+    h2,&__header {
+      padding:32px 16px;
+      font-size:22px;
+      font-weight:bold;
+      line-height:1.5;
+      text-align:center;
+    }
+    &__content {
+      padding:24px 12.5% 0;
+      border-top:1px solid $gray-b;
+      &__inner {
+        max-width:320px;
+        margin:0 auto;
+        &__item-image-container {
+          margin:0 auto;
+          text-align:center;
+          .item-photo {
+            max-height:148px;
+          }
+        }
+        p,&__item-name {
+          margin:8px 0 0;
+          line-height:1.5;
+          font-size:16px;
+          font-weight:600;
+          text-align:center;
+        }
+        form,&__buy-form {
+          p,&__item-price {
+            font-size:28px;
+            span,&__shipping-fee {
+              display:inline-block;
+              margin: 0 0 0 8px;
+              font-size:14px;
+              font-weight:400;
+            }
+          }
+          &__accordion {
+            margin:16px 0 0;
+            &-toggle {
+              padding:16px;
+              border:1px solid #ccc;
+              display:flex;
+              justify-content:center;
+              align-items:center;
+              height:48px;
+              cursor:pointer;
+              &-upangle {
+                font-weight:bold;
+                font-size:36px;
+                -webkit-text-stroke: 2px $white-b;
+                display:block;
+              }
+            }
+            &-child {
+              padding:24px 40px;
+              background-color:#fafafa;
+              // display:flex;
+              &__possess-p {
+                font-weight:600;
+              }
+              &__form-group {
+                &-box {
+                  &__radio-default {
+                    margin:16px 0 0 ;
+                    label {
+                      input[type="radio"] {
+                        width:20px;
+                        height:20px;
+                        border:3px solid #ccc;
+                        border-radius:50%;
+                      }
+                    }
+                  }
+                }
+              input.input-default {
+                height:48px;
+                width:240px;
+                padding:10px 16px 8px;
+                margin:8px 0 0;
+                border-radius:4px;
+                border-width:1px;
+                background-color:$white-b;
+                line-height:1.5;
+                font-size:16px;
+                outline:0;
+                &:focus {
+                  border-color:#0099e8;
+                }
+              }
+              }
+            }
+          }
+          &__buy-price-box {
+            display:flex;
+            justify-content:space-between;
+            align-items:baseline;
+            font-size:28px;
+            font-weight:600;
+            &-text {
+              padding:16px 0;
+            }
+            &-price {
+              font-size:26px;
+            }
+          }
+        }
+        .btn-default {
+          // @extend .red-label-require
+          @include button-default-style($width:100%, $background-color:#ea352d);
+        }
+      }
+    }
+    &__buy-user-info {
+      margin:40px 0 0;
+      padding:24px 12.5% 0;
+      border-top:1px solid $gray-b;
+      &-container {
+        max-width:320px;
+        margin:0 auto;
+        h3 {
+          font-weight:bold;
+        }
+        address, &-text {
+          margin-top:8px;
+        }
+        &__angle-right {
+          margin:8px 0 0 auto;
+          text-align: right;
+          .angle-right  {
+            text-decoration: none;
+            color:$blue-link-f;
+            display:flex;
+            align-items:center;
+            justify-content:flex-end;
+            .fa-angle-right {
+              font-size:24px;
+              -webkit-text-stroke: 2px $white-b
+            }
+          }
+        }
+      }
+    }
+  }
+}

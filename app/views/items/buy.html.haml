@@ -1,0 +1,73 @@
+.items__buy-cf__container
+  .items__buy-cf__container__main
+    %h2.items__buy-cf__container__main__header
+      購入を確定しますか?
+    .items__buy-cf__container__main__content
+      .items__buy-cf__container__main__content__inner
+        .items__buy-cf__container__main__content__inner__item-image-container
+          = image_tag "coach1.jpg", alt: "写真", class:"item-photo"
+        %p.items__buy-cf__container__main__content__inner__item-name
+          コーチのショルダーバッグ
+        %form.items__buy-cf__container__main__content__inner__buy-form{action: "#", method: "POST", novalidate: "novalidate"}
+          %p.items__buy-cf__container__main__content__inner__buy-form__item-price
+            ¥18,999
+            %span.items__buy-cf__container__main__content__inner__buy-form__item-price__shipping-fee
+              送料込み
+          .items__buy-cf__container__main__content__inner__buy-form__accordion
+            .items__buy-cf__container__main__content__inner__buy-form__accordion-toggle
+              ポイントを使う
+              .items__buy-cf__container__main__content__inner__buy-form__accordion-toggle-upangle
+                =fa_icon "angle-up"
+            .items__buy-cf__container__main__content__inner__buy-form__accordion-child
+              .items__buy-cf__container__main__content__inner__buy-form__accordion-child__possess-p
+                所持ポイント: P 600
+              .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group
+                .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box
+                  .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box__radio-default
+                    %label
+                      %input{type: "radio",name: "consume_point_radio", value: "none"}
+                        ポイントを使わない
+                  .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box__radio-default
+                    %label
+                      %input{type: "radio",name: "consume_point_radio", value: "all"}
+                      %input{type: "hidden",value:600}
+                        すべてのポイントを使う
+                      %br
+                        P 600
+                  .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box__radio-default
+                    %label
+                      %input{type: "radio",name: "consume_point_radio", value: "none"}
+                        一部のポイントを使う
+                %input.input-default{type: "number", value: "", placeholder: "使うポイントを入力", class: "input-default"}
+          .items__buy-cf__container__main__content__inner__buy-form__buy-price-box
+            .items__buy-cf__container__main__content__inner__buy-form__buy-price-box-text
+              支払い金額
+            .items__buy-cf__container__main__content__inner__buy-form__buy-price-box-price
+              ¥18,999
+        %button.btn-default{type: "submit"}
+          購入する
+    .items__buy-cf__container__main__buy-user-info
+      .items__buy-cf__container__main__buy-user-info-container
+        %h3
+          配送先
+        %address
+          .items__buy-cf__container__main__buy-user-info-container-text
+            〒123-4567<br>
+            大阪府大阪市中央区南船場2丁目6-28<br>
+            TECH::EXPERT43期生
+        .items__buy-cf__container__main__buy-user-info-container__angle-right
+          =link_to "#", class: "angle-right" do
+            変更する
+            =fa_icon "angle-right"
+    .items__buy-cf__container__main__buy-user-info
+      .items__buy-cf__container__main__buy-user-info-container
+        %h3
+          支払い方法
+        .items__buy-cf__container__main__buy-user-info-container-text
+          ************4310
+          %br
+          08 / 22
+        .items__buy-cf__container__main__buy-user-info-container__angle-right
+          =link_to "#", class: "angle-right" do
+            変更する
+            =fa_icon "angle-right"
