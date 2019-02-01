@@ -1,0 +1,94 @@
+%h2 Sign up
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = devise_error_messages!
+  .field
+    = f.label :nickname
+    %br/
+    = f.text_field :nickname, autofocus: true, maxlength: '6'
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br/
+    = f.password_field :password, autocomplete: "new-password"
+  .field
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+  .field
+    = f.label :last_name
+    %br/
+    = f.text_field :last_name, autofocus: true
+  .field
+    = f.label :first_name
+    %br/
+    = f.text_field :first_name, autofocus: true
+  .field
+    = f.label :last_name_kana
+    %br/
+    = f.text_field :last_name_kana, autofocus: true
+  .field
+    = f.label :first_name_kana
+    %br/
+    = f.text_field :first_name_kana, autofocus: true
+  .field
+    = f.label :birth_y
+    %br/
+    = f.number_field :birth_y, autofocus: true
+  .field
+    = f.label :birth_m
+    %br/
+    = f.number_field :birth_m, autofocus: true
+  .field
+    = f.label :birth_d
+    %br/
+    = f.number_field :birth_d, autofocus: true
+  .field
+    = f.label :prefecture
+    %br/
+    = f.number_field :prefecture, autofocus: true
+  .field
+    = f.label :phone
+    %br/
+    = f.text_field :phone, autofocus: true
+  .field
+    = f.label :postal_code
+    %br/
+    = f.text_field :postal_code, autofocus: true
+  .field
+    = f.label :prefecture
+    %br/
+    = f.number_field :prefecture, autofocus: true
+  .field
+    = f.label :city
+    %br/
+    = f.text_field :city, autofocus: true
+  .field
+    = f.label :block
+    %br/
+    = f.text_field :block, autofocus: true
+  .field
+    = f.label :building
+    %br/
+    = f.text_field :building, autofocus: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .actions
+    = f.submit "Sign up"
+= render "devise/shared/links"
