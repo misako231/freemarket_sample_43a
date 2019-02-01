@@ -21,15 +21,7 @@
             line-height: 16px;
             font-weight: bold;
             .form__require {
-              background-color: $mercarired;
-              border-radius: 2px;
-              padding: 2px 4px;
-              margin: 0 0 0 8px;
-              line-height: inherit;
-              box-sizing: inherit;
-              font-size: 12px;
-              vertical-align: text-top;
-              color: $white-f;
+              @extend .red-label-require;
             }
           }
           p {
@@ -144,62 +136,26 @@
               font-weight: 600;
               display: inline-block;
               .form__require {
-                background-color: $mercarired;
-                padding: 2px 4px;
-                border-radius: 2px;
-                color: $white-f;
-                font-size: 12px;
+                @extend .red-label-require;
                 vertical-align: top;
+              }
+              .form__any {
+                @extend .gray-label-arbitraty;
               }
             }
             .input__default {
-              margin: 8px 0 0;
-              padding: 10px 16px 8px;
-              height: 48px;
-              width: 100%;
-              border: 1px solid #ccc;
-              border-radius: 4px;
-              background-color: $white-f;
-              line-height: 1.5;
-              font-size: 16px;
-              color: inherit;
-              outline: 0;
-              &:focus {
-                border-color: $blue-link-f;
-              }
+              @include input-default-style();
             }
             .textarea__default {
-              display: block;
-              margin: 8px 0 0;
-              padding: 10px;
+              @include textarea-default-style();
               min-height: 104px;
-              width: 100%;
-              border: 1px solid #ccc;
-              background-color: $white-f;
-              font-size: 16px;
-              line-height: 1.5;
-              outline: 0;
-              overflow: auto;
-              overflow-wrap: break-word;
-              &:focus {
-                border-color: $blue-link-f;
-              }
             }
             .select__wrap {
               position: relative;
               margin: 8px 0 0;
               background-color: $white-f;
               .select__default {
-                padding: 0 16px;
-                height: 48px;
-                width: 100%;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                background-color: $white-f;
-                font-size: 16px;
-                line-height: 1.5;
-                cursor: pointer;
-                outline: 0;
+                @include select-default-style();
               }
               .icon__arrow__bottom {
                 position: absolute;
@@ -298,24 +254,16 @@
             }
           }
           .btn__default {
-            display: block;
-            width: 100%;
-            line-height: 48px;
-            font-size: 14px;
-            cursor: pointer;
-            text-align: center;
+            @include button-default-style();
           }
           .btn--red {
             margin: 40px 0 0;
-            background-color: $mercarired;
-            border: 1px solid $mercarired;
-            color: $white-f;
           }
           .btn--gray {
             margin: 24px auto 0;
             width: 45%;
             background-color: #aaa;
-            color: $white-f;
+            border: 1px solid #aaa;
             text-decoration: none;
           }
         }

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "mypage/signup/street_address", to: "mypage#new_street_address"
   get "mypage/signup/done", to: "mypage#new_done"
   get "mypage/login", to: "mypage#login"
-  get "products/new", to: "products#new"
+  get "items/new", to: "items#new"
   get "mypage/identification", to: "mypage#identification"
   get "mypage/logout", to: "mypage#logout"
   get "mypage/profile", to: "mypage#profile"
