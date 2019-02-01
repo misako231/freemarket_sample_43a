@@ -1,3 +1,3 @@
-= link_to "https://www.mercari.com/jp/sell/", class: "footer-sell-btn" do
+= link_to destroy_user_session_path, method: :delete, class: "footer-sell-btn" do
   .footer-sell-btn__title 出品
   = fa_icon "camera"
