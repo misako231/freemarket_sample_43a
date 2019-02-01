@@ -1,7 +1,7 @@
-#Mercari DB
-####※F = null: false, T = null: ture, uni = unique: true, fk = foregin_key: true, ai = add_index, afk = add_foreign_key
+# Mercari DB
+#### ※F = null: false, T = null: ture, uni = unique: true, fk = foregin_key: true, ai = add_index, afk = add_foreign_key
 
-##1.user
+## 1.user
 |Column|Type|Null|Option|
 |------|----|----|------|
 |last_name|str|F||
@@ -39,7 +39,7 @@
 - paying-wayカラムはenumで管理
 
 
-##2.address
+## 2.address
 |Column|Type|Null|Option|
 |------|----|----|------|
 |postal_code|int|F||
@@ -52,7 +52,7 @@
 - belongs_to :user
 - belongs_to :region
 
-##3.region
+## 3.region
 |Column|Type|Null|Option|
 |------|----|----|------|
 |name|str|F|uni|
@@ -61,7 +61,7 @@
 - has_many :addresses
 - has_many :items
 
-##4.follow-relationship
+## 4.follow-relationship
 |Column|Type|Null|Option|
 |------|----|----|------|
 |following_id|int|F|afk/ai|
@@ -75,7 +75,7 @@ validates :follow_id presence: true
 ### Option
 t.index [:user_id, :follow_id], unique: true
 
-##5.point-transaction-record
+## 5.point-transaction-record
 |Column|Type|Null|Option|
 |------|----|----|------|
 |user_id|ref|F|fk|
@@ -85,7 +85,7 @@ t.index [:user_id, :follow_id], unique: true
 - belongs_to :user
 - belongs_to :order-status
 
-##6.money-transaction-record
+## 6.money-transaction-record
 |Column|Type|Null|Option|
 |------|----|----|------|
 |user_id|ref|F|fk|
@@ -95,7 +95,7 @@ t.index [:user_id, :follow_id], unique: true
 - belongs_to :user
 - belongs_to :order-status
 
-##7.block-relationship
+## 7.block-relationship
 |Column|Type|Null|Option|
 |------|----|----|------|
 |blocking_id|int|F|afk/ai|
@@ -109,7 +109,7 @@ validates :block_id presence: true
 ### Option
 t.index [:user_id, :block_id], unique: true
 
-##8.user-evaluation
+## 8.user-evaluation
 |Column|Type|Null|Option|
 |------|----|----|------|
 |high_count|tinyint|T||
@@ -121,7 +121,7 @@ t.index [:user_id, :block_id], unique: true
 ### Association
 - belongs_to :user
 
-##9.favorite-item
+## 9.favorite-item
 |Column|Type|Null|Option|
 |------|----|----|------|
 |user_id|ref|F|fk|
@@ -132,7 +132,7 @@ t.index [:user_id, :block_id], unique: true
 ### Option
 - t.index [:user_id, :item_id], unique: true
 
-##10.order-status
+## 10.order-status
 |Column|Type|Null|Option|
 |------|----|----|------|
 |purchaser_id|int|F|afk/ai|
@@ -147,7 +147,7 @@ t.index [:user_id, :block_id], unique: true
 ### Option
 - statusはenumで管理（例：1→orderd等)
 
-##11.comment
+## 11.comment
 |Column|Type|Null|Option|
 |------|----|----|------|
 |content|text|F||
@@ -157,7 +157,7 @@ t.index [:user_id, :block_id], unique: true
 - belongs_to :item
 - belongs_to :comment
 
-##12.item
+## 12.item
 |Column|Type|Null|Option|
 |------|----|----|------|
 |name|str|T||
@@ -183,7 +183,7 @@ t.index [:user_id, :block_id], unique: true
 - conditionカラムはenumで管理
 - days-to-shipカラムはenumで管理
 
-##13.item-photo
+## 13.item-photo
 |Column|Type|Null|Option|
 |------|----|----|------|
 |image|str|F||
@@ -191,7 +191,7 @@ t.index [:user_id, :block_id], unique: true
 ### Association
 - belongs_to :item
 
-##14.category
+## 14.category
 |Column|Type|Null|Option|
 |------|----|----|------|
 |name|str|F||
@@ -199,7 +199,7 @@ t.index [:user_id, :block_id], unique: true
 ### Association
 - has_many :items
 
-##15.brand
+## 15.brand
 |Column|Type|Null|Option|
 |------|----|----|------|
 |name|str|F||

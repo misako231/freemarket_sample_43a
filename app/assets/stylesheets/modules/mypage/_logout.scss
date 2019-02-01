@@ -1,0 +1,18 @@
+.logout{
+  margin: 40px auto 0px auto;
+  padding-bottom: 40px;
+  width: 1020px;
+  display: flex;
+  flex-direction: row;
+  &__content{
+    width: 700px;
+    height: 179px;
+    background-color: $white-b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__btn{
+      @include button-default-style(320px);
+    }
+  }
+}
