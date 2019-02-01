@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_02_01_071304) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -37,4 +38,38 @@ ActiveRecord::Schema.define(version: 2019_02_01_071304) do
   end
 
   add_foreign_key "itme_photos", "items"
+=======
+ActiveRecord::Schema.define(version: 2019_02_01_062939) do
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.bigint "phone", null: false
+    t.integer "paying_way", limit: 1, default: 0, null: false
+    t.integer "birth_y", null: false
+    t.integer "birth_m", null: false
+    t.integer "birth_d", null: false
+    t.string "nickname", null: false
+    t.text "comment"
+    t.text "avatar"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "postal_code", null: false
+    t.integer "prefecture", null: false
+    t.string "city", null: false
+    t.string "block", null: false
+    t.string "building"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["phone"], name: "index_users_on_phone", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+>>>>>>> shunke434343/master
 end

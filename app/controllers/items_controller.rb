@@ -12,4 +12,7 @@ class ItemsController < ApplicationController
   def item_pramas
 
   end
+
+  def buy
+  end
 end
