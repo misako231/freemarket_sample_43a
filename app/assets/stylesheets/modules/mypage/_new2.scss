@@ -33,20 +33,77 @@
           .input__default {
             @extend .input-default-style;
           }
+          .info__chapter__sub--head {
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .info__single__text {
+            margin: 8px 0 0;
+            padding: 0;
+          }
+          .birthday__select__wrap {
+            .select__wrap {
+              display: inline-block;
+              position: relative;
+              margin: 8px 0 0;
+              width: 140px;
+              background-color: $white-b;
+              .select__default {
+                @include select-default-style();
+              }
+              .icon__arrow--bottom {
+                position: absolute;
+                right: 2px;
+                top: 20%;
+                width: 30px;
+                background-color: $white-f;
+                color: #888;
+                font-size: 30px;
+                -webkit-text-stroke: 2px white
+              }
+            }
+          }
           .signup__recaptcha {
             transform: none;
             transform-origin: 0 0;
           }
-          .btn__red {
-            margin: 40px 0 0;
-            background-color: $mercarired;
-            border: 1px solid $mercarired;
-            color: $white-f;
-          }
-          .btn__default {
-            @include button-default-style();
+          .text--center {
+            text-align: center;
           }
         }
+        .btn__red {
+          margin: 40px 0 0;
+          background-color: $mercarired;
+          border: 1px solid $mercarired;
+          color: $white-f;
+        }
+        .btn__default {
+          @include button-default-style();
+        }
+        .text--right {
+          text-align: right;
+        }
+      }
+      p {
+        line-height: 1.5;
+        &:first-child {
+          margin: 0;
+          padding: 0;
+        }
+        a {
+          @extend .lightblue-link-default-style;
+          display: inline-flex;
+          line-height: 24px;
+          .fa-angle-right {
+            font-size: 24px;
+            -webkit-text-stroke: 1.5px white;
+          }
+        }
+      }
+      .form__info__text {
+        margin: 8px 0 0;
+        line-height: 1.5;
+        color: #888;
       }
     }
   }
