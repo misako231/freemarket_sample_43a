@@ -60,7 +60,6 @@
             &-child {
               padding:24px 40px;
               background-color:#fafafa;
-              // display:flex;
               &__possess-p {
                 font-weight:600;
               }
@@ -89,6 +88,10 @@
                 line-height:1.5;
                 font-size:16px;
                 outline:0;
+                &[type="number"]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                  }
                 &:focus {
                   border-color:#0099e8;
                 }
@@ -111,15 +114,17 @@
           }
         }
         .btn-default {
-          // @extend .red-label-require
           @include button-default-style($width:100%, $background-color:#ea352d);
         }
       }
     }
     &__buy-user-info {
       margin:40px 0 0;
-      padding:24px 12.5% 0;
+      padding:40px 12.5% 0;
       border-top:1px solid $gray-b;
+      &:last-of-type {
+        padding:40px 12.5% 40px;
+      }
       &-container {
         max-width:320px;
         margin:0 auto;
