@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
   get 'items/show', to: 'items#show'
-<<<<<<< HEAD
   get 'items/buy', to: 'items#buy'
   get "users/index", to: "users#index"
-=======
   get "mypage/index", to: "mypage#index"
->>>>>>> shunke434343/master
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "mercari/index", to: "mercari#index"
   get "mypage/index", to: "mypage#index"
