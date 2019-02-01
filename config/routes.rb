@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'items/show', to: 'items#show'
+  resources :items
+  resources :itme_photos
   get "mypage/index", to: "mypage#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "mercari/index", to: "mercari#index"
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
   get "mypage/signup/street_address", to: "mypage#new_street_address"
   get "mypage/signup/done", to: "mypage#new_done"
   get "mypage/login", to: "mypage#login"
-  get "items/new", to: "items#new"
   get "mypage/identification", to: "mypage#identification"
   get "mypage/logout", to: "mypage#logout"
   get "mypage/profile", to: "mypage#profile"
