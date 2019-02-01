@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_034923) do
+ActiveRecord::Schema.define(version: 2019_02_01_062939) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.integer "phone", null: false
-    t.integer "paying_way", limit: 1, null: false
+    t.bigint "phone", null: false
+    t.integer "paying_way", limit: 1, default: 0, null: false
     t.integer "birth_y", null: false
     t.integer "birth_m", null: false
     t.integer "birth_d", null: false
