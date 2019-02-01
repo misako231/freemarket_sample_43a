@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
   get 'items/show', to: 'items#show'
-  get "users/index", to: "users#index"
+  get "mypage/index", to: "mypage#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "mercari/index", to: "mercari#index"
-  get "users/index", to: "users#index"
-  get "users/signup", to: "users#new"
-  get "users/signup/registration", to: "users#new_registration"
-  get "users/signup/street_address", to: "users#new_street_address"
-  get "users/signup/done", to: "users#new_done"
-  get "users/login", to: "users#login"
-  get "products/new", to: "products#new"
-  get "users/identification", to: "users#identification"
-  get "users/logout", to: "users#logout"
-  get "users/card", to: "users#card"
+  get "mypage/index", to: "mypage#index"
+  get "mypage/signup", to: "mypage#new"
+  get "mypage/signup/registration", to: "mypage#new_registration"
+  get "mypage/signup/street_address", to: "mypage#new_street_address"
+  get "mypage/signup/done", to: "mypage#new_done"
+  get "mypage/login", to: "mypage#login"
+  get "items/new", to: "items#new"
+  get "mypage/identification", to: "mypage#identification"
+  get "mypage/logout", to: "mypage#logout"
+  get "mypage/profile", to: "mypage#profile"
+  get "mypage/card", to: "mypage#card"
 end

@@ -45,3 +45,28 @@
     border-color: $blue-link-f;
   }
 }
+
+@mixin top-banner-style($url) {
+  display: block;
+  color: transparent;
+  height: 390px;
+  background-position: center;
+  background-image: url($url);
+}
+
+@mixin textarea-default-style($width:100%, $min-height: 216px){
+  min-height: $min-height;
+  display: block;
+  width: $width;
+  max-width: $width;
+  resize: vertical;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+  outline: 0;
+  &:focus {
+    border-color: $blue-link-f;
+  }
+}

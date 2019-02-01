@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class MypageController < ApplicationController
   def index
   end
 
@@ -21,6 +21,9 @@ class UsersController < ApplicationController
   end
 
   def logout
+  end
+
+  def edit
   end
 
   def card
