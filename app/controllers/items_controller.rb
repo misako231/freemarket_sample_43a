@@ -1,7 +1,15 @@
 class ItemsController < ApplicationController
+  def show
+  end
+
   def new
   end
 
-  def show
+  def create
+
+  end
+  private
+  def item_pramas
+
   end
 end
