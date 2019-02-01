@@ -1,19 +1,9 @@
 = render 'shared/users_header'
 .address__info__main
   %section.address__info__container
-    %h2.address__info--head 住所入力
+    %h2.address__info--head お届け先住所入力
     %form.address__info--inner
       .address__info__content
-        .form__group
-          %label{ for: 'first_name' } お名前
-          %span.form__require 必須
-          %input.input__default{ type: 'text', name: 'first_name', placeholder: "例) 山田" }
-          %input.input__default{ type: 'text', name: 'last_name', placeholder: "例) 彩" }
-        .form__group
-          %label{ for: 'first_name_kana' } お名前カナ
-          %span.form__require 必須
-          %input.input__default{ type: 'text', name: 'first_name_kana', placeholder: "例) ヤマダ" }
-          %input.input__default{ type: 'text', name: 'last_name_kana', placeholder: "例) アヤ" }
         .form__group
           %label{ for: 'phone' } 電話
           %span.form__require 必須
