@@ -54,16 +54,25 @@
               .sell__form__box
                 .form__group
                   %label
-                    カテゴリー&emsp;&emsp;
+                    カテゴリー
                     %span.form__require 必須
                   .select__wrap
                     %select.select__default
                     / f.collection_select :item, Item.all, :id, :category, prompt: "---", class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
+                .form__group.form__suggest__container
+                  %label
+                    ブランド
+                    %span.form__any 任意
+                  .select__wrap
+                    %input.input__default{ placeholder: "例) シャネル" }
+                    %div
+                      %ul.sell__brand__suggest.form__suggest__list
+                        %li
                 .form__group
                   %label
-                    商品の状態&emsp;&emsp;
+                    商品の状態
                     %span.form__require 必須
                   .select__wrap
                     %select.select__default
@@ -78,7 +87,7 @@
               .sell__form__box
                 .form__group
                   %label
-                    配送料の負担&emsp;&emsp;
+                    配送料の負担
                     %span.form__require 必須
                   .select__wrap
                     %select.select__default
@@ -87,7 +96,7 @@
                       %i.fas.fa-angle-down
                 .form__group
                   %label
-                    発送元の地域&emsp;&emsp;
+                    発送元の地域
                     %span.form__require 必須
                   .select__wrap
                     %select.select__default
@@ -96,7 +105,7 @@
                       %i.fas.fa-angle-down
                 .form__group
                   %label
-                    発送までの日数&emsp;&emsp;
+                    発送までの日数
                     %span.form__require 必須
                   .select__wrap
                     %select.select__default
@@ -113,7 +122,7 @@
                   %li.form__group
                     .price__form
                       %label.label__left
-                        価格&emsp;&emsp;
+                        価格
                         %span.form__require 必須
                       .l__right.sell__price__input
                         ¥
