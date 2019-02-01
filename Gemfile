@@ -78,10 +78,7 @@ gem 'kaminari'
 gem "font-awesome-rails"
 gem "jquery-rails"
 gem "jquery-slick-rails"
-<<<<<<< HEAD
-=======
 gem 'ancestry'
 gem 'payjp'
 gem 'carrierwave'
 gem 'mini_magick'
->>>>>>> shunke434343/master
