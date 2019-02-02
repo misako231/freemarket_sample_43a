@@ -4,7 +4,7 @@
   .field
     = f.label :nickname
     %br/
-    = f.text_field :nickname, autofocus: true, maxlength: '6'
+    = f.text_field :nickname, autofocus: true
   .field
     = f.label :email
     %br/
@@ -76,19 +76,6 @@
     = f.label :building
     %br/
     = f.text_field :building, autofocus: true
-
-
-
-
-
-
-
-
-
-
-
-
-
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"
