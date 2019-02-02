@@ -11,9 +11,6 @@
     = f.email_field :email, autofocus: true, autocomplete: "email"
   .field
     = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
     %br/
     = f.password_field :password, autocomplete: "new-password"
   .field
@@ -39,43 +36,15 @@
   .field
     = f.label :birth_y
     %br/
-    = f.number_field :birth_y, autofocus: true
+    = f.select :birth_y, [1, 2, 3], prompt: "--"
   .field
     = f.label :birth_m
     %br/
-    = f.number_field :birth_m, autofocus: true
+    = f.select :birth_m, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], prompt: "--"
   .field
     = f.label :birth_d
     %br/
-    = f.number_field :birth_d, autofocus: true
-  .field
-    = f.label :prefecture
-    %br/
-    = f.number_field :prefecture, autofocus: true
-  .field
-    = f.label :phone
-    %br/
-    = f.text_field :phone, autofocus: true
-  .field
-    = f.label :postal_code
-    %br/
-    = f.text_field :postal_code, autofocus: true
-  .field
-    = f.label :prefecture
-    %br/
-    = f.number_field :prefecture, autofocus: true
-  .field
-    = f.label :city
-    %br/
-    = f.text_field :city, autofocus: true
-  .field
-    = f.label :block
-    %br/
-    = f.text_field :block, autofocus: true
-  .field
-    = f.label :building
-    %br/
-    = f.text_field :building, autofocus: true
+    = f.select :birth_d, [1, 2, 3], prompt: "--"
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"
