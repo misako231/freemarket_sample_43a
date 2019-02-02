@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {
-   :registrations => 'users/registrations'
+  devise_for :users, controllers: {
+   registrations: 'users/registrations'
   }
   root to: 'mercari#index'
+  get '/users', to: redirect("/users/sign_up")
+  resources :mypage, only: [:index, :new]
+  resources :profiles, only: [:index, :new]
   get 'items/show', to: 'items#show'
   get 'items/buy', to: 'items#buy'
   get "users/index", to: "users#index"
-  get "mypage/index", to: "mypage#index"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get "mypage/index", to: "mypage#index"
   get "mypage/signup", to: "mypage#new"
   get "mypage/signup/registration", to: "mypage#new_registration"
   get "mypage/signup/street_address", to: "mypage#new_street_address"

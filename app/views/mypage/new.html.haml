@@ -4,7 +4,7 @@
     %h2.signup--head 新規会員登録
     .signup--inner
       .signup__content
-        = link_to "#", class: 'btn__default btn__mail' do
+        = link_to new_user_registration_path, class: 'btn__default btn__mail' do
           .icon__mail
             %i.far.fa-envelope
           メールアドレスで登録
@@ -33,4 +33,3 @@
   %input#google__client__id{ type: 'hidden' }
   %input#facebook__app__id{ type: 'hidden' }
 = render 'shared/second_footer'
-
