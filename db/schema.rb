@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_071304) do
+ActiveRecord::Schema.define(version: 2019_02_01_103654) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "comment", null: false
     t.integer "category_id", null: false
-    t.integer "brand_id", null: false
+    t.integer "brand_id"
     t.boolean "shipping_fee", null: false
     t.integer "prefecture", null: false
     t.integer "days_to_ship", null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_02_01_071304) do
     t.boolean "closed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_items_on_name"
   end
 
   create_table "itme_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -35,9 +36,6 @@ ActiveRecord::Schema.define(version: 2019_02_01_071304) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_itme_photos_on_item_id"
   end
-
-  add_foreign_key "itme_photos", "items"
-ActiveRecord::Schema.define(version: 2019_02_01_062939) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "last_name", null: false
@@ -69,4 +67,5 @@ ActiveRecord::Schema.define(version: 2019_02_01_062939) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "itme_photos", "items"
 end
