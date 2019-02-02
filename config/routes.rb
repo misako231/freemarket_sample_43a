@@ -10,9 +10,6 @@ Rails.application.routes.draw do
   get 'items/buy', to: 'items#buy'
   get "users/index", to: "users#index"
   get "mypage/signup", to: "mypage#new"
-  get "mypage/signup/registration", to: "mypage#new_registration"
-  get "mypage/signup/street_address", to: "mypage#new_street_address"
-  get "mypage/signup/done", to: "mypage#new_done"
   get "mypage/login", to: "mypage#login"
   get "items/new", to: "items#new"
   get "mypage/identification", to: "mypage#identification"
