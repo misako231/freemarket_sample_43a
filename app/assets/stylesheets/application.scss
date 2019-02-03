@@ -1,11 +1,12 @@
 @import "./reset.scss";
 @import "./setting.scss";
+@import "./mixin/mixin.scss";
 @import "./modules/mypage/index.scss";
 @import "./modules/item/show.scss";
+@import "./modules/item/buy.scss";
 @import "font-awesome";
 @import "slick";
 @import "./extend/extend.scss";
-@import "./mixin/mixin.scss";
 @import "./modules/mypage/index.scss";
 @import "./modules/mypage/new.scss";
 @import "./modules/mypage/new2.scss";
@@ -23,4 +24,3 @@
 @import "./modules/mercari/footer.scss";
 @import "./modules/mercari/second_header.scss";
 @import "./modules/mercari/second_footer.scss";
-

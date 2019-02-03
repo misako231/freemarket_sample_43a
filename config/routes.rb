@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   }
   root to: 'mercari#index'
   get 'items/show', to: 'items#show'
+  get 'items/buy', to: 'items#buy'
+  get "users/index", to: "users#index"
   get "mypage/index", to: "mypage#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "mypage/index", to: "mypage#index"
