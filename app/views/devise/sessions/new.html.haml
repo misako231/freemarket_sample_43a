@@ -1,17 +1,45 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+= render 'shared/second_header'
+.login__main
+  .login__panel
+    .login__no-account
+      %p アカウントをお持ちでない方はこちら
+      = link_to '#' do
+        新規会員登録
+    .login__form--inner
+      %button#facebook__login.btn__default.btn__sns.btn__sns-facebook
+        .icon__facebook
+          %i.fab.fa-facebook
+        Facebookでログイン
+      %button#google__login.btn__default.btn__sns.btn__sns-google
+        .icon__google-plus
+          %i.fab.fa-google-plus-g
+        Googleでログイン
+    -# %form{ novalidate: 'novalidate' }
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .login__form--inner
+        .form__group
+          = f.email_field :email, class: "login__input__text input__default", placeholder: 'メールアドレス'
+        .form__group
+          = f.password_field :password, class: "login__input__text input__default", placeholder: 'パスワード'
+        .form__group
+          .g-recaptcha.login__recaptcha{ 'data-sitekey': '6LchzY0UAAAAAAqz7MrGCIh8SBad6Hep96J_naNB' }
+          %button.login__submit.btn__default.btn__red{ type: 'submit' } ログイン
+          = link_to '#' do
+            パスワードをお忘れの方
+  %form#login__form__facebook{ novalidate: 'novalidate' }
+    %input{ type: 'hidden', name:'__crsf_value' }
+    %input{ type: 'hidden', name:'nickname' }
+    %input{ type: 'hidden', name:'email' }
+    %input{ type: 'hidden', name:'facebook_user_id' }
+    %input{ type: 'hidden', name:'facebook_access_token' }
+    %input{ type: 'hidden', name:'login_type', value:'facebook' }
+  %form#login__form__google{ novalidate: 'novalidate' }
+    %input{ type: 'hidden', name:'__crsf_value' }
+    %input{ type: 'hidden', name:'nickname' }
+    %input{ type: 'hidden', name:'email' }
+    %input{ type: 'hidden', name:'google_user_id' }
+    %input{ type: 'hidden', name:'google_access_token' }
+    %input{ type: 'hidden', name:'login_type', value:'facebook' }
+  %input#google__client__id{ type: 'hidden' }
+  %input#facebook__app__id{ type: 'hidden' }
+= render 'shared/second_footer'
