@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   $(function(){
-    function calcDays(){
+    function calcDaysForBrithdayForm(){
       $('#user_birth_d').empty();
       var y = $('#user_birth_y').val();
       var m = $('#user_birth_m'). val();
@@ -21,7 +21,7 @@ $(document).on('turbolinks:load', function() {
       }
     }
     var d = $('#user_birth_d');
-    $('#user_birth_y').change(calcDays);
-    $('#user_birth_m').change(calcDays);
+    $('#user_birth_y').change(calcDaysForBrithdayForm);
+    $('#user_birth_m').change(calcDaysForBrithdayForm);
   });
 });
