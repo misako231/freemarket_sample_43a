@@ -65,6 +65,7 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rails-controller-testing'
 end
 
 group :production do
@@ -82,3 +83,4 @@ gem 'ancestry'
 gem 'payjp'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'enum_help'
