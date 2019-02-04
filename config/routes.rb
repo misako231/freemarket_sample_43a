@@ -1,23 +1,26 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {
-   :registrations => 'users/registrations'
+  devise_for :users, controllers: {
+   registrations: 'users/registrations'
   }
+  get '/users', to: redirect("/users/sign_up")
   root to: 'mercari#index'
-  resources :items
-  resources :itme_photos
-  get 'items/show', to: 'items#show'
-  get 'items/buy', to: 'items#buy'
-  get "users/index", to: "users#index"
-  get "mypage/index", to: "mypage#index"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get "mypage/index", to: "mypage#index"
-  get "mypage/signup", to: "mypage#new"
-  get "mypage/signup/registration", to: "mypage#new_registration"
-  get "mypage/signup/street_address", to: "mypage#new_street_address"
-  get "mypage/signup/done", to: "mypage#new_done"
-  get "mypage/login", to: "mypage#login"
-  get "mypage/identification", to: "mypage#identification"
-  get "mypage/logout", to: "mypage#logout"
-  get "mypage/profile", to: "mypage#profile"
-  get "mypage/card", to: "mypage#card"
+  resources :mypage, only: [:new]
+  resources :item_photos
+  resources :items do
+    member do
+      get :buy
+    end
+  end
+  resources :users, only: [:create] do
+    resources :profiles, only: [:index, :new, :create, :show, :update] do
+      member do
+        get :identification
+        get :card
+      end
+      collection do
+        get :logout
+        get :done
+      end
+    end
+  end
 end

@@ -1,17 +1,22 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :items
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :nickname,        presence: true, length: { maximum: 20 }
-  validates :password,        presence: true, length: { in: 6..128 }
-  validates :last_name,       presence: true, length: { maximum: 35 }
-  validates :first_name,      presence: true, length: { maximum: 35 }
-  validates :last_name_kana,  presence: true, length: { maximum: 35 },
-                             format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。' }
-  validates :first_name_kana, presence: true, length: { maximum: 35 },
-                             format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。' }
+  has_many :items
+  has_one :profile
+  validates :nickname,               presence: true, length: { maximum: 20 }
+  validates :password,               length: { maximum: 128 }
+  validates :email,                  format: { with: /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/,
+                                              message: 'のフォーマットが不適切です' }
+  validates :password_confirmation,  presence: true
+  validates :last_name,              presence: true, length: { maximum: 35 }
+  validates :first_name,             presence: true, length: { maximum: 35 }
+  validates :last_name_kana,         presence: true, length: { maximum: 35 },
+                                     format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカナ文字で入力してください' }
+  validates :first_name_kana,        presence: true, length: { maximum: 35 },
+                                     format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカナ文字で入力してください' }
+  validates :birth_d,                presence: true
 
   def self.years
    years = []
