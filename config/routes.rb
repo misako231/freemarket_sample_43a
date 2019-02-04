@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :items
-  resources :itme_photos
   devise_for :users, :controllers => {
    :registrations => 'users/registrations'
   }
   root to: 'mercari#index'
+  resources :items
+  resources :itme_photos
   get 'items/show', to: 'items#show'
   get 'items/buy', to: 'items#buy'
   get "users/index", to: "users#index"

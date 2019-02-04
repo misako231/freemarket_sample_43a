@@ -10,23 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_103654) do
+ActiveRecord::Schema.define(version: 2019_02_02_102618) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "comment", null: false
-    t.integer "category_id", null: false
-    t.integer "brand_id"
+    t.integer "category_id", default: 1, null: false
+    t.integer "brand_id", default: 1
     t.boolean "shipping_fee", null: false
     t.integer "prefecture", null: false
     t.integer "days_to_ship", null: false
     t.integer "price", null: false
     t.integer "condition", null: false
-    t.integer "user_id", null: false
     t.boolean "closed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["name"], name: "index_items_on_name"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "itme_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -35,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_02_01_103654) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_itme_photos_on_item_id"
-ActiveRecord::Schema.define(version: 2019_02_02_035120) do
+  end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "phone", null: false

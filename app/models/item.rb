@@ -1,6 +1,9 @@
 class Item < ApplicationRecord
   has_many :itme_photos
-  belongs_to :category
+  accepts_nested_attributes_for :itme_photos, allow_destroy: true
+  belongs_to :user
+  # belongs_to :category
+
   enum condition: [:new_item, :close_to_the_unused, :no_noticeable_scratches_and_dirt, :a_few_scratches_and_dirt, :scratches_and_dirt, :bad]
   enum shipping_fee: { self: false, other: true }
   enum days_to_ship: [:fast, :normal, :slow]

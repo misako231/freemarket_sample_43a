@@ -34,19 +34,24 @@
                             削除
                 .sell__upload__drop-box.have__item-0
                   / %input.sell__upload__drop-file{ type: 'file', multiple: true, name: "image1" }
-                  = f.file_field :image1, multiple: true, class: "sell__upload__drop-file"
+
+                  = f.fields_for :image_photos, html: {class: 'sell__upload__drop-file'} do |i|
+                    = i.file_field :image, multiple: true
+                  / = f.file_field :image, multiple: true, class: "sell__upload__drop-file"
                   %pre.visible__pc
                     ドラッグアンドドロップ
                     またはクリックしてファイルをアップロード
             .sell__content
               .form__group
                 %label
+                = f.label :name do
                   商品名&emsp;&emsp;
                   %span.form__require 必須
                 %div
-                  %input.input__default{ placeholder: "商品名(必須40文字まで)" }
+                  / %input.input__default{ placeholder: "商品名(必須40文字まで)" }
+                  = f.text_field :name, placeholder: "商品名(必須40文字まで)", class: "input__default"
               .form__group
-                %label
+                / %label
                 = f.label :comment do
                   商品の説明&emsp;&emsp;
                   %span.form__require 必須
@@ -178,7 +183,7 @@
                     加盟店規約
                   に同意したことになります。
               / %input.btn__default.btn--red{ type: 'submit', value: "出品する"}
-              = f.submit "出品する", class: "btn__default.btn--red"
+              = f.submit "出品する", class: "btn__default btn--red", value: "出品する"
               = link_to "#", class: 'btn__default btn--gray' do
                 もどる
         .overlay

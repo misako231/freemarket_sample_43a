@@ -2,14 +2,14 @@ ja:
   enums:
     item:
       condition:
-        new_item: "新品、未使用"
+        new_item: 新品、未使用
         close_to_the_unused: "未使用に近い"
         no_noticeable_scratches_and_dirt: "目立った傷や汚れなし"
         a_few_scratches_and_dirt: "やや傷や汚れあり"
         scratches_and_dirt: "傷や汚れあり"
         bad: "全体的に状態が悪い"
       shipping_fee:
-        slef: "送料込み(出品者負担)"
+        self: "送料込み(出品者負担)"
         other: "着払い(購入者負担)"
       days_to_ship:
         fast: "1~2日で発送"
@@ -63,7 +63,7 @@ ja:
         miyazaki: "宮崎県"
         kagoshima: "鹿児島県"
         okinawa: "沖縄県"
-        none: "未定"
+        undecided: "未定"
     user:
       prefecture:
         hokkaido: "北海道"
