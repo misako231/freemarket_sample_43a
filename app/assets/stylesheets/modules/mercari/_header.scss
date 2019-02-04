@@ -75,7 +75,7 @@ header.mercari-header {
               text-decoration: none;
               line-height: 30px;
               height: 30px;
-              width: 90px;
+              width: 80px;
               margin-top: 5px;
               color: $white-f;
               text-align: center;
@@ -87,11 +87,17 @@ header.mercari-header {
               text-decoration: none;
               line-height: 30px;
               height: 30px;
-              width: 90px;
+              width: 110px;
               margin-top: 5px;
               color: $blue-link-f;
               text-align: center;
               border-radius: 3px;
+              &:hover {
+                background-color: #0099e8;
+                background-color: #0099e8;
+                color: white;
+                transition-duration: 0.3s;
+              }
             }
             &__link {
               text-decoration: none;
