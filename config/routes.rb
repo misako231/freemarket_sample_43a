@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   get '/users', to: redirect("/users/sign_up")
   root to: 'mercari#index'
   resources :mypage, only: [:new]
+  resources :item_photos
   resources :items do
     member do
       get :buy
     end
   end
-  resources :users, only: [] do
+  resources :users, only: [:create] do
     resources :profiles, only: [:index, :new, :create, :show, :update] do
       member do
         get :identification

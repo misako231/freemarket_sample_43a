@@ -7,7 +7,8 @@
           .mypage__content__user__icon__link__img
             = image_tag 'beutiful.jpg', class: "mypage__content__user__icon__link__img__in"
           .mypage__content__user__icon__link__name
-            %h2.bold toriisogi
+            %h2.bold
+              = current_user.nickname
           .mypage__content__user__icon__link__num
             .mypage__content__user__icon__link__num__review
               評価
