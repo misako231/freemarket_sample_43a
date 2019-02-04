@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-describe "Dog" do
-  it "is named 'Pochi'"
+describe User do
+  describe '#create' do
+    it  "is invalid without a nickname" do
+    end
+  end
 end
