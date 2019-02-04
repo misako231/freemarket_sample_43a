@@ -2,7 +2,7 @@
   .mypage__side__nav
     %ul.mypage__side__nav__list
       %li
-        =link_to  "＃", class: "mypage__side__nav__list__item" do
+        =link_to  user_profiles_path(user_id: current_user.id), class: "mypage__side__nav__list__item" do
           マイページ
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
@@ -91,7 +91,7 @@
     %h3.mypage__side__nav__head 設定
     %ul.mypage__side__nav__list
       %li
-        =link_to  "＃", class: "mypage__side__nav__list__item" do
+        =link_to  user_profile_path(id: 1), class: "mypage__side__nav__list__item" do
           プロフィール
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
@@ -111,7 +111,7 @@
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
       %li
-        =link_to  "＃", class: "mypage__side__nav__list__item" do
+        =link_to  identification_user_profile_path(id: 1), class: "mypage__side__nav__list__item" do
           本人情報
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
@@ -121,7 +121,7 @@
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
       %li
-        =link_to  "＃", class: "mypage__side__nav__list__item" do
+        =link_to  logout_user_profiles_path, class: "mypage__side__nav__list__item" do
           ログアウト
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
