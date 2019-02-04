@@ -7,4 +7,19 @@ describe ItemsController do
       expect(response).to render_template :new
     end
   end
+
+  describe 'GET #create' do
+    it "assigns the requested create to @create" do
+    end
+
+    it "renders the :create template" do
+      get :create
+      expect(response).to render_template :create
+    end
+  end
+
+
 end
+
+
+
