@@ -206,7 +206,3 @@ t.index [:user_id, :block_id], unique: true
 |parent_id|int|T||
 ### Association
 - has_many :items
-
-
-ActiveRecord::Schema.define(version: 2019_02_02_034648) do
-ActiveRecord::Schema.define(version: 2019_02_04_034142) do
