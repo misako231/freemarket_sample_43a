@@ -1,5 +1,5 @@
 ja:
-  enum:
+  enums:
     item:
       prefecture:
         hokkaido: "北海道"
@@ -50,7 +50,7 @@ ja:
         kagoshima: "鹿児島県"
         okinawa: "沖縄県"
         none: "未定"
-    user:
+    profile:
       prefecture:
         hokkaido: "北海道"
         aomori: "青森県"
@@ -111,3 +111,11 @@ ja:
         last_name_kana: 姓カナ
         first_name_kana: 名カナ
         birth_d: 生年月日
+    attributes:
+      profile:
+        phone: 電話番号
+        prefecture: 都道府県
+        postal_code: 郵便番号
+        city: 市区町村
+        block: 番地
+        building: 建物名
