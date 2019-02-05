@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe ItemsController do
+
   describe 'GET #new' do
     it "renders the :new template" do
       get :new
@@ -16,8 +17,14 @@ describe ItemsController do
       get :create
       expect(response).to render_template :create
     end
-  end
 
+    subject {post :create, params: params}
+    let(:params){{item_id: item.id, item: attributes_for(:item)}}
+
+    it "count up item" do
+      expect{subject}.to change(Item, :count).by(1)
+    end
+  end
 
 end
 

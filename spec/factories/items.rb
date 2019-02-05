@@ -1,7 +1,6 @@
 FactoryBot.define  do
   factory :item do
     name {"coachbag"}
-    image {File.open("#{Rails.root}/public/images/test_dolphin.jpg")}
     comment {"good"}
     category_id {"1"}
     prefecture {"1"}
@@ -14,7 +13,7 @@ FactoryBot.define  do
 
 
     after(:build) do |item|
-      create_list(:item_photoes, 1, item:item)
+      create_list(:item_photo, 1, item:item)
     end
 
   end
