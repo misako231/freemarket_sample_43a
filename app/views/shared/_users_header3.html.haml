@@ -1,0 +1,18 @@
+%header.user__create__header
+  %h1.user__header__icon
+    = link_to root_path do
+      = image_tag 'mercari-logo.svg', alt: "mercari"
+  %nav.progress__bar.signup__bar
+    %ol.progress__list
+      %li.progress__through
+        会員情報
+        .progress__status
+      %li.progress__through
+        お届け先住所入力
+        .progress__status
+      %li.progress__through
+        支払い方法
+        .progress__status
+      %li.progress__active
+        完了
+        .progress__status

@@ -11,8 +11,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    &__btn{
-      @include button-default-style(320px);
+    &__link{
+      text-decoration: none;
+      &__btn{
+        @include button-default-style(320px);
+      }
     }
   }
 }
