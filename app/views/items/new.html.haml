@@ -34,7 +34,7 @@
                 .sell__upload__drop-box.have__item-0
                   = f.fields_for :item_photos, html: {class: 'sell__upload__drop-file'} do |i|
                     = i.label :image do
-                      = i.file_field :image, multiple: true
+                      = i.file_field :image
                   %pre.visible__pc
                     ドラッグアンドドロップ
                     またはクリックしてファイルをアップロード
