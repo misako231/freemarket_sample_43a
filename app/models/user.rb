@@ -13,6 +13,8 @@ class User < ApplicationRecord
                                      format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカナ文字で入力してください' }
   validates :first_name_kana,        presence: true, length: { maximum: 35 },
                                      format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカナ文字で入力してください' }
+  validates :birth_y,                presence: true
+  validates :birth_m,                presence: true
   validates :birth_d,                presence: true
 
   def self.years

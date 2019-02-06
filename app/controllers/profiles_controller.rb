@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
   end
 
   def new
+    @profile = Profile.new
   end
 
   def create
@@ -10,7 +11,7 @@ class ProfilesController < ApplicationController
     if @profile.save
       redirect_to done_user_profiles_path
     else
-      render :index
+      render :new
     end
   end
 
