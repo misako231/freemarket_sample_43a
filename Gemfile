@@ -87,3 +87,5 @@ gem 'enum_help'
 gem 'rails-i18n'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'active_hash'
+
