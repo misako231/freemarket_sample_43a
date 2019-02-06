@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-   registrations: 'users/registrations'
-  }
+   registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
   get '/users', to: redirect("/users/sign_up")
   root to: 'mercari#index'
   resources :mypage, only: [:new]
@@ -25,3 +24,8 @@ Rails.application.routes.draw do
     end
   end
 end
+
+
+
+
+

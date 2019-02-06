@@ -8,9 +8,8 @@
           .icon__mail
             %i.far.fa-envelope
           メールアドレスで登録
-        %button#facebook__login.btn__default.btn__sns.btn__sns-facebook
-          .icon__facebook
-            %i.fab.fa-facebook
+        = link_to user_facebook_omniauth_authorize_path, class: 'btn__default btn__sns-facebook icon__facebook', id: 'facebook' do
+          %i.fab.fa-facebook
           Facebookで登録
         %button#google__login.btn__default.btn__sns.btn__sns-google
           .icon__google-plus
