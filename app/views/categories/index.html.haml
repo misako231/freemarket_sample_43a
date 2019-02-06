@@ -1,0 +1,28 @@
+= render 'shared/header'
+.brand-index
+  .brand-index__container
+    %h2
+      カテゴリー一覧
+    .brand-index__container__btns
+      - @parents.each do |parent|
+        = link_to "", class: "brand-index__container__btns__btn" do
+          = parent.name
+    .brand-index__container__index
+    .brand-index__container__list
+    - @parents.each do |parent|
+      .brand-index__container__list__name
+        = parent.name
+      .brand-index__container__list__box
+        = link_to "", class: "brand-index__container__list__box__all" do
+          すべて
+        - get_child_from_root(parent).each do |child|
+          .brand-index__container__list__box__label
+            = child.name
+          .brand-index__container__list__box__categories
+            .brand-index__container__list__box__categories__category
+              = link_to "" do
+                すべて
+            - get_deeper_from_child(child).each do |grandchild|
+              .brand-index__container__list__box__categories__category
+                = link_to "" do
+                  =grandchild.name
