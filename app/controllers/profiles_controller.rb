@@ -33,6 +33,15 @@ class ProfilesController < ApplicationController
   def done
   end
 
+  # def credit
+  #   Payjp.api_key = 'sk_test_1f82925154c7233eefd69aca'
+  #   Payjp::Charge.create(
+  #     amount: 3500, # 決済する値段
+  #     card: params['payjp-token'],
+  #     currency: 'jpy'
+  #   )
+  # end
+
   private
   def profile_params
     params.permit(:phone, :postal_code, :prefecture, :city, :block, :building).merge(user_id: params[:user_id])
