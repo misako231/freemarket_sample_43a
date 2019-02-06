@@ -5,12 +5,12 @@
       カテゴリー一覧
     .brand-index__container__btns
       - @parents.each do |parent|
-        = link_to "", class: "brand-index__container__btns__btn" do
+        = link_to "#ctg#{parent.id}", class: "brand-index__container__btns__btn" do
           = parent.name
     .brand-index__container__index
     .brand-index__container__list
     - @parents.each do |parent|
-      .brand-index__container__list__name
+      .brand-index__container__list__name{id: "ctg#{parent.id}"}
         = parent.name
       .brand-index__container__list__box
         = link_to "", class: "brand-index__container__list__box__all" do
