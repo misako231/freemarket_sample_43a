@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/users', to: redirect("/users/sign_up")
   root to: 'mercari#index'
   resources :mypage, only: [:new]
+  resources :categories, only: [:index, :show]
   resources :item_photos
   resources :items do
     member do

@@ -1,4 +1,5 @@
 class Profile < ApplicationRecord
+  enum prefecture: [:hokkaido, :aomori, :iwate, :miyagi, :akita, :yamagata, :fukusima, :ibaragi, :tochigi, :gunma, :saitama, :chiba, :tokyo, :kanagawa, :nigata, :toyama, :isikawa, :fukui, :yamanashi, :nagano, :gifu, :sizuoka, :aichi, :mie, :siga, :kyoto, :osaka, :hyogo, :nara, :wakayama, :tottori, :simane, :okayama, :hiroshima, :yamaguchi, :tokusima, :kagawa, :ehime, :kouchi, :fukuoka, :saga, :nagasaki, :kumamoto, :oita, :miyazaki, :kagoshima, :okinawa, :undecided]
   belongs_to :user
   validates :prefecture,      presence: true
   validates :phone,           presence: true, length: { minimum: 10, maximum: 16 },
