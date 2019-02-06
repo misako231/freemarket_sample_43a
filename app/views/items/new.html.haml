@@ -5,7 +5,7 @@
       %div{ 'data-reactroot': ""}
         .sell__container--inner
           %h2.l__single__head 商品の情報を入力
-          %form.sell__form
+          = form_with model: @item, html: {class: 'sell__form'} do |f|
             .sell__upload__box
               %h3.sell__upload__head
                 出品画像
@@ -32,51 +32,52 @@
                           = link_to "#" do
                             削除
                 .sell__upload__drop-box.have__item-0
-                  %input.sell__upload__drop-file{ type: 'file', multiple: true, name: "image1" }
+                  = f.fields_for :item_photos, html: {class: 'sell__upload__drop-file'} do |i|
+                    = i.label :image do
+                      = i.file_field :image
                   %pre.visible__pc
                     ドラッグアンドドロップ
                     またはクリックしてファイルをアップロード
             .sell__content
               .form__group
                 %label
+                = f.label :name do
                   商品名&emsp;&emsp;
                   %span.form__require 必須
                 %div
-                  %input.input__default{ placeholder: "商品名(必須40文字まで)" }
+                  = f.text_field :name, placeholder: "商品名(必須40文字まで)", class: "input__default"
               .form__group
-                %label
+                = f.label :comment do
                   商品の説明&emsp;&emsp;
                   %span.form__require 必須
-                %textarea.textarea__default{ rows: '5', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" }
+                = f.text_area :comment, rows: '5', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "textarea__default"
             .sell__content.choice__box
               %h3.sell__sub--head
                 商品の詳細
               .sell__form__box
                 .form__group
-                  %label
+                  = f.label :category_id do
                     カテゴリー
                     %span.form__require 必須
                   .select__wrap
-                    %select.select__default
-                    / f.collection_select :item, Item.all, :id, :category, prompt: "---", class: 'select__default'
+                    = f.collection_select :category_id, Category.all, :id, :name, {prompt: "---"}, class: "select__default"
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
                 .form__group.form__suggest__container
-                  %label
+                  = f.label :barand_id do
                     ブランド
                     %span.form__any 任意
                   .select__wrap
-                    %input.input__default{ placeholder: "例) シャネル" }
+                    = f.select :brand_id, Item.all, {prompt: "---"}, class: "select__default"
                     %div
                       %ul.sell__brand__suggest.form__suggest__list
                         %li
                 .form__group
-                  %label
+                  = f.label :condition do
                     商品の状態
                     %span.form__require 必須
                   .select__wrap
-                    %select.select__default
-                    / %f.collection_select :item, :state, @items, :id, :state, prompt: "---", class: 'select__default'
+                    = f.select :condition, Item.conditions_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
             .sell__content.choice__box
@@ -86,30 +87,27 @@
                   ?
               .sell__form__box
                 .form__group
-                  %label
+                  = f.label :shipping_fee do
                     配送料の負担
                     %span.form__require 必須
                   .select__wrap
-                    %select.select__default
-                    / %f.collection_select :item, @items, :id, :delivery_fee, prompt: "---", class: 'select__default'
+                    = f.select :shipping_fee, Item.shipping_fees_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
                 .form__group
-                  %label
+                  = f.label :prefecture_id do
                     発送元の地域
                     %span.form__require 必須
                   .select__wrap
-                    %select.select__default
-                    / %f.collection_select :item, @items, :id, :area, prompt: "---", class: 'select__default'
+                    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, class: "select__default"
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
                 .form__group
-                  %label
+                  = f.label :days_to_ship do
                     発送までの日数
                     %span.form__require 必須
                   .select__wrap
-                    %select.select__default
-                    / %collection_select :item, @items, :id, :area, prompt: "---", class: 'select__default'
+                    = f.select :days_to_ship, Item.days_to_ships_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
             .sell__content.choice__box
@@ -121,13 +119,13 @@
                 %ul.sell__price
                   %li.form__group
                     .price__form
-                      %label.label__left
+                      = f.label :price, class: "label__left" do
                         価格
                         %span.form__require 必須
                       .l__right.sell__price__input
                         ¥
                         %div
-                          %input.input__default{ placeholder: "例) 300" }
+                          = f.text_field :price, placeholder: "例) 300" ,class: "input__default"
                   %li.profit__group
                     .label__left
                       販売手数料 (10%)
@@ -140,7 +138,6 @@
                       \-
             .modal{ role: 'dialog', tabindex: "-1"}
               .modal--inner
-            / 謎
             .sell__content.sell__btn__box
               %div
                 %p
@@ -159,7 +156,7 @@
                   = link_to "#", target: '_blank' do
                     加盟店規約
                   に同意したことになります。
-              %input.btn__default.btn--red{ type: 'submit', value: "出品する"}
+              = f.submit "出品する", class: "btn__default btn--red"
               = link_to "#", class: 'btn__default btn--gray' do
                 もどる
         .overlay
