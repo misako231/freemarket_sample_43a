@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
   has_many :item_photos
   accepts_nested_attributes_for :item_photos, allow_destroy: true
   belongs_to :user

@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 2019_02_04_054653) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "comment", null: false
-    t.integer "category_id", null: false
-    t.integer "brand_id", null: false
+    t.integer "category_id", default: 1, null: false
+    t.integer "brand_id"
     t.boolean "shipping_fee", null: false
-    t.integer "prefecture", null: false
+    t.integer "prefecture_id", null: false
     t.integer "days_to_ship", null: false
     t.integer "price", null: false
     t.integer "condition", null: false

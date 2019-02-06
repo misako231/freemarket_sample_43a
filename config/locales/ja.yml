@@ -1,6 +1,7 @@
 ja:
   enums:
-    application_record:
+    profile:
+    # application_record:
       prefecture:
         hokkaido: "北海道"
         aomori: "青森県"
