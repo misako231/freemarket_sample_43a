@@ -1,0 +1,90 @@
+.brand-index{
+  display: flex;
+  justify-content: center;
+  &__container {
+    width: 700px;
+    margin: 40px auto;
+    h2 {
+      padding: 8px 0px;
+      font-size: 22px;
+      line-height: 1.5;
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+    &__btns {
+      padding: 0 0 20px 5px;
+      display: flex;
+      flex-wrap: wrap;
+      &__btn {
+        font-size: 16px;
+        width: auto;
+        min-width: 30px;
+        line-height: 39px;
+        display: inline-block;
+        margin: 0 10px 10px 0;
+        padding: 0 30px;
+        border-radius: 4px;
+        border: thin solid white;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        box-shadow: 1.5px 1.5px 0.75px #DBDBDB;
+        text-decoration: none;
+        &:hover {
+          background-color: $mercarired;
+          border-color: $mercarired;
+          color: $white-f;
+        }
+      }
+    }
+    &__index {
+    }
+    &__list {
+      border-radius: 4px;
+      &__name {
+        color: $white-f;
+        height: 40px;
+        font-size: 22px;
+        background-color: $mercarired;
+        padding: 3px 30px 0 30px;
+        font-weight: bold;
+      }
+      &__box {
+        padding: 24px 20px 10px 30px;
+        background-color: white;
+        margin-bottom: 40px;
+        &__all {
+          @extend .lightblue-link-default-style;
+          text-decoration: none;
+          font-size: 16px;
+          &:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+          }
+        }
+        &__label {
+          font-weight: bold;
+          margin-top: 15px;
+        }
+        &__categories {
+          padding: 0 20px 10px 20px;
+          display: flex;
+          flex-wrap: wrap;
+          &__category {
+            font-size: 16px;
+            width: 50%;
+            a {
+              margin: 6px 0;
+              @extend .lightblue-link-default-style;
+              display: inline-block;
+              &:hover {
+                opacity: 0.7;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      profile:
+        phone: 電話番号
+        prefecture: 都道府県
+        postal_code: 郵便番号
+        city: 市区町村
+        block: 番地
+        building: 建物名
