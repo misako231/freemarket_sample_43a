@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_073717) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "comment", null: false
-    t.integer "category_id", default: 1, null: false
+    t.integer "category_id", null: false
     t.integer "brand_id"
     t.boolean "shipping_fee", null: false
     t.integer "prefecture_id", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_073717) do
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "phone", null: false
     t.integer "postal_code", null: false
-    t.integer "prefecture", null: false
+    t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "block", null: false
     t.string "building"

@@ -3,7 +3,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
     create_table    :profiles do |t|
       t.integer     :phone,        null: false, limit: 5
       t.integer     :postal_code,  null: false
-      t.integer     :prefecture,   null: false
+      t.integer     :prefecture_id,   null: false
       t.string      :city,         null: false
       t.string      :block,        null: false
       t.string      :building,     null: true

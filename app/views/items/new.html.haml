@@ -60,8 +60,7 @@
                     カテゴリー
                     %span.form__require 必須
                   .select__wrap
-                    = f.select :category_id, Item.all, {prompt: "---"}, class: "select__default"
-                    / = f.collection_select :category_id, Category.all, :id, name, prompt: "---", class: "select__default"
+                    = f.collection_select :category_id, Category.all, :id, :name, {prompt: "---"}, class: "select__default"
                     / 本来はcategoryテーブルから情報を引張てくるようにするのですが、まだcategoryテーブルができていないため、f.selectで仮置きしています
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
@@ -101,7 +100,7 @@
                     発送元の地域
                     %span.form__require 必須
                   .select__wrap
-                    = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{ prompt: "---" }, class: "select__default"
+                    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, class: "select__default"
                     / = f.select :prefecture, Item.prefectures_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down

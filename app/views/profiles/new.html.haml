@@ -22,11 +22,7 @@
           =f.label :都道府県
           %span.form__require 必須
           .select__wrap
-<<<<<<< HEAD
-            = f.select(:prefecture, Profile.prefectures_i18n.invert, {prompt: "--"}, {class: "select__default"})
-=======
-            = f.select :prefecture, Profile.prefectures_i18n.invert, {prompt: "--"}, class: "select__default"
->>>>>>> shunke434343/master
+            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, class: "select__default"
             .icon__arrow__bottom
               %i.fa.fa-angle-down
             .error_message_box

@@ -3,7 +3,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
     create_table :items do |t|
       t.string     :name, null: false
       t.text       :comment, null: false
-      t.integer    :category_id, null: false, default: 1, foreign_key: true
+      t.integer    :category_id, null: false, foreign_key: true
       t.integer    :brand_id, null: true, foreign_key: true
       t.boolean    :shipping_fee, null: false
       t.integer    :prefecture_id, null: false
