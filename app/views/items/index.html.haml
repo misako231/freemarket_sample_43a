@@ -42,7 +42,8 @@
         = link_to "https://www.mercari.com/jp/" do
           レディース 新着アイテム
       .item-box-content
-        = render 'shared/card'
+        - @ladies_items.each do |item|
+          = render partial: 'shared/card', locals: { item: item }
       .view-all
         = link_to "https://www.mercari.com/jp/category/1/" do
           すべての商品を見る
@@ -52,7 +53,8 @@
         = link_to "https://www.mercari.com/jp/" do
           メンズ 新着アイテム
       .item-box-content
-        = render 'shared/card'
+        - @mens_items.each do |item|
+          = render partial: 'shared/card', locals: { item: item }
       .view-all
         = link_to "https://www.mercari.com/jp/category/1/" do
           すべての商品を見る
@@ -62,7 +64,8 @@
         = link_to "https://www.mercari.com/jp/" do
           ベビー・キッズ 新着アイテム
       .item-box-content
-        = render 'shared/card'
+        - @baby_items.each do |item|
+          = render partial: 'shared/card', locals: { item: item }
       .view-all
         = link_to "https://www.mercari.com/jp/category/1/" do
           すべての商品を見る
@@ -72,7 +75,8 @@
         = link_to "https://www.mercari.com/jp/" do
           コスメ・香水・美容 新着アイテム
       .item-box-content
-        = render 'shared/card'
+        - @cosme_items.each do |item|
+          = render partial: 'shared/card', locals: { item: item }
       .view-all
         = link_to "https://www.mercari.com/jp/category/1/" do
           すべての商品を見る
@@ -84,7 +88,7 @@
         = link_to "https://www.mercari.com/jp/" do
           シャネル 新着アイテム
       .item-box-content
-        = render 'shared/card'
+        = render 'shared/state-card'
       .view-all
         = link_to "https://www.mercari.com/jp/category/1/" do
           すべての商品を見る
@@ -94,7 +98,7 @@
         = link_to "https://www.mercari.com/jp/" do
           ルイヴィトン 新着アイテム
       .item-box-content
-        = render 'shared/card'
+        = render 'shared/state-card'
       .view-all
         = link_to "https://www.mercari.com/jp/category/1/" do
           すべての商品を見る
@@ -104,7 +108,7 @@
         = link_to "https://www.mercari.com/jp/" do
           シュープリーム 新着アイテム
       .item-box-content
-        = render 'shared/card'
+        = render 'shared/state-card'
       .view-all
         = link_to "https://www.mercari.com/jp/category/1/" do
           すべての商品を見る
@@ -114,8 +118,7 @@
         = link_to "https://www.mercari.com/jp/" do
           ナイキ 新着アイテム
       .item-box-content
-        = render 'shared/card'
+        = render 'shared/state-card'
 
 = render 'shared/footer'
-
 = render 'shared/sellbtn'

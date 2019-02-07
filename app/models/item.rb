@@ -19,5 +19,6 @@ class Item < ApplicationRecord
   enum days_to_ship: [:fast, :normal, :slow]
 
   scope :with_category, -> { joins(:category) }
-  scope :search_with_root_id, ->(root_id) { where("ancestry LIKE ?", "#{root_id}/") }
+  scope :search_with_root_id, ->(root_id) { where("ancestry LIKE ?", "#{root_id}/%") }
+  scope :new_arrival, -> { order('id DESC') }
 end
