@@ -2,12 +2,13 @@
 lock "~> 3.11.0"
 
 set :application, "freemarket_sample_43a"
-set :repo_url, "git@github.com:shunke434343/freemarket_sample_43a.git"set :default_env, {
+set :repo_url, "git@github.com:shunke434343/freemarket_sample_43a.git"
+set :default_env, {
   rbenv_root: "/usr/local/rbenv",
   path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
   AWS_ACCESS_KEY_ID: ENV["AWS_ACCESS_KEY_ID"],
   AWS_SECRET_ACCESS_KEY: ENV["AWS_SECRET_ACCESS_KEY"]
-
+}
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
