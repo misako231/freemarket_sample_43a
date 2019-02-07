@@ -72,7 +72,7 @@ header.mercari-header {
                 h3 {
                   font-weight: 400;
                   font-size: 14px;
-                  .header-nav__parent-name {
+                  .header-nav__parent__name {
                     display: block;
                     padding: 0 16px;
                     line-height: 44px;
@@ -104,7 +104,7 @@ header.mercari-header {
                   .header-nav__child {
                     display: none;
                     width: 224px;
-                    .header-nav__child-name {
+                    &__name {
                       display: block;
                       padding: 8px 16px;
                       overflow: hidden;
@@ -133,7 +133,7 @@ header.mercari-header {
                       .header-nav__grandchild {
                         display: none;
                         width: 320px;
-                        .header-nav__grandchild-name {
+                        &__name {
                           display: block;
                           padding: 8px 16px;
                           overflow: hidden;
