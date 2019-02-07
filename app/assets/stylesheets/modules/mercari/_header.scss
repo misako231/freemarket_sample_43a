@@ -49,12 +49,110 @@ header.mercari-header {
           display: flex;
           flex-direction: row;
           &__list {
+            position: relative;
             line-height: 45px;
             margin-right: 10px;
             &__title {
               &__link {
                 color: $black-f;
                 text-decoration: none;
+              }
+            }
+            .header-nav__parent__wrap {
+              width: auto;
+              position: absolute;
+              top: 40px;
+              left: -34px;
+              z-index: 9999;
+              background-color: $white-b;
+              box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
+              .header-nav__parent {
+                display: none;
+                width: 224px;
+                h3 {
+                  font-weight: 400;
+                  font-size: 14px;
+                  .header-nav__parent-name {
+                    display: block;
+                    padding: 0 16px;
+                    line-height: 44px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    font-size: 14px;
+                    color: $black-f;
+                    text-decoration: none;
+                    &:hover {
+                      background-color: $mercarired;
+                      color: $white-f;
+                      opacity: 1;
+                      text-decoration: none;
+                    }
+                  }
+                 .active {
+                    background-color: $mercarired;
+                    color: $white-f;
+                  }
+                }
+                .header-nav__child__wrap {
+                  position: absolute;
+                  top: 0;
+                  left: 224px;
+                  bottom: 0;
+                  background-color: $white-b;
+                  box-shadow: 1px 0 0 0 #eee inset;
+                  .header-nav__child {
+                    display: none;
+                    width: 224px;
+                    .header-nav__child-name {
+                      display: block;
+                      padding: 8px 16px;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      white-space: nowrap;
+                      line-height: 14px;
+                      font-size: 14px;
+                      color: $black-f;
+                      text-decoration: none;
+                      &:hover {
+                        background-color: #eee;
+                        opacity: 1;
+                        text-decoration: none;
+                      }
+                    }
+                    .active {
+                      background-color: #eee;
+                    }
+                    .header-nav__grandchild__wrap {
+                      position: absolute;
+                      top: 0;
+                      left: 224px;
+                      bottom: 0;
+                      background-color: $white-b;
+                      box-shadow: 1px 0 0 0 #eee inset;
+                      .header-nav__grandchild {
+                        display: none;
+                        width: 320px;
+                        .header-nav__grandchild-name {
+                          display: block;
+                          padding: 8px 16px;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                          white-space: nowrap;
+                          line-height: 14px;
+                          font-size: 14px;
+                          color: $black-f;
+                          text-decoration: none;
+                          &:hover {
+                            background-color: #eee;
+                            opacity: 1;
+                            text-decoration: none;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
