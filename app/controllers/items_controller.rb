@@ -3,11 +3,11 @@ class ItemsController < ApplicationController
   before_action :get_root
 
   def index
-    items = Item.with_category.includes(:item_photos)
-    @ladies_items = items.search_with_root_id(1).new_arrival.first(4)
-    @mens_items = items.search_with_root_id(2).new_arrival.first(4)
-    @baby_items = items.search_with_root_id(3).new_arrival.first(4)
-    @cosme_items = items.search_with_root_id(7).new_arrival.first(4)
+    @items = Item.with_category.includes(:item_photos).new_arrival
+    @ladies_items = @items.search_with_root_id(1).first(4)
+    @mens_items = @items.search_with_root_id(2).first(4)
+    @baby_items = @items.search_with_root_id(3).first(4)
+    @cosme_items = @items.search_with_root_id(7).first(4)
   end
 
   def show
