@@ -1,13 +1,16 @@
 class ItemsController < ApplicationController
 
   def index
-    # @ladies_items = Item.includes(:categories).where("")
-    # @mens_items = Item.joins(:category).where("ancestry LIKE ?", "2/%")
-    # @cosmetic_items =
-    # @baby_items =
+    @ladies_items = Item.with_category.search_with_root_id(1)
+    @mens_items = Item.with_category.search_with_root_id(2)
+    @baby_items = Item.with_category.search_with_root_id(3)
+    @cosme_items = Item.with_category.search_with_root_id(7)
   end
 
   def show
+  end
+
+  def buy
   end
 
   def new
