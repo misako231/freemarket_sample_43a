@@ -11,13 +11,13 @@ describe ItemsController do
 
     it "populates an array of items ordered by created_at DESC" do
       get :index
-      expect(assigns(:items)).to match(items.sort{ |a, b| b.id <=> a.id })
+      expect(assigns(:items)).to match(items.joins(:category).sort{ |a, b| b.id <=> a.id })
     end
 
-    it "populates an array of ledies_items " do
-      ladies_items = items.search_with_root_id(1).first(4)
+    it "populates an array of ladies_items" do
+      items
       get :index
-      expect(assigns(:items)).to match(items)
+      expect(assigns(:items)).to match(items.sort{ |a, b| b.id <=> a.id })
     end
 
     it "renders the :index template" do
