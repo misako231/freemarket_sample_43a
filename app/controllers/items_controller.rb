@@ -1,10 +1,13 @@
 class ItemsController < ApplicationController
+  include GetCategories
+  before_action :get_root
+
   def show
   end
 
   def new
     @item = Item.new
-    @item.item_photos.build
+    10.times { @item.item_photos.build }
   end
 
   def create
