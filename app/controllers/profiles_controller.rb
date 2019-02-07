@@ -33,14 +33,14 @@ class ProfilesController < ApplicationController
   def done
   end
 
-  # def credit
-  #   Payjp.api_key = 'sk_test_1f82925154c7233eefd69aca'
-  #   Payjp::Charge.create(
-  #     amount: 3500, # 決済する値段
-  #     card: params['payjp-token'],
-  #     currency: 'jpy'
-  #   )
-  # end
+  def pay
+    Payjp.api_key = ENV'[PAYJP_SECRET_KEY]'
+    Payjp::Charge.create(
+      currency: 'jpy',
+      amount: 1000,
+      card: params['payjp-token'])
+      redirect_to root_path, notice: "支払いが完了しました"
+  end
 
   private
   def profile_params
