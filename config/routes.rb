@@ -3,7 +3,7 @@ Rails.application.routes.draw do
    registrations: 'users/registrations'
   }
   get '/users', to: redirect("/users/sign_up")
-  root to: 'mercari#index'
+  root to: 'items#index'
   resources :mypage, only: [:new]
   resources :categories, only: [:index, :show]
   resources :item_photos

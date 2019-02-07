@@ -1,3 +1,4 @@
+require "csv"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -5,6 +6,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+  #ユーザーの初期データ
+User.create!(last_name: "田中", first_name: "太郎", last_name_kana: "タナカ", first_name_kana: "タロウ", birth_y: 2000, birth_m: 12, birth_d: 20, email: "mercari@mail.com", password: "password", password_confirmation: "password", nickname: "メルカリ")
 
 ApplicationRecord.transaction do
   #categoryの登録
@@ -1118,6 +1122,26 @@ ApplicationRecord.transaction do
 
   # その他・事務/店舗用品
   office_general, office_furniture, store_supplies, oa_equipment, wrapping, other = office.children.create([{ name: "オフィス用品一般" }, { name: "オフィス家具" }, { name: "店舗用品" }, { name: "OA機器" }, { name: "ラッピング/包装" }, { name: "その他" }])
+
 end
 
 
+
+CSV.foreach('db/csv/items.csv', headers: true) do |row|
+  Item.create!(id: row['id'],
+               name: row['name'],
+               comment: row['comment'],
+               category_id: row['category_id'],
+               shipping_fee: row['shipping_fee'],
+               prefecture_id: row['prefecture_id'],
+               days_to_ship: row['days_to_ship'],
+               price: row['price'],
+               condition: row['condition'],
+               user_id: row['user_id'],
+               closed: row['closed'])
+end
+
+100.upto(115) do |n|
+  ItemPhoto.create!(image: open("#{Rails.root}/db/fixture/image#{n}.jpg"),
+                      item_id: n )
+end
