@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  include GetCategories
+  before_action :get_root
 
   def index
     @ladies_items = Item.with_category.search_with_root_id(1)
