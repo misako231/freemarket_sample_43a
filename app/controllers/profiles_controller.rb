@@ -33,6 +33,15 @@ class ProfilesController < ApplicationController
   def done
   end
 
+  def pay
+    Payjp.api_key = ENV'[PAYJP_SECRET_KEY]'
+    Payjp::Charge.create(
+      currency: 'jpy',
+      amount: 1000,
+      card: params['payjp-token'])
+      redirect_to root_path, notice: "支払いが完了しました"
+  end
+
   private
   def profile_params
     params.permit(:phone, :postal_code, :prefecture_id, :city, :block, :building).merge(user_id: params[:user_id])
