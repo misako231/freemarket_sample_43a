@@ -30,6 +30,11 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  config.before(:suite) do
+    load Rails.root.join('db', 'seeds.rb')
+    DatabaseCleaner.clean_with :truncation, { except: %w(categories) }
+    # DatabaseCleaner.clean_with :truncation, { except: %w(categories brands) }
+  end
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods
 
