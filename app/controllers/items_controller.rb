@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   end
 
   def buy
-
+    @item  = Item.find(params[:id])
   end
 
   def pay
@@ -22,7 +22,6 @@ class ItemsController < ApplicationController
     :card => params['payjp-token'],
     :currency => 'jpy',
     )
-
   end
 
   def create
