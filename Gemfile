@@ -82,8 +82,10 @@ gem "jquery-slick-rails"
 gem 'ancestry'
 gem 'payjp'
 gem 'carrierwave'
+gem 'fog-aws'
 gem 'mini_magick'
 gem 'enum_help'
 gem 'rails-i18n'
 gem 'active_hash'
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
 
