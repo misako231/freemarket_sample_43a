@@ -98,14 +98,14 @@
         %span コメントする
   .parent-nav-item-link
     .parent-nav-item-link-prev
-      - if @item.previous
+      - if @previous
         =link_to "#", class: "angle-left" do
           =fa_icon "angle-left"
-          = @item.previous
+          = @previous.name
     .parent-nav-item-link-next
-      - if @item.next
+      - if @next_item
         =link_to "#", class: "angle-right" do
-          = @item.next.name
+          = @next_item.name
           =fa_icon "angle-right"
   .parent-social-media-container
     .parent-social-media-container__box
