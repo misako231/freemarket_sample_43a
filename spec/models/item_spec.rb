@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Item do
   describe '#create' do
     it "is invalid with an item's name that has more than 41 characters" do
-      item = build(:item, name: "11111111112222222222111111111122222222221")
+      item = build(:item, name: "1"*41)
       item.valid?
       expect(item.errors[:name][0]).to include("は40文字以内で入力してください")
     end
