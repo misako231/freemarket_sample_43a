@@ -17,6 +17,7 @@
             %h2.search-nav__list__title
               = link_to categories_path, class: "search-nav__list__title__link" do
                 カテゴリーから探す
+            = render 'shared/category_list'
           %li.search-nav__list
             %h2.search-nav__list__title
               = link_to "https://www.mercari.com/jp/category/", class: "search-nav__list__title__link" do
