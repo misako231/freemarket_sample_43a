@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ItemPhotoesController do
+describe ItemPhotosController do
 
   describe '#create' do
     context "with valid attributes" do
