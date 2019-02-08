@@ -10,5 +10,9 @@ FactoryBot.define  do
     created_at { Faker::Time.between(2.days.ago, Time.now, :all) }
     user
     category
+
+    after(:build) do |item|
+      item.item_photos << create_list(:item_photo, 1, item:item)
+    end
   end
 end
