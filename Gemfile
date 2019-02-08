@@ -66,6 +66,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rails-controller-testing'
+  gem 'database_cleaner'
 end
 
 group :production do
@@ -88,4 +89,3 @@ gem 'enum_help'
 gem 'rails-i18n'
 gem 'active_hash'
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
-
