@@ -7,6 +7,21 @@ class ItemsController < ApplicationController
     @item.item_photos.build
   end
 
+  def buy
+
+  end
+
+  def pay
+    # binding.pry
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    charge = Payjp::Charge.create(
+    :amount => 3500,
+    :card => params['payjp-token'],
+    :currency => 'jpy',
+    )
+
+  end
+
   def create
     item  = Item.new(item_params)
     if item.save

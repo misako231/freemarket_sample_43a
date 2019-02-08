@@ -51,6 +51,9 @@
               ¥18,999
         %button.btn-default{type: "submit"}
           購入する
+          = form_tag action: :pay, method: :post do
+            %script.payjp-button{"data-key":ENV["PAYJP_PUBLIC_KEY"], src: "https://checkout.pay.jp", type: "text/javascript"}
+
     .items__buy-cf__container__main__buy-user-info
       .items__buy-cf__container__main__buy-user-info-container
         %h3
