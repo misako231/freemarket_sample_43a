@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       member do
         get :identification
         get :card
+        get :credit
+        post :pay
       end
       collection do
         get :logout
