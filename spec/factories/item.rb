@@ -10,10 +10,8 @@ FactoryBot.define  do
     shipping_fee {"self"}
     user
 
-
     after(:build) do |item|
       item.item_photos << create_list(:item_photo, 1, item:item)
     end
-
   end
 end
