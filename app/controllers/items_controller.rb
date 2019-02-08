@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
     @child_category = set_ancestors(@grandchild_category).last
     @parent_category = set_ancestors(@grandchild_category).first
     @users_item = Item.where(user_id: @item.user_id).all
+    next_to_item(@item)
   end
 
 
@@ -37,5 +38,11 @@ class ItemsController < ApplicationController
 
   def set_ancestors(category)
     Category.ancestors_of(category)
+  end
+
+
+  def next_to_item(item)
+    @previous = Item.where('id < ?', item.id).order('id DESC').first
+    @next_item = Item.where('id > ?', item.id).order('id ASC').first
   end
 end
