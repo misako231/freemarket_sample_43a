@@ -1,4 +1,4 @@
-.onsale{
+.sold{
   margin: 40px auto 0px auto;
   padding-bottom: 40px;
   width: 1020px;
@@ -23,8 +23,10 @@
         &__onsale{
           width: 50%;
           height: 72px;
-          background-color:$white-b;
-          border-top: 2px solid $mercarired;
+          background-color:#eee;
+          color: $black-f;
+          list-style: none;
+          text-decoration: none;
           h3{
             line-height: 72px;
             display: flex;
@@ -61,10 +63,8 @@
         &__sold{
           width: 50%;
           height: 72px;
-          background-color:#eee;
-          color: $black-f;
-          list-style: none;
-          text-decoration: none;
+          background-color:$white-b;
+          border-top: 2px solid $mercarired;
           h3{
             line-height: 72px;
             display: flex;
@@ -82,8 +82,6 @@
       &__content{
         &__during{
           &__list{
-          }
-          &__none{
             padding-top: 160px;
             padding-bottom: 60px;
             background-image: url(https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?97289246);
@@ -93,6 +91,10 @@
             text-align: center;
             font-size: 16px;
             color: #ccc;
+          }
+        }
+        &__past{
+          &__list{
           }
         }
       }
