@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:create] do
     resources :items, only: [:edit, :update, :destroy] do
-      member do
-        get :own
+      collection do
+        get :onsale
+        get :orderd
+        get :sold
       end
     end
     resources :profiles, only: [:index, :new, :create, :show, :update] do
