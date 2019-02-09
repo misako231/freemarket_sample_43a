@@ -50,7 +50,6 @@ describe ItemsController do
 
   describe 'GET #show' do
     before :each do
-      user = create(:user)
       @item = create(:item, category_id: 58)
       get :show, params: { id: @item }
     end
@@ -60,7 +59,6 @@ describe ItemsController do
     end
 
     it "assigns the requested item to @item" do
-
       expect(assigns(:item)).to eq @item
     end
 
