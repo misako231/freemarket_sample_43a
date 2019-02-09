@@ -45,6 +45,10 @@ class ItemsController < ApplicationController
   end
 
   def own
+    @item = Item.find(params[:id])
+    @grandchild_category = Category.find(@item.category_id)
+    @child_category = set_ancestors(@grandchild_category).last
+    @parent_category = set_ancestors(@grandchild_category).first
   end
 
   def edit

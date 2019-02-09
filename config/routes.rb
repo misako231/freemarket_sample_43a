@@ -18,6 +18,9 @@ Rails.application.routes.draw do
         get :orderd
         get :sold
       end
+      member do
+        get :own
+      end
     end
     resources :profiles, only: [:index, :new, :create, :show, :update] do
       member do

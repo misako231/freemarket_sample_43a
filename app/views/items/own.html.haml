@@ -70,24 +70,13 @@
         = number_with_delimiter("#{@item.price}")
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
-    = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
-      購入画面に進む
     .parent-item-container__item-description
       = @item.comment
-    .parent-item-container__various-btn
-      .parent-item-container__various-btn__left
-        %button.item-container__various-btn__left__likes
-          %i.far.fa-heart
-          %span いいね!
-          %span 6
-        %button.item-container__various-btn__left__report
-          %i.far.fa-flag
-          %span 不適切な商品の報告
-      .parent-item-container__various-btn__safety
-        .parent-item-container__various-btn__safety__link-contents
-          =link_to "#", class: "lock" do
-            =fa_icon "lock"
-            あんしん・あんぜんへの取り組み
+  .parent-own-item-container
+    = link_to "商品の編集", "#", class: "parent-own-item-container__edit"
+    = link_to "出品を再開する", "#", class: "parent-own-item-container__open"
+    = link_to "出品を停止する", "#" class: "parent-own-item-container__close"
+    = link_to "商品を削除する", "#", class: "parent-own-item-container__edit"
   .parent-comment-container
     = render partial: "comment"
     %form.parent-comment-container__message-form{action: "#", method: "POST"}
@@ -96,39 +85,4 @@
       %textarea{type: "text name=", class: "textarea"}
       %button.parent-comment-container__parent-comment-submit-button{type: "submit"}
         %span コメントする
-  .parent-nav-item-link
-    .parent-nav-item-link-prev
-      - if @previous
-        =link_to "#", class: "angle-left" do
-          =fa_icon "angle-left"
-          = @previous.name
-    .parent-nav-item-link-next
-      - if @next_item
-        =link_to "#", class: "angle-right" do
-          = @next_item.name
-          =fa_icon "angle-right"
-  .parent-social-media-container
-    .parent-social-media-container__box
-      =link_to "#", class: "parent-social-media-container__box__icon__f" do
-        .parent-social-media-container__box__icon__f-facebook
-          %i.fab.fa-facebook
-      =link_to "#", class: "parent-social-media-container__box__icon__t" do
-        .parent-social-media-container__box__icon__t-twitter
-          %i.fab.fa-twitter
-      =link_to "#", class: "parent-social-media-container__box__icon__p" do
-        .parent-social-media-container__box__icon__p-pinterest
-          %i.fab.fa-pinterest
-  .parent-items-in-user-profile
-    .parent-items-in-user-profile__items-box-container
-      %h2.parent-items-in-user-profile__items-box-container__head
-        =link_to "#", class:"parent-items-in-user-profile__items-box-container__head__name" do
-          = @item.user.nickname
-          さんのその他の出品
-      .parent-items-in-user-profile__items-box-container__items-box-content
-        = render partial: "ones-other-items"
-      %h2.parent-items-in-user-profile__items-box-container__head
-        =link_to "#", class:"parent-items-in-user-profile__items-box-container__head__name" do
-          コーチのその他の出品
-      .parent-items-in-user-profile__items-box-container__items-box-content
-        = render partial: "brand-other-items"
 = render partial: "shared/footer"

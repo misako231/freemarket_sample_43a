@@ -151,6 +151,12 @@
       }
     }
   }
+  &-own-item-container {
+    width: 700px;
+    height: 100px;
+    background-color: white;
+    margin: 25px 0;
+  }
   &-comment-container {
     width:700px;
     background-color:$white-b;

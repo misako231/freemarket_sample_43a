@@ -1,5 +1,5 @@
 %li
-  =link_to "#", class: "item-link" do
+  =link_to own_user_item_path(id: item.id), class: "item-link" do
     .item-link__img
       =image_tag("#{item.item_photos.first.image}", size: "48x48")
     .item-link__text
