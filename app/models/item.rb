@@ -17,4 +17,12 @@ class Item < ApplicationRecord
   enum condition: [:new_item, :close_to_the_unused, :no_noticeable_scratches_and_dirt, :a_few_scratches_and_dirt, :scratches_and_dirt, :bad]
   enum shipping_fee: { self: false, other: true }
   enum days_to_ship: [:fast, :normal, :slow]
+
+  def next_to_item(next_or_previous)
+    if next_or_previous == "previous"
+      Item.where('id < ?', self.id).order('id DESC').first
+    else
+      Item.where('id > ?', self.id).order('id ASC').first
+    end
+  end
 end
