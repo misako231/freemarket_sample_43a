@@ -47,4 +47,53 @@ describe ItemsController do
       expect(response).to render_template :index
     end
   end
+
+  describe 'GET #show' do
+    before :each do
+      @item = create(:item, category_id: 58)
+      get :show, params: { id: @item }
+    end
+
+    it 'gets accurate request' do
+      expect(response.status).to eq(200)
+    end
+
+    it "assigns the requested item to @item" do
+      expect(assigns(:item)).to eq @item
+    end
+
+    it "assigns the requested grandchild category to @grandchild_category" do
+      grandchild_category = Category.find(@item.category_id)
+      expect(assigns(:grandchild_category)).to eq grandchild_category
+    end
+
+    it "assigns the requested child category to @child_category" do
+      child_category = Category.ancestors_of(Category.find(@item.category_id)).last
+      expect(assigns(:child_category)).to eq child_category
+    end
+
+    it "assigns the requested parent category to @parent_category" do
+      parent_category = Category.ancestors_of(Category.find(@item.category_id)).first
+      expect(assigns(:parent_category)).to eq parent_category
+    end
+
+    it "assigns the requested user's items to @users_item" do
+      users_item = Item.where(user_id: @item.user_id).all
+      expect(assigns(:users_item)).to eq users_item
+    end
+
+    it "assigns the requested item's previous item to @previous" do
+      previous = Item.where('id < ?', @item.id).order('id DESC').first
+      expect(assigns(:previous)).to eq previous
+    end
+
+    it "assigns the requested item's next item to @next_item" do
+      next_item = Item.where('id < ?', @item.id).order('id DESC').last
+      expect(assigns(:next_item)).to eq next_item
+    end
+
+    it "renders the :show template" do
+      expect(response).to render_template :show
+    end
+  end
 end
