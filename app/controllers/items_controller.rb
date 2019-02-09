@@ -3,9 +3,23 @@ class ItemsController < ApplicationController
   before_action :get_root
   before_action :set_item, only: [:show]
 
+  def index
+    @items = Item.with_category.includes(:item_photos).new_arrival
+    @ladies_items = @items.search_with_root_id(1).first(4)
+    @mens_items = @items.search_with_root_id(2).first(4)
+    @baby_items = @items.search_with_root_id(3).first(4)
+    @cosme_items = @items.search_with_root_id(7).first(4)
+  end
+
+  def show
+  end
+
+  def buy
+  end
+
   def new
     @item = Item.new
-    @item.item_photos.build
+    10.times { @item.item_photos.build }
   end
 
   def create
@@ -26,6 +40,17 @@ class ItemsController < ApplicationController
     @next_item = @item.next_to_item("next_item")
   end
 
+  def own
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
 
   private
 
