@@ -1,0 +1,27 @@
+= render 'shared/header'
+%main.mypage
+  .mypage__content
+    .mypage__content__trade
+      %h2 出品した商品
+      %ul.mypage__content__trade__tabs
+        %li.mypage__content__trade__tabs__during
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-transaction-now"}
+              出品中
+        %li.mypage__content__trade__tabs__past
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-transaction-now"}
+              取引中
+        %li.mypage__content__trade__tabs__past
+          %h3
+            %a{"data-toggle" => "tab", :href => "#mypage-tab-transaction-now"}
+              売却済み
+      .mypage__content__trade__content
+        %ul.mypage__content__trade__content__during
+          %li.mypage__content__trade__content__during__list
+            売却済みの商品がありません
+        %ul.mypage__content__trade__content__past
+          %li.mypage__content__trade__content__past__list
+  = render 'shared/mypage-side-nav'
+= render 'shared/footer'
+= render 'shared/sellbtn'
