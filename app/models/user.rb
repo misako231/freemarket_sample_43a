@@ -42,9 +42,9 @@ class User < ApplicationRecord
     provider = auth.provider
     snscredential = SnsCredential.where(uid: uid, provider: provider).first
     if snscredential.present?
-      user = User.where(id: snscredential.user_id).first
+      user = User.find_by(id: snscredential.user_id)
     else
-      user = User.where(email: auth.info.email).first
+      user = User.find_by(email: auth.info.email)
       if user.present?
         SnsCredential.create(
           uid: uid,
