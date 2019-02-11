@@ -101,6 +101,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     devise (4.6.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -400,6 +401,7 @@ DEPENDENCIES
   carrierwave
   chromedriver-helper
   coffee-rails (~> 4.2)
+  database_cleaner
   devise
   dotenv-rails
   enum_help
