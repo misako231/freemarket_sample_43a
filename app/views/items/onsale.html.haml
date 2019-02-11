@@ -1,4 +1,11 @@
 = render 'shared/header'
+- if flash[:success]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:success]
+    .delete-success-flash__close.close-btn
+      ×
+
 %main.onsale
   .onsale__content
     .onsale__content__trade

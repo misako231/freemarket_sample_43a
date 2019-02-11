@@ -1,3 +1,18 @@
+.dialog-box
+  .delete-dialog
+    .delete-dialog__message
+      %p 確認
+      %h2 削除すると二度と復活できません。
+      %h2 削除する代わりに停止することもできます。
+      %br
+      %br
+      %h2 本当に削除しますか？
+    .delete-dialog__buttons
+      .delete-dialog__buttons__cancel
+        キャンセル
+      = link_to user_item_path, method: "delete", class: "delete-dialog__buttons__submit" do
+        商品を削除する
+#delete-overlay
 = render partial: "shared/header"
 .parent
   .parent-item-container
@@ -74,9 +89,15 @@
       = @item.comment
   .parent-own-item-container
     = link_to "商品の編集", "#", class: "parent-own-item-container__edit"
-    = link_to "出品を再開する", "#", class: "parent-own-item-container__open"
-    = link_to "出品を停止する", "#" class: "parent-own-item-container__close"
-    = link_to "商品を削除する", "#", class: "parent-own-item-container__edit"
+    .parent-own-item-container__or
+      or
+    - if @item.closed?
+      = link_to "出品を再開する", "#", class: "parent-own-item-container__open"
+    - else
+      = link_to "出品を停止する", "#", class: "parent-own-item-container__close"
+    %button.parent-own-item-container__delete-btn
+      商品を削除する
+    = link_to "商品を削除する", user_item_path, method: "delete", id: "good-to-delete"
   .parent-comment-container
     = render partial: "comment"
     %form.parent-comment-container__message-form{action: "#", method: "POST"}

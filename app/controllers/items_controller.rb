@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   include GetCategories
   before_action :get_root
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:show, :own]
+  before_action :get_category_tree, only: [:show, :own]
 
   def index
     @items = Item.with_category.includes(:item_photos).new_arrival
@@ -32,23 +33,16 @@ class ItemsController < ApplicationController
   end
 
   def onsale
-    @items = Item.where(user_id: current_user.id)
+    @items = Item.includes(:item_photos).where(user_id: current_user.id).new_arrival
   end
 
   def show
-    @grandchild_category = Category.find(@item.category_id)
-    @child_category = set_ancestors(@grandchild_category).last
-    @parent_category = set_ancestors(@grandchild_category).first
     @users_item = Item.where(user_id: @item.user_id).all
     @previous = @item.next_to_item("previous")
     @next_item = @item.next_to_item("next_item")
   end
 
   def own
-    @item = Item.find(params[:id])
-    @grandchild_category = Category.find(@item.category_id)
-    @child_category = set_ancestors(@grandchild_category).last
-    @parent_category = set_ancestors(@grandchild_category).first
   end
 
   def edit
@@ -58,6 +52,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    item = Item.find(params[:id])
+    if item.user_id == current_user.id
+      item.destroy
+      redirect_to onsale_user_items_path, flash: {success: '商品を削除しました'}
+    end
   end
 
   private
@@ -72,6 +71,12 @@ class ItemsController < ApplicationController
 
   def set_ancestors(category)
     Category.ancestors_of(category)
+  end
+
+  def get_category_tree
+    @grandchild_category = Category.find(@item.category_id)
+    @child_category = set_ancestors(@grandchild_category).last
+    @parent_category = set_ancestors(@grandchild_category).first
   end
 
 
