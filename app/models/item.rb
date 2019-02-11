@@ -9,11 +9,12 @@ class Item < ApplicationRecord
   validates :comment,        presence: true, length: { maximum: 1000 }
   validates :category_id,    presence: true
   validates :shipping_fee,   presence: true
-  validates :prefecture,     presence: true
+  validates :prefecture_id,     presence: true
   validates :days_to_ship,   presence: true
   validates :price,          numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, presence: true
   validates :condition,      presence: true
   validates :item_photos,    presence: true
+
   enum condition: [:new_item, :close_to_the_unused, :no_noticeable_scratches_and_dirt, :a_few_scratches_and_dirt, :scratches_and_dirt, :bad]
   enum shipping_fee: { self: false, other: true }
   enum days_to_ship: [:fast, :normal, :slow]

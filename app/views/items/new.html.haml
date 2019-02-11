@@ -1,3 +1,15 @@
+.modal{ role: 'dialog', tabindex: "-1"}
+  .modal--inner
+    %div
+      %h3.modal-head
+        出品が完了しました
+      .sell-modal-body
+        あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
+        %br
+        = link_to "続けて出品する", root_path, class: "btn-default-red"
+        %p.text-center
+          = link_to "商品ページへ行ってシェアする", root_path
+
 = render 'shared/second_header'
 %main.single__main
   %section.l__single__container.buy__item__container
@@ -5,7 +17,7 @@
       %div{ 'data-reactroot': ""}
         .sell__container--inner
           %h2.l__single__head 商品の情報を入力
-          = form_with model: @item, html: {class: 'sell__form'} do |f|
+          = form_with model: @item, html: {class: 'sell__form'}, local: true do |f|
             .sell__upload__box
               %h3.sell__upload__head
                 出品画像
@@ -38,6 +50,8 @@
                   %pre.visible__pc
                     ドラッグアンドドロップ
                     またはクリックしてファイルをアップロード
+                .error_message_box
+                  = @item.errors.full_messages_for(:item_photos).first
             .sell__content
               .form__group
                 %label
@@ -46,11 +60,15 @@
                   %span.form__require 必須
                 %div
                   = f.text_field :name, placeholder: "商品名(必須40文字まで)", class: "input__default"
+                .error_message_box
+                  = @item.errors.full_messages_for(:name).first
               .form__group
                 = f.label :comment do
                   商品の説明&emsp;&emsp;
                   %span.form__require 必須
                 = f.text_area :comment, rows: '5', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "textarea__default"
+                .error_message_box
+                  = @item.errors.full_messages_for(:comment).first
             .sell__content.choice__box
               %h3.sell__sub--head
                 商品の詳細
@@ -63,6 +81,8 @@
                     = f.collection_select :category_id, Category.all, :id, :name, {prompt: "---"}, class: "select__default"
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
+                  .error_message_box
+                    = @item.errors.full_messages_for(:category_id).first
                 .form__group.form__suggest__container
                   = f.label :barand_id do
                     ブランド
@@ -80,6 +100,8 @@
                     = f.select :condition, Item.conditions_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
+                  .error_message_box
+                    = @item.errors.full_messages_for(:condition).first
             .sell__content.choice__box
               %h3.sell__sub--head
                 配送について
@@ -94,6 +116,8 @@
                     = f.select :shipping_fee, Item.shipping_fees_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
+                    .error_message_box
+                      = @item.errors.full_messages_for(:shipping_fee).first
                 .form__group
                   = f.label :prefecture_id do
                     発送元の地域
@@ -102,6 +126,8 @@
                     = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, class: "select__default"
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
+                    .error_message_box
+                      = @item.errors.full_messages_for(:prefecture_id).first
                 .form__group
                   = f.label :days_to_ship do
                     発送までの日数
@@ -110,6 +136,8 @@
                     = f.select :days_to_ship, Item.days_to_ships_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
+                    .error_message_box
+                      = @item.errors.full_messages_for(:days_to_ship).first
             .sell__content.choice__box
               %h3.sell__sub--head
                 販売価格(300〜9,999,999)
@@ -126,6 +154,8 @@
                         ¥
                         %div
                           = f.text_field :price, placeholder: "例) 300" ,class: "input__default"
+                        .error_message_box
+                          = @item.errors.full_messages_for(:price).first
                   %li.profit__group
                     .label__left
                       販売手数料 (10%)
@@ -136,8 +166,6 @@
                       販売利益
                     .label__right
                       \-
-            .modal{ role: 'dialog', tabindex: "-1"}
-              .modal--inner
             .sell__content.sell__btn__box
               %div
                 %p

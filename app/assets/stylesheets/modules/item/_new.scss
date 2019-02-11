@@ -1,3 +1,60 @@
+.modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 3000;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      -webkit-transition: all ease-out .3s;
+      transition: all ease-out .3s;
+      // opacity: 0;
+      -webkit-transform: translate(0, -10px);
+      transform: translate(0, -10px);
+  .modal--inner {
+    max-width: none;
+    width: 600px;
+    margin: 20px auto;
+    position: relative;
+    background: #fff;
+    div {
+      .modal-head {
+        text-align: center;
+        line-height: 80px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .sell-modal-body {
+        border-top: 1px solid #eee;
+        padding: 40px;
+        .btn-default-red {
+          margin: 40px auto 0;
+          background: #ea352d;
+          border: 1px solid #ea352d;
+          color: #fff;
+          display: block;
+          width: 100%;
+          line-height: 48px;
+          font-size: 14px;
+          text-align: center;
+          text-decoration: none
+        }
+        .text-center {
+          margin: 8px 0 0;
+          text-align: center;
+          a {
+            color: #0099e8;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
 .l__single__container {
   width: 700px;
   margin: 0 auto;
@@ -90,8 +147,8 @@
               text-align: center;
               cursor: pointer;
               transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
-              .sell__upload__drop-file {
-                display: none;
+              input {
+                // display: none;
                 touch-action: manipulation;
               }
               .visible__pc {

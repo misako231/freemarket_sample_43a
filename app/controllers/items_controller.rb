@@ -18,13 +18,12 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    10.times { @item.item_photos.build }
+    @item.item_photos.build
   end
 
   def create
-    item  = Item.new(item_params)
-    if item.save
-      redirect_to root_path
+    @item  = Item.new(item_params)
+    if @item.save
     else
       render :new
     end

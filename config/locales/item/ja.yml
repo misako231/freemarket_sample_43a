@@ -15,3 +15,16 @@ ja:
         fast: "1~2日で発送"
         normal: "2~3日で発送"
         slow: "4~7日で発送"
+  activerecord:
+    attributes:
+      item:
+        name: 名前
+        comment: コメント
+        category_id: カテゴリー
+        condition: 商品の状態
+        prefecture_id: 発送地域
+        shipping_fee: 配送料の負担
+        days_to_ship: 発送までの日数
+        price: 価格
+        item_photos: 画像
+
