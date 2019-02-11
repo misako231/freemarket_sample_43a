@@ -76,13 +76,20 @@
       = @item.comment
     .parent-item-container__various-btn
       .parent-item-container__various-btn__left
-        %button.item-container__various-btn__left__likes
-          %i.far.fa-heart
-          %span いいね!
-          %span 6
-        %button.item-container__various-btn__left__report
-          %i.far.fa-flag
-          %span 不適切な商品の報告
+        = link_to item_favorite_items_path, method: :create do
+          %button.item-container__various-btn__left__likes
+            %i.far.fa-heart
+            %span いいね!
+            - if @item.favorite_items.length.present?
+              %span
+                = @item.favorite_items.length
+            - else
+              %span 0
+        &emsp;
+        = link_to "#" do
+          %button.item-container__various-btn__left__report
+            %i.far.fa-flag
+            %span 不適切な商品の報告
       .parent-item-container__various-btn__safety
         .parent-item-container__various-btn__safety__link-contents
           =link_to "#", class: "lock" do

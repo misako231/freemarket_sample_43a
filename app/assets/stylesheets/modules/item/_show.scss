@@ -111,26 +111,37 @@
       &__left {
         width:300px;
         cursor:pointer;
-        button,&__likes {
-          padding:8px 16px;
-          font-size:13px;
-          border:1px solid $gray-b;
-          border-radius:40px;
-          background-color:$gray-b;
-          line-height:13px;
-            i.fa-heart {
-              color:#ccc;
+        a {
+          width: auto;
+          text-decoration: none;
+          display: inline-block;
+          button,&__likes {
+            padding:8px 16px;
+            font-size:13px;
+            border:1px solid $gray-b;
+            border-radius:40px;
+            background-color:$gray-b;
+            line-height:13px;
+              i.fa-heart {
+                color:#ccc;
+              }
             }
+
         }
-        &__report {
-          padding:7.5px 16px;
-          font-size:13px;
-          border:1px solid $gray-b;
-          border-radius:40px;
-          background-color:$gray-b;
-          line-height:13px;
-          cursor:pointer;
-          margin-left:13px;
+        a{
+          width: auto;
+          text-decoration: none;
+          display: inline-block;
+          &__report {
+            padding:7.5px 16px;
+            font-size:13px;
+            border:1px solid $gray-b;
+            border-radius:40px;
+            background-color:$gray-b;
+            line-height:13px;
+            cursor:pointer;
+            margin-left:13px;
+          }
         }
       }
       &__safety {
