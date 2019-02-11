@@ -47,11 +47,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       # session["devise.#{provider}_data"] = request.env["omniauth.auth"].except("extra")
       # @facebook_info_params = []
-      facebook_info = request.env["omniauth.auth"]
-      facebook_name = facebook_info[:info][:name]
-      facebook_email = facebook_info[:info][:email]
-      # binding.pry
-      redirect_to new_user_registration_path(name: facebook_name, email: facebook_email)
+      if provider == "facebook"
+        facebook_info = request.env["omniauth.auth"]
+        facebook_name = facebook_info[:info][:name]
+        facebook_email = facebook_info[:info][:email]
+        redirect_to new_user_registration_path(name: facebook_name, email: facebook_email)
+      elsif provider == "Google"
+        # Google_info = request.env["omniauth.auth"]
+        # Google_name = Google_info[:info][:name]
+        # Google_email = Google_info[:info][:email]
+        # redirect_to new_user_registration_path(name: Google_name, email: Google_email)
+      end
     end
   end
 
