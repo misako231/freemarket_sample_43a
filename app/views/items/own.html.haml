@@ -1,0 +1,109 @@
+.dialog-box
+  .delete-dialog
+    .delete-dialog__message
+      %p 確認
+      %h2 削除すると二度と復活できません。
+      %h2 削除する代わりに停止することもできます。
+      %br
+      %br
+      %h2 本当に削除しますか？
+    .delete-dialog__buttons
+      .delete-dialog__buttons__cancel
+        キャンセル
+      = link_to user_item_path, method: "delete", class: "delete-dialog__buttons__submit" do
+        商品を削除する
+#delete-overlay
+= render partial: "shared/header"
+.parent
+  .parent-item-container
+    .parent-item-container__item-name
+      = @item.name
+    .parent-item-container__item--main-content
+      .parent-item-container__item--main-content__item-photo
+        .parent-item-container__item--main-content__item-photo__main
+          = image_tag "#{@item.item_photos.first.image}", size: "300x300", alt: "写真"
+        .parent-item-container__item--main-content__item-photo__sub
+          - @item.item_photos.each do |photo|
+            .parent-item-container__item--main-content__item-photo__sub-containts
+              = image_tag "#{photo.image}", size: "75x75", alt: "写真"
+      %table.item-container__item-detail
+        %tr.item-container__item-detail__tr
+          %th 出品者
+          %td
+            =link_to "#", class: "tdn" do
+              = @item.user.nickname
+            .evaluate
+              .evaluate__good
+                %i.fas.fa-laugh
+                169
+              .evaluate__soso
+                %i.fas.fa-meh
+                5
+              .evaluate__bad
+                %i.fas.fa-frown
+                1
+        %tr
+          %th カテゴリー
+          %td
+            =link_to "#", class: "tdn" do
+              .category-height
+                = @grandchild_category.name
+            =link_to "#", class: "tdn" do
+              .category-height
+                =fa_icon 'angle-right'
+                = @child_category.name
+            =link_to "#", class: "tdn" do
+              .category-height
+                =fa_icon 'angle-right'
+                = @parent_category.name
+        %tr
+          %th ブランド
+          %td コーチ
+        %tr
+          %th 商品の状態
+          %td
+            = @item.condition_i18n
+        %tr
+          %th 配送料の負担
+          %td
+            = @item.shipping_fee_i18n
+        %tr
+          %th 配送の方法
+          %td らくらくメルカリ便
+        %tr
+          %th 配送元地域
+          %td
+            =link_to "#", class: "tdn" do
+              = @item.prefecture.name
+        %tr
+          %th 発送日の目安
+          %td
+            = @item.days_to_ship_i18n
+    .parent-item-container__item-price-container
+      %span.item-price
+        ¥
+        = number_with_delimiter("#{@item.price}")
+      %span.item-tax (税込)
+      %span.item-shipping-fee 送料込み
+    .parent-item-container__item-description
+      = @item.comment
+  .parent-own-item-container
+    = link_to "商品の編集", "#", class: "parent-own-item-container__edit"
+    .parent-own-item-container__or
+      or
+    - if @item.closed?
+      = link_to "出品を再開する", "#", class: "parent-own-item-container__open"
+    - else
+      = link_to "出品を停止する", "#", class: "parent-own-item-container__close"
+    %button.parent-own-item-container__delete-btn
+      商品を削除する
+    = link_to "商品を削除する", user_item_path, method: "delete", id: "good-to-delete"
+  .parent-comment-container
+    = render partial: "comment"
+    %form.parent-comment-container__message-form{action: "#", method: "POST"}
+      %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      %input{name: "item_id", type: "hidden"}
+      %textarea{type: "text name=", class: "textarea"}
+      %button.parent-comment-container__parent-comment-submit-button{type: "submit"}
+        %span コメントする
+= render partial: "shared/footer"

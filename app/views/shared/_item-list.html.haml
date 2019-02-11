@@ -1,0 +1,13 @@
+%li
+  =link_to own_user_item_path(id: item.id), class: "item-link" do
+    .item-link__img
+      =image_tag("#{item.item_photos.first.image}", size: "48x48")
+    .item-link__text
+      = item.name
+      .item-link__text__time
+        %time
+          %i.far.fa-heart
+          %span 10
+          %i.far.fa-comment-alt
+          %span 10
+    = fa_icon "angle-right"
