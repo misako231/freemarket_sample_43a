@@ -45,8 +45,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, event: :authentication #after_sign_in_path_forと同じパス
       set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
     else
-      session["devise.#{provider}_data"] = request.env["omniauth.auth"].except("extra")
-      redirect_to user_registration_path
+      # session["devise.#{provider}_data"] = request.env["omniauth.auth"].except("extra")
+      # @facebook_info_params = []
+      facebook_info = request.env["omniauth.auth"]
+      facebook_name = facebook_info[:info][:name]
+      facebook_email = facebook_info[:info][:email]
+      # binding.pry
+      redirect_to new_user_registration_path(name: facebook_name, email: facebook_email)
     end
   end
 
