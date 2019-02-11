@@ -1,52 +1,17 @@
-.parent-items-in-user-profile__items-box-container__items-box-content__box
-  .parent-items-in-user-profile__items-box-container__items-box-content__box__photo
-    = link_to image_tag('united1.jpg', size: "220x220"), '#'
-  .parent-items-in-user-profile__items-box-container__items-box-content__box__body
-    %h3.parent-items-in-user-profile__items-box-container__items-box-content__box__body-text ユナイテッド・アローズ
-    .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb
-      .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top
-        .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__price ¥18,000
-        .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right
-          =fa_icon  'heart', class: 'parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__heart'
-          .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__like-count 24
-      %p.parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb__tax (税込み)
-
-.parent-items-in-user-profile__items-box-container__items-box-content__box
-  .parent-items-in-user-profile__items-box-container__items-box-content__box__photo
-    = link_to image_tag('h&m1.jpg', size: "220x220"), '#'
-  .parent-items-in-user-profile__items-box-container__items-box-content__box__body
-    %h3.parent-items-in-user-profile__items-box-container__items-box-content__box__body-text H&M ノーカラーコート
-    .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb
-      .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top
-        .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__price ¥15,00
-        .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right
-          =fa_icon  'heart', class: 'parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__heart'
-          .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__like-count 8
-      %p.parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb__tax (税込み)
-
-.parent-items-in-user-profile__items-box-container__items-box-content__box
-  .parent-items-in-user-profile__items-box-container__items-box-content__box__photo
-    = link_to image_tag('gucchi1.jpg', size: "220x220"), '#'
-  .parent-items-in-user-profile__items-box-container__items-box-content__box__body
-    %h3.parent-items-in-user-profile__items-box-container__items-box-content__box__body-text グッチ！レインブーツ!
-    .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb
-      .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top
-        .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__price ¥20,000
-        .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right
-          =fa_icon 'heart', class: 'parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__heart'
-          .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__like-count 5
-      %p.parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb__tax (税込み)
-
-.parent-items-in-user-profile__items-box-container__items-box-content__box
-  .parent-items-in-user-profile__items-box-container__items-box-content__box__photo
-    = link_to image_tag('gucchi1.jpg', size: "220x220"), '#'
-  .parent-items-in-user-profile__items-box-container__items-box-content__box__body
-    %h3.parent-items-in-user-profile__items-box-container__items-box-content__box__body-text グッチ！レインブーツ!
-    .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb
-      .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top
-        .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__price ¥20,000
-        .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right
-          =fa_icon  'heart', class: 'parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__heart'
-          .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__like-count 5
-      %p.parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb__tax (税込み)
-
+- @users_item.first(6).each do |item|
+  .parent-items-in-user-profile__items-box-container__items-box-content__box
+    = link_to "#" do
+      .parent-items-in-user-profile__items-box-container__items-box-content__box__photo
+        = image_tag "#{item.item_photos.first.image}", size: "220x220"
+      .parent-items-in-user-profile__items-box-container__items-box-content__box__body
+        %h3.parent-items-in-user-profile__items-box-container__items-box-content__box__body-text
+          = item.name
+        .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb
+          .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top
+            .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__price
+              ¥
+              = number_with_delimiter("#{item.price}")
+            .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right
+              =fa_icon  'heart', class: 'parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__heart'
+              .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__like-count 24
+          %p.parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb__tax (税込)
