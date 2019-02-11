@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:create] do
     resources :items, only: [:edit, :update, :destroy] do
+      collection do
+        get :onsale
+        get :orderd
+        get :sold
+      end
       member do
         get :own
       end
