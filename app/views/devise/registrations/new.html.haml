@@ -7,13 +7,13 @@
         .form__group
           = f.label :ニックネーム
           %span.form__require 必須
-          = f.text_field :nickname, class: "input__default", placeholder: "例)メルカリ太郎"
+          = f.text_field :nickname, value: params[:name], class: "input__default", placeholder: "例)メルカリ太郎"
           .error_message_box
             = @user.errors.full_messages_for(:nickname).first
         .form__group
           = f.label :メールアドレス
           %span.form__require 必須
-          = f.email_field :email, autocomplete: "email", class: "input__default", placeholder: "PC・携帯どちらでも可"
+          = f.email_field :email, value: params[:email], autocomplete: "email", class: "input__default", placeholder: "PC・携帯どちらでも可"
           .error_message_box
             = @user.errors.full_messages_for(:email).first
         .form__group
