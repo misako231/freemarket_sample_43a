@@ -1,0 +1,29 @@
+= render 'shared/header'
+%main.orderd
+  .orderd__content
+    .orderd__content__trade
+      %h2 出品した商品
+      %ul.orderd__content__trade__tabs
+        %li.orderd__content__trade__tabs__onsale
+          %h3
+            = link_to onsale_user_items_path do
+              出品中
+        %li.orderd__content__trade__tabs__orderd
+          %h3
+            = link_to orderd_user_items_path do
+              取引中
+        %li.orderd__content__trade__tabs__sold
+          %h3
+            = link_to sold_user_items_path do
+              売却済み
+      .orderd__content__trade__content
+        %ul.orderd__content__trade__content__during
+          - if current_user.items.present?
+            %li.orderd__content__trade__content__during__list
+              fafafa
+          - else
+            %li.orderd__content__trade__content__during__none
+              取引中の商品がありません
+  = render 'shared/mypage-side-nav'
+= render 'shared/footer'
+= render 'shared/sellbtn'
