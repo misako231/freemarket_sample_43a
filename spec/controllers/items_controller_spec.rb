@@ -107,7 +107,7 @@ describe ItemsController do
       expect(response.status).to eq(200)
     end
 
-    it "renders the :show template" do
+    it "renders the :search template" do
       expect(response).to render_template :search
     end
 
