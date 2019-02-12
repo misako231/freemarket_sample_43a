@@ -1,0 +1,144 @@
+= render 'shared/header'
+.search__container
+  .search__content
+    %section.items__box__container
+      %h2.search__result--head
+        = page_entries_info @items
+      .items__box__content
+        - @items.each do |item|
+          %section.items__box
+            = link_to item_path(item) do
+              %figure.items__box__photo
+                = image_tag "#{item.item_photos.first.image}", class: 'items__box__photo__image', alt: "#{item.name}"
+              .items__box__body
+                %h3.items__box__name
+                  = item.name
+                .items__box__num
+                  .items__box__price
+                    ¥
+                    = "#{number_with_delimiter(item.price)}"
+                  %p.items__box__tax (税込)
+    = paginate @items
+  .search__side
+    %form.search__extend__container{ novalidate: 'novalidate' }
+      .search__sort
+        .form__group
+          .select__wrap
+            %select.select__default
+              %option 並び替え
+              %option{ value: 'price_asc' } 価格の安い順
+              %option{ value: 'price_desc'} 価格の高い順
+              %option{ value: 'created_asc'} 出品の古い順
+              %option{ value: 'created_desc'} 出品の新しい順
+              %option{ value: 'like_desc'} いいね!の多い順
+            %i.fas.fa-angle-down
+      .search__dropdown__content
+        %h3.visible__large
+          詳細検索
+        .form__group
+          %label
+            %i.fas.fa-plus
+            %span キーワードを追加する
+            %input.input__default{ type: 'text', value: "#{params[:keyword]}", name: 'keyword', placeholder: '例) 値下げ'}
+        .form__group
+          %label
+            %i.fas.fa-list-ul
+            %span カテゴリーを選択する
+          .select__wrap
+            %select.select__default
+            %i.fas.fa-angle-down
+          .select__child
+            .select__wrap.select__category__child
+              %select.select__default{ disabled: true }
+              %i.fas.fa-angle-down
+          .select__grand-child
+            .select__category__grand-child.is__show
+              .checkbox__default
+                %label{ for: 'category__grand-child'}
+                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
+                  %span.checkbox__icon
+                  Tシャツ/カットソー半袖袖なし
+              .checkbox__default
+                %label{ for: 'category__grand-child'}
+                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
+                  %span.checkbox__icon
+                  Tシャツ/カットソー半袖袖なし
+              .checkbox__default
+                %label{ for: 'category__grand-child'}
+                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
+                  %span.checkbox__icon
+                  Tシャツ/カットソー
+        .form__group.search__extend__brand
+          %label
+            %i.fas.fa-tag
+            %span ブランド名から探す
+          %input.input__default{ type: 'text', name: 'brand_name', placeholder: '例)シャネル' }
+          %input{ type: 'hidden', name: 'brand_id' }
+          %ul
+        .form__group
+          %label
+            %i.fas.fa-expand
+            %span サイズを指定する
+          .select__wrap
+            %select.select__default
+            %i.fas.fa-angle-down
+          .select__child
+            .select__category__child.is__show
+              .checkbox__default
+                %label{ for: 'size_id' }
+                  %input{ type: 'checkbox', id: 'size_id', class: 'child__checkbox', disabled: true }
+                  %span.checkbox__icon
+                  XXS以下
+        .form__group.search__price
+          %label
+            %i.fas.fa-coins
+            %span 価格
+          .select__wrap
+            %select.select__default
+              %option 選択してください
+              %option{ value: '300-1000' } 300 ~ 1000
+              %option{ value: '1000-5000' } 1000 ~ 5000
+              %option{ value: '5000-10000' } 5000 ~ 10000
+              %option{ value: '1000-5000' } 10000 ~ 30000
+              %option{ value: '1000-5000' } 30000 ~ 50000
+              %option{ value: '1000-5000' } 50000 ~
+            %i.fas.fa-angle-down
+            %input.input__default{ type: 'number', placeholder: '¥ Min' }
+            %span.wavy__line ~
+            %input.input__default{ type: 'number', placeholder: '¥ Max' }
+        .form__group
+          %label
+            %i.fas.fa-star
+            %span 商品の状態
+          %div
+            .checkbox__default
+              %label{ for: 'condition_all' }
+                %input{ type: 'checkbox', id: 'condition_all', class: 'child__checkbox' }
+                %span.checkbox__icon
+                すべて
+        .form__group
+          %label
+            %i.fas.fa-truck.fa-flip-horizontal
+            %span 配送料の負担
+          %div
+            .checkbox__default
+              %label{ for: 'shipping_fee_all' }
+                %input{ type: 'checkbox', id: 'shipping_fee_all', class: 'child__checkbox' }
+                %span.checkbox__icon
+                すべて
+        .form__group
+          %label
+            %i.fas.fa-shopping-cart
+            %span 販売状況
+          %div
+            .checkbox__default
+              %label{ for: 'status_all' }
+                %input{ type: 'checkbox', id: 'status_all', class: 'child__checkbox' }
+                %span.checkbox__icon
+                すべて
+        .search__extend__btn--empty
+        .search__extend__btn
+          .btn__default.btn__gray クリア
+          %button.btn__default.btn__red{ type: 'submit' } 完了
+= render 'shared/sellbtn'
+= render 'shared/footer'
