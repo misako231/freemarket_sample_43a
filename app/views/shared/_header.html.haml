@@ -4,11 +4,11 @@
       %h1.header-conteiner__search--left
         = link_to root_path, class: "logo-link" do
           = image_tag 'mercari-logo.svg', width: "134", height: "36"
-      %form.header-conteiner__search--right{ action: "https://www.mercari.com/jp/search/" }
-        %input.input-default{ type: "serch", values: "", name: "keyword", placeholder: "キーワードから探す" }
+      = form_with url: search_items_path, class: 'header-conteiner__search--right', method: :get, local: true do |f|
+        = f.text_field :keyword, class: 'input-default', value: "#{params[:keyword]}", placeholder: "キーワードから探す"
         .index-search-icon
           %label
-            %input.index-search-btn{ type: "submit", style: "display:none;" }
+            = f.submit 'search', class: 'index-search-btn'
             = fa_icon "search"
     .header-conteiner__navber
       .left-nav
