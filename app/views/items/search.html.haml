@@ -20,17 +20,11 @@
                   %p.items__box__tax (税込)
     = paginate @items
   .search__side
-    %form.search__extend__container{ novalidate: 'novalidate' }
+    = form_with url: search_items_path, class: "search__extend__container", novalidate: true do |f|
       .search__sort
         .form__group
           .select__wrap
-            %select.select__default
-              %option 並び替え
-              %option{ value: 'price_asc' } 価格の安い順
-              %option{ value: 'price_desc'} 価格の高い順
-              %option{ value: 'created_asc'} 出品の古い順
-              %option{ value: 'created_desc'} 出品の新しい順
-              %option{ value: 'like_desc'} いいね!の多い順
+            = f.select :sort, Item::SORT, { prompt: "並び替え" }, class: "select__default"
             %i.fas.fa-angle-down
       .search__dropdown__content
         %h3.visible__large
@@ -94,14 +88,7 @@
             %i.fas.fa-coins
             %span 価格
           .select__wrap
-            %select.select__default
-              %option 選択してください
-              %option{ value: '300-1000' } 300 ~ 1000
-              %option{ value: '1000-5000' } 1000 ~ 5000
-              %option{ value: '5000-10000' } 5000 ~ 10000
-              %option{ value: '1000-5000' } 10000 ~ 30000
-              %option{ value: '1000-5000' } 30000 ~ 50000
-              %option{ value: '1000-5000' } 50000 ~
+            = f.select :search_price, Item::SEARCH_PRICE, { prompt: "選択してください" }, class: "select__default"
             %i.fas.fa-angle-down
             %input.input__default{ type: 'number', placeholder: '¥ Min' }
             %span.wavy__line ~
