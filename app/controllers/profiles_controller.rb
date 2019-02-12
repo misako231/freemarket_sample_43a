@@ -1,11 +1,7 @@
 class ProfilesController < ApplicationController
   include GetCategories
   before_action :get_root
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> shunke434343/master
   def index
   end
 

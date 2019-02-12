@@ -9,12 +9,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_02_09_074116) do
-=======
-ActiveRecord::Schema.define(version: 2019_02_05_115808) do
->>>>>>> shunke434343/master
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
