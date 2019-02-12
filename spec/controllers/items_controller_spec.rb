@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe ItemsController do
   describe 'GET #index' do
+    before :each do
+      5.times{ create(:item) }
+      @items = Item.joins(:category).includes(:item_photos).order('id DESC')
+    end
 
     it 'gets accurate request' do
       get :index
@@ -9,37 +13,28 @@ describe ItemsController do
     end
 
     it "populates an array of @items ordered by created_at DESC" do
-      5.times{ create(:item) }
       get :index
       expect(assigns(:items)).to match(Item.joins(:category).includes(:item_photos).sort{ |a, b| b.id <=> a.id })
     end
-    #
+
     it "populates an array of @ladies_items" do
-      5.times{ create(:item) }
-      items = Item.joins(:category).includes(:item_photos).order('id DESC')
       get :index
-      expect(assigns(:ladies_items)).to match(items.where("ancestry LIKE ?", "1/%").first(4))
+      expect(assigns(:ladies_items)).to match(@items.where("ancestry LIKE ?", "1/%").first(4))
     end
 
     it "populates an array of @mens_items" do
-      5.times{ create(:item) }
-      items = Item.joins(:category).includes(:item_photos).order('id DESC')
       get :index
-      expect(assigns(:mens_items)).to match(items.where("ancestry LIKE ?", "2/%").first(4))
+      expect(assigns(:mens_items)).to match(@items.where("ancestry LIKE ?", "2/%").first(4))
     end
 
     it "populates an array of @baby_items" do
-      5.times{ create(:item) }
-      items = Item.joins(:category).includes(:item_photos).order('id DESC')
       get :index
-      expect(assigns(:baby_items)).to match(items.where("ancestry LIKE ?", "3/%").first(4))
+      expect(assigns(:baby_items)).to match(@items.where("ancestry LIKE ?", "3/%").first(4))
     end
 
     it "populates an array of @cosme_items" do
-      5.times{ create(:item) }
-      items = Item.joins(:category).includes(:item_photos).order('id DESC')
       get :index
-      expect(assigns(:cosme_items)).to match(items.where("ancestry LIKE ?", "7/%").first(4))
+      expect(assigns(:cosme_items)).to match(@items.where("ancestry LIKE ?", "7/%").first(4))
     end
 
     it "renders the :index template" do
@@ -50,7 +45,7 @@ describe ItemsController do
 
   describe 'GET #show' do
     before :each do
-      @item = create(:item, category_id: 58)
+      @item = create(:item, category_id: 318)
       get :show, params: { id: @item }
     end
 
@@ -115,6 +110,28 @@ describe ItemsController do
       keyword = "good"
       items = Item.where('items.name LIKE ? OR comment LIKE ?', "%#{keyword}%", "%#{keyword}%")
       expect(assigns(:items)).to match_array(items)
+
+  describe 'Delete #destroy' do
+    before :each do
+      @user = create(:user)
+      @item = create(:item, user_id: @user.id)
+      login_user @user
+    end
+
+    it 'gets accurate request' do
+      delete :destroy, params: {user_id: @item.user_id, id: @item.id}
+      expect(response.status).to eq(302)
+    end
+
+    it 'deletes item intended to' do
+      expect{
+        delete :destroy, params: {user_id: @item.user_id, id: @item.id}
+      }.to change(Item,:count).by(-1)
+    end
+
+    it 'redirects to the accurate request' do
+      delete :destroy, params: {user_id: @item.user_id, id: @item.id}
+      expect(response).to redirect_to onsale_user_items_path
     end
   end
 end

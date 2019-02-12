@@ -17,7 +17,7 @@
             .mypage__content__user__icon__link__num__exhibits
               出品数
               %span.mypage__content__user__icon__link__num__exhibits__count
-                15
+                = current_user.items.length
     .mypage__content__announce
       %ul.mypage__content__announce__tabs
         %li.mypage__content__announce__tabs__notification
