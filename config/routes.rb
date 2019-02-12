@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show, :new, :create] do
     member do
       get :buy
-      post :pay
     end
   end
   resources :users, only: [:create] do
@@ -22,12 +21,13 @@ Rails.application.routes.draw do
       member do
         get :identification
         get :card
-        get :credit
       end
       collection do
         get :logout
+        get :credit
         get :done
       end
     end
   end
+   post '/pay', to: 'creditcards#pay'
 end

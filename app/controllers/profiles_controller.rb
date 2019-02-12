@@ -1,4 +1,7 @@
 class ProfilesController < ApplicationController
+  include GetCategories
+  before_action :get_root
+
   def index
   end
 
@@ -9,7 +12,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     if @profile.save
-      redirect_to done_user_profiles_path
+      redirect_to credit_user_profiles_path
     else
       render :new
     end
@@ -25,6 +28,9 @@ class ProfilesController < ApplicationController
   end
 
   def card
+  end
+
+  def credit
   end
 
   def logout

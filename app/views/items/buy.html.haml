@@ -48,8 +48,7 @@
             .items__buy-cf__container__main__content__inner__buy-form__buy-price-box-text
               支払い金額
             .items__buy-cf__container__main__content__inner__buy-form__buy-price-box-price
-              ¥
-              = @item.price
+              = '¥' + "#{number_with_delimiter(@item.price)}"
         %button.btn-default{type: "submit"}
           購入する
           = form_tag action: :pay, method: :post do
