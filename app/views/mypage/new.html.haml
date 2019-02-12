@@ -8,11 +8,11 @@
           .icon__mail
             %i.far.fa-envelope
           メールアドレスで登録
-        %button#facebook__login.btn__default.btn__sns.btn__sns-facebook
+        = link_to user_facebook_omniauth_authorize_path, class: 'btn__default btn__sns-facebook', id: 'facebook' do
           .icon__facebook
             %i.fab.fa-facebook
           Facebookで登録
-        %button#google__login.btn__default.btn__sns.btn__sns-google
+        = link_to user_google_oauth2_omniauth_authorize_path, class: 'btn__default btn__sns btn__sns-google' do
           .icon__google-plus
             %i.fab.fa-google-plus-g
           Googleで登録
@@ -32,5 +32,5 @@
     %input{ type: 'hidden', name:'login_type', value:'facebook' }
   %input#google__client__id{ type: 'hidden' }
   %input#facebook__app__id{ type: 'hidden' }
-.signup--gray-bar
+.signup--gray-bar--adjust
 = render 'shared/second_footer'

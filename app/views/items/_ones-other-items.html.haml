@@ -1,4 +1,4 @@
-- @users_item.each do |item|
+- @users_item.first(6).each do |item|
   .parent-items-in-user-profile__items-box-container__items-box-content__box
     = link_to "#" do
       .parent-items-in-user-profile__items-box-container__items-box-content__box__photo
@@ -10,7 +10,7 @@
           .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top
             .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__price
               ¥
-              = item.price
+              = number_with_delimiter("#{item.price}")
             .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right
               =fa_icon  'heart', class: 'parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__heart'
               .parent-items-in-user-profile__items-box-container__items-box-content__box__body__tb-top__right__like-count 24

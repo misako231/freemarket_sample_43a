@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-   registrations: 'users/registrations'
-  }
+   registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
   get '/users', to: redirect("/users/sign_up")
   root to: 'items#index'
   resources :mypage, only: [:new]
@@ -13,6 +12,11 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:create] do
     resources :items, only: [:edit, :update, :destroy] do
+      collection do
+        get :onsale
+        get :orderd
+        get :sold
+      end
       member do
         get :own
       end
@@ -31,3 +35,8 @@ Rails.application.routes.draw do
     end
   end
 end
+
+
+
+
+
