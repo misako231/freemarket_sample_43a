@@ -59,6 +59,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.includes([:item_photos, :category]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
+  end
+
   private
 
   def item_params

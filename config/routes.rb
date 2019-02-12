@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     member do
       get :buy
     end
+    collection do
+      get :search
+    end
   end
   resources :users, only: [:create] do
     resources :items, only: [:edit, :update, :destroy] do
