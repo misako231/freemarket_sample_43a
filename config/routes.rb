@@ -1,18 +1,29 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-   registrations: 'users/registrations'
-  }
+   registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
   get '/users', to: redirect("/users/sign_up")
-  root to: 'mercari#index'
+  root to: 'items#index'
   resources :mypage, only: [:new]
   resources :categories, only: [:index, :show]
-  resources :item_photos
-  resources :items do
+  resources :items, only: [:index, :show, :new, :create] do
     member do
       get :buy
     end
+    collection do
+      get :search
+    end
   end
   resources :users, only: [:create] do
+    resources :items, only: [:edit, :update, :destroy] do
+      collection do
+        get :onsale
+        get :orderd
+        get :sold
+      end
+      member do
+        get :own
+      end
+    end
     resources :profiles, only: [:index, :new, :create, :show, :update] do
       member do
         get :identification
@@ -27,3 +38,8 @@ Rails.application.routes.draw do
     end
   end
 end
+
+
+
+
+

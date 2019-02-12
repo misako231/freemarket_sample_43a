@@ -6,7 +6,7 @@
     .parent-item-container__item--main-content
       .parent-item-container__item--main-content__item-photo
         .parent-item-container__item--main-content__item-photo__main
-          = image_tag "coach1.jpg", size: "300x300", alt: "写真"
+          = image_tag "#{@item.item_photos.first.image}", size: "300x300", alt: "写真"
         .parent-item-container__item--main-content__item-photo__sub
           - @item.item_photos.each do |photo|
             .parent-item-container__item--main-content__item-photo__sub-containts
@@ -67,7 +67,7 @@
     .parent-item-container__item-price-container
       %span.item-price
         ¥
-        = @item.price
+        = number_with_delimiter("#{@item.price}")
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
     = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
