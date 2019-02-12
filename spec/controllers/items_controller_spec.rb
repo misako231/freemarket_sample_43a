@@ -96,4 +96,25 @@ describe ItemsController do
       expect(response).to render_template :show
     end
   end
+
+  describe 'GET #search' do
+    before :each do
+      3.times{ create(:item, category_id: 58) }
+      get :search
+    end
+
+    it 'gets accurate request' do
+      expect(response.status).to eq(200)
+    end
+
+    it "renders the :show template" do
+      expect(response).to render_template :search
+    end
+
+    it "assigns the requested items to @items" do
+      keyword = "good"
+      items = Item.where('items.name LIKE ? OR comment LIKE ?', "%#{keyword}%", "%#{keyword}%")
+      expect(assigns(:items)).to match_array(items)
+    end
+  end
 end
