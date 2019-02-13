@@ -41,7 +41,6 @@ class User < ApplicationRecord
   def self.find_oauth(auth)
       uid = auth.uid
       provider = auth.provider
-      token = auth.credentials.token
         user = User.find_by(email: auth.info.email)
         if user.present?
           return user
@@ -51,8 +50,7 @@ class User < ApplicationRecord
             {email:    auth.info.email},
             {password: Devise.friendly_token[0, 20]},
             {uid: uid},
-            {provider: provider},
-            {oauth_token: token}]
+            {provider: provider}]
         end
     return user_info
   end
