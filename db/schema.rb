@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2019_02_05_115808) do
     t.string "encrypted_password", default: "", null: false
     t.string "provider"
     t.string "uid"
-    t.text "oauth_token"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

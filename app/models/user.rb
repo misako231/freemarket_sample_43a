@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_many :items
@@ -41,41 +39,18 @@ class User < ApplicationRecord
       uid = auth.uid
       provider = auth.provider
       token = auth.credentials.token
-      # snscredential = SnsCredential.where(uid: uid, provider: provider).first
-      # if snscredential.present?
-      #   user = User.where(id: snscredential.user_id).first
-      # else
         user = User.find_by(email: auth.info.email)
         if user.present?
           return user
-          # user_info = [
-          #   {uid: uid},
-          #   {provider: provider},
-          #   {user_id: user.id}]
-          # User.update(
-          #   uid: uid,
-          #   provider: provider
-            # user_id: user.id
-            # )
         else
-          #ここ以下は配列にして送る
-          # user = User.create(
-          # user_info =[]
           user_info = [
             {nickname: auth.info.name},
             {email:    auth.info.email},
             {password: Devise.friendly_token[0, 20]},
-            # telephone: "08000000000"
-
-          # SnsCredential.create(
             {uid: uid},
             {provider: provider},
             {oauth_token: token}]
-            # user_id: user.id
-            # )
         end
-      # end
-      # binding.pry
     return user_info
   end
 end

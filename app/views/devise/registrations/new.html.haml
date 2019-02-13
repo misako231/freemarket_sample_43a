@@ -16,25 +16,28 @@
           = f.email_field :email, value: params[:email], autocomplete: "email", class: "input__default", placeholder: "PC・携帯どちらでも可"
           .error_message_box
             = @user.errors.full_messages_for(:email).first
-        .form__group
-          = f.label :パスワード
-          %span.form__require 必須
-          = f.password_field :password, value: params[:password],autocomplete: "new-password", class: "input__default", placeholder: "6文字以上"
-          - @user.errors.full_messages_for(:password).each do |message|
+        -if params[:uid].present?
+          .form__group
+            = f.password_field :password, value: params[:password],type: "hidden", autocomplete: "new-password", class: "input__default", placeholder: "6文字以上"
+          .form__group
+            = f.password_field :password_confirmation, value: params[:password],type:"hidden", autocomplete: "new-password", class: "input__default", placeholder: "6文字以上"
+        -else
+          .form__group
+            = f.label :パスワード
+            %span.form__require 必須
+            = f.password_field :password, value: params[:password],autocomplete: "new-password", class: "input__default", placeholder: "6文字以上"
+            - @user.errors.full_messages_for(:password).each do |message|
+              .error_message_box
+                = message
+          .form__group
+            = f.label :'パスワード(確認)'
+            %span.form__require 必須
+            = f.password_field :password_confirmation, value: params[:password],autocomplete: "new-password", class: "input__default", placeholder: "6文字以上"
             .error_message_box
-              = message
-        .form__group
-          = f.label :'パスワード(確認)'
-          %span.form__require 必須
-          = f.password_field :password_confirmation, value: params[:password],autocomplete: "new-password", class: "input__default", placeholder: "6文字以上"
-          .error_message_box
-            = @user.errors.full_messages_for(:password_confirmation).first
+              = @user.errors.full_messages_for(:password_confirmation).first
         .form__group
           = f.text_field :uid, value: params[:uid],type: "hidden"
-        .form__group
           = f.text_field :provider, value: params[:provider],type: "hidden"
-        .form__group
-          = f.text_field :token, value: params[:token],type: "hidden"
         .form__group
           %h3.text--left.info__chapter__sub--head 本人確認
           %p.info__single__text

@@ -10,15 +10,10 @@
         .icon__facebook
           %i.fab.fa-facebook
         Facebookでログイン
-      / %button#facebook__login.btn__default.btn__sns.btn__sns-facebook
-      /   .icon__facebook
-      /     %i.fab.fa-facebook
-      /   Facebookでログイン
-      %button#google__login.btn__default.btn__sns.btn__sns-google
+      = link_to user_facebook_omniauth_authorize_path, id: 'google__login', class: 'btn__default btn__sns btn__sns-google' do
         .icon__google-plus
           %i.fab.fa-google-plus-g
         Googleでログイン
-    -# %form{ novalidate: 'novalidate' }
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .login__form--inner
         .form__group
