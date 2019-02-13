@@ -1,4 +1,11 @@
 = render 'shared/users_header2'
+- if flash[:credit_create_error]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:credit_create_error]
+    .delete-success-flash__close.close-btn
+      ×
+
 %main.credit
   .credit__info
     .credit__info__top

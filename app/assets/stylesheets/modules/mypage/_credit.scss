@@ -1,3 +1,27 @@
+.delete-success-flash{
+  position: absolute;
+  width: 100vw;
+  height: 65px;
+  line-height: 65px;
+  top: 100px;
+  background-color: #dff2d7;
+  display: flex;
+  text-align: center;
+  color: #648c54;
+  z-index: 100;
+  &__text{
+    width: calc(100vw - 50px);
+    padding-left: 50px;
+  }
+  &__close{
+    width: 50px;
+    font-size: 1.8em;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
 .credit{
   display: block;
   &__info{

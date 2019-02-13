@@ -10,11 +10,11 @@ belongs_to :user
   end
 
   def self.years
-   years = []
-   for year in 2019..2030 do
+    years = []
+    d = Date.today
+   for year in d.year..d.year+11 do
      years << year
    end
-   return years
   end
 
   def self.create_token(params, customer)
