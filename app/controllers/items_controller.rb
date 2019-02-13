@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   before_action :get_category_tree, only: [:show, :own]
 
   def index
-    @items = Item.with_category.includes(:item_photos).new_arrival
+    @items = Item.with_category.includes(:item_photos, :favorite_items).new_arrival
     @ladies_items = @items.search_with_root_id(1).first(4)
     @mens_items = @items.search_with_root_id(2).first(4)
     @baby_items = @items.search_with_root_id(3).first(4)
@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.includes([:user, :item_photos, :category]).find(params[:id])
+    @item = Item.includes([:user, :item_photos, :category, :favorite_items]).find(params[:id])
   end
 
   def set_ancestors(category)

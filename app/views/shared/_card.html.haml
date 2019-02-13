@@ -10,5 +10,9 @@
           = '¥' + "#{number_with_delimiter(item.price)}"
         .items-box-body__num__likes
           %i.far.fa-heart
-          %span 1
+          - if item.favorite_items.present?
+            %span
+              = item.favorite_items.length
+          - else
+            %span 0
         .items-box-body__num__tax (税込)

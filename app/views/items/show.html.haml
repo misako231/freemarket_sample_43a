@@ -76,13 +76,33 @@
       = @item.comment
     .parent-item-container__various-btn
       .parent-item-container__various-btn__left
-        %button.item-container__various-btn__left__likes
-          %i.far.fa-heart
-          %span いいね!
-          %span 6
-        %button.item-container__various-btn__left__report
-          %i.far.fa-flag
-          %span 不適切な商品の報告
+        - if user_signed_in?
+          - if @item.favorite_items.find_by(user_id: current_user.id).present?
+            = link_to item_favorite_items_path(item_id: @item.id, user_id: current_user.id), id: "link-likes", remote: true, method: :delete do
+              %button.liked
+                = fa_icon "heart", id: "heart-icon"
+                %span いいね!
+                %span#favorite-count
+                  = @item.favorite_items.length.to_i
+          - else
+            = link_to item_favorite_items_path(item_id: @item.id, user_id: current_user.id), id: "link-likes", remote: true, method: :post do
+              %button.likes
+                %i#heart-icon.far.fa-heart
+                %span いいね!
+                %span#favorite-count
+                  = @item.favorite_items.length.to_i
+        - else
+          = link_to new_user_session_path, id: "link-likes" do
+            %button.likes
+              %i#heart-icon.far.fa-heart
+              %span いいね!
+              %span#favorite-count
+                = @item.favorite_items.length.to_i
+        &emsp;
+        = link_to "#", id: "link-report" do
+          %button.report
+            %i.far.fa-flag
+            %span 不適切な商品の報告
       .parent-item-container__various-btn__safety
         .parent-item-container__various-btn__safety__link-contents
           =link_to "#", class: "lock" do
