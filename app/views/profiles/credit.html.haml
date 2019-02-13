@@ -6,53 +6,30 @@
     .credit__info__content
       .credit__info__content__form
         .credit__info__content__form__field
-          = form_with url: pay_path(@user), local: true do |f|
+          = form_with url: user_creditcards_path(user_id: current_user.id), local: true do |f|
             %p
               カード番号
               %span.span-red 必須
             = f.text_field :number, maxlength: "16", placeholder: "半角数字のみ", class: "credit__info__content__form__field__input"
             .credit__info__content__form__field__img
-              %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?1516044782", :width => "49"}/
-              %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?1516044782", :width => "34"}/
-              %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?1516044782", :width => "30"}/
-              %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?1516044782", :width => "32"}/
-              %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?1516044782", :width => "21"}/
-              %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?1516044782", :width => "32"}/
-              %img{:alt => "", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?1516044782", :width => "32"}/
+              %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?1516044782", width: "49"}/
+              %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?1516044782", width: "34"}/
+              %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?1516044782", width: "30"}/
+              %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?1516044782", width: "32"}/
+              %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?1516044782", width: "21"}/
+              %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?1516044782", width: "32"}/
+              %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?1516044782", width: "32"}/
             .credit__info__content__form__field__date
               %p
                 有効期限
                 %span.span-red 必須
               .credit__info__content__form__field__date__select__m
-                = f.select :exp_month, class: "" do
-                  %option{:value => "1"} 01
-                  %option{:value => "2"} 02
-                  %option{:value => "3"} 03
-                  %option{:value => "4"} 04
-                  %option{:value => "5"} 05
-                  %option{:value => "6"} 06
-                  %option{:value => "7"} 07
-                  %option{:value => "8"} 08
-                  %option{:value => "9"} 09
-                  %option{:value => "10"} 10
-                  %option{:value => "11"} 11
-                  %option{:value => "12"} 12
+                = f.select(:exp_month, Creditcard::months, {prompt: "--"}, {class: ""})
                 .icon__arrow__bottom
                   %i.fa.fa-angle-down
                 %span.m 月
               .credit__info__content__form__field__date__select__y
-                = f.select :exp_year, class: ""  do
-                  %option{:value => "2019"} 19
-                  %option{:value => "2020"} 20
-                  %option{:value => "2021"} 21
-                  %option{:value => "2022"} 22
-                  %option{:value => "2023"} 23
-                  %option{:value => "2024"} 24
-                  %option{:value => "2025"} 25
-                  %option{:value => "2026"} 26
-                  %option{:value => "2027"} 27
-                  %option{:value => "2028"} 28
-                  %option{:value => "2029"} 29
+                = f.select(:exp_year, Creditcard::years, {prompt: "--"}, {class: ""})
                 .icon__arrow__bottom
                   %i.fa.fa-angle-down
                 %span.y 年

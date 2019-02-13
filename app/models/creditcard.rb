@@ -1,6 +1,22 @@
 class Creditcard < ApplicationRecord
 belongs_to :user
 
+  def self.months
+   months = []
+   for month in 1..12 do
+     months << month
+   end
+   return months
+  end
+
+  def self.years
+   years = []
+   for year in 2019..2030 do
+     years << year
+   end
+   return years
+  end
+
   def self.create_token(params, customer)
     token = Payjp::Token.create({
     :card => {
