@@ -25,6 +25,12 @@
         &__sub {
           display:flex;
           flex-direction:row;
+          &-containts {
+            opacity: .4;
+          }
+          .active {
+            opacity: 1;
+          }
         }
       }
       .item-container__item-detail {
@@ -90,6 +96,31 @@
       }
       span.item-shipping-fee {
         font-size:16px;
+      }
+    }
+    &__speech-bubble {
+      text-align: center;
+      .sales__point__message {
+        position: relative;
+        display: inline-block;
+        margin: 20px 0 0 0;
+        padding: 8px;
+        height: 37px;
+        border-radius: 4px;
+        line-height: 1.5;
+        color: $white-f;
+        background-color: #05B0B4;
+        &:after {
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          content: '';
+          height: 0;
+          width: 0;
+          border-style: solid;
+          border-width: 10px 7.5px 0 7.5px;
+          border-color: #05B0B4 transparent transparent transparent;
+        }
       }
     }
     &__item-buy-btn {
