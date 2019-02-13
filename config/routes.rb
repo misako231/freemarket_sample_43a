@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :mypage, only: [:new]
   resources :categories, only: [:index, :show]
   resources :items, only: [:index, :show, :new, :create] do
-    resources :favorite_items, only: [:create, :destroy]
+    resources :favorite_items, only: [:create] do
+      collection do
+        delete :destroy
+      end
+    end
     member do
       get :buy
     end
@@ -36,8 +40,3 @@ Rails.application.routes.draw do
     end
   end
 end
-
-
-
-
-
