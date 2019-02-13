@@ -1,14 +1,6 @@
 class Creditcard < ApplicationRecord
 belongs_to :user
 
-  def self.months
-   months = []
-   for month in 1..12 do
-     months << month
-   end
-   return months
-  end
-
   def self.years
     years = []
     d = Date.today

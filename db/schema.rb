@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_02_11_091131) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_creditcards_on_user_id"
   end
+
   create_table "favorite_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"

@@ -31,7 +31,7 @@
                 有効期限
                 %span.span-red 必須
               .credit__info__content__form__field__date__select__m
-                = f.select(:exp_month, Creditcard::months, {prompt: "--"}, {class: ""})
+                = f.select(:exp_month, MONTH, {prompt: "--"}, {class: ""})
                 .icon__arrow__bottom
                   %i.fa.fa-angle-down
                 %span.m 月
