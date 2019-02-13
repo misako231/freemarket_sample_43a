@@ -36,7 +36,7 @@
           %td
             =link_to "#", class: "tdn" do
               .category-height
-                = @grandchild_category.name
+                = @parent_category.name
             =link_to "#", class: "tdn" do
               .category-height
                 =fa_icon 'angle-right'
@@ -44,7 +44,7 @@
             =link_to "#", class: "tdn" do
               .category-height
                 =fa_icon 'angle-right'
-                = @parent_category.name
+                = @grandchild_category.name
         %tr
           %th ブランド
           %td コーチ
@@ -74,9 +74,12 @@
         = number_with_delimiter("#{@item.price}")
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
-    .parent-item-container__speech-bubble
-      .sales__point__message
-        をお持ちです
+    - if @points != 0
+      .parent-item-container__speech-bubble
+        .sales__point__message
+          P
+          = number_with_delimiter("#{@points}")
+          をお持ちです
     = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
       購入画面に進む
     .parent-item-container__item-description
@@ -126,12 +129,12 @@
   .parent-nav-item-link
     .parent-nav-item-link-prev
       - if @previous
-        =link_to "#", class: "angle-left" do
+        =link_to item_path(id: @previous.id), class: "angle-left" do
           =fa_icon "angle-left"
           = @previous.name
     .parent-nav-item-link-next
       - if @next_item
-        =link_to "#", class: "angle-right" do
+        =link_to item_path(id: @next_item.id), class: "angle-right" do
           = @next_item.name
           =fa_icon "angle-right"
   .parent-social-media-container
