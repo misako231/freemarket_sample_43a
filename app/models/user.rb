@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :favorite_items, dependent: :destroy
   has_one :profile
   has_many :sns_credentials
+  has_many :point_records
   validates :nickname,               presence: true, length: { maximum: 20 }
   validates :password,               length: { maximum: 128 }
   validates :email,                  format: { with: /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/,
