@@ -34,4 +34,11 @@ class Item < ApplicationRecord
   scope :search_with_root_id, ->(root_id) { where("ancestry LIKE ?", "#{root_id}/%") }
   scope :new_arrival, -> { order('id DESC') }
 
+  def self.create_charge_by_customer(price, user)
+      Payjp::Charge.create(
+        customer: user,
+        amount:   price,
+        currency: 'jpy',
+      )
+  end
 end
