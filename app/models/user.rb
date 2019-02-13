@@ -4,11 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_many :items
-<<<<<<< HEAD
   has_many :creditcards
-=======
   has_many :favorite_items, dependent: :destroy
->>>>>>> shunke434343/master
   has_one :profile
   has_many :sns_credentials
   validates :nickname,               presence: true, length: { maximum: 20 }
