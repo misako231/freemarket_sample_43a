@@ -38,32 +38,44 @@ class User < ApplicationRecord
   end
 
   def self.find_oauth(auth)
-    uid = auth.uid
-    provider = auth.provider
-    snscredential = SnsCredential.find_by(uid: uid, provider: provider)
-    if snscredential.present?
-      user = User.find_by(id: snscredential.user_id)
-    else
-      user = User.find_by(email: auth.info.email)
-      if user.present?
-        SnsCredential.create(
-          uid: uid,
-          provider: provider,
-          user_id: user.id
-          )
-      else
-        user = User.create(
-          nickname: auth.info.name,
-          email:    auth.info.email,
-          password: Devise.friendly_token[0, 20]
-          )
-        SnsCredential.create(
-          uid: uid,
-          provider: provider,
-          user_id: user.id
-          )
-      end
-    end
-    return user
+      uid = auth.uid
+      provider = auth.provider
+      token = auth.credentials.token
+      # snscredential = SnsCredential.where(uid: uid, provider: provider).first
+      # if snscredential.present?
+      #   user = User.where(id: snscredential.user_id).first
+      # else
+        user = User.find_by(email: auth.info.email)
+        if user.present?
+          return user
+          # user_info = [
+          #   {uid: uid},
+          #   {provider: provider},
+          #   {user_id: user.id}]
+          # User.update(
+          #   uid: uid,
+          #   provider: provider
+            # user_id: user.id
+            # )
+        else
+          #ここ以下は配列にして送る
+          # user = User.create(
+          # user_info =[]
+          user_info = [
+            {nickname: auth.info.name},
+            {email:    auth.info.email},
+            {password: Devise.friendly_token[0, 20]},
+            # telephone: "08000000000"
+
+          # SnsCredential.create(
+            {uid: uid},
+            {provider: provider},
+            {oauth_token: token}]
+            # user_id: user.id
+            # )
+        end
+      # end
+      # binding.pry
+    return user_info
   end
 end
