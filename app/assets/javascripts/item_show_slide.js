@@ -1,5 +1,7 @@
 $(document).on('turbolinks:load', function() {
   $(function (){
+    var image_count = $('.parent-item-container__item--main-content__item-photo__sub-containts').length
+
     $('.parent-item-container__item--main-content__item-photo__main ul').slick({
     autoplay: false,
     arrows: false,
@@ -9,7 +11,7 @@ $(document).on('turbolinks:load', function() {
     asNavFor: '.parent-item-container__item--main-content__item-photo__sub ul'
     });
     $('.parent-item-container__item--main-content__item-photo__sub ul').slick({
-      slidesToShow: 4,
+      slidesToShow: image_count,
       focusOnSelect: true,
       asNavFor: '.parent-item-container__item--main-content__item-photo__main ul'
     });
