@@ -1,0 +1,130 @@
+= render 'shared/header'
+- if flash[:bought]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:bought]
+    .delete-success-flash__close.close-btn
+      ×
+
+%main.index-conteiner
+  .slick_container
+    %ul.slider
+      %li
+        = link_to "", "https://www.mercari.com/jp/" ,class: "top-banner banner-featured-hobby"
+
+      %li
+        = link_to "", "https://www.mercari.com/jp/" ,class: "top-banner banner-hajimeru-fortune"
+
+      %li
+        = link_to "", "https://www.mercari.com/jp/" ,class: "top-banner banner-new-register-2019"
+
+      %li
+        .banner-simple-app
+          .top-visual
+            .top-visual__content
+              %h2
+                スマホでかんたん
+                %br
+                フリマアプリ
+              %p
+                メルカリはスマホカメラからすぐに出品できる
+                %br
+                購入時も安心な独自システムのアプリです
+              .top-visual__content__icons
+                = link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8" do
+                  = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?1857733084", class: "banner-icon"
+                = link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja" do
+                  = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?1857733084", class: "banner-icon"
+            = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/jp/top/main_content_pc.png?3757212980"
+
+      %li
+        = link_to "", "https://www.mercari.com/jp/" ,class: "top-banner banner-bokurano-heisei-entertainment"
+
+
+  %section.pickup-container
+    %h2.pickup-container__head ピックアップカテゴリー
+    %section.item-box-container
+      %h3.item-box-container__title
+        = link_to "https://www.mercari.com/jp/" do
+          レディース 新着アイテム
+      .item-box-content
+        - @ladies_items.each do |item|
+          = render partial: 'shared/card', locals: { item: item }
+      .view-all
+        = link_to "https://www.mercari.com/jp/category/1/" do
+          すべての商品を見る
+
+    %section.item-box-container
+      %h3.item-box-container__title
+        = link_to "https://www.mercari.com/jp/" do
+          メンズ 新着アイテム
+      .item-box-content
+        - @mens_items.each do |item|
+          = render partial: 'shared/card', locals: { item: item }
+      .view-all
+        = link_to "https://www.mercari.com/jp/category/1/" do
+          すべての商品を見る
+
+    %section.item-box-container
+      %h3.item-box-container__title
+        = link_to "https://www.mercari.com/jp/" do
+          ベビー・キッズ 新着アイテム
+      .item-box-content
+        - @baby_items.each do |item|
+          = render partial: 'shared/card', locals: { item: item }
+      .view-all
+        = link_to "https://www.mercari.com/jp/category/1/" do
+          すべての商品を見る
+
+    %section.item-box-container
+      %h3.item-box-container__title
+        = link_to "https://www.mercari.com/jp/" do
+          コスメ・香水・美容 新着アイテム
+      .item-box-content
+        - @cosme_items.each do |item|
+          = render partial: 'shared/card', locals: { item: item }
+      .view-all
+        = link_to "https://www.mercari.com/jp/category/1/" do
+          すべての商品を見る
+
+  %section.pickup-container
+    %h2.pickup-container__head ブランドカテゴリー
+    %section.item-box-container
+      %h3.item-box-container__title
+        = link_to "https://www.mercari.com/jp/" do
+          シャネル 新着アイテム
+      .item-box-content
+        = render 'shared/state-card'
+      .view-all
+        = link_to "https://www.mercari.com/jp/category/1/" do
+          すべての商品を見る
+
+    %section.item-box-container
+      %h3.item-box-container__title
+        = link_to "https://www.mercari.com/jp/" do
+          ルイヴィトン 新着アイテム
+      .item-box-content
+        = render 'shared/state-card'
+      .view-all
+        = link_to "https://www.mercari.com/jp/category/1/" do
+          すべての商品を見る
+
+    %section.item-box-container
+      %h3.item-box-container__title
+        = link_to "https://www.mercari.com/jp/" do
+          シュープリーム 新着アイテム
+      .item-box-content
+        = render 'shared/state-card'
+      .view-all
+        = link_to "https://www.mercari.com/jp/category/1/" do
+          すべての商品を見る
+
+    %section.item-box-container
+      %h3.item-box-container__title
+        = link_to "https://www.mercari.com/jp/" do
+          ナイキ 新着アイテム
+      .item-box-content
+        = render 'shared/state-card'
+
+= render 'shared/footer'
+= render 'shared/sellbtn'

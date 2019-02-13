@@ -1,4 +1,7 @@
 class ProfilesController < ApplicationController
+  include GetCategories
+  before_action :get_root
+
   def index
   end
 
@@ -9,7 +12,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     if @profile.save
-      redirect_to done_user_profiles_path
+      redirect_to credit_user_profiles_path
     else
       render :new
     end
@@ -27,6 +30,9 @@ class ProfilesController < ApplicationController
   def card
   end
 
+  def credit
+  end
+
   def logout
   end
 
@@ -35,7 +41,7 @@ class ProfilesController < ApplicationController
 
   private
   def profile_params
-    params.permit(:phone, :postal_code, :prefecture, :city, :block, :building).merge(user_id: params[:user_id])
+    params.permit(:phone, :postal_code, :prefecture_id, :city, :block, :building).merge(user_id: params[:user_id])
   end
 
 end

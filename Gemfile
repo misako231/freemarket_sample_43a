@@ -66,6 +66,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rails-controller-testing'
+  gem 'database_cleaner'
 end
 
 group :production do
@@ -82,6 +83,11 @@ gem "jquery-slick-rails"
 gem 'ancestry'
 gem 'payjp'
 gem 'carrierwave'
+gem 'fog-aws'
 gem 'mini_magick'
 gem 'enum_help'
 gem 'rails-i18n'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'active_hash'

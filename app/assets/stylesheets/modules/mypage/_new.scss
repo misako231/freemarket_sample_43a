@@ -44,6 +44,7 @@
           margin: 16px 0 0;
           background-color: #385185;
           color: $white-f;
+          text-decoration: none;
           .icon__facebook {
             display: inline-block;
             position: absolute;
@@ -61,6 +62,7 @@
           margin: 16px 0 0;
           background-color: #dc4e41;
           color: $white-f;
+          text-decoration: none;
           .icon__google-plus {
             display: inline-block;
             position: absolute;
@@ -77,7 +79,7 @@
     }
   }
 }
-.signup--gray-bar {
+.signup--gray-bar--adjust {
   height: calc(100vh - 756px);
   background-color: $gray-b;
 }
