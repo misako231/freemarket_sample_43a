@@ -543,7 +543,7 @@ ApplicationRecord.transaction do
   xxs, xs, s, m, l, xl, xl2, xl3, xl4, free_size = boxer_shorts.children.create([{ name: "XXS以下" }, { name: "XS(SS)" }, { name: "S" }, { name: "M" }, { name: "L" }, { name: "XL(LL)" }, { name: "2XL(3L)" }, { name: "3XL(4L)" }, { name: "4XL(5L)以上" }, { name: "FREE SIZE" }])
 
   # ベビー・キッズ
-  baby_clothes_girls, baby_clothes_boys, baby_clothes_unisex, kids_clothes_girls, kids_clothes_boys, kids_clothes_unisex, kids_shoes, fashion_goods, diapers, moving_goods, meal, furniture, toys, souvenir, baby_others = baby.children.create([{ name: "ベビー服(女の子用) ~95cm" }, { name: "ベビー服(男の子用) ~95cm" }, { name: "ベビー服(男女兼用) ~95cm" }, { name: "キッズ服(女の子用) 100cm~" }, { name: "キッズ服(男の子用) 100cm~" }, { name: "キッズ服(男女兼用) 100cm~" }, { name: "キッズ靴" }, { name: "子ども用ファッション小物" }, { name: "おむつ/トイレ/バス" }, { name: "外出/移動用品" }, { name: "授乳/食事" }, { name: "ベビー家具/寝具/室内用品" }, { name: "おもちゃ" }, { name: "行事/記念品" }, { name: "その他" }])
+  baby_clothes_girls, baby_clothes_boys, baby_clothes_unisex, kids_clothes_girls, kids_clothes_boys, kids_clothes_unisex, kids_shoes, fashion_goods, diapers, moving_goods, meal, furniture, baby_toys, souvenir, baby_others = baby.children.create([{ name: "ベビー服(女の子用) ~95cm" }, { name: "ベビー服(男の子用) ~95cm" }, { name: "ベビー服(男女兼用) ~95cm" }, { name: "キッズ服(女の子用) 100cm~" }, { name: "キッズ服(男の子用) 100cm~" }, { name: "キッズ服(男女兼用) 100cm~" }, { name: "キッズ靴" }, { name: "子ども用ファッション小物" }, { name: "おむつ/トイレ/バス" }, { name: "外出/移動用品" }, { name: "授乳/食事" }, { name: "ベビー家具/寝具/室内用品" }, { name: "おもちゃ" }, { name: "行事/記念品" }, { name: "その他" }])
 
   # ベビー服(女の子用)
   tops, outer, pants, skirt, one_piece, baby_dress, baby_wraps, underwear, pajamas, rompers, other = baby_clothes_girls.children.create([{ name: "トップス" }, { name: "アウター" }, { name: "パンツ" }, { name: "スカート" }, { name: "ワンピース" }, { name: "ベビードレス" }, { name: "おくるみ" }, { name: "下着/肌着" }, { name: "パジャマ" }, { name: "ロンパース" }, { name: "その他" }])
@@ -799,7 +799,7 @@ ApplicationRecord.transaction do
   bed, futon, chair, chests, other = furniture.children.create([{ name: "ベッド" }, { name: "布団/毛布" }, { name: "イス" }, { name: "たんす" }, { name: "その他" }])
 
   # おもちゃ
-  bathroom_toys, rattle, music_box, baby_gim, wheelbag, educational_toys, other = toys.children.create([{ name: "おふろのおもちゃ" }, { name: "がらがら" }, { name: "オルゴール" }, { name: "ベビージム" }, { name: "手押し車/カタカタ" }, { name: "知育玩具" }, { name: "その他" }])
+  bathroom_toys, rattle, music_box, baby_gim, wheelbag, educational_toys, other = baby_toys.children.create([{ name: "おふろのおもちゃ" }, { name: "がらがら" }, { name: "オルゴール" }, { name: "ベビージム" }, { name: "手押し車/カタカタ" }, { name: "知育玩具" }, { name: "その他" }])
 
   # 行事/記念品
   omiyamairi, weaning_ceremony, album, hand_print, other = souvenir.children.create([{ name: "お宮参り用品" }, { name: "お食い初め用品" }, { name: "アルバム" }, { name: "手形/足形" }, { name: "その他" }])
@@ -958,8 +958,18 @@ ApplicationRecord.transaction do
   # カメラ
   digital_camera, video_camera, single_focus_lens, zoom_lens, flim_camera, surveillance_camera, other = camera.children.create([{ name: "デジタルカメラ" }, { name: "ビデオカメラ" }, { name: "レンズ(単焦点)" }, { name: "レンズ(ズーム)" }, { name: "フィルムカメラ" }, { name: "防犯カメラ" }, { name: "その他" }])
 
+  # レンズ(単焦点)・サイズ
+  nikon_f, canon_ef, pentax_k, pentax_q, four_thirds, micro_four_thirds, alpha_a, alpha_e, nicon_1, canon_ef_m, x_mount, sigma_sa = single_focus_lens.children.create([{ name: "ニコンFマウント" }, { name: "キャノンEFマウント" }, { name: "ペンタックスKマウント" }, { name: "ペンタックスQマウント" }, { name: "フォーサーズマウント" }, { name: "マイクロフォーサーズマウント" }, { name: "αAマウント" }, { name: "αEマウント" }, { name: "ニコン1マウント" }, { name: "キャノンEF-Mマウント" }, { name: "Xマウント" }, { name: "シグマSAマウント" }])
+
+  # レンズ(ズーム)・サイズ
+  nikon_f, canon_ef, pentax_k, pentax_q, four_thirds, micro_four_thirds, alpha_a, alpha_e, nicon_1, canon_ef_m, x_mount, sigma_sa = zoom_lens.children.create([{ name: "ニコンFマウント" }, { name: "キャノンEFマウント" }, { name: "ペンタックスKマウント" }, { name: "ペンタックスQマウント" }, { name: "フォーサーズマウント" }, { name: "マイクロフォーサーズマウント" }, { name: "αAマウント" }, { name: "αEマウント" }, { name: "ニコン1マウント" }, { name: "キャノンEF-Mマウント" }, { name: "Xマウント" }, { name: "シグマSAマウント" }])
+
+
   # テレビ/映像機器
   tv_set, projector, blu_ray_recorder, dvd_recorder, blu_ray_player, dvd_player, video_cable, other = television.children.create([{ name: "テレビ" }, { name: "プロジェクター" }, { name: "ブルーレイレコーダー" }, { name: "DVDレコーダー" }, { name: "ブルーレイプレーヤー" }, { name: "DVDプレーヤー" }, { name: "映像用ケーブル" }, { name: "その他" }])
+
+  # テレビ・サイズ
+  to_20inches, to_26inches, to_32inches, to_37inches, to_40inches, to_42inches, to_46inches, to_52inches, to_60inches, more_60inches = tv_set.children.create([{ name: "〜20インチ" }, { name: "20〜26インチ" }, { name: "26〜32インチ" }, { name: "32〜37インチ" }, { name: "37〜40インチ" }, { name: "40〜42インチ" }, { name: "42〜46インチ" }, { name: "46〜52インチ" }, { name: "52〜60インチ" }, { name: "60インチ〜" }])
 
   # オーディオ機器
   portable_player, earphone, headphones, amplifer, speaker, cable, radio, other = audio.children.create([{ name: "ポータブルプレーヤー" }, { name: "イヤフォン" }, { name: "ヘッドフォン" }, { name: "アンプ" }, { name: "スピーカー" }, { name: "ケーブル/シールド" }, { name: "ラジオ" }, { name: "その他" }])
@@ -1003,8 +1013,14 @@ ApplicationRecord.transaction do
   # スノーボード
   board, binding, boots_men, boots_woman, boots_children, wear_men, wear_women, wear_children, accessory, bag, other = snow_board.children.create([{ name: "ボード" }, { name: "バインディング" }, { name: "ブーツ(男性用)" }, { name: "ブーツ(女性用)" }, { name: "ブーツ(子ども用)" }, { name: "ウエア(男性用)" }, { name: "ウエア(女性用)" }, { name: "ウエア(子ども用)" }, { name: "アクセサリー" }, { name: "バッグ" }, { name: "その他" }])
 
+  # スノーボード・ボード・サイズ
+  less_140cm, to_145cm, to_150cm, to_155cm, to_160cm, to_165cm, to_170cm = board.children.create([{ name: "135cm-140cmm未満" }, { name: "140cm-145cm未満" }, { name: "145cm-150cm未満" }, { name: "150cm-155cm未満" }, { name: "155cm-160cm未満" }, { name: "160cm-165cm未満" }, { name: "165cm-170cm未満" }])
+
   # スキー
-  board, boots_men, boots_woman, boots_children, binding, wear_men, wear_women, wear_children, stock, other = skiing.children.create([{ name: "ボード" }, { name: "ブーツ(男性用)" }, { name: "ブーツ(女性用)" }, { name: "ブーツ(子ども用)" }, { name: "バインディング" }, { name: "ウエア(男性用)" }, { name: "ウエア(女性用)" }, { name: "ウエア(子ども用)" }, { name: "ストック" }, { name: "その他" }])
+  ski, boots_men, boots_woman, boots_children, binding, wear_men, wear_women, wear_children, stock, other = skiing.children.create([{ name: "板" }, { name: "ブーツ(男性用)" }, { name: "ブーツ(女性用)" }, { name: "ブーツ(子ども用)" }, { name: "バインディング" }, { name: "ウエア(男性用)" }, { name: "ウエア(女性用)" }, { name: "ウエア(子ども用)" }, { name: "ストック" }, { name: "その他" }])
+
+  # スキー板・サイズ
+  cm_140, cm_150, cm_160, cm_170, screwboard, for_children, other = ski.children.create([{ name: "140cm〜" }, { name: "150cm〜" }, { name: "160cm〜" }, { name: "170cm〜" }, { name: "スキーボード" }, { name: "子ども用" }, { name: "その他" }])
 
   # その他スポーツ
   dance, surfing, basketball, badminton, volleyball, skateboard, athletics, rugby, american_football, boxing, bowling, other = other_sports.children.create([{ name: "ダンス/バレエ" }, { name: "サーフィン" }, { name: "バスケットボール" }, { name: "バドミントン" }, { name: "バレーボール" }, { name: "スケートボード" }, { name: "陸上競技" }, { name: "ラグビー" }, { name: "アメリカンフットボール" }, { name: "ボクシング" }, { name: "ボウリング" }, { name: "その他" }])
@@ -1075,17 +1091,35 @@ ApplicationRecord.transaction do
   # 自動車タイヤ/ホイール
   tire_set, tire, wheel, other = automotive_tires.children.create([{ name: "タイヤ/ホイールセット" }, { name: "タイヤ" }, { name: "ホイール" }, { name: "その他" }])
 
+  # タイヤ/ホイールセット・サイズ
+  inches_12, inches_13, inches_14, inches_15, inches_16, inches_17, inches_18, inches_19, inches_20, inches_21, inches_22, inches_23, inches_24 = tire_set.children.create([{ name: "12インチ" }, { name: "13インチ" }, { name: "14インチ" }, { name: "15インチ" }, { name: "16インチ" }, { name: "17インチ" }, { name: "18インチ" }, { name: "19インチ" }, { name: "20インチ" }, { name: "21インチ" }, { name: "22インチ" }, { name: "23インチ" }, { name: "24インチ" }])
+
+  # タイヤ・サイズ
+  inches_12, inches_13, inches_14, inches_15, inches_16, inches_17, inches_18, inches_19, inches_20, inches_21, inches_22, inches_23, inches_24 = tire.children.create([{ name: "12インチ" }, { name: "13インチ" }, { name: "14インチ" }, { name: "15インチ" }, { name: "16インチ" }, { name: "17インチ" }, { name: "18インチ" }, { name: "19インチ" }, { name: "20インチ" }, { name: "21インチ" }, { name: "22インチ" }, { name: "23インチ" }, { name: "24インチ" }])
+
+  # ホイールセット・サイズ
+  inches_12, inches_13, inches_14, inches_15, inches_16, inches_17, inches_18, inches_19, inches_20, inches_21, inches_22, inches_23, inches_24 = wheel.children.create([{ name: "12インチ" }, { name: "13インチ" }, { name: "14インチ" }, { name: "15インチ" }, { name: "16インチ" }, { name: "17インチ" }, { name: "18インチ" }, { name: "19インチ" }, { name: "20インチ" }, { name: "21インチ" }, { name: "22インチ" }, { name: "23インチ" }, { name: "24インチ" }])
+
+  # その他・サイズ
+  inches_12, inches_13, inches_14, inches_15, inches_16, inches_17, inches_18, inches_19, inches_20, inches_21, inches_22, inches_23, inches_24 = other.children.create([{ name: "12インチ" }, { name: "13インチ" }, { name: "14インチ" }, { name: "15インチ" }, { name: "16インチ" }, { name: "17インチ" }, { name: "18インチ" }, { name: "19インチ" }, { name: "20インチ" }, { name: "21インチ" }, { name: "22インチ" }, { name: "23インチ" }, { name: "24インチ" }])
+
   # 自動車パーツ
   suspension, brake, exterior, light, interior_item, steering, muffler_system, engine, clutch, electrical_components, reinforced_parts, general_parts, foreign_car_parts, other = car_parts.children.create([{ name: "サスペンション" }, { name: "ブレーキ" }, { name: "外装、エアロパーツ" }, { name: "ライト" }, { name: "内装品、シート" }, { name: "ステアリング" }, { name: "マフラー・排気系" }, { name: "エンジン、過給機、冷却装置" }, { name: "クラッチ、ミッション、駆動系" }, { name: "電装品" }, { name: "補強パーツ" }, { name: "汎用パーツ" }, { name: "外国自動車用パーツ" }, { name: "その他" }])
 
   # 自動車アクセサリー
   in_car_accessory, car_navigation_system, car_audio, external_accessory, maintenance_goods, child_seat, drive_recorder, radar_detector, catalog, security, etc, other = automotive_accessory.children.create([{ name: "車内アクセサリー" }, { name: "カーナビ" }, { name: "カーオーディオ" }, { name: "車外アクセサリー" }, { name: "メンテナンス用品" }, { name: "チャイルドシート" }, { name: "ドライブレコーダー" }, { name: "レーダー/探知機" }, { name: "カタログ/マニュアル" }, { name: "セキュリティ" }, { name: "ETC" }, { name: "その他" }])
 
+  # オートバイ車体・サイズ
+  less_50cc, to_125cc, to_250cc, to_400cc, to_750cc, more_751cc = motorcycle_body.children.create([{ name: "50cc以下" }, { name: "51cc-125cc" }, { name: "126cc-250cc" }, { name: "251cc-400cc" }, { name: "401cc-750cc" }, { name: "751cc以上" }])
+
   # オートバイパーツ
   tire, muffler_system, engine, cowl, suspension, wheel, sheet, brake, tank, light, chain, meter, electrical_system, mirror, foreign_motorcycle_parts, other = mortorcycle_parts.children.create([{ name: "タイヤ" }, { name: "マフラー" }, { name: "エンジン、冷却装置" }, { name: "カウル、フェンダー、外装" }, { name: "サスペンション" }, { name: "ホイール" }, { name: "シート" }, { name: "ブレーキ" }, { name: "タンク" }, { name: "ライト、ウィンカー" }, { name: "チェーン、スプロケット、駆動系" }, { name: "メーター" }, { name: "電装系" }, { name: "ミラー" }, { name: "外国オートバイ用パーツ" }, { name: "その他" }])
 
   # オートバイアクセサリー
   helmet, bike_wear, accessory, maintenance, catalog, other = motorcycle_accessory.children.create([{ name: "ヘルメット/シールド" }, { name: "バイクウエア/装備" }, { name: "アクセサリー" }, { name: "メンテナンス" }, { name: "カタログ/マニュアル" }, { name: "その他" }])
+
+  # ヘルメット・サイズ
+  xs, s, m, l, xl, xxl, free_size, for_children = helmet.children.create([{ name: "XSサイズ以下" }, { name: "Sサイズ" }, { name: "Mサイズ" }, { name: "Lサイズ" }, { name: "XLサイズ" }, { name: "XXLサイズ以上" }, { name: "フリーサイズ" }, { name: "子ども用" }])
 
   # その他
   summary_selling, pet_supplies, food, drinks, daily_necessities, antique, stationery, office, others = others.children.create([{ name: "まとめ売り" }, { name: "ペット用品" }, { name: "食品" }, { name: "飲料/酒" }, { name: "日用品/生活雑貨/旅行" }, { name: "アンティーク/コレクション" }, { name: "文房具/事務用品" }, { name: "事務/店舗用品" }, { name: "その他" }])
@@ -1110,5 +1144,4 @@ ApplicationRecord.transaction do
 
   # その他・事務/店舗用品
   office_general, office_furniture, store_supplies, oa_equipment, wrapping, other = office.children.create([{ name: "オフィス用品一般" }, { name: "オフィス家具" }, { name: "店舗用品" }, { name: "OA機器" }, { name: "ラッピング/包装" }, { name: "その他" }])
-
 end
