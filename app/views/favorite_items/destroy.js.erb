@@ -1,0 +1,4 @@
+$('#favorite-count').html("<%= @favorite_count %>");
+$('#heart-icon').removeClass('fa fa-heart').addClass('far fa-heart').css('color', '#ccc');
+$('.liked').removeClass().addClass('likes');
+$('#link-likes').attr({'data-method': 'post'});

@@ -4,7 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_many :items
+<<<<<<< HEAD
   has_many :creditcards
+=======
+  has_many :favorite_items, dependent: :destroy
+>>>>>>> shunke434343/master
   has_one :profile
   has_many :sns_credentials
   validates :nickname,               presence: true, length: { maximum: 20 }
@@ -53,16 +57,11 @@ class User < ApplicationRecord
           user_id: user.id
           )
       else
-        user = User.create(
-          nickname: auth.info.name,
-          email:    auth.info.email,
-          password: Devise.friendly_token[0, 20]
-          )
-        SnsCredential.create(
-          uid: uid,
-          provider: provider,
-          user_id: user.id
-          )
+        user_info = [
+          {nickname: auth.info.name},
+          {email:    auth.info.email},
+          {password: Devise.friendly_token[0, 20]}
+        ]
       end
     end
     return user

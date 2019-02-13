@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_02_09_074116) do
+=======
+ActiveRecord::Schema.define(version: 2019_02_11_091131) do
+>>>>>>> shunke434343/master
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -20,12 +24,23 @@ ActiveRecord::Schema.define(version: 2019_02_09_074116) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
+<<<<<<< HEAD
   create_table "creditcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "customer_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_creditcards_on_user_id"
+=======
+  create_table "favorite_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_favorite_items_on_item_id"
+    t.index ["user_id", "item_id"], name: "index_favorite_items_on_user_id_and_item_id", unique: true
+    t.index ["user_id"], name: "index_favorite_items_on_user_id"
+>>>>>>> shunke434343/master
   end
 
   create_table "item_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -98,7 +113,12 @@ ActiveRecord::Schema.define(version: 2019_02_09_074116) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
   add_foreign_key "creditcards", "users"
+=======
+  add_foreign_key "favorite_items", "items"
+  add_foreign_key "favorite_items", "users"
+>>>>>>> shunke434343/master
   add_foreign_key "item_photos", "items"
   add_foreign_key "items", "users"
   add_foreign_key "profiles", "users"

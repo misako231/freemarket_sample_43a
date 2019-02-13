@@ -6,11 +6,15 @@
     .parent-item-container__item--main-content
       .parent-item-container__item--main-content__item-photo
         .parent-item-container__item--main-content__item-photo__main
-          = image_tag "#{@item.item_photos.first.image}", size: "300x300", alt: "写真"
+          %ul
+            - @item.item_photos.each do |photo|
+              %li
+                = image_tag "#{photo.image}", size: "300x300"
         .parent-item-container__item--main-content__item-photo__sub
-          - @item.item_photos.each do |photo|
-            .parent-item-container__item--main-content__item-photo__sub-containts
-              = image_tag "#{photo.image}", size: "75x75", alt: "写真"
+          %ul
+            - @item.item_photos.each do |photo|
+              %li.parent-item-container__item--main-content__item-photo__sub-containts
+                = image_tag "#{photo.image}", size: "75x75", alt: "写真"
       %table.item-container__item-detail
         %tr.item-container__item-detail__tr
           %th 出品者
@@ -70,19 +74,42 @@
         = number_with_delimiter("#{@item.price}")
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
+    .parent-item-container__speech-bubble
+      .sales__point__message
+        をお持ちです
     = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
       購入画面に進む
     .parent-item-container__item-description
       = @item.comment
     .parent-item-container__various-btn
       .parent-item-container__various-btn__left
-        %button.item-container__various-btn__left__likes
-          %i.far.fa-heart
-          %span いいね!
-          %span 6
-        %button.item-container__various-btn__left__report
-          %i.far.fa-flag
-          %span 不適切な商品の報告
+        - if user_signed_in?
+          - if @item.favorite_items.find_by(user_id: current_user.id).present?
+            = link_to item_favorite_items_path(item_id: @item.id, user_id: current_user.id), id: "link-likes", remote: true, method: :delete do
+              %button.liked
+                = fa_icon "heart", id: "heart-icon"
+                %span いいね!
+                %span#favorite-count
+                  = @item.favorite_items.length.to_i
+          - else
+            = link_to item_favorite_items_path(item_id: @item.id, user_id: current_user.id), id: "link-likes", remote: true, method: :post do
+              %button.likes
+                %i#heart-icon.far.fa-heart
+                %span いいね!
+                %span#favorite-count
+                  = @item.favorite_items.length.to_i
+        - else
+          = link_to new_user_session_path, id: "link-likes" do
+            %button.likes
+              %i#heart-icon.far.fa-heart
+              %span いいね!
+              %span#favorite-count
+                = @item.favorite_items.length.to_i
+        &emsp;
+        = link_to "#", id: "link-report" do
+          %button.report
+            %i.far.fa-flag
+            %span 不適切な商品の報告
       .parent-item-container__various-btn__safety
         .parent-item-container__various-btn__safety__link-contents
           =link_to "#", class: "lock" do
