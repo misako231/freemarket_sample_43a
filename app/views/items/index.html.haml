@@ -1,4 +1,10 @@
 = render 'shared/header'
+- if flash[:bought]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:bought]
+    .delete-success-flash__close.close-btn
+      ×
 
 %main.index-conteiner
   .slick_container

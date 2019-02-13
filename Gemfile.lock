@@ -55,7 +55,7 @@ GEM
     arel (9.0.0)
     bcrypt (3.1.12)
     bindex (0.5.0)
-    bootsnap (1.3.2)
+    bootsnap (1.4.0)
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
@@ -102,7 +102,7 @@ GEM
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     database_cleaner (1.7.0)
-    devise (4.5.0)
+    devise (4.6.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
@@ -111,10 +111,6 @@ GEM
     diff-lcs (1.3)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.6.0)
-    dotenv-rails (2.6.0)
-      dotenv (= 2.6.0)
-      railties (>= 3.2, < 6.0)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
     erubi (1.8.0)
@@ -126,7 +122,7 @@ GEM
     factory_bot_rails (5.0.1)
       factory_bot (~> 5.0.0)
       railties (>= 4.2.0)
-    faker (1.9.1)
+    faker (1.9.3)
       i18n (>= 0.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
@@ -292,6 +288,11 @@ GEM
       thor (>= 0.19.0, < 2.0)
     raindrops (0.19.0)
     rake (12.3.2)
+    ransack (2.1.1)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -403,7 +404,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   devise
-  dotenv-rails
   enum_help
   factory_bot_rails
   faker
@@ -426,6 +426,7 @@ DEPENDENCIES
   rails (~> 5.2.2)
   rails-controller-testing
   rails-i18n
+  ransack
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver

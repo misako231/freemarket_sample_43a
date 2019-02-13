@@ -1,0 +1,2 @@
+class PointRecordsController < ApplicationController
+end
