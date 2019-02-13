@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 2019_02_11_091131) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
+  create_table "creditcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "customer_token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_creditcards_on_user_id"
+  end
+
   create_table "favorite_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"
@@ -100,6 +108,7 @@ ActiveRecord::Schema.define(version: 2019_02_11_091131) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "creditcards", "users"
   add_foreign_key "favorite_items", "items"
   add_foreign_key "favorite_items", "users"
   add_foreign_key "item_photos", "items"

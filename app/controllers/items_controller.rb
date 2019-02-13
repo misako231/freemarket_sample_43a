@@ -15,9 +15,6 @@ class ItemsController < ApplicationController
   def show
   end
 
-  def buy
-  end
-
   def new
     @item = Item.new
     10.times { @item.item_photos.build }
@@ -63,6 +60,22 @@ class ItemsController < ApplicationController
     @items = Item.includes([:item_photos, :category]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
   end
 
+  def buy
+    @item  = Item.find(params[:id])
+    @user = User.find(current_user.id)
+  end
+
+  def charge
+    Payjp.api_key = Rails.application.credentials.PAYJP_SECRET_KEY
+    price = params[:item][:price]
+
+    @creditcard = Creditcard.includes(:user).where(user_id: current_user.id)
+    user = Payjp::Customer.retrieve(@creditcard[0].customer_token)
+    Item.create_charge_by_customer(price, user)
+
+    redirect_to root_path, flash: {bought: '商品を購入しました'}
+  end
+
   private
 
   def item_params
@@ -82,6 +95,4 @@ class ItemsController < ApplicationController
     @child_category = set_ancestors(@grandchild_category).last
     @parent_category = set_ancestors(@grandchild_category).first
   end
-
-
 end
