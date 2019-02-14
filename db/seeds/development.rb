@@ -1171,10 +1171,6 @@ CSV.foreach('db/csv/items.csv', headers: true) do |row|
                price: row['price'],
                condition: row['condition'],
                user_id: row['user_id'],
-               closed: row['closed'])
-end
-
-100.upto(115) do |n|
-  ItemPhoto.create!(image: open("#{Rails.root}/db/fixture/image#{n}.jpg"),
-                      item_id: n )
+               closed: row['closed'],
+               item_photos_attributes: [{image: open("#{Rails.root}/db/fixture/image#{row['id']}.jpg")}])
 end
