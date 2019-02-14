@@ -10,7 +10,7 @@
         .icon__facebook
           %i.fab.fa-facebook
         Facebookでログイン
-      = link_to user_facebook_omniauth_authorize_path, id: 'google__login', class: 'btn__default btn__sns btn__sns-google' do
+      = link_to user_google_oauth2_omniauth_authorize_path, id: 'google__login', class: 'btn__default btn__sns btn__sns-google' do
         .icon__google-plus
           %i.fab.fa-google-plus-g
         Googleでログイン
