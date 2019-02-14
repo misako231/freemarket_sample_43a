@@ -119,7 +119,8 @@
             =fa_icon "lock"
             あんしん・あんぜんへの取り組み
   .parent-comment-container
-    = render partial: "comment"
+    -if @comments
+      = render partial: "comment", collection: @comments
     =form_with url: item_comments_path(item_id: @item.id), class: "parent-comment-container__message-form", local: true do |f|
       %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
       =f.text_area :content, class: "textarea"

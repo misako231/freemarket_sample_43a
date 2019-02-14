@@ -1,14 +1,13 @@
 .parent-comment-container__message-container
   =image_tag('non_pics_icon.png',class: "non_pics_icon")
   .parent-comment-container__message-container-right
-    .parent-comment-container__message-container-right__name みっちゃ
+    .parent-comment-container__message-container-right__name
+      = comment.user.nickname
     .parent-comment-container__message-container-right__body
       %i.fas.fa-caret-right
       .parent-comment-container__message-container-right__body-text
-        -if @comments
-          - @comments.each do |comment|
-            %p
-              = comment.content
+        %p
+          = comment.content
       .parent-comment-container__message-container-right__body-icons
         .parent-comment-container__message-container-right__body-icons__time
           %i.far.fa-clock
