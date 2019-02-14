@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    resources :comments, only: [:create] do
+    end
   end
   resources :users, only: [:create] do
     resources :creditcards, only: [:create] do
