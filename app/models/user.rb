@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_many :items
@@ -41,27 +39,19 @@ class User < ApplicationRecord
   end
 
   def self.find_oauth(auth)
-    uid = auth.uid
-    provider = auth.provider
-    snscredential = SnsCredential.find_by(uid: uid, provider: provider)
-    if snscredential.present?
-      user = User.find_by(id: snscredential.user_id)
-    else
-      user = User.find_by(email: auth.info.email)
-      if user.present?
-        SnsCredential.create(
-          uid: uid,
-          provider: provider,
-          user_id: user.id
-          )
-      else
-        user_info = [
-          {nickname: auth.info.name},
-          {email:    auth.info.email},
-          {password: Devise.friendly_token[0, 20]}
-        ]
-      end
-    end
-    return user
+      uid = auth.uid
+      provider = auth.provider
+        user = User.find_by(email: auth.info.email)
+        if user.present?
+          return user
+        else
+          user_info = [
+            {nickname: auth.info.name},
+            {email:    auth.info.email},
+            {password: Devise.friendly_token[0, 20]},
+            {uid: uid},
+            {provider: provider}]
+        end
+    return user_info
   end
 end
