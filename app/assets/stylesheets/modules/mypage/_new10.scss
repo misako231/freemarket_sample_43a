@@ -32,6 +32,7 @@
         @include button-default-style();
         border: 1px solid transparent;
         transition: all ease-out .3s;
+        text-decoration: none;
       }
       .btn__sns-facebook {
         position: relative;

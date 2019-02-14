@@ -1,8 +1,10 @@
 class ItemsController < ApplicationController
   include GetCategories
+  include GetPoints
   before_action :get_root
   before_action :set_item, only: [:show, :own]
   before_action :get_category_tree, only: [:show, :own]
+  before_action :total_point, only: [:show]
 
   def index
     @items = Item.with_category.includes(:item_photos, :favorite_items).new_arrival
@@ -34,7 +36,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @users_item = Item.where(user_id: @item.user_id).all
+    @users_item = Item.includes(:item_photos, :favorite_items).where(user_id: @item.user_id).all
     @previous = @item.next_to_item("previous")
     @next_item = @item.next_to_item("next_item")
   end
@@ -86,13 +88,14 @@ class ItemsController < ApplicationController
     @item = Item.includes([:user, :item_photos, :category, :favorite_items]).find(params[:id])
   end
 
-  def set_ancestors(category)
-    Category.ancestors_of(category)
-  end
-
   def get_category_tree
-    @grandchild_category = Category.find(@item.category_id)
-    @child_category = set_ancestors(@grandchild_category).last
-    @parent_category = set_ancestors(@grandchild_category).first
+    category = Category.find(@item.category_id)
+    categories = category.ancestry.split('/')
+    if categories.length == 3
+      @parent_category, @child_category, @grandchild_category = Category.find(categories)
+    else
+      @parent_category, @child_category = Category.find(categories)
+      @grandchild_category = Category.find(@item.category_id)
+    end
   end
 end
