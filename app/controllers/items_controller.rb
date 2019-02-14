@@ -14,9 +14,6 @@ class ItemsController < ApplicationController
     @cosme_items = @items.search_with_root_id(7).first(4)
   end
 
-  def show
-  end
-
   def new
     @item = Item.new
     10.times { @item.item_photos.build }
@@ -37,8 +34,10 @@ class ItemsController < ApplicationController
 
   def show
     @users_item = Item.includes(:item_photos, :favorite_items).where(user_id: @item.user_id).all
+    @item = Item.find(params[:id])
     @previous = @item.next_to_item("previous")
     @next_item = @item.next_to_item("next_item")
+    @comments = @item.comments.includes(:user)
   end
 
   def own
