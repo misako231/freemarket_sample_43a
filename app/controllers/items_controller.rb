@@ -59,7 +59,21 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.includes([:item_photos, :category]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
+    # ransakで検索
+    if params[:q].present?
+      keywords = params[:q][:name_cont].split(/[\p{blank}\s]+/)
+      @search = Item.ransack(name_cont_all: keywords)
+      # 検索結果
+      @items = @search.result.page(params[:page]).per(NUM_PER_PAGE)
+    elsif params[:root_id].present?
+      @search_children = Category.where(ancestry: params[:root_id])
+      render json: @search_children
+    end
+    # # header検索
+    # else
+    #   @items = Item.includes([:item_photos, :category]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
+    # end
+
   end
 
   def buy

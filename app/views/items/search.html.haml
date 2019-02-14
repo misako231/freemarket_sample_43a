@@ -20,11 +20,11 @@
                   %p.items__box__tax (税込)
     = paginate @items
   .search__side
-    = form_with url: search_items_path, class: "search__extend__container", novalidate: true do |f|
+    = search_form_for @search, url: search_items_path, class: "search__extend__container", novalidate: true do |f|
       .search__sort
         .form__group
           .select__wrap
-            = f.select :sort, Item::SORT, { prompt: "並び替え" }, class: "select__default"
+            = select_tag 'sort', options_for_select(Item::SORT), prompt: "並び替え", class: "select__default"
             %i.fas.fa-angle-down
       .search__dropdown__content
         %h3.visible__large
@@ -33,13 +33,16 @@
           %label
             %i.fas.fa-plus
             %span キーワードを追加する
-            %input.input__default{ type: 'text', value: "#{params[:keyword]}", name: 'keyword', placeholder: '例) 値下げ'}
+            = f.text_field :name_cont, class: 'input__default', value: "#{params[:q][:name_cont]}", placeholder: '例) 値下げ'
         .form__group
           %label
             %i.fas.fa-list-ul
             %span カテゴリーを選択する
-          .select__wrap
-            %select.select__default
+          .select__wrap#search-first-category
+            = select_tag 'root_category', options_from_collection_for_select(@parents, :id, :name), prompt: "すべて", class: 'select__default'
+            %i.fas.fa-angle-down
+          .select__wrap#search-second-category
+            = select_tag 'root_category', options_for_select([]), prompt: "すべて", class: 'select__default'
             %i.fas.fa-angle-down
           .select__child
             .select__wrap.select__category__child
@@ -88,7 +91,7 @@
             %i.fas.fa-coins
             %span 価格
           .select__wrap
-            = f.select :search_price, Item::SEARCH_PRICE, { prompt: "選択してください" }, class: "select__default"
+            = select_tag 'search_price', options_for_select(Item::SEARCH_PRICE), prompt: "選択してください", class: "select__default"
             %i.fas.fa-angle-down
             %input.input__default{ type: 'number', placeholder: '¥ Min' }
             %span.wavy__line ~
@@ -126,6 +129,7 @@
         .search__extend__btn--empty
         .search__extend__btn
           .btn__default.btn__gray クリア
-          %button.btn__default.btn__red{ type: 'submit' } 完了
+          = f.submit class: "btn__default btn__red" do
+            完了
 = render 'shared/sellbtn'
 = render 'shared/footer'
