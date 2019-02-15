@@ -1,17 +1,27 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-   registrations: 'users/registrations'
-  }
+   registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
   get '/users', to: redirect("/users/sign_up")
   root to: 'items#index'
+  post 'items/:id', to: 'items#charge'
   resources :mypage, only: [:new]
   resources :categories, only: [:index, :show]
   resources :items, only: [:index, :show, :new, :create] do
+    resources :favorite_items, only: [:create] do
+      collection do
+        delete :destroy
+      end
+    end
     member do
       get :buy
     end
+    collection do
+      get :search
+    end
   end
   resources :users, only: [:create] do
+    resources :creditcards, only: [:create] do
+    end
     resources :items, only: [:edit, :update, :destroy] do
       collection do
         get :onsale
@@ -26,11 +36,10 @@ Rails.application.routes.draw do
       member do
         get :identification
         get :card
-        get :credit
-        post :pay
       end
       collection do
         get :logout
+        get :credit
         get :done
       end
     end
