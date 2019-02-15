@@ -238,12 +238,13 @@
             display: none;
           }
           .select__category__grand-child {
-            display: none;
+            display: flex;
           }
           .is__show {
             display: block;
           }
           .checkbox__default {
+            align-self: stretch;
             position: relative;
             display: inline-block;
             margin: 16px 0 0;
