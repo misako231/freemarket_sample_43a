@@ -55,7 +55,7 @@
           %label
             %i.fas.fa-tag
             %span ブランド名から探す
-          %input.input__default{ type: 'text', name: 'brand_name', placeholder: '例)シャネル' }
+          = f.text_field :brand_name_eq, class: 'input__default', value: "#{@search_brand.to_s}", placeholder: '例)シャネル'
           %input{ type: 'hidden', name: 'brand_id' }
           %ul
         .form__group
@@ -80,14 +80,15 @@
           .select__wrap
             = select_tag 'search_price', options_for_select(Item::SEARCH_PRICE), prompt: "選択してください", class: "select__default"
             %i.fas.fa-angle-down
-            %input.input__default{ type: 'number', placeholder: '¥ Min' }
+            = f.number_field :price_gteq, placeholder: '¥ Min', class: 'input__default'
             %span.wavy__line ~
-            %input.input__default{ type: 'number', placeholder: '¥ Max' }
+            = f.number_field :price_lteq, placeholder: '¥ Max', class: 'input__default'
         .form__group
           %label
             %i.fas.fa-star
             %span 商品の状態
           %div
+            = f.collection_check_boxes :condition_eq_any, Item.conditions, :index, :index
             .checkbox__default
               %label{ for: 'condition_all' }
                 %input{ type: 'checkbox', id: 'condition_all', class: 'child__checkbox' }

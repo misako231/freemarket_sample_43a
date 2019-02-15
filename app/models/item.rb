@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   enum days_to_ship: [:fast, :normal, :slow]
 
   SORT = {"価格の安い順": "sort1", "価格の高い順": "sort2", "出品の古い順": "sort3", "出品の新しい順": "sort4", "いいね!の多い順": "sort5"}
-  SEARCH_PRICE = {"300 ~ 1000": "price1", "1000 ~ 5000": "price2", "5000 ~ 10000": "price3", "10000 ~ 30000": "price4", "30000 ~ 50000": "price5", "50000 ~": "price5"}
+  SEARCH_PRICE = {"300 ~ 1000": "300-1000", "1000 ~ 5000": "1000-5000", "5000 ~ 10000": "5000-10000", "10000 ~ 30000": "10000-30000", "30000 ~ 50000": "30000-50000", "50000 ~": "50000"}
 
   def next_to_item(next_or_previous)
     if next_or_previous == "previous"
