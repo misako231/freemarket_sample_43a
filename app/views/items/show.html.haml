@@ -119,14 +119,15 @@
             =fa_icon "lock"
             あんしん・あんぜんへの取り組み
   .parent-comment-container
-    -if @comments
-      = render partial: "comment", collection: @comments
-    =form_with url: item_comments_path(item_id: @item.id), class: "parent-comment-container__message-form", local: true do |f|
-      %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      =f.text_area :content, class: "textarea"
-      / =f.hidden_field :item
-      %button.parent-comment-container__parent-comment-submit-button{type: "submit"}
-        %span コメントする
+    .parent-comment-container-inner
+      -if @comments
+        = render partial: "comment", collection: @comments
+    -if current_user
+      =form_with url: item_comments_path(item_id: @item.id), class: "parent-comment-container__message-form" do |f|
+        %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        =f.text_area :content, class: "textarea"
+        %button.parent-comment-container__parent-comment-submit-button{type: "submit"}
+          %span コメントする
 
   .parent-nav-item-link
     .parent-nav-item-link-prev
