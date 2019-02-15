@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_065926) do
     t.integer "condition", null: false
     t.bigint "user_id", null: false
     t.boolean "closed", default: false, null: false
+    t.integer "transportiotation_method", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_items_on_name"
@@ -107,6 +108,8 @@ ActiveRecord::Schema.define(version: 2019_02_13_065926) do
     t.string "nickname", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "provider"
+    t.string "uid"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
