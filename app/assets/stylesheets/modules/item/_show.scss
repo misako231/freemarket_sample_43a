@@ -294,12 +294,25 @@
           &-icons {
             margin-top:8px;
             color:#aaa;
-            &__time {
-              display:inline-block;
+            display:flex;
+            justify-content:space-between;
+            &__left {
+              display:flex;
+              flex-direction:row;
+              align-items:center;
+              .fa-clock {
+                margin-right:3px;
+              }
+              &__time {
+                margin-right:8px;
+              }
             }
-            &__flag {
-              display:inline-block;
-              margin-left:480px;
+            &__right {
+              display:flex;
+              flex-direction:row;
+              .fa-trash-alt {
+                margin-left:8px;
+              }
             }
           }
         }
@@ -320,6 +333,13 @@
         padding:10px;
         margin:8px 0 0;
         outline: 0;
+        &[type="number"]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+          }
+        &:focus {
+          border-color:#0099e8;
+        }
       }
       button,&__parent-comment-submit-button {
         background-color:#aaa;

@@ -9,11 +9,16 @@
         %p
           = comment.content
       .parent-comment-container__message-container-right__body-icons
-        .parent-comment-container__message-container-right__body-icons__time
-          %i.far.fa-clock
-        %span 99日前
-        .parent-comment-container__message-container-right__body-icons__flag
-          %i.far.fa-flag
+        .parent-comment-container__message-container-right__body-icons__left
+          .parent-comment-container__message-container-right__body-icons__time
+            %i.far.fa-clock
+          %span 99日前
+        .parent-comment-container__message-container-right__body-icons__right
+          .parent-comment-container__message-container-right__body-icons__flag
+            %i.far.fa-flag
+          - if @item.user
+            .parent-comment-container__message-container-right__body-icons__trash-can
+              %i.fas.fa-trash-alt
 
 
 
