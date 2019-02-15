@@ -3,7 +3,9 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   has_many :item_photos, dependent: :destroy
   has_many :favorite_items, dependent: :destroy
+  has_many :order_statuses
   accepts_nested_attributes_for :item_photos, allow_destroy: true
+  accepts_nested_attributes_for :order_statuses
   belongs_to :user
   belongs_to :category
   validates :name,           presence: true, length: { maximum: 40 }
