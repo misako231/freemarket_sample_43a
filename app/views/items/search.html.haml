@@ -20,7 +20,7 @@
                   %p.items__box__tax (税込)
     = paginate @items
   .search__side
-    = search_form_for @search, url: search_items_path, class: "search__extend__container", novalidate: true do |f|
+    = search_form_for @q, url: search_items_path, class: "search__extend__container", novalidate: true do |f|
       .search__sort
         .form__group
           .select__wrap
@@ -30,41 +30,27 @@
         %h3.visible__large
           詳細検索
         .form__group
-          %label
+          = f.label :name_cont_all do
             %i.fas.fa-plus
             %span キーワードを追加する
-            = f.text_field :name_cont, class: 'input__default', value: "#{params[:q][:name_cont]}", placeholder: '例) 値下げ'
+            = f.text_field :name_cont_all, class: 'input__default', value: "#{@search_keyword}", placeholder: '例) 値下げ'
         .form__group
           %label
             %i.fas.fa-list-ul
             %span カテゴリーを選択する
           .select__wrap#search-first-category
-            = select_tag 'root_category', options_from_collection_for_select(@parents, :id, :name), prompt: "すべて", class: 'select__default'
+            = select_tag 'root-category', options_from_collection_for_select(@parents, :id, :name), prompt: "すべて", class: 'select__default'
             %i.fas.fa-angle-down
           .select__wrap#search-second-category
-            = select_tag 'root_category', options_for_select([]), prompt: "すべて", class: 'select__default'
+            = select_tag 'child-category', options_for_select([]), prompt: "すべて", class: 'select__default'
             %i.fas.fa-angle-down
-          .select__child
-            .select__wrap.select__category__child
-              %select.select__default{ disabled: true }
-              %i.fas.fa-angle-down
+          -# .select__child
+          -#   .select__wrap.select__category__child
+          -#     %select.select__default{ disabled: true }
+          -#     %i.fas.fa-angle-down
+          -# = f.collection_check_boxes :category_ancestry_end_any, @categories, :id, :name
           .select__grand-child
             .select__category__grand-child.is__show
-              .checkbox__default
-                %label{ for: 'category__grand-child'}
-                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  Tシャツ/カットソー半袖袖なし
-              .checkbox__default
-                %label{ for: 'category__grand-child'}
-                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  Tシャツ/カットソー半袖袖なし
-              .checkbox__default
-                %label{ for: 'category__grand-child'}
-                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  Tシャツ/カットソー
         .form__group.search__extend__brand
           %label
             %i.fas.fa-tag
@@ -77,6 +63,7 @@
             %i.fas.fa-expand
             %span サイズを指定する
           .select__wrap
+            -# = select_tag 'size-group', options_from_collection_for_select(@parents, :id, :name), prompt: "すべて", class: 'select__default'
             %select.select__default
             %i.fas.fa-angle-down
           .select__child

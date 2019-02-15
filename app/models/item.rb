@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_photos, allow_destroy: true
   belongs_to :user
   belongs_to :category
+  belongs_to :brand
   validates :name,           presence: true, length: { maximum: 40 }
   validates :comment,        presence: true, length: { maximum: 1000 }
   validates :category_id,    presence: true

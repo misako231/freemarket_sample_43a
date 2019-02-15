@@ -59,21 +59,19 @@ class ItemsController < ApplicationController
   end
 
   def search
-    # ransakで検索
     if params[:q].present?
-      keywords = params[:q][:name_cont].split(/[\p{blank}\s]+/)
-      @search = Item.ransack(name_cont_all: keywords)
-      # 検索結果
-      @items = @search.result.page(params[:page]).per(NUM_PER_PAGE)
+      @search_keyword = params[:q][:name_cont_all]
+      params[:q][:name_cont_all] = params[:q][:name_cont_all].split(/[\p{blank}\s]+/)
+      @q = Item.ransack(params[:q])
+      @categories = Category.roots
+      @items = @q.result(distinct: true).page(params[:page]).per(NUM_PER_PAGE)
     elsif params[:root_id].present?
       @search_children = Category.where(ancestry: params[:root_id])
       render json: @search_children
+    elsif params[:child_id].present?
+      @search_grand_children = Category.where("ancestry LIKE ?", "%/#{params[:child_id]}")
+      render json: @search_grand_children
     end
-    # # header検索
-    # else
-    #   @items = Item.includes([:item_photos, :category]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
-    # end
-
   end
 
   def buy
@@ -112,4 +110,8 @@ class ItemsController < ApplicationController
       @grandchild_category = Category.find(@item.category_id)
     end
   end
+
+  # def search_params
+  #   params.require(:q).permit!
+  # end
 end
