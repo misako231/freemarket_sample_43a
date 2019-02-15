@@ -92,3 +92,4 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'active_hash'
 gem 'ransack'
+gem "gretel"

@@ -1,4 +1,14 @@
 = render 'shared/header'
+%nav.bread-crumbs
+  %ul.bread-crumbs__items
+    %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
+      = link_to "" , class: "bread-crumbs__items__value__link" do
+        %span{itemprop: "title"}
+          - breadcrumb :identification_profile
+      %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
+        %span{itemprop: "title"}
+          = breadcrumbs separator: " #{content_tag(:i, '', class: 'fa fa-angle-right')} "
+
 %main.my-indentification
   = render 'shared/mypage-side-nav'
   %section.myinfo.mypage-identification
