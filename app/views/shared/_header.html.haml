@@ -44,13 +44,3 @@
               = link_to "https://www.mercari.com/jp/mypage/", class: "user-nav__list__link" do
                 = fa_icon 'check'
                 %p やることリスト
-%nav.bread-crumbs
-  %ul.bread-crumbs__items
-    %li.bread-crumbs__items__value{ itemscope: "", itemtype: "http://data-vocabulary.org/Breadcrumb" }
-      = link_to "https://www.mercari.com/jp/", class: "bread-crumbs__items__value__link", itemprop: "url" do
-        %span{ itemprop: "title" } メルカリ
-      = fa_icon "angle-right"
-    %li.bread-crumbs__items__value
-      = link_to "https://www.mercari.com/jp/", class: "bread-crumbs__items__value__link", itemprop: "url" do
-        %span{ itemprop: "title" } メルカリ
-      = fa_icon "angle-right"
