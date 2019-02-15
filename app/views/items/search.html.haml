@@ -44,11 +44,6 @@
           .select__wrap#search-second-category
             = select_tag 'child-category', options_for_select([]), prompt: "すべて", class: 'select__default'
             %i.fas.fa-angle-down
-          -# .select__child
-          -#   .select__wrap.select__category__child
-          -#     %select.select__default{ disabled: true }
-          -#     %i.fas.fa-angle-down
-          -# = f.collection_check_boxes :category_ancestry_end_any, @categories, :id, :name
           .select__grand-child
             .select__category__grand-child.is__show
         .form__group.search__extend__brand
@@ -88,17 +83,27 @@
             %i.fas.fa-star
             %span 商品の状態
           %div
-            = f.collection_check_boxes :condition_eq_any, Item.conditions, :index, :index
-            .checkbox__default
-              %label{ for: 'condition_all' }
-                %input{ type: 'checkbox', id: 'condition_all', class: 'child__checkbox' }
-                %span.checkbox__icon
-                すべて
+            = f.collection_check_boxes :condition_eq_any, Item.conditions.map{|k, v| [Item.conditions_i18n[k], v]}, :last, :first do |b|
+              .checkbox__default
+                = b.label do
+                  = b.check_box(class: 'child__icon')
+                  = b.label
+                -# = b.label {b.check_box + b.text}
+                -#
+                -# %label{ for: 'condition_all' }
+                -#   %input{ type: 'checkbox', id: 'condition_all', class: 'child__checkbox' }
+                -#   %span.checkbox__icon
+                -#     = b.text
         .form__group
           %label
             %i.fas.fa-truck.fa-flip-horizontal
             %span 配送料の負担
           %div
+            = f.collection_check_boxes :shipping_fee_eq_any, Item.shipping_fees.map{|k, v| [Item.shipping_fees_i18n[k], v]}, :last, :first do |b|
+              .checkbox__default
+                = b.label do
+                  = b.check_box(class: 'child__icon')
+                  = b.label
             .checkbox__default
               %label{ for: 'shipping_fee_all' }
                 %input{ type: 'checkbox', id: 'shipping_fee_all', class: 'child__checkbox' }
