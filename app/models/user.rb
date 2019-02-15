@@ -1,10 +1,12 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_many :items
+  has_many :creditcards
+  has_many :favorite_items, dependent: :destroy
   has_one :profile
+  has_many :sns_credentials
+  has_many :point_records
   validates :nickname,               presence: true, length: { maximum: 20 }
   validates :password,               length: { maximum: 128 }
   validates :email,                  format: { with: /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/,
@@ -36,4 +38,20 @@ class User < ApplicationRecord
    return months
   end
 
+  def self.find_oauth(auth)
+      uid = auth.uid
+      provider = auth.provider
+        user = User.find_by(email: auth.info.email)
+        if user.present?
+          return user
+        else
+          user_info = [
+            {nickname: auth.info.name},
+            {email:    auth.info.email},
+            {password: Devise.friendly_token[0, 20]},
+            {uid: uid},
+            {provider: provider}]
+        end
+    return user_info
+  end
 end

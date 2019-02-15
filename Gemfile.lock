@@ -48,14 +48,16 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     airbrussh (1.3.1)
       sshkit (>= 1.6.1, != 1.7.0)
+    anbt-sql-formatter (0.1.0)
     ancestry (3.0.5)
       activerecord (>= 3.2.0)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    awesome_print (1.8.0)
     bcrypt (3.1.12)
     bindex (0.5.0)
-    bootsnap (1.3.2)
+    bootsnap (1.4.0)
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
@@ -102,7 +104,7 @@ GEM
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     database_cleaner (1.7.0)
-    devise (4.5.0)
+    devise (4.6.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
@@ -111,10 +113,6 @@ GEM
     diff-lcs (1.3)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.6.0)
-    dotenv-rails (2.6.0)
-      dotenv (= 2.6.0)
-      railties (>= 3.2, < 6.0)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
     erubi (1.8.0)
@@ -123,11 +121,13 @@ GEM
     execjs (2.7.0)
     factory_bot (5.0.0)
       activesupport (>= 4.2.0)
-    factory_bot_rails (5.0.0)
+    factory_bot_rails (5.0.1)
       factory_bot (~> 5.0.0)
       railties (>= 4.2.0)
-    faker (1.9.1)
+    faker (1.9.3)
       i18n (>= 0.7)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
     fog-aws (3.3.0)
       fog-core (~> 2.1)
@@ -150,6 +150,8 @@ GEM
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gretel (3.0.9)
+      rails (>= 3.1.0)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -159,6 +161,7 @@ GEM
       haml (>= 4.0.6, < 6.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    hashie (3.6.0)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -179,6 +182,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-slick-rails (1.9.0)
       railties (>= 3.1)
+    jwt (2.1.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -214,6 +218,8 @@ GEM
     minitest (5.11.3)
     msgpack (1.2.6)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
+    multipart-post (2.0.0)
     mysql2 (0.5.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -222,6 +228,24 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
+    oauth2 (1.4.1)
+      faraday (>= 0.8, < 0.16.0)
+      jwt (>= 1.0, < 3.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
+    omniauth (1.9.0)
+      hashie (>= 3.4.6, < 3.7.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-facebook (5.0.0)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-google-oauth2 (0.6.0)
+      jwt (>= 2.0)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.5)
+    omniauth-oauth2 (1.6.0)
+      oauth2 (~> 1.1)
+      omniauth (~> 1.9)
     orm_adapter (0.5.0)
     payjp (0.0.6)
       rest-client (~> 2.0)
@@ -255,6 +279,10 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-flog (1.5.0)
+      anbt-sql-formatter (>= 0.0.7)
+      awesome_print
+      rails (>= 4.2.0)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
     rails-i18n (5.1.3)
@@ -268,6 +296,11 @@ GEM
       thor (>= 0.19.0, < 2.0)
     raindrops (0.19.0)
     rake (12.3.2)
+    ransack (2.1.1)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -379,12 +412,12 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   devise
-  dotenv-rails
   enum_help
   factory_bot_rails
   faker
   fog-aws
   font-awesome-rails
+  gretel
   haml-rails (~> 1.0)
   jbuilder (~> 2.5)
   jquery-rails
@@ -393,12 +426,17 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mini_magick
   mysql2 (>= 0.4.4, < 0.6.0)
+  omniauth
+  omniauth-facebook
+  omniauth-google-oauth2
   payjp
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.2)
   rails-controller-testing
+  rails-flog
   rails-i18n
+  ransack
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver

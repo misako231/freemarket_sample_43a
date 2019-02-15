@@ -26,6 +26,10 @@ header.mercari-header {
           height: 39px;
           width: 100%;
           padding: 5px 35px 5px 10px;
+          outline: 0;
+          &:focus {
+            border-color: $blue-link-f;
+          }
         }
         .index-search-icon {
             position: absolute;
@@ -35,6 +39,7 @@ header.mercari-header {
             line-height: 39px;
             padding-right: 15px;
           .index-search-btn {
+            display: none;
           }
         }
       }
@@ -243,12 +248,19 @@ header.mercari-header {
     width: 1020px;
     display: flex;
     &__value{
-      margin-right: 5px;
       line-height: 50px;
       &__link {
-        margin-right: 5px;
         text-decoration: none;
         color: $black-f;
+      }
+      .breadcrumbs{
+        a{
+          color: $black-f;
+          text-decoration: none;
+        }
+        span{
+          font-weight: 600;
+        }
       }
     }
   }

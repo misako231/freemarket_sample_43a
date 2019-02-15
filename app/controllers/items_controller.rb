@@ -1,11 +1,13 @@
 class ItemsController < ApplicationController
   include GetCategories
+  include GetPoints
   before_action :get_root
   before_action :set_item, only: [:show, :own]
   before_action :get_category_tree, only: [:show, :own]
+  before_action :total_point, only: [:show]
 
   def index
-    @items = Item.with_category.includes(:item_photos).new_arrival
+    @items = Item.with_category.includes(:item_photos, :favorite_items).new_arrival
     @ladies_items = @items.search_with_root_id(1).first(4)
     @mens_items = @items.search_with_root_id(2).first(4)
     @baby_items = @items.search_with_root_id(3).first(4)
@@ -13,9 +15,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-  end
-
-  def buy
   end
 
   def new
@@ -36,7 +35,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @users_item = Item.where(user_id: @item.user_id).all
+    @users_item = Item.includes(:item_photos, :favorite_items).where(user_id: @item.user_id).all
     @previous = @item.next_to_item("previous")
     @next_item = @item.next_to_item("next_item")
   end
@@ -58,6 +57,26 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.includes([:item_photos, :category]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
+  end
+
+  def buy
+    @item  = Item.find(params[:id])
+    @user = User.find(current_user.id)
+  end
+
+  def charge
+    Payjp.api_key = Rails.application.credentials.PAYJP_SECRET_KEY
+    price = params[:item][:price]
+
+    @creditcard = Creditcard.includes(:user).where(user_id: current_user.id)
+    user = Payjp::Customer.retrieve(@creditcard[0].customer_token)
+    Item.create_charge_by_customer(price, user)
+
+    redirect_to root_path, flash: {bought: '商品を購入しました'}
+  end
+
   private
 
   def item_params
@@ -65,18 +84,17 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.includes([:user, :item_photos, :category]).find(params[:id])
-  end
-
-  def set_ancestors(category)
-    Category.ancestors_of(category)
+    @item = Item.includes([:user, :item_photos, :category, :favorite_items]).find(params[:id])
   end
 
   def get_category_tree
-    @grandchild_category = Category.find(@item.category_id)
-    @child_category = set_ancestors(@grandchild_category).last
-    @parent_category = set_ancestors(@grandchild_category).first
+    category = Category.find(@item.category_id)
+    categories = category.ancestry.split('/')
+    if categories.length == 3
+      @parent_category, @child_category, @grandchild_category = Category.find(categories)
+    else
+      @parent_category, @child_category = Category.find(categories)
+      @grandchild_category = Category.find(@item.category_id)
+    end
   end
-
-
 end

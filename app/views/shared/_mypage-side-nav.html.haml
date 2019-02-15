@@ -91,7 +91,7 @@
     %h3.mypage__side__nav__head 設定
     %ul.mypage__side__nav__list
       %li
-        =link_to  user_profile_path(id: 1), class: "mypage__side__nav__list__item" do
+        =link_to  user_profile_path(id: current_user.profile.id), class: "mypage__side__nav__list__item" do
           プロフィール
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
@@ -101,7 +101,7 @@
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
       %li
-        =link_to  "＃", class: "mypage__side__nav__list__item" do
+        =link_to  card_user_profile_path(id: current_user.profile.id), class: "mypage__side__nav__list__item" do
           支払い方法
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
@@ -111,7 +111,7 @@
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
       %li
-        =link_to  identification_user_profile_path(id: 1), class: "mypage__side__nav__list__item" do
+        =link_to identification_user_profile_path(id: current_user.profile.id), class: "mypage__side__nav__list__item" do
           本人情報
           .mypage__side__nav__list__item__icon
             = fa_icon "angle-right"
