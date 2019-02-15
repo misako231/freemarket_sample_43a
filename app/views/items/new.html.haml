@@ -23,33 +23,52 @@
                 出品画像
                 %span.form__require 必須
               %p 最大10枚までアップロードできます
-              .sell__dropbox__container.state__image__number-4
+              .sell__dropbox__container.state__image__number
                 .sell__upload__items__container
-                  .sell__upload__items.have__item-0
-                    %ul
-                      %li.sell__upload__item
-                        %figure.sell__upload__figure.landscape
-                          %img{ src: "http://image.jp", alt: "" }
-                        .sell__upload__button
-                          = link_to "#", class: 'sell__upload__edit' do
-                            編集
-                          = link_to "#" do
-                            削除
-                      %li.sell__upload__item
-                        %figure.sell__upload__figure.landscape
-                          %img{ src: "http://image.jp", alt: "" }
-                        .sell__upload__button
-                          = link_to "#", class: 'sell__upload__edit' do
-                            編集
-                          = link_to "#" do
-                            削除
-                .sell__upload__drop-box.have__item-0
-                  = f.fields_for :item_photos, html: {class: 'sell__upload__drop-file'} do |i|
-                    = i.label :image do
-                      = i.file_field :image
-                  %pre.visible__pc
-                    ドラッグアンドドロップ
-                    またはクリックしてファイルをアップロード
+                  .sell__upload__items.have__item
+                    %ul#sell__upload__items__list
+                      / %li.sell__upload__item
+                      /   %figure.sell__upload__figure.landscape
+                      /     %img{ src: "http://image.jp", alt: "" }
+                      /   .sell__upload__button
+                      /     = link_to "#", class: 'sell__upload__edit' do
+                      /       編集
+                      /     = link_to "#" do
+                      /       削除
+                / .sell__upload__drop-box.have__item-0
+                /   %pre.visible__pc
+                /     ドラッグアンドドロップ
+                /     またはクリックしてファイルをアップロード
+                = f.fields_for :item_photos do |i|
+                  %label.sell__upload__drop-box.have__item-0
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-0"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+
+                  %label.sell__upload__drop-box.have__item-1
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-1"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+
+                  %label.sell__upload__drop-box.have__item-2
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-2"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+
+                  %label.sell__upload__drop-box.have__item-3
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-3"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+
+                  %label.sell__upload__drop-box.have__item-4
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-4"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
                 .error_message_box
                   = @item.errors.full_messages_for(:item_photos).first
             .sell__content
@@ -153,18 +172,18 @@
                       .l__right.sell__price__input
                         ¥
                         %div
-                          = f.text_field :price, placeholder: "例) 300" ,class: "input__default"
+                          = f.text_field :price, placeholder: "例) 300" ,class: "input__default", id: "new-item-price"
                         .error_message_box
                           = @item.errors.full_messages_for(:price).first
                   %li.profit__group
                     .label__left
                       販売手数料 (10%)
-                    .label__right
+                    .tax-label__right
                       \-
                   %li.profit__group.bold
                     .label__left
                       販売利益
-                    .label__right
+                    .profit-label__right
                       \-
             .sell__content.sell__btn__box
               %div
