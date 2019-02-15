@@ -248,12 +248,19 @@ header.mercari-header {
     width: 1020px;
     display: flex;
     &__value{
-      margin-right: 5px;
       line-height: 50px;
       &__link {
-        margin-right: 5px;
         text-decoration: none;
         color: $black-f;
+      }
+      .breadcrumbs{
+        a{
+          color: $black-f;
+          text-decoration: none;
+        }
+        span{
+          font-weight: 600;
+        }
       }
     }
   }
