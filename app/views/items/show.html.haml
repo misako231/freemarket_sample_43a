@@ -15,6 +15,11 @@
             - @item.item_photos.each do |photo|
               %li.parent-item-container__item--main-content__item-photo__sub-containts
                 = image_tag "#{photo.image}", size: "75x75", alt: "写真"
+        - if @item.order_statuses.present?
+          %figcaption
+            .item__sold-out__badge
+              %div
+                SOLD
       %table.item-container__item-detail
         %tr.item-container__item-detail__tr
           %th 出品者

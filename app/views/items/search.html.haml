@@ -10,6 +10,11 @@
             = link_to item_path(item) do
               %figure.items__box__photo
                 = image_tag "#{item.item_photos.first.image}", class: 'items__box__photo__image', alt: "#{item.name}"
+                - if item.order_statuses.present?
+                  %figcaption
+                    .item__sold-out__badge
+                      %div
+                        SOLD
               .items__box__body
                 %h3.items__box__name
                   = item.name
