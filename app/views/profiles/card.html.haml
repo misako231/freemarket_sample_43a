@@ -1,4 +1,14 @@
 = render 'shared/header'
+%nav.bread-crumbs
+  %ul.bread-crumbs__items
+    %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
+      = link_to "" , class: "bread-crumbs__items__value__link" do
+        %span{itemprop: "title"}
+          - breadcrumb :card_profiles
+      %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
+        %span{itemprop: "title"}
+          = breadcrumbs separator: " #{content_tag(:i, '', class: 'fa fa-angle-right')} "
+
 %main.card
   = render 'shared/mypage-side-nav'
   .card__content
