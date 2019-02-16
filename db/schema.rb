@@ -10,21 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2019_02_13_111317) do
-=======
-ActiveRecord::Schema.define(version: 2019_02_15_062515) do
-=======
 ActiveRecord::Schema.define(version: 2019_02_15_123508) do
->>>>>>> shunke434343/master
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
->>>>>>> shunke434343/master
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -79,25 +71,15 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
   end
 
   create_table "order_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-<<<<<<< HEAD
-    t.bigint "purchaser_id_id"
-    t.bigint "seller_id_id"
-=======
     t.bigint "purchaser_id"
     t.bigint "seller_id"
->>>>>>> shunke434343/master
     t.integer "status", null: false
     t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_order_statuses_on_item_id"
-<<<<<<< HEAD
-    t.index ["purchaser_id_id"], name: "index_order_statuses_on_purchaser_id_id"
-    t.index ["seller_id_id"], name: "index_order_statuses_on_seller_id_id"
-=======
     t.index ["purchaser_id"], name: "index_order_statuses_on_purchaser_id"
     t.index ["seller_id"], name: "index_order_statuses_on_seller_id"
->>>>>>> shunke434343/master
   end
 
   create_table "point_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -162,17 +144,9 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
   add_foreign_key "item_photos", "items"
   add_foreign_key "items", "users"
   add_foreign_key "order_statuses", "items"
-<<<<<<< HEAD
-  add_foreign_key "order_statuses", "users", column: "purchaser_id_id"
-  add_foreign_key "order_statuses", "users", column: "seller_id_id"
-=======
   add_foreign_key "order_statuses", "users", column: "purchaser_id"
   add_foreign_key "order_statuses", "users", column: "seller_id"
-<<<<<<< HEAD
->>>>>>> shunke434343/master
-=======
   add_foreign_key "point_records", "order_statuses"
->>>>>>> shunke434343/master
   add_foreign_key "point_records", "users"
   add_foreign_key "profiles", "users"
 end
