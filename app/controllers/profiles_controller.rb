@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
   before_action :get_root
 
   def index
+    @items = Item.includes([:item_photos, :favorite_items, :order_statuses]).where(order_statuses:{ status: [0,1,2], purchaser_id: current_user.id }).order("items.id DESC")
   end
 
   def new

@@ -25,6 +25,11 @@
             - @item.item_photos.each do |photo|
               %li.parent-item-container__item--main-content__item-photo__sub-containts
                 = image_tag "#{photo.image}", size: "75x75", alt: "写真"
+        - if @item.order_statuses.present?
+          %figcaption
+            .item__sold-out__badge
+              %div
+                SOLD
       %table.item-container__item-detail
         %tr.item-container__item-detail__tr
           %th 出品者
@@ -57,7 +62,8 @@
                 = @grandchild_category.name
         %tr
           %th ブランド
-          %td コーチ
+          %td
+            = @item.brand.name
         %tr
           %th 商品の状態
           %td
@@ -84,14 +90,18 @@
         = number_with_delimiter("#{@item.price}")
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
-    - if @points != 0 && user_signed_in?
-      .parent-item-container__speech-bubble
-        .sales__point__message
-          P
-          = number_with_delimiter("#{@points}")
-          をお持ちです
-    = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
-      購入画面に進む
+    - unless @item.order_statuses.present?
+      - if @points != 0
+        .parent-item-container__speech-bubble
+          .sales__point__message
+            P
+            = number_with_delimiter("#{@points}")
+            をお持ちです
+      = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
+        購入画面に進む
+    - else
+      .parent-item-container__item-buy-btn.disabled
+        売り切れました
     .parent-item-container__item-description
       = @item.comment
     .parent-item-container__various-btn

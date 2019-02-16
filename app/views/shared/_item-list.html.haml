@@ -7,7 +7,8 @@
       .item-link__text__time
         %time
           %i.far.fa-heart
-          %span 10
+          %span
+          = item.favorite_items.length
           %i.far.fa-comment-alt
           %span 10
     = fa_icon "angle-right"
