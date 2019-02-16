@@ -15,6 +15,16 @@ ja:
         fast: "1~2日で発送"
         normal: "2~3日で発送"
         slow: "4~7日で発送"
+      transportation:
+        nodecided: 未定
+        merukaribin: メルカリ便
+        yuumail: ゆうメール
+        letter: レターパック
+        ordinary: 普通郵便(定形、定形外)
+        kuroneko: クロネコ
+        yuupack: ゆうパック
+        clickpost: クリックポスト
+        yuupaket: ゆうパケット
   activerecord:
     attributes:
       item:

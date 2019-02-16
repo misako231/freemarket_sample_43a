@@ -107,7 +107,7 @@
                     ブランド
                     %span.form__any 任意
                   .select__wrap
-                    = f.select :brand_id, Item.all, {prompt: "---"}, class: "select__default"
+                    = f.collection_select :brand_id, Brand.all, :id, :name, {prompt: "---"}, class: "select__default"
                     %div
                       %ul.sell__brand__suggest.form__suggest__list
                         %li
@@ -147,6 +147,16 @@
                       %i.fas.fa-angle-down
                     .error_message_box
                       = @item.errors.full_messages_for(:prefecture_id).first
+                .form__group
+                  = f.label :transportation do
+                    発送方法
+                    %span.form__require 必須
+                  .select__wrap
+                    = f.select :transportation, Item.transportations_i18n.invert, { prompt: "---" }, class: "select__default"
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                    .error_message_box
+                      = @item.errors.full_messages_for(:transportation).first
                 .form__group
                   = f.label :days_to_ship do
                     発送までの日数

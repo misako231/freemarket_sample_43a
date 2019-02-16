@@ -12,7 +12,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer    :condition, null: false
       t.references    :user, null: false, foreign_key: true
       t.boolean    :closed ,null: false, default: false
-      t.integer    :transportiotation_method, null: false
+      t.integer    :transportation, null: false
       t.timestamps
     end
 
