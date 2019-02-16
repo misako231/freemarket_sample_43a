@@ -90,7 +90,6 @@
         = number_with_delimiter("#{@item.price}")
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
-<<<<<<< HEAD
     - unless @item.order_statuses.present?
       - if @points != 0
         .parent-item-container__speech-bubble
@@ -103,16 +102,6 @@
     - else
       .parent-item-container__item-buy-btn.disabled
         売り切れました
-=======
-    - if @points != 0 && user_signed_in?
-      .parent-item-container__speech-bubble
-        .sales__point__message
-          P
-          = number_with_delimiter("#{@points}")
-          をお持ちです
-    = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
-      購入画面に進む
->>>>>>> origin/create-order-status-table
     .parent-item-container__item-description
       = @item.comment
     .parent-item-container__various-btn
