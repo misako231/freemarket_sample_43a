@@ -1,4 +1,14 @@
 = render partial: "shared/header"
+%nav.bread-crumbs
+  %ul.bread-crumbs__items
+    %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
+      = link_to "" , class: "bread-crumbs__items__value__link" do
+        %span{itemprop: "title"}
+          - breadcrumb :item_show, @item
+      %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
+        %span{itemprop: "title"}
+          = breadcrumbs separator: " #{content_tag(:i, '', class: 'fa fa-angle-right')} "
+
 .parent
   .parent-item-container
     .parent-item-container__item-name
@@ -52,7 +62,8 @@
                 = @grandchild_category.name
         %tr
           %th ブランド
-          %td コーチ
+          %td
+            = @item.brand.name
         %tr
           %th 商品の状態
           %td
@@ -79,6 +90,7 @@
         = number_with_delimiter("#{@item.price}")
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
+<<<<<<< HEAD
     - unless @item.order_statuses.present?
       - if @points != 0
         .parent-item-container__speech-bubble
@@ -91,6 +103,16 @@
     - else
       .parent-item-container__item-buy-btn.disabled
         売り切れました
+=======
+    - if @points != 0 && user_signed_in?
+      .parent-item-container__speech-bubble
+        .sales__point__message
+          P
+          = number_with_delimiter("#{@points}")
+          をお持ちです
+    = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
+      購入画面に進む
+>>>>>>> origin/create-order-status-table
     .parent-item-container__item-description
       = @item.comment
     .parent-item-container__various-btn
