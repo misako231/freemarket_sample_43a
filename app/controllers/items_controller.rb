@@ -68,6 +68,7 @@ class ItemsController < ApplicationController
   end
 
   def charge
+  begin
     Payjp.api_key = Rails.application.credentials.PAYJP_SECRET_KEY
     price = params[:item][:price]
 
@@ -76,6 +77,9 @@ class ItemsController < ApplicationController
     Item.create_charge_by_customer(price, user)
 
     redirect_to root_path, flash: {bought: '商品を購入しました'}
+    rescue => e
+      redirect_to buy_item_path, flash: {credit_charge_error: '購入に失敗しました'}
+    end
   end
 
   private
