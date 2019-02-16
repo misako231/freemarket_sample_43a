@@ -16,6 +16,7 @@
       display:flex;
       flex-direction:row;
       &__item-photo {
+        position: relative;
         width:300px;
         height:375px;
         overflow:hidden;
@@ -32,6 +33,32 @@
             opacity: 1;
           }
         }
+        .item__sold-out__badge {
+            > div {
+              position: absolute;
+              top: 24px;
+              left: 0;
+              font-size: 24px;
+              z-index: 2;
+              color: $white-f;
+              transform: rotate(-45deg);
+              letter-spacing: 2px;
+              font-weight: 550;
+            }
+            &:after {
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 0;
+              content: '';
+              z-index: 1;
+              height: 0;
+              width: 0;
+              border-style: solid;
+              border-width: 120px 120px 0 0;
+              border-color: $mercarired transparent transparent transparent;
+            }
+          }
       }
       .item-container__item-detail {
         width:300px;
