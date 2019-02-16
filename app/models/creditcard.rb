@@ -9,7 +9,7 @@ belongs_to :user
    end
   end
 
-  def self.create_token(params, customer)
+  def self.create_token(params)
     token = Payjp::Token.create({
     :card => {
       :number => params[:number],
@@ -21,8 +21,6 @@ belongs_to :user
       'X-Payjp-Direct-Token-Generate': 'true'
       }
     )
-     customer = Payjp::Customer.create(
-                         card: token.id
-                         )
+     Payjp::Customer.create(card: token.id).id
   end
 end

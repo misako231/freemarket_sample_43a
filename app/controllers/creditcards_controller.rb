@@ -3,8 +3,8 @@ class CreditcardsController < ApplicationController
   def create
     begin
       Payjp.api_key = Rails.application.credentials.PAYJP_SECRET_KEY
-      customer = Creditcard.create_token(params, customer)
-      @credit = Creditcard.new(user_id: current_user.id, customer_token: customer.id)
+      customer_id = Creditcard.create_token(params)
+      @credit = Creditcard.new(user_id: current_user.id, customer_token: customer_id)
       if @credit.save
         redirect_to done_user_profiles_path(user_id: current_user.id)
       else
