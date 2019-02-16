@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   before_action :total_point, only: [:show, :buy]
 
   def index
-    @items = Item.with_category.includes(:item_photos, :favorite_items).new_arrival
+    @items = Item.with_category.item_includes.new_arrival
     @ladies_items = @items.search_with_root_id(1).first(4)
     @mens_items = @items.search_with_root_id(2).first(4)
     @baby_items = @items.search_with_root_id(3).first(4)
@@ -32,11 +32,15 @@ class ItemsController < ApplicationController
   end
 
   def onsale
-    @items = Item.includes(:item_photos).where(user_id: current_user.id).new_arrival
+    @items = Item.item_includes.where(user_id: current_user.id).new_arrival
+  end
+
+  def orderd
+    @items = Item.item_includes.where(user_id: current_user.id, order_statuses:{ status: [0,1,2] }).order("items.id DESC")
   end
 
   def show
-    @users_item = Item.includes(:item_photos, :favorite_items).where(user_id: @item.user_id).all
+    @users_item = Item.item_includes.where(user_id: @item.user_id).all
     @previous = @item.next_to_item("previous")
     @next_item = @item.next_to_item("next_item")
   end
@@ -59,7 +63,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.includes([:item_photos, :category]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
+    @items = Item.includes([:item_photos, :category, :order_statuses]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
   end
 
   def buy
@@ -75,6 +79,7 @@ class ItemsController < ApplicationController
     Item.create_charge_by_customer(price, user)
     item = Item.includes(:user).find(params[:id])
     o_status = OrderStatus.create(status: params[:item][:order_statuses_attributes][:"0"][:status], purchaser_id: params[:item][:order_statuses_attributes][:"0"][:purchaser_id], seller_id: params[:item][:order_statuses_attributes][:"0"][:seller_id], item_id: params[:item][:order_statuses_attributes][:"0"][:item_id])
+    p_record = PointRecord.create(point: params[:item][:point_records][:point], user_id: current_user.id, order_status_id: o_status.id)
     redirect_to root_path, flash: {bought: '商品を購入しました'}
   end
 
@@ -85,7 +90,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.includes([:user, :item_photos, :category, :favorite_items]).find(params[:id])
+    @item = Item.includes([:user, :item_photos, :category, :favorite_items, :order_statuses]).find(params[:id])
   end
 
   def get_category_tree
