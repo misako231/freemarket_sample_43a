@@ -27,8 +27,9 @@
         %ul.onsale__content__trade__content__during
           - if @items.present?
             - @items.each do |item|
-              %li.onsale__content__trade__content__during__list
-                = render partial: 'shared/item-list', locals: { item: item }
+              - unless item.order_statuses.present?
+                %li.onsale__content__trade__content__during__list
+                  = render partial: 'shared/item-list', locals: { item: item }
           - else
             %li.onsale__content__trade__content__during__none
               出品中の商品がありません
