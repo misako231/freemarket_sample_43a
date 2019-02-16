@@ -1,4 +1,10 @@
 = render partial: "shared/second_header"
+- if flash[:credit_charge_error]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:credit_charge_error]
+    .delete-success-flash__close.close-btn
+      ×
 
 .items__buy-cf__container
   .items__buy-cf__container__main
