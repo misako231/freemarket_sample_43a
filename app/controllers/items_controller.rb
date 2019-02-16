@@ -64,9 +64,6 @@ class ItemsController < ApplicationController
   end
 
   def search
-<<<<<<< HEAD
-    @items = Item.includes([:item_photos, :category, :order_statuses]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
-=======
     if params[:q].present?
       @search_keyword = params[:q][:name_cont_all]
       @search_brand = params[:q][:brand_name_eq]
@@ -82,7 +79,6 @@ class ItemsController < ApplicationController
     else params[:keyword].present?
       @items = Item.includes([:item_photos, :category]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
     end
->>>>>>> origin/create-order-status-table
   end
 
   def buy
