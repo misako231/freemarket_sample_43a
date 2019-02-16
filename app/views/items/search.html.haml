@@ -10,6 +10,11 @@
             = link_to item_path(item) do
               %figure.items__box__photo
                 = image_tag "#{item.item_photos.first.image}", class: 'items__box__photo__image', alt: "#{item.name}"
+                - if item.order_statuses.present?
+                  %figcaption
+                    .item__sold-out__badge
+                      %div
+                        SOLD
               .items__box__body
                 %h3.items__box__name
                   = item.name
@@ -20,53 +25,42 @@
                   %p.items__box__tax (税込)
     = paginate @items
   .search__side
-    = form_with url: search_items_path, class: "search__extend__container", novalidate: true do |f|
+    = search_form_for @q, url: search_items_path, class: "search__extend__container", novalidate: true do |f|
       .search__sort
         .form__group
           .select__wrap
-            = f.select :sort, Item::SORT, { prompt: "並び替え" }, class: "select__default"
+            = select_tag 'sort', options_for_select(Item::SORT), prompt: "並び替え", class: "select__default"
             %i.fas.fa-angle-down
       .search__dropdown__content
         %h3.visible__large
           詳細検索
         .form__group
-          %label
+          = f.label :name_cont_all do
             %i.fas.fa-plus
             %span キーワードを追加する
-            %input.input__default{ type: 'text', value: "#{params[:keyword]}", name: 'keyword', placeholder: '例) 値下げ'}
+            = f.text_field :name_cont_all, class: 'input__default', value: "#{@search_keyword}", placeholder: '例) 値下げ'
         .form__group
           %label
             %i.fas.fa-list-ul
             %span カテゴリーを選択する
-          .select__wrap
-            %select.select__default
+          .select__wrap#search-first-category
+            = select_tag 'root-category', options_from_collection_for_select(@parents, :id, :name), prompt: "すべて", class: 'select__default'
             %i.fas.fa-angle-down
-          .select__child
-            .select__wrap.select__category__child
-              %select.select__default{ disabled: true }
-              %i.fas.fa-angle-down
+          .select__wrap#search-second-category
+            = select_tag 'child-category', options_for_select([]), prompt: "すべて", class: 'select__default'
+            %i.fas.fa-angle-down
+          -# .select__child
+          -#   .select__wrap.select__category__child
+          -#     %select.select__default{ disabled: true }
+          -#     %i.fas.fa-angle-down
+          -# = f.collection_check_boxes :category_ancestry_end_any, @categories, :id, :name
           .select__grand-child
             .select__category__grand-child.is__show
-              .checkbox__default
-                %label{ for: 'category__grand-child'}
-                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  Tシャツ/カットソー半袖袖なし
-              .checkbox__default
-                %label{ for: 'category__grand-child'}
-                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  Tシャツ/カットソー半袖袖なし
-              .checkbox__default
-                %label{ for: 'category__grand-child'}
-                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  Tシャツ/カットソー
         .form__group.search__extend__brand
           %label
             %i.fas.fa-tag
             %span ブランド名から探す
-          %input.input__default{ type: 'text', name: 'brand_name', placeholder: '例)シャネル' }
+          = f.text_field :brand_name_eq, class: 'input__default', value: "#{@search_brand.to_s}", placeholder: '例)シャネル'
           %input{ type: 'hidden', name: 'brand_id' }
           %ul
         .form__group
@@ -74,6 +68,7 @@
             %i.fas.fa-expand
             %span サイズを指定する
           .select__wrap
+            -# = select_tag 'size-group', options_from_collection_for_select(@parents, :id, :name), prompt: "すべて", class: 'select__default'
             %select.select__default
             %i.fas.fa-angle-down
           .select__child
@@ -88,16 +83,17 @@
             %i.fas.fa-coins
             %span 価格
           .select__wrap
-            = f.select :search_price, Item::SEARCH_PRICE, { prompt: "選択してください" }, class: "select__default"
+            = select_tag 'search_price', options_for_select(Item::SEARCH_PRICE), prompt: "選択してください", class: "select__default"
             %i.fas.fa-angle-down
-            %input.input__default{ type: 'number', placeholder: '¥ Min' }
+            = f.number_field :price_gteq, placeholder: '¥ Min', class: 'input__default'
             %span.wavy__line ~
-            %input.input__default{ type: 'number', placeholder: '¥ Max' }
+            = f.number_field :price_lteq, placeholder: '¥ Max', class: 'input__default'
         .form__group
           %label
             %i.fas.fa-star
             %span 商品の状態
           %div
+            = f.collection_check_boxes :condition_eq_any, Item.conditions, :index, :index
             .checkbox__default
               %label{ for: 'condition_all' }
                 %input{ type: 'checkbox', id: 'condition_all', class: 'child__checkbox' }
@@ -126,6 +122,7 @@
         .search__extend__btn--empty
         .search__extend__btn
           .btn__default.btn__gray クリア
-          %button.btn__default.btn__red{ type: 'submit' } 完了
+          = f.submit class: "btn__default btn__red" do
+            完了
 = render 'shared/sellbtn'
 = render 'shared/footer'
