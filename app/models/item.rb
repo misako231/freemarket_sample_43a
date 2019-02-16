@@ -3,9 +3,12 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   has_many :item_photos, dependent: :destroy
   has_many :favorite_items, dependent: :destroy
+  has_many :order_statuses
   accepts_nested_attributes_for :item_photos, allow_destroy: true
+  accepts_nested_attributes_for :order_statuses
   belongs_to :user
   belongs_to :category
+  belongs_to :brand
   validates :name,           presence: true, length: { maximum: 40 }
   validates :comment,        presence: true, length: { maximum: 1000 }
   validates :category_id,    presence: true
@@ -19,8 +22,8 @@ class Item < ApplicationRecord
   enum shipping_fee: { self: false, other: true }
   enum days_to_ship: [:fast, :normal, :slow]
 
-  SORT = ["価格の安い順", "価格の高い順", "出品の古い順", "出品の新しい順", "いいね!の多い順"]
-  SEARCH_PRICE = ["300 ~ 1000", "1000 ~ 5000", "5000 ~ 10000", "10000 ~ 30000", "30000 ~ 50000", "50000 ~"]
+  SORT = {"価格の安い順": "sort1", "価格の高い順": "sort2", "出品の古い順": "sort3", "出品の新しい順": "sort4", "いいね!の多い順": "sort5"}
+  SEARCH_PRICE = {"300 ~ 1000": "300-1000", "1000 ~ 5000": "1000-5000", "5000 ~ 10000": "5000-10000", "10000 ~ 30000": "10000-30000", "30000 ~ 50000": "30000-50000", "50000 ~": "50000"}
 
   def next_to_item(next_or_previous)
     if next_or_previous == "previous"
@@ -41,4 +44,5 @@ class Item < ApplicationRecord
         currency: 'jpy',
       )
   end
+
 end
