@@ -35,6 +35,7 @@ class Item < ApplicationRecord
   scope :with_category, -> { joins(:category) }
   scope :search_with_root_id, ->(root_id) { where("ancestry LIKE ?", "#{root_id}/%") }
   scope :new_arrival, -> { order('id DESC') }
+  scope :item_includes, -> { includes([:item_photos, :favorite_items, :order_statuses])}
 
   def self.create_charge_by_customer(price, user)
       Payjp::Charge.create(
