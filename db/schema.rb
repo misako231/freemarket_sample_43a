@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_13_111317) do
+ActiveRecord::Schema.define(version: 2019_02_15_123508) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 2019_02_13_111317) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_status_id"
+    t.index ["order_status_id"], name: "index_point_records_on_order_status_id"
     t.index ["user_id"], name: "index_point_records_on_user_id"
   end
 
@@ -136,6 +138,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_111317) do
   add_foreign_key "order_statuses", "items"
   add_foreign_key "order_statuses", "users", column: "purchaser_id"
   add_foreign_key "order_statuses", "users", column: "seller_id"
+  add_foreign_key "point_records", "order_statuses"
   add_foreign_key "point_records", "users"
   add_foreign_key "profiles", "users"
 end
