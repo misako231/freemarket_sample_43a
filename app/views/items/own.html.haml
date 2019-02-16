@@ -98,7 +98,6 @@
       = link_to "出品を停止する", "#", class: "parent-own-item-container__close"
     %button.parent-own-item-container__delete-btn
       商品を削除する
-    = link_to "商品を削除する", user_item_path, method: "delete", id: "good-to-delete"
   .parent-comment-container
     = render partial: "comment"
     %form.parent-comment-container__message-form{action: "#", method: "POST"}

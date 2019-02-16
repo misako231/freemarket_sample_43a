@@ -104,26 +104,45 @@
             %i.fas.fa-truck.fa-flip-horizontal
             %span 配送料の負担
           %div
+            .checkbox__default
+              %label{for: 'check-shipping-all'}
+                すべて
+              = check_box_tag 'check-shipping-all'
             = f.collection_check_boxes :shipping_fee_eq_any, Item.shipping_fees.map{|k, v| [Item.shipping_fees_i18n[k], v]}, :last, :first do |b|
               .checkbox__default
-                = b.label do
-                  = b.check_box(class: 'child__icon')
-                  = b.label
-            .checkbox__default
-              %label{ for: 'shipping_fee_all' }
-                %input{ type: 'checkbox', id: 'shipping_fee_all', class: 'child__checkbox' }
-                %span.checkbox__icon
-                すべて
+                = b.label
+                = b.check_box(class: 'child__icon')
         .form__group
           %label
             %i.fas.fa-shopping-cart
             %span 販売状況
-          %div
-            .checkbox__default
-              %label{ for: 'status_all' }
-                %input{ type: 'checkbox', id: 'status_all', class: 'child__checkbox' }
-                %span.checkbox__icon
-                すべて
+          .checkbox__default
+            -# = f.label :order_statuses_id_blank
+            %label
+              = f.radio_button :order_statuses_id_blank, '', checked: true
+              すべて
+            %label
+              = f.radio_button :order_statuses_id_blank, '1'
+              販売中
+            %label
+              = f.radio_button :order_statuses_id_blank, '0'
+              売り切れ
+            -# .checkbox__default
+            -#   = f.check_box :order_statuses_id_blank, {id: 'onsale-check'}
+            -#   = f.label :'販売中', for: 'onsale-check'
+            -# .checkbox__default
+            -#   = f.check_box :order_statuses_id_blank, {id: 'sold-check'}
+            -#   = f.label :'売り切れ', for: 'sold-check'
+            -# = f.collection_check_boxes :order_statuses_id_blank, Item::ORDER_STATUS, :last, :first do |b|
+            -#   .checkbox__default
+            -#     = b.label do
+            -#       = b.check_box(class: 'child__icon')
+            -#       = b.label
+            -#   .checkbox__default
+            -#     %label{ for: 'status_all' }
+            -#       %input{ type: 'checkbox', id: 'status_all', class: 'child__checkbox' }
+            -#       %span.checkbox__icon
+            -#       すべて
         .search__extend__btn--empty
         .search__extend__btn
           .btn__default.btn__gray クリア

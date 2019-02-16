@@ -60,7 +60,9 @@ class ItemsController < ApplicationController
   end
 
   def search
+    # binding.pry
     if params[:q].present?
+      # binding.pry
       @search_keyword = params[:q][:name_cont_all]
       @search_brand = params[:q][:brand_name_eq]
       params[:q][:name_cont_all] = params[:q][:name_cont_all].split(/[\p{blank}\s]+/)
