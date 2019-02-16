@@ -51,8 +51,12 @@
               過去の取引
       .mypage__content__trade__content
         %ul.mypage__content__trade__content__during
-          %li.mypage__content__trade__content__during__list
-            取引中の商品がありません
+          - if @items.present?
+            - @items.each do |item|
+              = render partial: 'shared/item-list', locals: { item: item }
+          - else
+            %li.mypage__content__trade__content__during__list
+              取引中の商品がありません
         %ul.mypage__content__trade__content__past
           %li.mypage__content__trade__content__past__list
   = render 'shared/mypage-side-nav'
