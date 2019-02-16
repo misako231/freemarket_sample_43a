@@ -2,9 +2,9 @@ class ItemsController < ApplicationController
   include GetCategories
   include GetPoints
   before_action :get_root
-  before_action :set_item, only: [:show, :own]
+  before_action :set_item, only: [:show, :own, :buy]
   before_action :get_category_tree, only: [:show, :own]
-  before_action :total_point, only: [:show]
+  before_action :total_point, only: [:show, :buy]
   before_action :set_search, only: [:search]
 
   def index
@@ -77,8 +77,7 @@ class ItemsController < ApplicationController
   end
 
   def buy
-    @item  = Item.find(params[:id])
-    @user = User.find(current_user.id)
+    @item.order_statuses.build
   end
 
   def charge
@@ -88,7 +87,8 @@ class ItemsController < ApplicationController
     @creditcard = Creditcard.includes(:user).where(user_id: current_user.id)
     user = Payjp::Customer.retrieve(@creditcard[0].customer_token)
     Item.create_charge_by_customer(price, user)
-
+    item = Item.includes(:user).find(params[:id])
+    o_status = OrderStatus.create(status: params[:item][:order_statuses_attributes][:"0"][:status], purchaser_id: params[:item][:order_statuses_attributes][:"0"][:purchaser_id], seller_id: params[:item][:order_statuses_attributes][:"0"][:seller_id], item_id: params[:item][:order_statuses_attributes][:"0"][:item_id])
     redirect_to root_path, flash: {bought: '商品を購入しました'}
   end
 
