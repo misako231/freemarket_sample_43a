@@ -245,7 +245,19 @@
                 -webkit-text-stroke: 2px white
               }
             }
+            #new-first-category {
+              display: block;
+            }
+            #new-second-category {
+              display: none;
+            }
+            #new-third-category {
+              display: none;
+            }
           }
+          // #item-size {
+          //   display: none;
+          // }
           .sell__sub--head {
             display: block;
             color: #888;

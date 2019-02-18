@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :order_statuses
   belongs_to :user
   belongs_to :category
-  belongs_to :brand
+  belongs_to :brand, optional: true
   validates :name,           presence: true, length: { maximum: 40 }
   validates :comment,        presence: true, length: { maximum: 1000 }
   validates :category_id,    presence: true
@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   validates :item_photos,    presence: true
 
   enum condition: [:new_item, :close_to_the_unused, :no_noticeable_scratches_and_dirt, :a_few_scratches_and_dirt, :scratches_and_dirt, :bad]
-  enum shipping_fee: { self: false, other: true }
+  enum shipping_fee: { self_burden: false, other: true }
   enum days_to_ship: [:fast, :normal, :slow]
   enum transportation: [:nodecided, :merukaribin, :yuumail, :letter, :ordinary, :kuroneko, :yuupack, :clickpost, :yuupaket]
 

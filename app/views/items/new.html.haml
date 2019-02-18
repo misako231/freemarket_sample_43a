@@ -6,7 +6,7 @@
       .sell-modal-body
         あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
         %br
-        = link_to "続けて出品する", root_path, class: "btn-default-red"
+        = link_to "続けて出品する", new_item_path, class: "btn-default-red"
         %p.text-center
           = link_to "商品ページへ行ってシェアする", root_path
 
@@ -17,7 +17,7 @@
       %div{ 'data-reactroot': ""}
         .sell__container--inner
           %h2.l__single__head 商品の情報を入力
-          = form_with model: @item, html: {class: 'sell__form'}, local: true do |f|
+          = form_with model: @item, html: {class: 'sell__form', id: 'sell__form'}, local: true do |f|
             .sell__upload__box
               %h3.sell__upload__head
                 出品画像
@@ -93,24 +93,45 @@
                 商品の詳細
               .sell__form__box
                 .form__group
+
                   = f.label :category_id do
                     カテゴリー
                     %span.form__require 必須
-                  .select__wrap
-                    = f.collection_select :category_id, Category.all, :id, :name, {prompt: "---"}, class: "select__default"
+                  .select__wrap#new-first-category
+                    = select_tag 'root-category', options_from_collection_for_select(@parents, :id, :name), prompt: "---", class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
                   .error_message_box
                     = @item.errors.full_messages_for(:category_id).first
-                .form__group.form__suggest__container
+
+                  .select__wrap#new-second-category
+                    = select_tag 'child-category', options_for_select([]), prompt: "---", class: 'select__default'
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+
+                  .select__wrap#new-third-category
+                    = select_tag 'grand-child-category', options_for_select([]), prompt: "---", class: 'select__default'
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                .form__group.form__suggest__container#item-size{ style: 'display: none;' }
+                  = f.label :category_id do
+                    サイズ
+                    %span.form__require 必須
+                  .select__wrap#new-size-category
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+
+                .form__group
                   = f.label :barand_id do
                     ブランド
                     %span.form__any 任意
                   .select__wrap
                     = f.collection_select :brand_id, Brand.all, :id, :name, {prompt: "---"}, class: "select__default"
-                    %div
-                      %ul.sell__brand__suggest.form__suggest__list
-                        %li
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                    / %div
+                    /   %ul.sell__brand__suggest.form__suggest__list
+                    /     %li
                 .form__group
                   = f.label :condition do
                     商品の状態
@@ -137,6 +158,16 @@
                       %i.fas.fa-angle-down
                     .error_message_box
                       = @item.errors.full_messages_for(:shipping_fee).first
+                .form__group#transportation_method{ style: "display: none;" }
+                  = f.label :transportation do
+                    発送方法
+                    %span.form__require 必須
+                  .select__wrap#new-transportation
+                    / = f.select :transportation, Item.transportations_i18n.invert, { prompt: "---" }, class: "select__default"
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                    .error_message_box
+                      = @item.errors.full_messages_for(:transportation).first
                 .form__group
                   = f.label :prefecture_id do
                     発送元の地域
@@ -147,16 +178,6 @@
                       %i.fas.fa-angle-down
                     .error_message_box
                       = @item.errors.full_messages_for(:prefecture_id).first
-                .form__group
-                  = f.label :transportation do
-                    発送方法
-                    %span.form__require 必須
-                  .select__wrap
-                    = f.select :transportation, Item.transportations_i18n.invert, { prompt: "---" }, class: "select__default"
-                    .icon__arrow__bottom
-                      %i.fas.fa-angle-down
-                    .error_message_box
-                      = @item.errors.full_messages_for(:transportation).first
                 .form__group
                   = f.label :days_to_ship do
                     発送までの日数
@@ -213,7 +234,7 @@
                   = link_to "#", target: '_blank' do
                     加盟店規約
                   に同意したことになります。
-              = f.submit "出品する", class: "btn__default btn--red"
+              = f.submit "出品する", class: "btn__default btn--red", id: "new-item-btn"
               = link_to "#", class: 'btn__default btn--gray' do
                 もどる
         .overlay
