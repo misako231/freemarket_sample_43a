@@ -2,6 +2,11 @@
   =link_to item_path(id: item.id)  do
     %figure.items-box__photo
       = image_tag "#{item.item_photos.first.image}", height: "220", width: "213"
+      - if item.order_statuses.present?
+        %figcaption
+          .item__sold-out__badge
+            %div
+              SOLD
     .items-box-body
       .items-box-body__name
         = item.name

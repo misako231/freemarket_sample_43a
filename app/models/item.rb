@@ -3,8 +3,13 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   has_many :item_photos, dependent: :destroy
   has_many :favorite_items, dependent: :destroy
+<<<<<<< HEAD
   has_many :comments,dependent: :destroy
+=======
+  has_many :order_statuses
+>>>>>>> shunke434343/master
   accepts_nested_attributes_for :item_photos, allow_destroy: true
+  accepts_nested_attributes_for :order_statuses
   belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
@@ -35,6 +40,7 @@ class Item < ApplicationRecord
   scope :with_category, -> { joins(:category) }
   scope :search_with_root_id, ->(root_id) { where("ancestry LIKE ?", "#{root_id}/%") }
   scope :new_arrival, -> { order('id DESC') }
+  scope :item_includes, -> { includes([:item_photos, :favorite_items, :order_statuses])}
 
   def self.create_charge_by_customer(price, user)
       Payjp::Charge.create(
