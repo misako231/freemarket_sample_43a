@@ -38,13 +38,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
-    # binding.pry
-    @users_item = Item.includes(:item_photos, :favorite_items).where(user_id: @item.user_id).all
     @item = Item.find(params[:id])
-=======
     @users_item = Item.item_includes.where(user_id: @item.user_id).all
->>>>>>> shunke434343/master
     @previous = @item.next_to_item("previous")
     @next_item = @item.next_to_item("next_item")
     @comments = @item.comments.includes(:user)
