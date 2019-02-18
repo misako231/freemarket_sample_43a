@@ -9,6 +9,8 @@ require "csv"
 
   #ユーザーの初期データ
 User.create!(last_name: "田中", first_name: "太郎", last_name_kana: "タナカ", first_name_kana: "タロウ", birth_y: 2000, birth_m: 12, birth_d: 20, email: "mercari@mail.com", password: "password", password_confirmation: "password", nickname: "メルカリ")
+Profile.create!(phone: 11122223333, postal_code: 1234567, prefecture_id: 27, city: '大阪市北区', block: '梅田1-2-3', user_id: 1)
+PointRecord.create!(point: -10000, user_id: 1)
 
 ApplicationRecord.transaction do
   #categoryの登録
