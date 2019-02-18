@@ -9,11 +9,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    item = Item.find(params[:item_id])
     comment = Comment.find(params[:id])
-    if current_user.id == item.user_id
+    # if current_user.id == item.user_id
       comment.destroy
-      redirect_to "/items/#{@comment.item.id}"
-    end
+      redirect_to "/items/#{item.id}", flash: {success: 'コメントを削除しました'}
+    # end
   end
 
   private

@@ -45,6 +45,10 @@
         &:hover {
           background-color: $gray-b;
         }
+        .confirm_delete {
+          text-decoration: none;
+          color:$black-f;
+        }
       }
     }
   }

@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    # binding.pry
     @users_item = Item.includes(:item_photos, :favorite_items).where(user_id: @item.user_id).all
     @item = Item.find(params[:id])
     @previous = @item.next_to_item("previous")

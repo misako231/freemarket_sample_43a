@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
-    resources :comments, only: [:create] do
+    resources :comments, only: [:create, :destroy] do
     end
   end
   resources :users, only: [:create] do
