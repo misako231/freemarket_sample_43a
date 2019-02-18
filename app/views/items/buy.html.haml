@@ -1,4 +1,10 @@
 = render partial: "shared/second_header"
+- if flash[:credit_charge_error]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:credit_charge_error]
+    .delete-success-flash__close.close-btn
+      ×
 
 .items__buy-cf__container
   .items__buy-cf__container__main
@@ -7,62 +13,64 @@
     .items__buy-cf__container__main__content
       .items__buy-cf__container__main__content__inner
         .items__buy-cf__container__main__content__inner__item-image-container
-          = image_tag "coach1.jpg", alt: "写真", class:"item-photo"
+          = image_tag "#{@item.item_photos.first.image}", alt: "写真", class:"item-photo"
         %p.items__buy-cf__container__main__content__inner__item-name
-          コーチのショルダーバッグ
-        %form.items__buy-cf__container__main__content__inner__buy-form{action: "#", method: "POST", novalidate: "novalidate"}
+          = @item.name
+        = form_with model: @item, method: 'post', class: "items__buy-cf__container__main__content__inner__buy-form", local: true do |f|
           %p.items__buy-cf__container__main__content__inner__buy-form__item-price
-            ¥18,999
+            = "¥ " + "#{number_with_delimiter(@item.price)}"
             %span.items__buy-cf__container__main__content__inner__buy-form__item-price__shipping-fee
               送料込み
-          .items__buy-cf__container__main__content__inner__buy-form__accordion
-            .items__buy-cf__container__main__content__inner__buy-form__accordion-toggle
-              ポイントを使う
-              .items__buy-cf__container__main__content__inner__buy-form__accordion-toggle-upangle
-                =fa_icon "angle-up"
-            .items__buy-cf__container__main__content__inner__buy-form__accordion-child
-              .items__buy-cf__container__main__content__inner__buy-form__accordion-child__possess-p
-                所持ポイント: P 600
-              .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group
-                .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box
-                  .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box__radio-default
-                    %label
-                      %input{type: "radio",name: "consume_point_radio", value: "none",class: "radio-btn"}
-                      .not-use-points
-                      ポイントを使わない
-                  .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box__radio-default
-                    %label
-                      %input{type: "radio",name: "consume_point_radio", value: "all",class: "radio-btn"}
-                      %input{type: "hidden",value:600}
-                        .use-all-points
-                          すべてのポイントを使う
-                          %br
-                            P 600
-                  .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box__radio-default
-                    %label
-                      %input{type: "radio",name: "consume_point_radio", value: "none",class: "radio-btn"}
-                        .use-some-points
+          - if @points != 0
+            .items__buy-cf__container__main__content__inner__buy-form__accordion
+              .items__buy-cf__container__main__content__inner__buy-form__accordion-toggle
+                ポイントを使う
+                .items__buy-cf__container__main__content__inner__buy-form__accordion-toggle-angle
+                  %i.fas.fa-angle-down
+              %ul.items__buy-cf__container__main__content__inner__buy-form__accordion-child
+                = f.fields_for :point_records do |point_f|
+                  %li.items__buy-cf__container__main__content__inner__buy-form__accordion-child__possess-p
+                    = "所持ポイント: P " + "#{number_with_delimiter(@points)}"
+                  %li.items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group
+                    .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box__radio-default
+                      %label
+                        = point_f.radio_button :point, "0", name: "consume_point_radio", class: "radio-btn", "data-buy": "none"
+                        ポイントを使わない
+                    .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box__radio-default
+                      %label
+                        = point_f.radio_button :point, "#{use_point(@points, @item.price)}", name: "consume_point_radio", class: "radio-btn", "data-buy": "all"
+                        すべてのポイントを使う
+                        %br
+                        = "P " + "#{number_with_delimiter(use_point(@points, @item.price))}"
+                    .items__buy-cf__container__main__content__inner__buy-form__accordion-child__form-group-box__radio-default
+                      %label
+                        = point_f.radio_button :point, "", checked: "false", name: "consume_point_radio", class: "radio-btn", "data-buy": "part"
                         一部のポイントを使う
-                %input.input-default{type: "number", value: "", placeholder: "使うポイントを入力", class: "input-default"}
+                    = point_f.number_field :point, value: "", placeholder: "使うポイントを入力", class: "input-default", "data-buy": "part_num"
+                    = point_f.hidden_field :point, value: "", "data-buy": "result"
           .items__buy-cf__container__main__content__inner__buy-form__buy-price-box
             .items__buy-cf__container__main__content__inner__buy-form__buy-price-box-text
               支払い金額
             .items__buy-cf__container__main__content__inner__buy-form__buy-price-box-price
-              = '¥' + "#{number_with_delimiter(@item.price)}"
-        %button.btn-default{type: "submit"}
-          = form_with model: @item, method: 'post', local: true do |f|
-            = f.hidden_field :price, value: @item.price
-            = f.hidden_field :buyer_id, value: current_user.id
-            = f.submit'購入する', class: "btn-default"
+              %span{"data-buy-pay": "#{@item.price}"}
+                = '¥ ' + "#{number_with_delimiter(@item.price)}"
+          = f.fields_for :order_statuses do |status_f|
+            = status_f.hidden_field :status, value: "0"
+            = status_f.hidden_field :purchaser_id, value: current_user.id
+            = status_f.hidden_field :seller_id, value: @item.user_id
+            = status_f.hidden_field :item_id, value: @item.id
+          = f.hidden_field :price, value: @item.price
+          = f.hidden_field :buyer_id, value: current_user.id
+          = f.submit'購入する', class: "btn-default"
     .items__buy-cf__container__main__buy-user-info
       .items__buy-cf__container__main__buy-user-info-container
         %h3
           配送先
         %address
           .items__buy-cf__container__main__buy-user-info-container-text
-            〒123-4567<br>
-            大阪府大阪市中央区南船場2丁目6-28<br>
-            TECH::EXPERT43期生
+            = "〒" + "#{current_user.profile.postal_code}"
+            %br
+            = "#{current_user.profile.city}" + "#{current_user.profile.block}" + "#{current_user.profile.building}"
         .items__buy-cf__container__main__buy-user-info-container__angle-right
           =link_to "#", class: "angle-right" do
             変更する
