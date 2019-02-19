@@ -9,6 +9,8 @@ require "csv"
 
   #ユーザーの初期データ
 User.create!(last_name: "田中", first_name: "太郎", last_name_kana: "タナカ", first_name_kana: "タロウ", birth_y: 2000, birth_m: 12, birth_d: 20, email: "mercari@mail.com", password: "password", password_confirmation: "password", nickname: "メルカリ")
+Profile.create!(phone: 11122223333, postal_code: 1234567, prefecture_id: 27, city: '大阪市北区', block: '梅田1-2-3', user_id: 1)
+PointRecord.create!(point: -10000, user_id: 1)
 
 ApplicationRecord.transaction do
   #categoryの登録
@@ -1158,7 +1160,10 @@ ApplicationRecord.transaction do
   office_general, office_furniture, store_supplies, oa_equipment, wrapping, other = office.children.create([{ name: "オフィス用品一般" }, { name: "オフィス家具" }, { name: "店舗用品" }, { name: "OA機器" }, { name: "ラッピング/包装" }, { name: "その他" }])
 end
 
-
+CSV.foreach('db/csv/brands.csv', headers: true) do |row|
+  Brand.create!(id: row['id'],
+                name: row['name'])
+end
 
 CSV.foreach('db/csv/items.csv', headers: true) do |row|
   Item.create!(id: row['id'],
@@ -1167,6 +1172,7 @@ CSV.foreach('db/csv/items.csv', headers: true) do |row|
                category_id: row['category_id'],
                shipping_fee: row['shipping_fee'],
                prefecture_id: row['prefecture_id'],
+               brand_id: row['brand_id'],
                days_to_ship: row['days_to_ship'],
                price: row['price'],
                condition: row['condition'],
