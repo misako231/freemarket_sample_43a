@@ -41,6 +41,7 @@
       }
       &__submit {
         width: 50%;
+        position:relative;
         @extend .lightblue-link-default-style;
         &:hover {
           background-color: $gray-b;
@@ -48,6 +49,13 @@
         .confirm_delete {
           text-decoration: none;
           color:$black-f;
+          position:absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width:100%;
+          height:100%;
         }
       }
     }
