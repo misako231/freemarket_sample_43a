@@ -205,6 +205,9 @@ main.index-conteiner {
               position: relative;
               margin: 0;
               height: 220px;
+              img {
+                object-fit: cover;
+              }
               .item__sold-out__badge {
                 > div {
                   position: absolute;

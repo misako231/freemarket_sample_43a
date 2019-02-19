@@ -12,6 +12,9 @@
   border-bottom: 1px solid #eee;
   &__img{
     display: block;
+    img {
+      object-fit: cover;
+    }
   }
   &__text{
     text-overflow: ellipsis;
