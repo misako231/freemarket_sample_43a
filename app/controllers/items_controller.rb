@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :own, :buy]
   before_action :get_category_tree, only: [:show, :own]
   before_action :total_point, only: [:show, :buy]
-  before_action :set_search, only: [:search]
 
   def index
     @items = Item.with_category.item_includes.new_arrival
@@ -15,15 +14,40 @@ class ItemsController < ApplicationController
     @cosme_items = @items.search_with_root_id(7).first(4)
   end
 
+
+  def show
+    @item = Item.find(params[:id])
+    @comments = @item.comments.includes(:user)
+    # @item = Item.find(params[:id])
+  end
+
+
   def new
     @item = Item.new
-    10.times { @item.item_photos.build }
+    @item.item_photos.build
+
+    if params[:root_id].present?
+      @new_children = Category.where(ancestry: params[:root_id])
+      render json: @new_children
+    elsif params[:child_id].present?
+      @new_grand_children = Category.where("ancestry LIKE ?", "%/#{params[:child_id]}")
+      render json: @new_grand_children
+    elsif params[:grand_child_id].present?
+      @new_great_grand_children = Category.where("ancestry LIKE ?", "%/#{params[:grand_child_id]}")
+      render json: @new_great_grand_children
+
+    end
   end
 
   def create
-    item  = Item.new(item_params)
-    if item.save
-      redirect_to root_path
+    @item  = Item.new(item_params)
+    if @item.save
+      # respond_to do |format|
+      #   format.html do
+      #     redirect_to
+      #   end
+      #   format.json
+      # end
     else
       render :new
     end
@@ -62,24 +86,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def search
-    if params[:q].present?
-      @search_keyword = params[:q][:name_cont_all]
-      @search_brand = params[:q][:brand_name_eq]
-      params[:q][:name_cont_all] = params[:q][:name_cont_all].split(/[\p{blank}\s]+/)
-      @q = Item.ransack(params[:q])
-      @items = @q.result(distinct: true).includes(:item_photos).page(params[:page]).per(NUM_PER_PAGE)
-    elsif params[:root_id].present?
-      @search_children = Category.where(ancestry: params[:root_id])
-      render json: @search_children
-    elsif params[:child_id].present?
-      @search_grand_children = Category.where("ancestry LIKE ?", "%/#{params[:child_id]}")
-      render json: @search_grand_children
-    else params[:keyword].present?
-      @items = Item.includes([:item_photos, :category]).where('items.name LIKE ? OR comment LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(NUM_PER_PAGE)
-    end
-  end
-
   def buy
     @item.order_statuses.build
   end
@@ -104,7 +110,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :comment, :category_id, :brand_id, :shipping_fee, :prefecture_id, :days_to_ship, :price, :condition, :closed, item_photos_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :comment, :category_id, :brand_id, :shipping_fee, :prefecture_id, :days_to_ship, :price, :condition, :closed, :transportation, item_photos_attributes: [:image]).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -120,10 +126,6 @@ class ItemsController < ApplicationController
       @parent_category, @child_category = Category.find(categories)
       @grandchild_category = Category.find(@item.category_id)
     end
-  end
-
-  def set_search
-     @q = Item.ransack(params[:q])
   end
 
 end
