@@ -23,17 +23,9 @@ class Item < ApplicationRecord
   enum shipping_fee: { self: false, other: true }
   enum days_to_ship: [:fast, :normal, :slow]
 
-  SORT = {"価格の安い順": "sort1", "価格の高い順": "sort2", "出品の古い順": "sort3", "出品の新しい順": "sort4", "いいね!の多い順": "sort5"}
+  SORT = {"価格の安い順": "price-asc", "価格の高い順": "price-desc", "出品の古い順": "id-asc", "出品の新しい順": "id-desc"}
   SEARCH_PRICE = {"300 ~ 1000": "300-1000", "1000 ~ 5000": "1000-5000", "5000 ~ 10000": "5000-10000", "10000 ~ 30000": "10000-30000", "30000 ~ 50000": "30000-50000", "50000 ~": "50000"}
   ORDER_STATUS = {"販売中": 0, "売り切れ": 1 }
-
-  def next_to_item(next_or_previous)
-    if next_or_previous == "previous"
-      Item.where('id < ?', self.id).order('id DESC').first
-    else
-      Item.where('id > ?', self.id).order('id ASC').first
-    end
-  end
 
   scope :with_category, -> { joins(:category) }
   scope :search_with_root_id, ->(root_id) { where("ancestry LIKE ?", "#{root_id}/%") }
@@ -46,6 +38,14 @@ class Item < ApplicationRecord
         amount:   price,
         currency: 'jpy',
       )
+  end
+
+  def next_to_item(next_or_previous)
+    if next_or_previous == "previous"
+      Item.where('id < ?', self.id).order('id DESC').first
+    else
+      Item.where('id > ?', self.id).order('id ASC').first
+    end
   end
 
 end

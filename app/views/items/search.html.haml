@@ -31,6 +31,15 @@
           .select__wrap
             = select_tag 'sort', options_for_select(Item::SORT), prompt: "並び替え", class: "select__default"
             %i.fas.fa-angle-down
+            #price-asc{style: "display: none"}
+              = sort_url(@q, :price, default_order: :asc)
+            #price-desc{style: "display: none"}
+              = sort_url(@q, :price, default_order: :desc)
+            #id-asc{style: "display: none"}
+              = sort_url(@q, :id, default_order: :asc)
+            #id-desc{style: "display: none"}
+              = sort_url(@q, :id, default_order: :desc)
+
       .search__dropdown__content
         %h3.visible__large
           詳細検索
@@ -44,13 +53,24 @@
             %i.fas.fa-list-ul
             %span カテゴリーを選択する
           .select__wrap#search-first-category
-            = select_tag 'root-category', options_from_collection_for_select(@parents, :id, :name), prompt: "すべて", class: 'select__default'
+            = select_tag 'root-category', options_from_collection_for_select(@parents, :id, :name, selected: "#{@selected_parent_category}"), prompt: "すべて", class: 'select__default', name: 'q[category_ancestry_start]'
             %i.fas.fa-angle-down
           .select__wrap#search-second-category
-            = select_tag 'child-category', options_for_select([]), prompt: "すべて", class: 'select__default'
-            %i.fas.fa-angle-down
+            - if get_child_from_root(@selected_parent_category) == []
+              = select_tag 'child-category', options_for_select([]), class: 'select__default', name: 'q[category_ancestry_cont]', style: 'display:none' do
+                %i.fas.fa-angle-down
+            - else
+              = select_tag 'child-category', options_from_collection_for_select(get_child_from_root(@selected_parent_category), :id, :name, selected: "#{@selected_child_category}"), class: 'select__default', prompt: "すべて", name: 'q[category_ancestry_cont]' do
+                %i.fas.fa-angle-down
           .select__grand-child
             .select__category__grand-child.is__show
+              #checked-categories{style: 'display: none'}
+                = @checked_categories
+              - if @selected_child_category.present?
+                = f.collection_check_boxes(:category_ancestry_end_any, get_deeper_from_childId(@selected_child_category), :id, :name, checked: @checked_categories, include_hidden: false) do |b|
+                  .checkbox__default
+                    = b.check_box
+                    = b.label
         .form__group.search__extend__brand
           %label
             %i.fas.fa-tag
@@ -88,61 +108,47 @@
             %i.fas.fa-star
             %span 商品の状態
           %div
+            .checkbox__default
+              %input{type: 'checkbox', id: 'check-all'}
+              %label{for: 'check-all'} すべて
             = f.collection_check_boxes :condition_eq_any, Item.conditions.map{|k, v| [Item.conditions_i18n[k], v]}, :last, :first do |b|
               .checkbox__default
-                = b.label do
-                  = b.check_box(class: 'child__icon')
-                  = b.label
-                -# = b.label {b.check_box + b.text}
-                -#
-                -# %label{ for: 'condition_all' }
-                -#   %input{ type: 'checkbox', id: 'condition_all', class: 'child__checkbox' }
-                -#   %span.checkbox__icon
-                -#     = b.text
+                = b.check_box class: 'condition-check'
+                = b.label
         .form__group
           %label
             %i.fas.fa-truck.fa-flip-horizontal
             %span 配送料の負担
           %div
             .checkbox__default
-              %label{for: 'check-shipping-all'}
-                すべて
-              = check_box_tag 'check-shipping-all'
-            = f.collection_check_boxes :shipping_fee_eq_any, Item.shipping_fees.map{|k, v| [Item.shipping_fees_i18n[k], v]}, :last, :first do |b|
-              .checkbox__default
-                = b.label
-                = b.check_box(class: 'child__icon')
+              %label.radio-button-label
+                = f.radio_button :shipping_fee_eq, '', checked: true, class: 'default-radio'
+                %span すべて
+            .checkbox__default
+              %label.radio-button-label
+                = f.radio_button :shipping_fee_eq, 'false'
+                %span 送料込み(出品者負担)
+            .checkbox__default
+              %label.radio-button-label
+                = f.radio_button :shipping_fee_eq, 'true'
+                %span 着払い(購入者負担)
         .form__group
           %label
             %i.fas.fa-shopping-cart
             %span 販売状況
-          .checkbox__default
-            -# = f.label :order_statuses_id_blank
-            %label
-              = f.radio_button :order_statuses_id_blank, '', checked: true
-              すべて
-            %label
-              = f.radio_button :order_statuses_id_blank, '1'
-              販売中
-            %label
-              = f.radio_button :order_statuses_id_blank, '0'
-              売り切れ
-            -# .checkbox__default
-            -#   = f.check_box :order_statuses_id_blank, {id: 'onsale-check'}
-            -#   = f.label :'販売中', for: 'onsale-check'
-            -# .checkbox__default
-            -#   = f.check_box :order_statuses_id_blank, {id: 'sold-check'}
-            -#   = f.label :'売り切れ', for: 'sold-check'
-            -# = f.collection_check_boxes :order_statuses_id_blank, Item::ORDER_STATUS, :last, :first do |b|
-            -#   .checkbox__default
-            -#     = b.label do
-            -#       = b.check_box(class: 'child__icon')
-            -#       = b.label
-            -#   .checkbox__default
-            -#     %label{ for: 'status_all' }
-            -#       %input{ type: 'checkbox', id: 'status_all', class: 'child__checkbox' }
-            -#       %span.checkbox__icon
-            -#       すべて
+          %div
+            .checkbox__default
+              %label.radio-button-label
+                = f.radio_button :order_statuses_status_null, '', checked: true, class:'default-radio'
+                %span すべて
+            .checkbox__default
+              %label.radio-button-label
+                = f.radio_button :order_statuses_status_null, 'true'
+                %span 販売中
+            .checkbox__default
+              %label.radio-button-label
+                = f.radio_button :order_statuses_status_null, 'false'
+                %span 売り切れ
         .search__extend__btn--empty
         .search__extend__btn
           .btn__default.btn__gray クリア
