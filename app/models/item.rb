@@ -8,20 +8,22 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :order_statuses
   belongs_to :user
   belongs_to :category
-  belongs_to :brand
+  belongs_to :brand, optional: true
   validates :name,           presence: true, length: { maximum: 40 }
   validates :comment,        presence: true, length: { maximum: 1000 }
   validates :category_id,    presence: true
   validates :shipping_fee,   presence: true
-  validates :prefecture,     presence: true
+  validates :prefecture_id,     presence: true
   validates :days_to_ship,   presence: true
   validates :price,          numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, presence: true
   validates :condition,      presence: true
+  validates :transportation, presence: true
   validates :item_photos,    presence: true
 
   enum condition: [:new_item, :close_to_the_unused, :no_noticeable_scratches_and_dirt, :a_few_scratches_and_dirt, :scratches_and_dirt, :bad]
-  enum shipping_fee: { self: false, other: true }
+  enum shipping_fee: { self_burden: false, other: true }
   enum days_to_ship: [:fast, :normal, :slow]
+  enum transportation: [:nodecided, :merukaribin, :yuumail, :letter, :ordinary, :kuroneko, :yuupack, :clickpost, :yuupaket]
 
   SORT = {"価格の安い順": "price-asc", "価格の高い順": "price-desc", "出品の古い順": "id-asc", "出品の新しい順": "id-desc"}
   SEARCH_PRICE = {"300 ~ 1000": "300-1000", "1000 ~ 5000": "1000-5000", "5000 ~ 10000": "5000-10000", "10000 ~ 30000": "10000-30000", "30000 ~ 50000": "30000-50000", "50000 ~": "50000"}

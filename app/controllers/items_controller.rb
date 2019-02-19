@@ -15,17 +15,35 @@ class ItemsController < ApplicationController
   end
 
   def show
+    # @item = Item.find(params[:id])
   end
 
   def new
     @item = Item.new
-    10.times { @item.item_photos.build }
+    @item.item_photos.build
+
+    if params[:root_id].present?
+      @new_children = Category.where(ancestry: params[:root_id])
+      render json: @new_children
+    elsif params[:child_id].present?
+      @new_grand_children = Category.where("ancestry LIKE ?", "%/#{params[:child_id]}")
+      render json: @new_grand_children
+    elsif params[:grand_child_id].present?
+      @new_great_grand_children = Category.where("ancestry LIKE ?", "%/#{params[:grand_child_id]}")
+      render json: @new_great_grand_children
+
+    end
   end
 
   def create
-    item  = Item.new(item_params)
-    if item.save
-      redirect_to root_path
+    @item  = Item.new(item_params)
+    if @item.save
+      # respond_to do |format|
+      #   format.html do
+      #     redirect_to
+      #   end
+      #   format.json
+      # end
     else
       render :new
     end
@@ -67,6 +85,7 @@ class ItemsController < ApplicationController
   end
 
   def charge
+  begin
     Payjp.api_key = Rails.application.credentials.PAYJP_SECRET_KEY
     price = params[:item][:price]
 
@@ -77,12 +96,15 @@ class ItemsController < ApplicationController
     o_status = OrderStatus.create(status: params[:item][:order_statuses_attributes][:"0"][:status], purchaser_id: params[:item][:order_statuses_attributes][:"0"][:purchaser_id], seller_id: params[:item][:order_statuses_attributes][:"0"][:seller_id], item_id: params[:item][:order_statuses_attributes][:"0"][:item_id])
     p_record = PointRecord.create(point: params[:item][:point_records][:point], user_id: current_user.id, order_status_id: o_status.id) if params[:item][:point_records].present?
     redirect_to root_path, flash: {bought: '商品を購入しました'}
+    rescue => e
+      redirect_to buy_item_path, flash: {credit_charge_error: '購入に失敗しました'}
+    end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :comment, :category_id, :brand_id, :shipping_fee, :prefecture_id, :days_to_ship, :price, :condition, :closed, item_photos_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :comment, :category_id, :brand_id, :shipping_fee, :prefecture_id, :days_to_ship, :price, :condition, :closed, :transportation, item_photos_attributes: [:image]).merge(user_id: current_user.id)
   end
 
   def set_item
