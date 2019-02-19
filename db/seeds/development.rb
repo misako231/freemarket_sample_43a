@@ -1178,5 +1178,6 @@ CSV.foreach('db/csv/items.csv', headers: true) do |row|
                condition: row['condition'],
                user_id: row['user_id'],
                closed: row['closed'],
+               transportation: row['transportation'],
                item_photos_attributes: [{image: open("#{Rails.root}/db/fixture/image#{row['id']}.jpg")}])
 end
