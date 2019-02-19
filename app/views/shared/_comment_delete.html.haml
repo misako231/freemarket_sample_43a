@@ -11,6 +11,6 @@
       .delete-dialog__buttons__cancel
         キャンセル
       .delete-dialog__buttons__submit
-        = link_to item_comment_path(item_id: comment.item.id, id: comment.id), method: "delete", class:"confirm_delete" do
+        = link_to item_comment_path(item_id: comment.item.id, id: comment.id), method: "delete", class: "confirm_delete" do
           コメントを削除する
 #delete-overlay

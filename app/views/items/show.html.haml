@@ -1,5 +1,9 @@
 = render partial: "shared/comment_delete", collection: @comments, as: :comment
 = render partial: "shared/header"
+- if flash[:success]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:success]
 %nav.bread-crumbs
   %ul.bread-crumbs__items
     %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
