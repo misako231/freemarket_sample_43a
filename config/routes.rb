@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-   registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
+   registrations: 'users/registrations', sessions: 'users/sessions', omniauth_callbacks: 'users/omniauth_callbacks'}
   get '/users', to: redirect("/users/sign_up")
   root to: 'items#index'
   post 'items/:id', to: 'items#charge'
