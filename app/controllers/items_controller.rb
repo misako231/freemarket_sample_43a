@@ -14,9 +14,13 @@ class ItemsController < ApplicationController
     @cosme_items = @items.search_with_root_id(7).first(4)
   end
 
+
   def show
+    @item = Item.find(params[:id])
+    @comments = @item.comments.includes(:user)
     # @item = Item.find(params[:id])
   end
+
 
   def new
     @item = Item.new
@@ -58,9 +62,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
     @users_item = Item.item_includes.where(user_id: @item.user_id).all
     @previous = @item.next_to_item("previous")
     @next_item = @item.next_to_item("next_item")
+    @comments = @item.comments.includes(:user)
   end
 
   def own
