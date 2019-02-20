@@ -182,6 +182,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-slick-rails (1.9.0)
       railties (>= 3.1)
+    json (2.1.0)
     jwt (2.1.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
@@ -304,6 +305,8 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    recaptcha (4.13.1)
+      json
     regexp_parser (1.3.0)
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
@@ -437,6 +440,7 @@ DEPENDENCIES
   rails-flog
   rails-i18n
   ransack
+  recaptcha
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
