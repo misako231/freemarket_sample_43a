@@ -5,23 +5,21 @@ $(document).on('turbolinks:load', function() {
     $('#child-category').append(html);
   };
   // カテゴリー３層目（チェックボックス）をbuild
-  function addCheck(category) {
+  function addCategoryCheck(category) {
     var html = `<div class='checkbox__default'>
                   <input value='${category.id}' name='q[category_ancestry_end_any][]' class='child__icon' id='q_category_ancestry_end_any_${category.id}' type='checkbox'>
-                  <label for='q_category_ancestry_end_any_${category.id}'>${category.name}</span>
+                  <label for='q_category_ancestry_end_any_${category.id}'>${category.name}</label>
                 </div>`
     $('.select__category__grand-child').append(html);
   }
-  // クリアボタン
-  $('.btn__gray').on('click', function(){
-    $('#root-category').val('');
-    $('#child-category').empty().hide();
-    $('.select__category__grand-child').empty().hide();
-    $('#check-all').prop('checked', false);
-    $('.condition-check').prop('checked', false);
-    $('.input__default').val('');
-    $('.default-radio').prop('checked', true);
-  });
+  // サイズのチェックボックスをbuild
+  function addSizeCheck(size) {
+    var html = `<div class='checkbox__default'>
+                  <input value='${size}' name='q[category_name_eq_any][]' class='child__icon' id='q_category_name_eq_any_${size}' type='checkbox'>
+                  <label for='q_category_name_eq_any_${size}'>${size}</label>
+                </div>`
+    $('.select__category__child').append(html);
+  }
   // カテゴリー２層目を表示
   $('#search-first-category').change(function(){
     var root_id = $('#search-first-category option:selected').val();
@@ -58,12 +56,27 @@ $(document).on('turbolinks:load', function() {
     .always(function(categories){
       $('.select__category__grand-child').empty().show();
       categories.forEach(function(category){
-        addCheck(category);
+        addCategoryCheck(category);
       });
     });
   });
-
-  console.log($('#checked-categories').text());
+  // サイズを取得
+  $('#size_select').change(function(){
+    var size_group = $('#size_select option:selected').val();
+    $.ajax({
+      url: '/items/search',
+      type: 'get',
+      data: { size_group: size_group },
+      dataType: 'json',
+    })
+    .always(function(size){
+      console.log('ok')
+      $('.select__category__child').empty().show();
+      size.forEach(function(size){
+        addSizeCheck(size);
+      });
+    });
+  });
   // 金額の選択肢を入力欄に反映
   $('#search_price').change(function(){
     var price_range = $('#search_price').val().split('-');
@@ -84,11 +97,8 @@ $(document).on('turbolinks:load', function() {
     }
   });
   // 商品状態をすべてチェック
-  console.log($(".condition-check:not(:checked)").size());
-
   if ($(".condition-check:not(:checked)").size() == 0 ) {
     $('#check-all').prop('checked', true);
-    console.log($(".condition-check:not(:checked)").size());
   }
   $('.condition-check').on('change', function() {
     if ($(".condition-check:not(:checked)").size() == 0 ) {
@@ -97,5 +107,17 @@ $(document).on('turbolinks:load', function() {
   });
   $('#check-all').on('change', function() {
     $('.condition-check').prop('checked', this.checked);
+  });
+  // クリアボタン
+  $('.btn__gray').on('click', function(){
+    $('#root-category').val('');
+    $('#child-category').empty().hide();
+    $('.select__category__grand-child').empty().hide();
+    $('#size-select').val('');
+    $('.select__category__child').empty().hide();
+    $('#check-all').prop('checked', false);
+    $('.condition-check').prop('checked', false);
+    $('.input__default').val('');
+    $('.default-radio').prop('checked', true);
   });
 });

@@ -9,7 +9,6 @@
     .search__result--head {
       margin: 0 0 8px;
       font-size: 22px;
-      // font-weight: 400;
       line-height: 1.4;
     }
     .items__box__content {
@@ -212,8 +211,6 @@
         .form__group {
           margin: 40px 0 0;
           label {
-            // display: block;
-            // font-weight: 600;
             i {
               margin: 0 4px 0 0;
               color: #888;
@@ -331,10 +328,11 @@
   display: inline-flex;
   margin-top: 6px;
   padding-left: 26px;
-  width: 48%;
+  width: 47%;
   font-size: 14px;
   position: relative;
   word-break: break-word;
+  min-height: 21px;
 }
 .checkbox__default__left {
   width: 10px;
