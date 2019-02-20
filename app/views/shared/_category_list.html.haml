@@ -1,19 +1,22 @@
 %ul.header-nav__parent__wrap
   - @parents.each do |parent|
-    %li.header-nav__parent
-      %h3
-        = link_to "#", class: "header-nav__parent__name" do
-          = parent.name
-      %ul.header-nav__child__wrap
-        - get_child_from_root(parent).each do |child|
-          %li.header-nav__child
-            = link_to "#", class: "header-nav__child__name" do
-              = child.name
-            %ul.header-nav__grandchild__wrap
-              - get_deeper_from_child(child).first(14).each do |grandchild|
-                %li.header-nav__grandchild
-                  = link_to "#", class: "header-nav__grandchild__name" do
-                    = grandchild.name
+    - cache parent do
+      %li.header-nav__parent
+        %h3
+          = link_to "#", class: "header-nav__parent__name" do
+            = parent.name
+        %ul.header-nav__child__wrap
+          - get_child_from_root(parent).each do |child|
+            - cache child do
+              %li.header-nav__child
+                = link_to "#", class: "header-nav__child__name" do
+                  = child.name
+                %ul.header-nav__grandchild__wrap
+                  - get_deeper_from_child(child).first(14).each do |grandchild|
+                    - cache grandchild do
+                      %li.header-nav__grandchild
+                        = link_to "#", class: "header-nav__grandchild__name" do
+                          = grandchild.name
   %li.header-nav__parent
     %h3
       = link_to categories_path, class: "header-nav__parent__name" do

@@ -64,6 +64,11 @@
           %th ブランド
           %td
             = @item.brand.name
+        - if @item.has_size?
+          %tr
+            %th サイズ
+            %td
+              = @item.category.name
         %tr
           %th 商品の状態
           %td
