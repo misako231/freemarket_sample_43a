@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_13_065926) do
+ActiveRecord::Schema.define(version: 2019_02_15_123508) do
+
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -18,6 +24,16 @@ ActiveRecord::Schema.define(version: 2019_02_13_065926) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "item_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "creditcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -58,10 +74,23 @@ ActiveRecord::Schema.define(version: 2019_02_13_065926) do
     t.integer "condition", null: false
     t.bigint "user_id", null: false
     t.boolean "closed", default: false, null: false
+    t.integer "transportation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_items_on_name"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "order_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "purchaser_id"
+    t.bigint "seller_id"
+    t.integer "status", null: false
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_order_statuses_on_item_id"
+    t.index ["purchaser_id"], name: "index_order_statuses_on_purchaser_id"
+    t.index ["seller_id"], name: "index_order_statuses_on_seller_id"
   end
 
   create_table "point_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -69,6 +98,8 @@ ActiveRecord::Schema.define(version: 2019_02_13_065926) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_status_id"
+    t.index ["order_status_id"], name: "index_point_records_on_order_status_id"
     t.index ["user_id"], name: "index_point_records_on_user_id"
   end
 
@@ -107,6 +138,8 @@ ActiveRecord::Schema.define(version: 2019_02_13_065926) do
     t.string "nickname", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "provider"
+    t.string "uid"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -116,11 +149,17 @@ ActiveRecord::Schema.define(version: 2019_02_13_065926) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "items"
+  add_foreign_key "comments", "users"
   add_foreign_key "creditcards", "users"
   add_foreign_key "favorite_items", "items"
   add_foreign_key "favorite_items", "users"
   add_foreign_key "item_photos", "items"
   add_foreign_key "items", "users"
+  add_foreign_key "order_statuses", "items"
+  add_foreign_key "order_statuses", "users", column: "purchaser_id"
+  add_foreign_key "order_statuses", "users", column: "seller_id"
+  add_foreign_key "point_records", "order_statuses"
   add_foreign_key "point_records", "users"
   add_foreign_key "profiles", "users"
 end

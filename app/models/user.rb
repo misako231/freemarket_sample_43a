@@ -2,11 +2,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_many :items
+  has_many :comments,dependent: :destroy
   has_many :creditcards
   has_many :favorite_items, dependent: :destroy
   has_one :profile
   has_many :sns_credentials
-  has_many :point_records
+  has_many :point_records, dependent: :destroy
+  has_many :order_statuses
   validates :nickname,               presence: true, length: { maximum: 20 }
   validates :password,               length: { maximum: 128 }
   validates :email,                  format: { with: /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/,

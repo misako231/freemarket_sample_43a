@@ -10,6 +10,11 @@
             = link_to item_path(item) do
               %figure.items__box__photo
                 = image_tag "#{item.item_photos.first.image}", class: 'items__box__photo__image', alt: "#{item.name}"
+                - if item.order_statuses.present?
+                  %figcaption
+                    .item__sold-out__badge
+                      %div
+                        SOLD
               .items__box__body
                 %h3.items__box__name
                   = item.name
@@ -20,53 +25,57 @@
                   %p.items__box__tax (税込)
     = paginate @items
   .search__side
-    = form_with url: search_items_path, class: "search__extend__container", novalidate: true do |f|
+    = search_form_for @q, url: search_items_path, class: "search__extend__container", novalidate: true do |f|
       .search__sort
         .form__group
           .select__wrap
-            = f.select :sort, Item::SORT, { prompt: "並び替え" }, class: "select__default"
+            = select_tag 'sort', options_for_select(Item::SORT), prompt: "並び替え", class: "select__default"
             %i.fas.fa-angle-down
+            #price-asc{style: "display: none"}
+              = sort_url(@q, :price, default_order: :asc)
+            #price-desc{style: "display: none"}
+              = sort_url(@q, :price, default_order: :desc)
+            #id-asc{style: "display: none"}
+              = sort_url(@q, :id, default_order: :asc)
+            #id-desc{style: "display: none"}
+              = sort_url(@q, :id, default_order: :desc)
+
       .search__dropdown__content
         %h3.visible__large
           詳細検索
         .form__group
-          %label
+          = f.label :name_cont_all do
             %i.fas.fa-plus
             %span キーワードを追加する
-            %input.input__default{ type: 'text', value: "#{params[:keyword]}", name: 'keyword', placeholder: '例) 値下げ'}
+            = f.text_field :name_cont_all, class: 'input__default', value: "#{@search_keyword}", placeholder: '例) 値下げ'
         .form__group
           %label
             %i.fas.fa-list-ul
             %span カテゴリーを選択する
-          .select__wrap
-            %select.select__default
+          .select__wrap#search-first-category
+            = select_tag 'root-category', options_from_collection_for_select(@parents, :id, :name, selected: "#{@selected_parent_category}"), prompt: "すべて", class: 'select__default', name: 'q[category_ancestry_start]'
             %i.fas.fa-angle-down
-          .select__child
-            .select__wrap.select__category__child
-              %select.select__default{ disabled: true }
-              %i.fas.fa-angle-down
+          .select__wrap#search-second-category
+            - if get_child_from_root(@selected_parent_category) == []
+              = select_tag 'child-category', options_for_select([]), class: 'select__default', name: 'q[category_ancestry_cont]', style: 'display:none' do
+                %i.fas.fa-angle-down
+            - else
+              = select_tag 'child-category', options_from_collection_for_select(get_child_from_root(@selected_parent_category), :id, :name, selected: "#{@selected_child_category}"), class: 'select__default', prompt: "すべて", name: 'q[category_ancestry_cont]' do
+                %i.fas.fa-angle-down
           .select__grand-child
             .select__category__grand-child.is__show
-              .checkbox__default
-                %label{ for: 'category__grand-child'}
-                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  Tシャツ/カットソー半袖袖なし
-              .checkbox__default
-                %label{ for: 'category__grand-child'}
-                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  Tシャツ/カットソー半袖袖なし
-              .checkbox__default
-                %label{ for: 'category__grand-child'}
-                  %input{ type: 'checkbox', id: 'category__grand-child', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  Tシャツ/カットソー
+              #checked-categories{style: 'display: none'}
+                = @checked_categories
+              - if @selected_child_category.present?
+                = f.collection_check_boxes(:category_ancestry_end_any, get_deeper_from_childId(@selected_child_category), :id, :name, checked: @checked_categories, include_hidden: false) do |b|
+                  .checkbox__default
+                    = b.check_box
+                    = b.label
         .form__group.search__extend__brand
           %label
             %i.fas.fa-tag
             %span ブランド名から探す
-          %input.input__default{ type: 'text', name: 'brand_name', placeholder: '例)シャネル' }
+          = f.text_field :brand_name_eq, class: 'input__default', value: "#{@search_brand.to_s}", placeholder: '例)シャネル'
           %input{ type: 'hidden', name: 'brand_id' }
           %ul
         .form__group
@@ -74,6 +83,7 @@
             %i.fas.fa-expand
             %span サイズを指定する
           .select__wrap
+            -# = select_tag 'size-group', options_from_collection_for_select(@parents, :id, :name), prompt: "すべて", class: 'select__default'
             %select.select__default
             %i.fas.fa-angle-down
           .select__child
@@ -88,44 +98,61 @@
             %i.fas.fa-coins
             %span 価格
           .select__wrap
-            = f.select :search_price, Item::SEARCH_PRICE, { prompt: "選択してください" }, class: "select__default"
+            = select_tag 'search_price', options_for_select(Item::SEARCH_PRICE), prompt: "選択してください", class: "select__default"
             %i.fas.fa-angle-down
-            %input.input__default{ type: 'number', placeholder: '¥ Min' }
+            = f.number_field :price_gteq, placeholder: '¥ Min', class: 'input__default'
             %span.wavy__line ~
-            %input.input__default{ type: 'number', placeholder: '¥ Max' }
+            = f.number_field :price_lteq, placeholder: '¥ Max', class: 'input__default'
         .form__group
           %label
             %i.fas.fa-star
             %span 商品の状態
           %div
             .checkbox__default
-              %label{ for: 'condition_all' }
-                %input{ type: 'checkbox', id: 'condition_all', class: 'child__checkbox' }
-                %span.checkbox__icon
-                すべて
+              %input{type: 'checkbox', id: 'check-all'}
+              %label{for: 'check-all'} すべて
+            = f.collection_check_boxes :condition_eq_any, Item.conditions.map{|k, v| [Item.conditions_i18n[k], v]}, :last, :first do |b|
+              .checkbox__default
+                = b.check_box class: 'condition-check'
+                = b.label
         .form__group
           %label
             %i.fas.fa-truck.fa-flip-horizontal
             %span 配送料の負担
           %div
             .checkbox__default
-              %label{ for: 'shipping_fee_all' }
-                %input{ type: 'checkbox', id: 'shipping_fee_all', class: 'child__checkbox' }
-                %span.checkbox__icon
-                すべて
+              %label.radio-button-label
+                = f.radio_button :shipping_fee_eq, '', checked: true, class: 'default-radio'
+                %span すべて
+            .checkbox__default
+              %label.radio-button-label
+                = f.radio_button :shipping_fee_eq, 'false'
+                %span 送料込み(出品者負担)
+            .checkbox__default
+              %label.radio-button-label
+                = f.radio_button :shipping_fee_eq, 'true'
+                %span 着払い(購入者負担)
         .form__group
           %label
             %i.fas.fa-shopping-cart
             %span 販売状況
           %div
             .checkbox__default
-              %label{ for: 'status_all' }
-                %input{ type: 'checkbox', id: 'status_all', class: 'child__checkbox' }
-                %span.checkbox__icon
-                すべて
+              %label.radio-button-label
+                = f.radio_button :order_statuses_status_null, '', checked: true, class:'default-radio'
+                %span すべて
+            .checkbox__default
+              %label.radio-button-label
+                = f.radio_button :order_statuses_status_null, 'true'
+                %span 販売中
+            .checkbox__default
+              %label.radio-button-label
+                = f.radio_button :order_statuses_status_null, 'false'
+                %span 売り切れ
         .search__extend__btn--empty
         .search__extend__btn
           .btn__default.btn__gray クリア
-          %button.btn__default.btn__red{ type: 'submit' } 完了
+          = f.submit class: "btn__default btn__red" do
+            完了
 = render 'shared/sellbtn'
 = render 'shared/footer'

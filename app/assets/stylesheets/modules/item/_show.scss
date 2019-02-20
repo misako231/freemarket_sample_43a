@@ -16,20 +16,53 @@
       display:flex;
       flex-direction:row;
       &__item-photo {
+        position: relative;
         width:300px;
         height:375px;
         overflow:hidden;
         &__main {
           height:300px;
+          img {
+            object-fit: contain;
+          }
         }
         &__sub {
           display:flex;
           flex-direction:row;
           &-containts {
             opacity: .4;
+            img {
+              object-fit: cover;
+            }
           }
           .active {
             opacity: 1;
+          }
+        }
+        .item__sold-out__badge {
+          > div {
+            position: absolute;
+            top: 24px;
+            left: 0;
+            font-size: 24px;
+            z-index: 2;
+            color: $white-f;
+            transform: rotate(-45deg);
+            letter-spacing: 2px;
+            font-weight: 550;
+          }
+          &:after {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            z-index: 1;
+            height: 0;
+            width: 0;
+            border-style: solid;
+            border-width: 120px 120px 0 0;
+            border-color: $mercarired transparent transparent transparent;
           }
         }
       }
@@ -127,8 +160,15 @@
       @include button-default-style();
       font-size:24px;
       margin-top:16px;
+      height: 60px;
+      line-height: 60px;
       text-decoration: none;
       font-weight: bold;
+    }
+    .disabled {
+      background-color: #888;
+      cursor: not-allowed;
+      border-color: #888;
     }
     &__item-description {
       padding:32px 0 0;
@@ -294,12 +334,25 @@
           &-icons {
             margin-top:8px;
             color:#aaa;
-            &__time {
-              display:inline-block;
+            display:flex;
+            justify-content:space-between;
+            &__left {
+              display:flex;
+              flex-direction:row;
+              align-items:center;
+              .fa-clock {
+                margin-right:3px;
+              }
+              &__time {
+                margin-right:8px;
+              }
             }
-            &__flag {
-              display:inline-block;
-              margin-left:480px;
+            &__right {
+              display:flex;
+              flex-direction:row;
+              .fa-trash-alt {
+                margin-left:8px;
+              }
             }
           }
         }
@@ -319,6 +372,14 @@
         min-height: 104px;
         padding:10px;
         margin:8px 0 0;
+        outline: 0;
+        &[type="number"]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+          }
+        &:focus {
+          border-color:#0099e8;
+        }
       }
       button,&__parent-comment-submit-button {
         background-color:#aaa;

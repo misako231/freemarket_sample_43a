@@ -18,9 +18,9 @@
               売却済み
       .orderd__content__trade__content
         %ul.orderd__content__trade__content__during
-          - if current_user.items.present?
-            %li.orderd__content__trade__content__during__list
-              fafafa
+          - if @items.present?
+            - @items.each do |item|
+              = render partial: 'shared/item-list', locals: { item: item }
           - else
             %li.orderd__content__trade__content__during__none
               取引中の商品がありません

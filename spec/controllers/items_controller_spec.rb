@@ -110,6 +110,8 @@ describe ItemsController do
       keyword = "good"
       items = Item.where('items.name LIKE ? OR comment LIKE ?', "%#{keyword}%", "%#{keyword}%")
       expect(assigns(:items)).to match_array(items)
+    end
+  end
 
   describe 'Delete #destroy' do
     before :each do
@@ -135,3 +137,4 @@ describe ItemsController do
     end
   end
 end
+
