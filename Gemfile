@@ -94,3 +94,4 @@ gem 'omniauth-facebook'
 gem 'active_hash'
 gem 'ransack'
 gem "gretel"
+gem 'recaptcha', require: "recaptcha/rails"

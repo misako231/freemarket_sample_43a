@@ -3,7 +3,7 @@
   .login__panel
     .login__no-account
       %p アカウントをお持ちでない方はこちら
-      = link_to '#' do
+      = link_to new_mypage_path do
         新規会員登録
     .login__form--inner
       = link_to user_facebook_omniauth_authorize_path, id: 'facebook__login', class: 'btn__default btn__sns btn__sns-facebook' do
@@ -21,7 +21,7 @@
         .form__group
           = f.password_field :password, class: "login__input__text input__default", placeholder: 'パスワード'
         .form__group
-          .g-recaptcha.login__recaptcha{ 'data-sitekey': '6LchzY0UAAAAAAqz7MrGCIh8SBad6Hep96J_naNB' }
+          = recaptcha_tags
           %button.login__submit.btn__default.btn__red{ type: 'submit' } ログイン
           = link_to '#' do
             パスワードをお忘れの方

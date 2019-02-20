@@ -97,7 +97,7 @@
       .member__info__content
         %input{ type: 'hidden', name: 'after_save_callback' }
         .form__group
-          .g-recaptcha.signup__recaptcha{ 'data-sitekey': '6LchzY0UAAAAAAqz7MrGCIh8SBad6Hep96J_naNB' }
+          = recaptcha_tags
         .form__group
           %p.info__single__text.text--center
             「次へ進む」のボタンを押すことにより、
