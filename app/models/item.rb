@@ -43,6 +43,10 @@ class Item < ApplicationRecord
       )
   end
 
+  def has_size?
+    self.category.ancestry.split('/').length == 3
+  end
+
   def next_to_item(next_or_previous)
     if next_or_previous == "previous"
       Item.where('id < ?', self.id).order('id DESC').first
