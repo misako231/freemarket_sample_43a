@@ -83,16 +83,15 @@
             %i.fas.fa-expand
             %span サイズを指定する
           .select__wrap
-            -# = select_tag 'size-group', options_from_collection_for_select(@parents, :id, :name), prompt: "すべて", class: 'select__default'
-            %select.select__default
+            = select_tag 'size_group', options_for_select(Category::SIZE_GROUP, selected: "#{@selected_size_group}"), prompt: "すべて", class: 'select__default', id: 'size_select'
             %i.fas.fa-angle-down
           .select__child
             .select__category__child.is__show
-              .checkbox__default
-                %label{ for: 'size_id' }
-                  %input{ type: 'checkbox', id: 'size_id', class: 'child__checkbox', disabled: true }
-                  %span.checkbox__icon
-                  XXS以下
+              - if @selected_size_group.present?
+                = f.collection_check_boxes(:category_name_eq_any, get_size_group(@selected_size_group), :itself, :itself, checked: @checked_size, include_hidden: false) do |b|
+                  .checkbox__default
+                    = b.check_box
+                    = b.label
         .form__group.search__price
           %label
             %i.fas.fa-coins
