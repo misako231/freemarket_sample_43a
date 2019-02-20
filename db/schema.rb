@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
     t.integer "condition", null: false
     t.bigint "user_id", null: false
     t.boolean "closed", default: false, null: false
+    t.integer "transportation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_items_on_name"

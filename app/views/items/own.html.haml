@@ -60,6 +60,11 @@
           %th ブランド
           %td
             = @item.brand.name
+        - if @item.has_size?
+          %tr
+            %th サイズ
+            %td
+              = @item.category.name
         %tr
           %th 商品の状態
           %td
@@ -99,7 +104,7 @@
     %button.parent-own-item-container__delete-btn
       商品を削除する
   .parent-comment-container
-    = render partial: "comment"
+    = render partial: "comment", collection: @comments
     %form.parent-comment-container__message-form{action: "#", method: "POST"}
       %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
       %input{name: "item_id", type: "hidden"}
