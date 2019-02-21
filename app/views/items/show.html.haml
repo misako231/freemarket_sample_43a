@@ -1,4 +1,5 @@
-= render partial: "shared/comment_delete", collection: @comments, as: :comment
+#comment_delete_array
+  = render partial: "shared/comment_delete", collection: @comments, as: :comment
 = render partial: "shared/header"
 - if flash[:success]
   .delete-success-flash

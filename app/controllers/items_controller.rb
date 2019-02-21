@@ -1,24 +1,27 @@
 class ItemsController < ApplicationController
   include GetCategories
   include GetPoints
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :get_root
   before_action :set_item, only: [:show, :own, :buy]
   before_action :get_category_tree, only: [:show, :own]
   before_action :total_point, only: [:show, :buy]
 
   def index
-    @items = Item.with_category.item_includes.new_arrival
-    @ladies_items = @items.search_with_root_id(1).first(4)
-    @mens_items = @items.search_with_root_id(2).first(4)
-    @baby_items = @items.search_with_root_id(3).first(4)
-    @cosme_items = @items.search_with_root_id(7).first(4)
+    @items         = Item.with_category.item_includes.new_arrival
+    @ladies_items  = @items.search_with_root_id(1).first(4)
+    @mens_items    = @items.search_with_root_id(2).first(4)
+    @baby_items    = @items.search_with_root_id(3).first(4)
+    @cosme_items   = @items.search_with_root_id(7).first(4)
+    @chanel_items  = @items.where(brand_id: 5).first(4)
+    @vuitton_items = @items.where(brand_id: 3).first(4)
+    @supreme_items = @items.where(brand_id: 4).first(4)
+    @nike_items    = @items.where(brand_id: 2).first(4)
   end
 
 
   def show
-    @item = Item.find(params[:id])
     @comments = @item.comments.includes(:user)
-    # @item = Item.find(params[:id])
   end
 
 
@@ -70,6 +73,7 @@ class ItemsController < ApplicationController
   end
 
   def own
+    @comments = @item.comments.includes(:user)
   end
 
   def edit
