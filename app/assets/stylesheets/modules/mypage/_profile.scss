@@ -29,8 +29,10 @@
           }
         }
         &__nickname{
-          @include input-default-style(220px);
-          margin-left: 8px;
+          &__in{
+            @include input-default-style(220px);
+            margin-left: 8px;
+          }
         }
       }
       &__bottom{
