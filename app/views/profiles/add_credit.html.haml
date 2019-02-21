@@ -1,0 +1,55 @@
+= render 'shared/header'
+- if flash[:credit_create_error]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:credit_create_error]
+    .delete-success-flash__close.close-btn
+      ×
+
+
+%main.add_credit
+  = render 'shared/mypage-side-nav'
+  .add_credit__info
+    .add_credit__info__top
+      クレジットカード情報入力
+    .add_credit__info__content
+      .add_credit__info__content__form
+        .add_credit__info__content__form__field
+          = form_with url: add_user_creditcards_path(user_id: current_user.id), local: true do |f|
+            %p
+              カード番号
+              %span.span-red 必須
+            = f.text_field :number, maxlength: "16", placeholder: "半角数字のみ", class: "credit__info__content__form__field__input"
+            .add_credit__info__content__form__field__img
+              =image_tag 'visa.svg',height: "20", width: "49"
+              =image_tag 'master-card.svg', height: "20", width: "34"
+              =image_tag 'saison-card.svg', height: "20", width: "30"
+              =image_tag 'jcb.svg', height: "20", width: "32"
+              =image_tag 'american_express.svg', height: "20", width: "21"
+              =image_tag 'dinersclub.svg', height: "20", width: "32"
+              =image_tag 'discover.svg', height: "20", width: "32"
+            .add_credit__info__content__form__field__date
+              %p
+                有効期限
+                %span.span-red 必須
+              .add_credit__info__content__form__field__date__select__m
+                = f.select(:exp_month, MONTH, {prompt: "--"}, {class: ""})
+                .icon__arrow__bottom
+                  %i.fa.fa-angle-down
+                %span.m 月
+              .add_credit__info__content__form__field__date__select__y
+                = f.select(:exp_year, Creditcard::years, {prompt: "--"}, {class: ""})
+                .icon__arrow__bottom
+                  %i.fa.fa-angle-down
+                %span.y 年
+            .add_credit__info__content__form__field__num
+              %p
+                セキュリティーコード
+                %span.span-red 必須
+              = f.text_field :cvc, placeholder: "カード背面４桁もしくは３桁の番号",  class: "add_credit__info__content__form__field__num__form"
+              .add_credit__info__content__form__field__num__sentence-blue
+                カード裏側の番号とは？
+            %button.submit{type: "submit"} 追加する
+= render 'shared/footer'
+= render 'shared/sellbtn'
+

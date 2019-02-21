@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:create] do
     resources :creditcards, only: [:create] do
+      collection do
+        post :add
+      end
     end
     resources :items, only: [:edit, :update, :destroy] do
       collection do
@@ -40,7 +43,9 @@ Rails.application.routes.draw do
       collection do
         get :logout
         get :credit
+        get :add_credit
         get :done
+      patch :user_edit
       end
     end
   end

@@ -34,7 +34,10 @@
               = link_to user_profiles_path(user_id: current_user.id), class: "user-nav__list__link" do
                 %figure.mypage-icon
                   .mypage-icon__conteiner
-                    = image_tag 'beutiful.jpg'
+                    -if current_user.avatar.present?
+                      = image_tag "#{current_user.avatar}"
+                    -else
+                      = image_tag 'member_photo_noimage_thumb.png'
                 %p マイページ
             %li.user-nav__list
               = link_to "#", class: "user-nav__list__link" do

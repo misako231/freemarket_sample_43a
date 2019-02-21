@@ -23,9 +23,28 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    @profile = current_user.profile
+    profile = Profile.find(params[:id])
+    if profile.update(update_profile_params)
+      redirect_to identification_user_profile_path, flash: {profile_update: '更新しました'}
+    else
+      render :identification
+    end
   end
 
-  def indentification
+  def user_edit
+    current_user.nickname = user_edit_params[:nickname]
+    current_user.comment = user_edit_params[:comment]
+    current_user.avatar = user_edit_params[:avatar]
+    if current_user.save(context: :edit_user)
+      redirect_to user_profile_path(id: current_user.profile.id), flash: {profile_update: '更新しました'}
+    else
+      render :show
+    end
+  end
+
+  def identification
+    @profile = current_user.profile
   end
 
   def card
@@ -43,6 +62,14 @@ class ProfilesController < ApplicationController
   private
   def profile_params
     params.permit(:phone, :postal_code, :prefecture_id, :city, :block, :building).merge(user_id: params[:user_id])
+  end
+
+  def update_profile_params
+    params.permit(:postal_code, :prefecture_id, :city, :block, :building)
+  end
+
+  def user_edit_params
+    params.require(:user).permit(:nickname, :comment, :avatar)
   end
 
 end
