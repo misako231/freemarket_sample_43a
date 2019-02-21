@@ -51,7 +51,7 @@
   color: transparent;
   height: 390px;
   background-position: center;
-  background-image: url($url);
+  background-image: image-url($url);
 }
 
 @mixin textarea-default-style($width:100%, $min-height: 216px){
