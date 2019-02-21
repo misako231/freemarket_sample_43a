@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!
   helper_method :get_size_group
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?
