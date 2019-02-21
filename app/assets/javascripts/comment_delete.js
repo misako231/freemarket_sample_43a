@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
       $(".dialog-box_comment").fadeIn("normal");
       $("#delete-overlay").fadeIn("normal");
       $(".delete-dialog__buttons__cancel,#delete-overlay").unbind().click(function(){
-        $(".dialog-box_comment,,#delete-overlay").hide();
+        $(".dialog-box_comment,#delete-overlay").hide();
       });
     }
   );
