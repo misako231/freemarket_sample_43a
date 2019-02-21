@@ -16,6 +16,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        &:hover {
+          background-color: #F9F9F9;
+        }
+        &:hover .fa {
+          transform: translateX(4px);
+          transition-duration: 0.3s;
+          color: black;
+        }
         &__center{
           flex-grow:0.8;
           display: flex;
