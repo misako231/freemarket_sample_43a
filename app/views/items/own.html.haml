@@ -1,3 +1,5 @@
+#comment_delete_array
+  = render partial: "shared/comment_delete", collection: @comments, as: :comment
 .dialog-box
   .delete-dialog
     .delete-dialog__message
@@ -14,6 +16,19 @@
         商品を削除する
 #delete-overlay
 = render partial: "shared/header"
+- if flash[:success]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:success]
+%nav.bread-crumbs
+  %ul.bread-crumbs__items
+    %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
+      = link_to "" , class: "bread-crumbs__items__value__link" do
+        %span{itemprop: "title"}
+          - breadcrumb :item_show, @item
+      %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
+        %span{itemprop: "title"}
+          = breadcrumbs separator: " #{content_tag(:i, '', class: 'fa fa-angle-right')} "
 .parent
   .parent-item-container
     .parent-item-container__item-name
@@ -104,11 +119,13 @@
     %button.parent-own-item-container__delete-btn
       商品を削除する
   .parent-comment-container
-    = render partial: "comment", collection: @comments
-    %form.parent-comment-container__message-form{action: "#", method: "POST"}
-      %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      %input{name: "item_id", type: "hidden"}
-      %textarea{type: "text name=", class: "textarea"}
-      %button.parent-comment-container__parent-comment-submit-button{type: "submit"}
-        %span コメントする
+    .parent-comment-container-inner
+      -if @comments
+        = render partial: "comment", collection: @comments
+    -if current_user
+      =form_with url: item_comments_path(item_id: @item.id), class: "parent-comment-container__message-form" do |f|
+        %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        =f.text_area :content, class: "textarea"
+        %button.parent-comment-container__parent-comment-submit-button{type: "submit"}
+          %span コメントする
 = render partial: "shared/footer"
