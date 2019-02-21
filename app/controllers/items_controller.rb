@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   include GetCategories
   include GetPoints
   before_action :get_root
-  before_action :set_item, only: [:show, :own, :buy]
+  before_action :set_item, only: [:show, :own, :buy, :edit]
   before_action :get_category_tree, only: [:show, :own]
   before_action :total_point, only: [:show, :buy]
   before_action :set_search, only: [:search]
@@ -39,12 +39,7 @@ class ItemsController < ApplicationController
   def create
     @item  = Item.new(item_params)
     if @item.save
-      # respond_to do |format|
-      #   format.html do
-      #     redirect_to
-      #   end
-      #   format.json
-      # end
+      render json: @item
     else
       render :new
     end
@@ -67,11 +62,27 @@ class ItemsController < ApplicationController
   def own
   end
 
-  def edit
-  end
+  # def edit
+  #   category = Category.find(@item.category_id)
+  #   @categories = category.ancestry.split('/')
+  #   if @categories.length == 3
+  #     @parent_category, @child_category, @grandchild_category = Category.find(@categories)
+  #     @category = Category.find(@item.category_id)
+  #   else
+  #     @parent_category, @child_category = Category.find(@categories)
+  #     @grandchild_category = Category.find(@item.category_id)
+  #   end
 
-  def update
-  end
+  # end
+
+  # def update
+  #   item = Item.find(params[:id])
+  #   if item.update(item_params)
+  #     redirect_to root_path
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def destroy
     item = Item.find(params[:id])

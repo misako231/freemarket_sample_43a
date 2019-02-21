@@ -1,0 +1,213 @@
+= render 'shared/second_header'
+%main.single__main
+  %section.l__single__container.buy__item__container
+    .sell__container
+      %div{ 'data-reactroot': ""}
+        .sell__container--inner
+          %h2.l__single__head 商品の情報を入力
+          = form_with model: [current_user, @item], method: :patch, html: {class: 'sell__form', id: 'edit__form'}, local: true do |f|
+            .sell__upload__box
+              %h3.sell__upload__head
+                出品画像
+                %span.form__require 必須
+              %p 最大10枚までアップロードできます
+              .sell__dropbox__container.state__image__number
+                .sell__upload__items__container
+                  .sell__upload__items.have__item
+                    %ul#sell__upload__items__list
+                      / %li.sell__upload__item
+                      /   %figure.sell__upload__figure.landscape
+                      /     %img{ src: "http://image.jp", alt: "" }
+                      /   .sell__upload__button
+                      /     = link_to "#", class: 'sell__upload__edit' do
+                      /       編集
+                      /     = link_to "#" do
+                      /       削除
+                = f.fields_for :item_photos do |i|
+                  %label.sell__upload__drop-box.have__item-0
+                    = i.file_field :image, name: "item[item_photos_attributes][0][image]", class: "file-0"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+
+                  %label.sell__upload__drop-box.have__item-1
+                    = i.file_field :image, class: "file-1"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+
+                  %label.sell__upload__drop-box.have__item-2
+                    = i.file_field :image, class: "file-2"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+
+                  %label.sell__upload__drop-box.have__item-3
+                    = i.file_field :image, class: "file-3"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+
+                  %label.sell__upload__drop-box.have__item-4
+                    = i.file_field :image, class: "file-4"
+                    %pre.visible__pc
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+                .error_message_box
+                  = @item.errors.full_messages_for(:item_photos).first
+            .sell__content
+              .form__group
+                %label
+                = f.label :name do
+                  商品名&emsp;&emsp;
+                  %span.form__require 必須
+                %div
+                  = f.text_field :name, placeholder: "商品名(必須40文字まで)", class: "input__default"
+                .error_message_box
+                  = @item.errors.full_messages_for(:name).first
+              .form__group
+                = f.label :comment do
+                  商品の説明&emsp;&emsp;
+                  %span.form__require 必須
+                = f.text_area :comment, rows: '5', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "textarea__default"
+                .error_message_box
+                  = @item.errors.full_messages_for(:comment).first
+            .sell__content.choice__box
+              %h3.sell__sub--head
+                商品の詳細
+              .sell__form__box
+                - if @categories.length == 3
+                  = render partial: 'shared/category_edit'
+                  .form__group.form__suggest__container#edit-item-size
+                    = f.label :category_id do
+                      サイズ
+                      %span.form__require 必須
+                    .select__wrap#edit-size-category
+                      = f.collection_select :category_id, @category.siblings, :id, :name, { prompt: "---" }, class: "select__default", id:"edit-item-category-id"
+                      .icon__arrow__bottom
+                        %i.fas.fa-angle-down
+                - else
+                  = render partial: 'shared/category_edit'
+                  .form__group.form__suggest__container#edit-item-size{ style: 'display: none;' }
+                    = f.label :category_id do
+                      サイズ
+                      %span.form__require 必須
+                    .select__wrap#edit-size-category
+                      .icon__arrow__bottom
+                        %i.fas.fa-angle-down
+
+                .form__group
+                  = f.label :barand_id do
+                    ブランド
+                    %span.form__any 任意
+                  .select__wrap
+                    = f.collection_select :brand_id, Brand.all, :id, :name, {prompt: "---"}, class: "select__default"
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                .form__group
+                  = f.label :condition do
+                    商品の状態
+                    %span.form__require 必須
+                  .select__wrap
+                    = f.select :condition, Item.conditions_i18n.invert, {prompt: "---"}, class: 'select__default'
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                  .error_message_box
+                    = @item.errors.full_messages_for(:condition).first
+            .sell__content.choice__box
+              %h3.sell__sub--head
+                配送について
+                = link_to "#", target: '_blank', class: 'form__question' do
+                  ?
+              .sell__form__box
+                .form__group
+                  = f.label :shipping_fee do
+                    配送料の負担
+                    %span.form__require 必須
+                  .select__wrap
+                    = f.select :shipping_fee, Item.shipping_fees_i18n.invert, { prompt: "---" }, class: 'select__default',  id: "edit-item-shipping-fee"
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                    .error_message_box
+                      = @item.errors.full_messages_for(:shipping_fee).first
+                .form__group#transportation_method{ style: "display: block;" }
+                  = f.label :transportation do
+                    発送方法
+                    %span.form__require 必須
+                  .select__wrap#edit-transportation
+                    = f.select :transportation, Item.transportations_i18n.invert, { prompt: "---" }, class: "select__default"
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                    .error_message_box
+                      = @item.errors.full_messages_for(:transportation).first
+                .form__group
+                  = f.label :prefecture_id do
+                    発送元の地域
+                    %span.form__require 必須
+                  .select__wrap
+                    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, class: "select__default"
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                    .error_message_box
+                      = @item.errors.full_messages_for(:prefecture_id).first
+                .form__group
+                  = f.label :days_to_ship do
+                    発送までの日数
+                    %span.form__require 必須
+                  .select__wrap
+                    = f.select :days_to_ship, Item.days_to_ships_i18n.invert, {prompt: "---"}, class: 'select__default'
+                    .icon__arrow__bottom
+                      %i.fas.fa-angle-down
+                    .error_message_box
+                      = @item.errors.full_messages_for(:days_to_ship).first
+            .sell__content.choice__box
+              %h3.sell__sub--head
+                販売価格(300〜9,999,999)
+                = link_to "#", target: '_blank', class: 'form__question' do
+                  ?
+              .sell__form__box
+                %ul.sell__price
+                  %li.form__group
+                    .price__form
+                      = f.label :price, class: "label__left" do
+                        価格
+                        %span.form__require 必須
+                      .l__right.sell__price__input
+                        ¥
+                        %div
+                          = f.text_field :price, placeholder: "例) 300" ,class: "input__default", id: "edit-item-price"
+                        .error_message_box
+                          = @item.errors.full_messages_for(:price).first
+                  %li.profit__group
+                    .label__left
+                      販売手数料 (10%)
+                    .tax-label__right
+                      \-
+                  %li.profit__group.bold
+                    .label__left
+                      販売利益
+                    .profit-label__right
+                      \-
+            .sell__content.sell__btn__box
+              %div
+                %p
+                  = link_to "#", target: '_blank' do
+                    禁止されている出品
+                  = link_to "#", target: '_blank' do
+                    行為
+                  を必ずご確認ください
+                %p
+                  またブランド品でシリアルナンバー等がある場合はご記載ください。
+                  = link_to "#", target: '_blank' do
+                    偽ブランドの販売
+                  は犯罪であり処罰される可能性があります。
+                %p
+                  また、出品をもちまして
+                  = link_to "#", target: '_blank' do
+                    加盟店規約
+                  に同意したことになります。
+              = f.submit "変更する", class: "btn__default btn--red", id: "edit-item-btn"
+              = link_to "#", class: 'btn__default btn--gray' do
+                もどる
+        .overlay
+= render 'shared/second_footer'

@@ -1,0 +1,19 @@
+.form__group
+  %label カテゴリー
+  %span.form__require__edit-form 必須
+  .select__wrap#edit-first-category
+    = select_tag 'root-category', options_from_collection_for_select(Category.roots, :id, :name, selected: "#{@parent_category.id}"), prompt: "---", class: 'select__default'
+    .icon__arrow__bottom
+      %i.fas.fa-angle-down
+  .error_message_box
+    = @item.errors.full_messages_for(:category_id).first
+
+  .select__wrap#edit-second-category
+    = select_tag 'child-category', options_from_collection_for_select(@parent_category.children, :id, :name, selected: "#{@child_category.id}"), prompt: "---", class: 'select__default'
+    .icon__arrow__bottom
+      %i.fas.fa-angle-down
+
+  .select__wrap#edit-third-category
+    = select_tag 'grand-child-category', options_from_collection_for_select(@child_category.children, :id, :name, selected: "#{@grandchild_category.id}"), prompt: "---", class: 'select__default'
+    .icon__arrow__bottom
+      %i.fas.fa-angle-down
