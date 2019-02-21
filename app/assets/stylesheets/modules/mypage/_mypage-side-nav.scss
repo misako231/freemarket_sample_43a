@@ -43,32 +43,6 @@
           line-height: 48px;
           color: #ccc;
           -webkit-text-stroke: 1.8px white;
-          // カーソルを合わせると#333になる
-          .fa {
-            // position: relative;
-            // display: inline-block;
-            // // padding: .9em 4em;
-            // // background-color: #333;
-            // // border: 2px solid #333;
-            // color: #fff;
-            // text-align: center;
-            // text-decoration: none;
-            // &::after {
-            //   position: absolute;
-            //   top: 50%;
-            //   right: .2em;
-            //   content: '';
-            //   margin-top: -5px;
-            //   border: 7px solid transparent;
-            //   border-top-width: 5px;
-            //   border-bottom-width: 5px;
-            //   border-left-color: #fff;
-            //   transition: all .2s;
-            // }
-            // &:hover::after {
-            //   right: -.05em;
-            // }
-          }
         }
       }
     }
