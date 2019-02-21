@@ -220,6 +220,10 @@
                 @extend .gray-label-arbitraty;
               }
             }
+            .form__require__edit-form {
+              @extend .red-label-require;
+                vertical-align: top;
+            }
             .input__default {
               @include input-default-style();
             }

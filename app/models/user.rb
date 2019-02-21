@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   mount_uploader :avatar, ImageUploader
   has_many :items
+  has_many :comments,dependent: :destroy
   has_many :creditcards
   has_many :favorite_items, dependent: :destroy
   has_one :profile

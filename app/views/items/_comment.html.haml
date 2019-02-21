@@ -1,13 +1,21 @@
 .parent-comment-container__message-container
   =image_tag('non_pics_icon.png',class: "non_pics_icon")
   .parent-comment-container__message-container-right
-    .parent-comment-container__message-container-right__name みっちゃ
+    .parent-comment-container__message-container-right__name
+      = comment.user.nickname
     .parent-comment-container__message-container-right__body
       %i.fas.fa-caret-right
-      .parent-comment-container__message-container-right__body-text はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
+      .parent-comment-container__message-container-right__body-text
+        %p
+          = comment.content
       .parent-comment-container__message-container-right__body-icons
-        .parent-comment-container__message-container-right__body-icons__time
-          %i.far.fa-clock
-        %span 99日前
-        .parent-comment-container__message-container-right__body-icons__flag
-          %i.far.fa-flag
+        .parent-comment-container__message-container-right__body-icons__left
+          .parent-comment-container__message-container-right__body-icons__time
+            %i.far.fa-clock
+          %span 99日前
+        .parent-comment-container__message-container-right__body-icons__right
+          .parent-comment-container__message-container-right__body-icons__flag
+            %i.far.fa-flag
+          - if user_signed_in? && comment.item.user_id == current_user.id
+            .parent-comment-container__message-container-right__body-icons__trash-can#good-to-delete
+              %i.fas.fa-trash-alt

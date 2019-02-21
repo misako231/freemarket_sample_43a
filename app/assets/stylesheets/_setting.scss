@@ -39,6 +39,68 @@ button{
   }
 }
 
-#search-second-category {
-  display: none;
+/* ラベル*/
+// label {
+// padding-left: 25px;         /* ラベルの位置 */
+// font-size: 25px;
+// line-height: 30px;
+// display: inline-block;
+// cursor: pointer;
+// position: relative;
+// }
+
+/* ボックス */
+.checkbox__default label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    border: solid thin #d3d3d3;
+    border-radius: 2px 2px 2px 2px;
+}
+
+.checkbox__default .radio-button-label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    border: solid thin #d3d3d3;
+    border-radius: 50%;
+}
+// * 元のチェックボックス非表示 */
+input[type=checkbox] {
+     display: none;
+}
+
+input[type=radio] {
+     display: none;
+}
+/* チェックした時 */
+input[type=checkbox]:checked + label:before {
+    font-size: 18px;
+    color: #fff;
+    background-color: $blue-link-f;
+    font-family: fontAwesome;
+    border: solid thin $blue-link-f;
+    border-radius: 2px 2px 2px 2px;
+    content: '\f00c';
+    -webkit-text-stroke: 2px $blue-link-f;
+}
+
+input[type=radio]:checked + span:before {
+    position: absolute;
+    left: 0px;
+    top: -1px;
+    width: 18px;
+    height: 18px;
+    font-size: 21px;
+    border-radius: 50%;
+    color: $blue-link-f;
+    font-family: "Font Awesome 5 Free";
+    content: '\f192';
+    font-weight: 900;
 }
