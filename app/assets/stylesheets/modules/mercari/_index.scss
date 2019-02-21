@@ -49,17 +49,21 @@ main.index-conteiner {
         .slick-track {
           .slick-slide {
             li {
-              a.top-banner.banner-featured-hobby{
-                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/banner-featured-hobby.jpg");
+              .top-banner.banner-featured-hobby{
+                @include top-banner-style("top_new_life.jpg");
+                background-size: cover;
               }
               a.top-banner.banner-hajimeru-fortune{
-                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/banner-hajimeru-fortune.jpg");
+                @include top-banner-style("top_hobby.png");
+                background-size: cover;
               }
               a.top-banner.banner-new-register-2019{
-                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/banner-bokurano-heisei.jpg");
+                @include top-banner-style("top_masterpiece.jpg");
+                background-size: cover;
               }
               .banner-simple-app{
-                background: url(https://www.mercari.com/jp/assets/img/common/jp/top/main_bg_pc.jpg);
+                background: url("top_room.jpg");
+                background-size: cover;
                 .top-visual {
                   width: 860px;
                   margin: 0 auto;
@@ -87,6 +91,8 @@ main.index-conteiner {
                         margin-top: 10px;
                         height: 90px;
                         width: 180px;
+                        border:none;
+                        outline:none;
                         img.banner-icon {
                           position: relative;
                           height: 70px;
@@ -104,9 +110,6 @@ main.index-conteiner {
                     margin-left: 15px;
                   }
                 }
-              }
-              a.top-banner.banner-bokurano-heisei-entertainment{
-                @include top-banner-style("https://www.mercari.com/jp/assets/img/common/jp/top/banner-bokurano-heisei-entertainment.png");
               }
             }
           }
@@ -205,6 +208,9 @@ main.index-conteiner {
               position: relative;
               margin: 0;
               height: 220px;
+              img {
+                object-fit: cover;
+              }
               .item__sold-out__badge {
                 > div {
                   position: absolute;

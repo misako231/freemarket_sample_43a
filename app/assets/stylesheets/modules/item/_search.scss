@@ -9,7 +9,6 @@
     .search__result--head {
       margin: 0 0 8px;
       font-size: 22px;
-      font-weight: 400;
       line-height: 1.4;
     }
     .items__box__content {
@@ -48,6 +47,7 @@
           &__image {
             height: 160px;
             width: 100%;
+            object-fit: cover;
           }
           .item__sold-out__badge {
             > div {
@@ -210,10 +210,7 @@
         }
         .form__group {
           margin: 40px 0 0;
-          font-size: 0;
           label {
-            display: block;
-            font-weight: 600;
             i {
               margin: 0 4px 0 0;
               color: #888;
@@ -235,6 +232,7 @@
             span {
               font-size: 14px;
               vertical-align: middle;
+              font-weight: bold;
             }
           }
           .input__default {
@@ -270,55 +268,6 @@
           .is__show {
             display: block;
           }
-          .checkbox__default {
-            align-self: stretch;
-            position: relative;
-            display: inline-block;
-            margin: 16px 0 0;
-            width: 48%;
-            font-size: 0;
-            vertical-align: middle;
-            word-break: break-word;
-            &:nth-child(even) {
-              margin: 16px 0 0 4%;
-            }
-            label {
-              display: block;
-              padding: 0 0 0 28px;
-              font-size: 14px;
-              font-weight: 400;
-              line-height: 14px;
-              vertical-align: middle;
-              cursor: pointer;
-              .child__checkbox {
-                display: none;
-                &:checked+.checkbox__icon {
-                  border-color: transparent;
-                  background-color: $blue-link-f;
-                  opacity: 1;
-                }
-              }
-              .checkbox__icon {
-                position: absolute;
-                top: -20%;
-                left: 0;
-                margin: 0 4px 0 0;
-                height: 20px;
-                width: 20px;
-                border-radius: 2px;
-                border: 1px solid #ccc;
-                background-color: $white-b;
-                font-size: 10px;
-                line-height: 17px;
-                text-align: center;
-                color: $white-f;
-                vertical-align: middle;
-              }
-              #category__grand-child+.checkbox__icon {
-                top: 20%;
-              }
-            }
-          }
         }
         .search__extend__brand {
           ul {
@@ -336,7 +285,7 @@
         }
         .search__price {
           .input__default {
-            @include input-default-style($width: 45%);
+            @include input-default-style($width: 43%);
           }
           input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
             -webkit-appearance: none;
@@ -363,4 +312,32 @@
       }
     }
   }
+}
+
+.radio-button-label {
+  display: inline-flex;
+  align-self: baseline;
+  width: 100%;
+  span {
+    font-weight: normal !important;
+  }
+}
+
+.checkbox__default {
+  align-self: baseline;
+  display: inline-flex;
+  margin-top: 6px;
+  padding-left: 26px;
+  width: 47%;
+  font-size: 14px;
+  position: relative;
+  word-break: break-word;
+  min-height: 21px;
+}
+.checkbox__default__left {
+  width: 10px;
+}
+.checkbox__default__right {
+  width: 90px;
+  margin-left: 10px;
 }

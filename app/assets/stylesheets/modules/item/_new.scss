@@ -1,3 +1,59 @@
+.modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 3000;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      -webkit-transition: all ease-out .3s;
+      transition: all ease-out .3s;
+      -webkit-transform: translate(0, -10px);
+      transform: translate(0, -10px);
+  .modal--inner {
+    max-width: none;
+    width: 600px;
+    margin: 20px auto;
+    position: relative;
+    background: #fff;
+    div {
+      .modal-head {
+        text-align: center;
+        line-height: 80px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .sell-modal-body {
+        border-top: 1px solid #eee;
+        padding: 40px;
+        .btn-default-red {
+          margin: 40px auto 0;
+          background: #ea352d;
+          border: 1px solid #ea352d;
+          color: #fff;
+          display: block;
+          width: 100%;
+          line-height: 48px;
+          font-size: 14px;
+          text-align: center;
+          text-decoration: none
+        }
+        .text-center {
+          margin: 8px 0 0;
+          text-align: center;
+          a {
+            color: #0099e8;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
 .l__single__container {
   width: 700px;
   margin: 0 auto;
@@ -30,97 +86,118 @@
           .sell__dropbox__container {
             width: 620px;
             margin: 16px auto 0;
+            display: flex;
             .sell__upload__items__container {
-              .sell__upload__items {
-                ul {
-                  display: flex;
-                  justify-content: flex-start;
-                  width: 100%;
-                  .sell__upload__item {
-                    width: 116px;
-                    margin: 0 0 10px 10px;
-                    border: 1px solid #eee;
-                    vertical-align: top;
-                    display: block !important;
-                    &:first-child {
-                      margin-left: 0px;
-                    }
-                    .sell__upload__figure {
-                      line-height: 116px;
-                      width: auto;
-                      padding: 0;
-                      margin: 0;
-                      height: 116px;
-                      background-color: $gray-b;
-                      align-items: center;
-                      img {
-                        transform: none;
-                        // vertical-align: middle;
-                      }
-                    }
-                    .sell__upload__button {
-                      font-size: 14px;
-                      a {
-                        display: inline-block;
-                        width: 50%;
-                        background-color: $gray-b;
-                        line-height: 44px;
-                        text-align: center;
-                        color: $blue-link-f;
-                        text-decoration: none;
-                        touch-action: manipulation;
-                        &:last-child {
-                          border-left: 1px solid #eee;
-                        }
-                      }
+              display: flex;
+              .sell__upload__item {
+                width: 116px;
+                margin: 0 10px 10px 0;
+                border: 1px solid #eee;
+                vertical-align: top;
+                display: block !important;
+                &:first-child {
+                  margin-left: 0px;
+                }
+                .sell__upload__figure {
+                  line-height: 116px;
+                  width: auto;
+                  padding: 0;
+                  margin: 0;
+                  height: 116px;
+                  background-color: $gray-b;
+                  align-items: center;
+                  img {
+                    transform: none;
+                    vertical-align: middle;
+                  }
+                }
+                .sell__upload__button {
+                  font-size: 14px;
+                  a {
+                    float: left;
+                    width: 50%;
+                    background-color: $gray-b;
+                    line-height: 44px;
+                    text-align: center;
+                    color: $blue-link-f;
+                    text-decoration: none;
+                    touch-action: manipulation;
+                    &:last-child {
+                      border-left: 1px solid #eee;
                     }
                   }
                 }
               }
             }
             .sell__upload__drop-box {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              padding: 40px;
-              min-height: 162px;
+              display: block;
+              position: relative;
+              // padding: 30px;
+              height: 162px;
               background-color: $gray-b;
               border: 1px dashed #ccc;
               font-size: 0;
               text-align: center;
               cursor: pointer;
               transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
-              .sell__upload__drop-file {
+              input {
                 display: none;
                 touch-action: manipulation;
               }
               .visible__pc {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                bottom: 0;
                 display: block;
                 text-align: center;
                 font-size: 14px;
                 line-height: 1.5;
-                // transform: translate(0, -50%);
+                transform: translate(0, -50%);
                 pointer-events: none;
                 white-space: pre-wrap;
                 word-wrap: break-word;
                 overflow: auto;
+                padding: 15px;
               }
             }
             .have__item-0 {
               width: 100%;
               margin-left: 0;
+              // display: none;
             }
             .have__item-1 {
               width: 491px;
+              display: none;
             }
             .have__item-2 {
               width: 363px;
+              display: none;
             }
             .have__item-3 {
               width: 234px;
+              display: none;
             }
             .have__item-4 {
               width: 106px;
+              display: none;
+              .visible__pc {
+                height:140px;
+                display:inline-block;
+                vertical-align: middle;
+                line-height:normal;
+                display: block;
+                text-align: center;
+                font-size: 14px;
+                line-height: 1.5;
+                transform: translate(0, -50%);
+                pointer-events: none;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                overflow: auto;
+                padding: 15px;
+              }
             }
           }
         }
@@ -142,6 +219,10 @@
               .form__any {
                 @extend .gray-label-arbitraty;
               }
+            }
+            .form__require__edit-form {
+              @extend .red-label-require;
+                vertical-align: top;
             }
             .input__default {
               @include input-default-style();
@@ -168,7 +249,19 @@
                 -webkit-text-stroke: 2px white
               }
             }
+            #new-first-category {
+              display: block;
+            }
+            #new-second-category {
+              display: none;
+            }
+            #new-third-category {
+              display: none;
+            }
           }
+          // #item-size {
+          //   display: none;
+          // }
           .sell__sub--head {
             display: block;
             color: #888;
@@ -232,7 +325,7 @@
                 .label__left {
                   font-size: 16px;
                 }
-                .label__right {
+                .profit-label__right {
                   font-size: 34px;
                 }
               }
