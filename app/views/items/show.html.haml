@@ -1,4 +1,10 @@
+#comment_delete_array
+  = render partial: "shared/comment_delete", collection: @comments, as: :comment
 = render partial: "shared/header"
+- if flash[:success]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:success]
 %nav.bread-crumbs
   %ul.bread-crumbs__items
     %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
@@ -64,6 +70,11 @@
           %th ブランド
           %td
             = @item.brand.name
+        - if @item.has_size?
+          %tr
+            %th サイズ
+            %td
+              = @item.category.name
         %tr
           %th 商品の状態
           %td
@@ -90,18 +101,23 @@
         = number_with_delimiter("#{@item.price}")
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
-    - unless @item.order_statuses.present?
-      - if @points != 0
-        .parent-item-container__speech-bubble
-          .sales__point__message
-            P
-            = number_with_delimiter("#{@points}")
-            をお持ちです
+    - if user_signed_in? && @item.user_id != current_user.id
+      - unless @item.order_statuses.present?
+        - if @points != 0
+          .parent-item-container__speech-bubble
+            .sales__point__message
+              P
+              = number_with_delimiter("#{@points}")
+              をお持ちです
+        = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
+          購入画面に進む
+      - else
+        .parent-item-container__item-buy-btn.disabled
+          売り切れました
+    - elsif user_signed_in? && @item.user_id == current_user.id
+    - else
       = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
         購入画面に進む
-    - else
-      .parent-item-container__item-buy-btn.disabled
-        売り切れました
     .parent-item-container__item-description
       = @item.comment
     .parent-item-container__various-btn
@@ -139,13 +155,16 @@
             =fa_icon "lock"
             あんしん・あんぜんへの取り組み
   .parent-comment-container
-    = render partial: "comment"
-    %form.parent-comment-container__message-form{action: "#", method: "POST"}
-      %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      %input{name: "item_id", type: "hidden"}
-      %textarea{type: "text name=", class: "textarea"}
-      %button.parent-comment-container__parent-comment-submit-button{type: "submit"}
-        %span コメントする
+    .parent-comment-container-inner
+      -if @comments
+        = render partial: "comment", collection: @comments
+    -if current_user
+      =form_with url: item_comments_path(item_id: @item.id), class: "parent-comment-container__message-form" do |f|
+        %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        =f.text_area :content, class: "textarea"
+        %button.parent-comment-container__parent-comment-submit-button{type: "submit"}
+          %span コメントする
+
   .parent-nav-item-link
     .parent-nav-item-link-prev
       - if @previous
