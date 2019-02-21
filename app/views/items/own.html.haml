@@ -1,4 +1,20 @@
-= render partial: "shared/comment_delete", collection: @comments, as: :comment
+#comment_delete_array
+  = render partial: "shared/comment_delete", collection: @comments, as: :comment
+.dialog-box
+  .delete-dialog
+    .delete-dialog__message
+      %p 確認
+      %h2 削除すると二度と復活できません。
+      %h2 削除する代わりに停止することもできます。
+      %br
+      %br
+      %h2 本当に削除しますか？
+    .delete-dialog__buttons
+      .delete-dialog__buttons__cancel
+        キャンセル
+      = link_to user_item_path, method: "delete", class: "delete-dialog__buttons__submit" do
+        商品を削除する
+#delete-overlay
 = render partial: "shared/header"
 - if flash[:success]
   .delete-success-flash
