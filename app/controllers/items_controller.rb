@@ -71,27 +71,27 @@ class ItemsController < ApplicationController
     @comments = @item.comments.includes(:user)
   end
 
-  # def edit
-  #   category = Category.find(@item.category_id)
-  #   @categories = category.ancestry.split('/')
-  #   if @categories.length == 3
-  #     @parent_category, @child_category, @grandchild_category = Category.find(@categories)
-  #     @category = Category.find(@item.category_id)
-  #   else
-  #     @parent_category, @child_category = Category.find(@categories)
-  #     @grandchild_category = Category.find(@item.category_id)
-  #   end
+  def edit
+    category = Category.find(@item.category_id)
+    @categories = category.ancestry.split('/')
+    if @categories.length == 3
+      @parent_category, @child_category, @grandchild_category = Category.find(@categories)
+      @category = Category.find(@item.category_id)
+    else
+      @parent_category, @child_category = Category.find(@categories)
+      @grandchild_category = Category.find(@item.category_id)
+    end
 
-  # end
+  end
 
-  # def update
-  #   item = Item.find(params[:id])
-  #   if item.update(item_params)
-  #     redirect_to root_path
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    item = Item.find(params[:id])
+    if item.update(update_item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
 
   def destroy
     item = Item.find(params[:id])
@@ -125,6 +125,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :comment, :category_id, :brand_id, :shipping_fee, :prefecture_id, :days_to_ship, :price, :condition, :closed, :transportation, item_photos_attributes: [:image]).merge(user_id: current_user.id)
+  end
+
+  def update_item_params
+    params.require(:item).permit(:name, :comment, :category_id, :brand_id, :shipping_fee, :prefecture_id, :days_to_ship, :price, :condition, :closed, :transportation, item_photos_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
   def set_item
