@@ -257,7 +257,7 @@ $(document).on('turbolinks:load', function() {
       }
 
       var prefecture = $('#select_item_prefecture_new').val();
-      if ( transportation === '') {
+      if ( prefecture === '') {
         var error8 = true;
       }
       if( error8 ) {
