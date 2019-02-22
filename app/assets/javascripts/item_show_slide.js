@@ -2,6 +2,10 @@ $(document).on('turbolinks:load', function() {
   $(function (){
       var image_count = $('.parent-item-container__item--main-content__item-photo__sub-containts').length
 
+      if (image_count >= 5) {
+        $('.parent-item-container__item--main-content__item-photo__sub-containts img').css({'height': '60px', 'width': '60px'});
+      }
+
       $('.parent-item-container__item--main-content__item-photo__main ul').slick({
       autoplay: false,
       arrows: false,
