@@ -1,3 +1,27 @@
+.delete-success-flash{
+  position: absolute;
+  width: 100vw;
+  height: 65px;
+  line-height: 65px;
+  top: 100px;
+  background-color: #dff2d7;
+  display: flex;
+  text-align: center;
+  color: #648c54;
+  z-index: 20;
+  &__text{
+    width: calc(100vw - 50px);
+    padding-left: 50px;
+  }
+  &__close{
+    width: 50px;
+    font-size: 1.8em;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
 .my-indentification {
   margin: 40px auto 0px auto;
   padding-bottom: 40px;
@@ -7,18 +31,41 @@
   .myinfo {
     width: 700px;
     background: $white-b;
-    text-align: center;
     &__head {
-      margin: 5px 0;
+      text-align: center;
       font-size: 24px;
-      font-weight: bolder;
+      padding: 8px 24px;
+      border-bottom: 2px solid #f5f5f5;
+      text-align: center;
+      font-weight: bold;
     }
     &__form {
       padding: 54px 64px;
+      &__top {
+        p{
+          margin: 8px 0 0;
+          line-height: 1.5;
+        }
+        &__group-right{
+          text-align: right;
+        }
+      }
+      &__info{
+        text-align: left;
+        margin: 40px 0 0;
+        &__label{
+          font-weight: bolder;
+        }
+        &__user{
+          margin: 8px 0 0;
+          line-height: 1.5;
+        }
+      }
       &__group {
         font-weight: bolder;
-        margin: 0 0 40px 0;
+        margin: 40px 0 0;
         text-align: left;
+
         &__form {
           font-weight: normal;
           @include input-default-style();
@@ -99,6 +146,7 @@
       }
       &__btn {
         @include button-default-style();
+        margin: 40px 0 0;
       }
     }
   }

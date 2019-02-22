@@ -8,14 +8,28 @@
       %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
         %span{itemprop: "title"}
           = breadcrumbs separator: " #{content_tag(:i, '', class: 'fa fa-angle-right')} "
-
+- if flash[:profile_update]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:profile_update]
+    .delete-success-flash__close.close-btn
+      ×
+- if flash[:credit_create]
+  .delete-success-flash
+    .delete-success-flash__text
+      = flash[:credit_create]
+    .delete-success-flash__close.close-btn
+      ×
 %main.mypage
   .mypage__content
     .mypage__content__user
       .mypage__content__user__icon
         = link_to "#", class: "mypage__content__user__icon__link" do
           .mypage__content__user__icon__link__img
-            = image_tag 'beutiful.jpg', class: "mypage__content__user__icon__link__img__in"
+            -if current_user.avatar.present?
+              = image_tag "#{current_user.avatar}", class: "mypage__content__user__icon__link__img__in"
+            -else
+              = image_tag 'member_photo_noimage_thumb.png', class: "mypage__content__user__icon__link__img__in"
           .mypage__content__user__icon__link__name
             %h2.bold
               = current_user.nickname

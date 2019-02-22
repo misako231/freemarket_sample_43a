@@ -13,7 +13,11 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     if item.user_id
       comment.destroy
-      redirect_to "/items/#{item.id}", flash: {success: 'コメントを削除しました'}
+      if request.referer.include?("own")
+        redirect_to  own_user_item_path(user_id: item.user_id, id: item.id), flash: {success: 'コメントを削除しました'}
+      else
+        redirect_to "/items/#{item.id}", flash: {success: 'コメントを削除しました'}
+      end
     end
   end
 
