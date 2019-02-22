@@ -109,7 +109,7 @@
     .parent-item-container__item-description
       = @item.comment
   .parent-own-item-container
-    = link_to "商品の編集", "#", class: "parent-own-item-container__edit"
+    = link_to "商品の編集", edit_user_item_path(current_user.id, @item), class: "parent-own-item-container__edit"
     .parent-own-item-container__or
       or
     - if @item.closed?

@@ -17,7 +17,7 @@
       %div{ 'data-reactroot': ""}
         .sell__container--inner
           %h2.l__single__head 商品の情報を入力
-          = form_with model: @item, html: {class: 'sell__form', id: 'sell__form'} do |f|
+          = form_with model: @item, html: {class: 'sell__form', id: 'sell__form'}, local: true do |f|
             .sell__upload__box
               %h3.sell__upload__head
                 出品画像
@@ -41,36 +41,36 @@
                 /     またはクリックしてファイルをアップロード
                 = f.fields_for :item_photos do |i|
                   %label.sell__upload__drop-box.have__item-0
-                    = i.file_field :image, name: "item[item_photos_attributes][0][image]", multiple: "true", class: "file-0", id: 'file-image-0'
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-0"
                     %pre.visible__pc
                       ドラッグアンドドロップ
                       またはクリックしてファイルをアップロード
 
                   %label.sell__upload__drop-box.have__item-1
-                    = i.file_field :image, name: "item[item_photos_attributes][1][image]", multiple: "true", class: "file-1"
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-1"
                     %pre.visible__pc
                       ドラッグアンドドロップ
                       またはクリックしてファイルをアップロード
 
                   %label.sell__upload__drop-box.have__item-2
-                    = i.file_field :image, name: "item[item_photos_attributes][2][image]", multiple: "true", class: "file-2"
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-2"
                     %pre.visible__pc
                       ドラッグアンドドロップ
                       またはクリックしてファイルをアップロード
 
                   %label.sell__upload__drop-box.have__item-3
-                    = i.file_field :image, name: "item[item_photos_attributes][3][image]", multiple: "true", class: "file-3"
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-3"
                     %pre.visible__pc
                       ドラッグアンドドロップ
                       またはクリックしてファイルをアップロード
 
                   %label.sell__upload__drop-box.have__item-4
-                    = i.file_field :image, name: "item[item_photos_attributes][4][image]", multiple: "true", class: "file-4"
+                    = i.file_field :image, name: "item[item_photos_attributes][][image]", multiple: "true", class: "file-4"
                     %pre.visible__pc
                       ドラッグアンドドロップ
                       またはクリックしてファイルをアップロード
-              .error_message_box#new_error_box-1
-                / = @item.errors.full_messages_for(:item_photos).first
+                .error_message_box
+                  = @item.errors.full_messages_for(:item_photos).first
             .sell__content
               .form__group
                 %label
@@ -78,21 +78,22 @@
                   商品名&emsp;&emsp;
                   %span.form__require 必須
                 %div
-                  = f.text_field :name, placeholder: "商品名(必須40文字まで)", class: "input__default", id: "input_item_name_new"
-                .error_message_box#new_error_box-2
-                  / = @item.errors.full_messages_for(:name).first
+                  = f.text_field :name, placeholder: "商品名(必須40文字まで)", class: "input__default"
+                .error_message_box
+                  = @item.errors.full_messages_for(:name).first
               .form__group
                 = f.label :comment do
                   商品の説明&emsp;&emsp;
                   %span.form__require 必須
-                = f.text_area :comment, rows: '5', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "textarea__default", id: "input_item_comment_new"
-                .error_message_box#new_error_box-3
-                  / = @item.errors.full_messages_for(:comment).first
+                = f.text_area :comment, rows: '5', placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "textarea__default"
+                .error_message_box
+                  = @item.errors.full_messages_for(:comment).first
             .sell__content.choice__box
               %h3.sell__sub--head
                 商品の詳細
               .sell__form__box
                 .form__group
+
                   = f.label :category_id do
                     カテゴリー
                     %span.form__require 必須
@@ -100,8 +101,8 @@
                     = select_tag 'root-category', options_from_collection_for_select(@parents, :id, :name), prompt: "---", class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
-                  .error_message_box#new_error_box-4
-                    / = @item.errors.full_messages_for(:category_id).first
+                  .error_message_box
+                    = @item.errors.full_messages_for(:category_id).first
 
                   .select__wrap#new-second-category
                     = select_tag 'child-category', options_for_select([]), prompt: "---", class: 'select__default'
@@ -128,18 +129,19 @@
                     = f.collection_select :brand_id, Brand.all, :id, :name, {prompt: "---"}, class: "select__default"
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
-
+                    / %div
+                    /   %ul.sell__brand__suggest.form__suggest__list
+                    /     %li
                 .form__group
                   = f.label :condition do
                     商品の状態
                     %span.form__require 必須
                   .select__wrap
-                    = f.select :condition, Item.conditions_i18n.invert, {prompt: "---"}, class: 'select__default', id: "select_item_condition_new"
+                    = f.select :condition, Item.conditions_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
-                  .error_message_box#new_error_box-5
-                    / = @item.errors.full_messages_for(:condition).first
-
+                  .error_message_box
+                    = @item.errors.full_messages_for(:condition).first
             .sell__content.choice__box
               %h3.sell__sub--head
                 配送について
@@ -154,39 +156,38 @@
                     = f.select :shipping_fee, Item.shipping_fees_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
-                  .error_message_box#new_error_box-6
-                    / = @item.errors.full_messages_for(:shipping_fee).first
-
+                    .error_message_box
+                      = @item.errors.full_messages_for(:shipping_fee).first
                 .form__group#transportation_method{ style: "display: none;" }
                   = f.label :transportation do
                     発送方法
                     %span.form__require 必須
                   .select__wrap#new-transportation
-                    / = f.select :transportation, Item.transportations_i18n.invert, { prompt: "---" }, class: "select__default",
+                    / = f.select :transportation, Item.transportations_i18n.invert, { prompt: "---" }, class: "select__default"
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
-                  .error_message_box#new_error_box-7
-                    / = @item.errors.full_messages_for(:transportation).first
+                    .error_message_box
+                      = @item.errors.full_messages_for(:transportation).first
                 .form__group
                   = f.label :prefecture_id do
                     発送元の地域
                     %span.form__require 必須
                   .select__wrap
-                    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, class: "select__default", id: "select_item_prefecture_new"
+                    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, class: "select__default"
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
-                  .error_message_box#new_error_box-8
-                    / = @item.errors.full_messages_for(:prefecture_id).first
+                    .error_message_box
+                      = @item.errors.full_messages_for(:prefecture_id).first
                 .form__group
                   = f.label :days_to_ship do
                     発送までの日数
                     %span.form__require 必須
                   .select__wrap
-                    = f.select :days_to_ship, Item.days_to_ships_i18n.invert, {prompt: "---"}, class: 'select__default', id: "select_item_days-to-ship_new"
+                    = f.select :days_to_ship, Item.days_to_ships_i18n.invert, {prompt: "---"}, class: 'select__default'
                     .icon__arrow__bottom
                       %i.fas.fa-angle-down
-                  .error_message_box#new_error_box-9
-                    / = @item.errors.full_messages_for(:days_to_ship).first
+                    .error_message_box
+                      = @item.errors.full_messages_for(:days_to_ship).first
             .sell__content.choice__box
               %h3.sell__sub--head
                 販売価格(300〜9,999,999)
@@ -203,8 +204,8 @@
                         ¥
                         %div
                           = f.text_field :price, placeholder: "例) 300" ,class: "input__default", id: "new-item-price"
-                        .error_message_box#new_error_box-10
-                          / = @item.errors.full_messages_for(:price).first
+                        .error_message_box
+                          = @item.errors.full_messages_for(:price).first
                   %li.profit__group
                     .label__left
                       販売手数料 (10%)
