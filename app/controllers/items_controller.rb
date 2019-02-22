@@ -114,7 +114,9 @@ class ItemsController < ApplicationController
       Item.create_charge_by_customer(price, user)
       item = Item.includes(:user).find(params[:id])
       o_status = OrderStatus.create(status: params[:item][:order_statuses_attributes][:"0"][:status], purchaser_id: params[:item][:order_statuses_attributes][:"0"][:purchaser_id], seller_id: params[:item][:order_statuses_attributes][:"0"][:seller_id], item_id: params[:item][:order_statuses_attributes][:"0"][:item_id])
-      p_record = PointRecord.create(point: params[:item][:point_records][:point], user_id: current_user.id, order_status_id: o_status.id) if params[:item][:point_records][:point].present?
+      if current_user.point_records.present? && params[:item][:point_records][:point].present?
+        p_record = PointRecord.create(point: params[:item][:point_records][:point], user_id: current_user.id, order_status_id: o_status.id)
+      end
       redirect_to root_path, flash: {bought: '商品を購入しました'}
     rescue => e
       redirect_to buy_item_path, flash: {credit_charge_error: '購入に失敗しました'}
