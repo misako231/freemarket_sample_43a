@@ -69,7 +69,8 @@
         %tr
           %th ブランド
           %td
-            = @item.brand.name
+            - if @item.brand.present?
+              = @item.brand.name
         - if @item.has_size?
           %tr
             %th サイズ
