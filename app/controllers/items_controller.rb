@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   include GetCategories
   include GetPoints
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :get_root
   before_action :set_item, only: [:show, :own, :buy]
   before_action :get_category_tree, only: [:show, :own]
