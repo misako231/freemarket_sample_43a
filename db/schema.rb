@@ -111,8 +111,6 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
     t.string "block", null: false
     t.string "building"
     t.bigint "user_id"
-    t.text "comment"
-    t.text "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -140,6 +138,8 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
     t.string "encrypted_password", default: "", null: false
     t.string "provider"
     t.string "uid"
+    t.text "comment"
+    t.string "avatar"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
