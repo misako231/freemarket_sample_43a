@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "item_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "creditcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "customer_token", null: false
@@ -64,6 +74,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
     t.integer "condition", null: false
     t.bigint "user_id", null: false
     t.boolean "closed", default: false, null: false
+    t.integer "transportation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_items_on_name"
@@ -100,8 +111,6 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
     t.string "block", null: false
     t.string "building"
     t.bigint "user_id"
-    t.text "comment"
-    t.text "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -129,6 +138,8 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
     t.string "encrypted_password", default: "", null: false
     t.string "provider"
     t.string "uid"
+    t.text "comment"
+    t.string "avatar"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -138,6 +149,8 @@ ActiveRecord::Schema.define(version: 2019_02_15_123508) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "items"
+  add_foreign_key "comments", "users"
   add_foreign_key "creditcards", "users"
   add_foreign_key "favorite_items", "items"
   add_foreign_key "favorite_items", "users"

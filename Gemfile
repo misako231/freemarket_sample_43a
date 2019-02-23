@@ -55,6 +55,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rails-flog'
+  gem 'bullet'
 end
 
 group :test do
@@ -94,3 +95,4 @@ gem 'omniauth-facebook'
 gem 'active_hash'
 gem 'ransack'
 gem "gretel"
+gem 'recaptcha', require: "recaptcha/rails"

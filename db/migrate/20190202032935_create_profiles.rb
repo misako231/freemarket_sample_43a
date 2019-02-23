@@ -8,8 +8,6 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.string      :block,        null: false
       t.string      :building,     null: true
       t.references  :user, foreign_key: true
-      t.text        :comment
-      t.text        :avatar
       t.timestamps
     end
   end
