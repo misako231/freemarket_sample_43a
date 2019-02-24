@@ -260,7 +260,7 @@ ApplicationRecord.transaction do
   xxs, xs, s, m, l, xl, xl2, xl3, xl4, free_size = room_wear.children.create([{ name: "XXS以下" }, { name: "XS(SS)" }, { name: "S" }, { name: "M" }, { name: "L" }, { name: "XL(LL)" }, { name: "2XL(3L)" }, { name: "3XL(4L)" }, { name: "4XL(5L)以上" }, { name: "FREE SIZE" }])
 
   # レデイース・レッグウェア
-  socks, spats, tights, leg_warmer, other = { name: "ソックス" }, { name: "スパッツ/レギンス" }, { name: "ストッキング/タイツ" }, { name: "レッグウォーマー" }, { name: "その他" }
+  socks, spats, tights, leg_warmer, other = leg_wear.children.create([{ name: "ソックス" }, { name: "スパッツ/レギンス" }, { name: "ストッキング/タイツ" }, { name: "レッグウォーマー" }, { name: "その他" }])
 
   # レディース・帽子
   knit_cap, hat, hunting, cap, casket, straw_hat, other = hat.children.create([{ name: "ニットキャップ/ビーニー" }, { name: "ハット" }, { name: "ハンチング/ベレー帽" }, { name: "キャップ" }, { name: "キャスケット" }, { name: "麦わら帽子" }, { name: "その他" }])
