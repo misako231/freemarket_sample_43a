@@ -10,6 +10,7 @@ describe Item do
 
     it "is valid with an item's name that has less than 40 characters" do
       user = create(:user)
+      # category = create(:category)
       item = create(:item, name: "1"*40)
       item.valid?
       expect(item).to be_valid
