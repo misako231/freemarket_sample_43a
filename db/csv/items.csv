@@ -11,7 +11,7 @@ id,name,comment,category_id,brand_id,shipping_fee,prefecture_id,days_to_ship,pri
 109,きれいなベビー服,お買い得！,1952,10,self_burden,10,slow,2435,a_few_scratches_and_dirt,1,FALSE,merukaribin
 110,魔法のベビー服,お買い得！,1953,1,self_burden,11,normal,6543,scratches_and_dirt,1,FALSE,merukaribin
 111,伝説のベビー服,お買い得！,1954,2,self_burden,12,fast,765434,bad,1,FALSE,merukaribin
-112,きたないコスメ,お買い得！,2835,3,self_burden,13,slow,564,new_item,1,FALSE,merukaribin
-113,きれいなコスメ,お買い得！,2836,4,self_burden,14,normal,13245,close_to_the_unused,1,FALSE,merukaribin
-114,魔法のコスメ,お買い得！,2837,5,self_burden,15,fast,7654,no_noticeable_scratches_and_dirt,1,FALSE,merukaribin
-115,伝説のコスメ,お買い得！,2838,6,self_burden,16,slow,2345,a_few_scratches_and_dirt,1,FALSE,merukaribin
+112,きたないコスメ,お買い得！,2840,3,self_burden,13,slow,564,new_item,1,FALSE,merukaribin
+113,きれいなコスメ,お買い得！,2841,4,self_burden,14,normal,13245,close_to_the_unused,1,FALSE,merukaribin
+114,魔法のコスメ,お買い得！,2842,5,self_burden,15,fast,7654,no_noticeable_scratches_and_dirt,1,FALSE,merukaribin
+115,伝説のコスメ,お買い得！,2843,6,self_burden,16,slow,2345,a_few_scratches_and_dirt,1,FALSE,merukaribin
