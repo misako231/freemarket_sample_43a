@@ -1,5 +1,4 @@
 #comment_delete_array
-  = render partial: "shared/comment_delete", collection: @comments, as: :comment
 = render partial: "shared/header"
 - if flash[:success]
   .delete-success-flash
@@ -69,7 +68,8 @@
         %tr
           %th ブランド
           %td
-            = @item.brand.name
+            - if @item.brand.present?
+              = @item.brand.name
         - if @item.has_size?
           %tr
             %th サイズ
@@ -101,7 +101,7 @@
         = number_with_delimiter("#{@item.price}")
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
-    - if @item.user_id != current_user.id
+    - if user_signed_in? && @item.user_id != current_user.id
       - unless @item.order_statuses.present?
         - if @points != 0
           .parent-item-container__speech-bubble
@@ -114,6 +114,10 @@
       - else
         .parent-item-container__item-buy-btn.disabled
           売り切れました
+    - elsif user_signed_in? && @item.user_id == current_user.id
+    - else
+      = link_to buy_item_url, class: "parent-item-container__item-buy-btn" do
+        購入画面に進む
     .parent-item-container__item-description
       = @item.comment
     .parent-item-container__various-btn

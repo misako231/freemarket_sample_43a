@@ -9,6 +9,7 @@
         %span{itemprop: "title"}
           = breadcrumbs separator: " #{content_tag(:i, '', class: 'fa fa-angle-right')} "
 
+
 %main.card
   = render 'shared/mypage-side-nav'
   .card__content
@@ -20,7 +21,8 @@
       .card__content__middle__btn
         .card__content__middle__btn__text
           %i.far.fa-credit-card
-          クレジットカードを登録する
+          = link_to add_credit_user_profiles_path do
+            クレジットカードを登録する
       .card__content__middle__bottom
         = link_to "#", target: "blank", class: "card__content__middle__bottom__link" do
           %span 支払い方法について

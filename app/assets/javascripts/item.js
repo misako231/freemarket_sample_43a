@@ -25,6 +25,7 @@ $(document).on('turbolinks:load', function() {
     $('#grand_category_id').css('display','none');
   }
 
+  // 送料が自己負担の時の処理
   function selfHTML(shipping_fee) {
     var html =
     `<option value="">---</option>
@@ -40,6 +41,7 @@ $(document).on('turbolinks:load', function() {
     $('#item_transportation').append(html);
   }
 
+  // 送料が着払いの時の処理
   function otherHTML(shipping_fee) {
     var html =
     `<option value="">---</option>
@@ -75,6 +77,7 @@ $(document).on('turbolinks:load', function() {
       });
     });
   });
+
   // カテゴリー３層目を表示
   $('#new-second-category').change(function(){
     var child_id = $('#new-second-category option:selected').val();
@@ -97,11 +100,13 @@ $(document).on('turbolinks:load', function() {
       });
     });
   });
+
   // カテゴリー4層目を表示
   $('#new-third-category').change(function(){
     var grand_child_id = $('#new-third-category option:selected').val();
     console.log(grand_child_id);
     $('#item-size').css('display','none')
+    $('#grand_category_id').remove();
     $.ajax({
       url: '/items/new',
       type: 'get',
@@ -147,14 +152,10 @@ $(document).on('turbolinks:load', function() {
     }
   })
 
-
-  // $('.btn__default').click(function(){
-  //   $("body").append('<div id="delete-overlay"></div>');
-  //   $("#delete-overlay").fadeIn("normal");
-  //   $('.modal').fadeIn();
-  // });
-
-  $('#sell__form').on('submit', function(){
+  // submitボタンを押した時の処理
+  $('#sell__form').on('submit', function(e){
+    e.preventDefault();
+    e.stopPropagation();
     var formData = new FormData(this);
     var url = $(this).attr('action');
     console.log(formData);
@@ -168,6 +169,7 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
 
+  // モダールを表示
     .done(function(data){
       console.log(data);
       $("body").append('<div id="delete-overlay"></div>');
@@ -175,7 +177,117 @@ $(document).on('turbolinks:load', function() {
       $('.modal').fadeIn();
     })
 
+  // エラーメッセージを出す
     .fail(function(data){
+      var image = $('#file-image-0').val();
+      if ( image == '') {
+        var error1 = true;
+      }
+      if( error1 ) {
+        $('#new_error_box-1').text('画像がありません');
+      }
+      else {
+        $('#new_error_box-1').text('');
+      }
+
+      var name = $('#input_item_name_new').val();
+      if ( name == '') {
+        var error2 = true;
+      }
+      if( error2 ) {
+        $('#new_error_box-2').text('入力してください');
+      }
+      else {
+        $('#new_error_box-2').text('');
+      }
+
+      var comment = $('#input_item_comment_new').val();
+      if ( comment === '') {
+        var error3 = true;
+      }
+      if( error3 ) {
+        $('#new_error_box-3').text('入力してください');
+      }
+      else {
+        $('#new_error_box-3').text('');
+      }
+
+      var category = $('grand_category_id').val();
+      if ( category === '') {
+        var error4 = true;
+      }
+      if( error4 ) {
+        $('#new_error_box-4').text('選択してください');
+      }
+      else {
+        $('#new_error_box-4').text('');
+      }
+
+      var condition = $('#select_item_condition_new').val();
+      if ( condition === '') {
+        var error5 = true;
+      }
+      if( error5 ) {
+        $('#new_error_box-5').text('選択してください');
+      }
+      else {
+        $('#new_error_box-5').text('');
+      }
+
+      var shipping_fee = $('#item_shipping_fee').val();
+      if ( shipping_fee === '') {
+        var error6 = true;
+      }
+      if( error6 ) {
+        $('#new_error_box-6').text('選択してください');
+      }
+      else {
+        $('#new_error_box-6').text('');
+      }
+
+      var transportation = $('#item_transportation').val();
+      if ( transportation === '') {
+        var error7 = true;
+      }
+      if( error7 ) {
+        $('#new_error_box-7').text('選択してください');
+      }
+      else {
+        $('#new_error_box-7').text('');
+      }
+
+      var prefecture = $('#select_item_prefecture_new').val();
+      if ( prefecture === '') {
+        var error8 = true;
+      }
+      if( error8 ) {
+        $('#new_error_box-8').text('選択してください');
+      }
+      else {
+        $('#new_error_box-8').text('');
+      }
+
+      var days_to_ship = $('#select_item_days-to-ship_new').val();
+      if ( days_to_ship === '') {
+        var error9 = true;
+      }
+      if( error9 ) {
+        $('#new_error_box-9').text('選択してください');
+      }
+      else {
+        $('#new_error_box-9').text('');
+      }
+
+      var price = $('#new-item-price').val();
+      if ( price === '') {
+        var error10 = true;
+      }
+      if( error10 ) {
+        $('#new_error_box-10').text('入力してください');
+      }
+      else {
+        $('#new_error_box-10').text('');
+      }
     })
 
     .always(function(data){

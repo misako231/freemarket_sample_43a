@@ -17,5 +17,5 @@
           .parent-comment-container__message-container-right__body-icons__flag
             %i.far.fa-flag
           - if user_signed_in? && comment.item.user_id == current_user.id
-            .parent-comment-container__message-container-right__body-icons__trash-can#good-to-delete
+            .parent-comment-container__message-container-right__body-icons__trash-can#good-to-delete{"data-item-id": "#{comment.item.id}","data-comment-id": "#{comment.id}"}
               %i.fas.fa-trash-alt

@@ -516,6 +516,9 @@
           &__photo {
             height:220px;
             overflow: hidden;
+            img {
+              object-fit: cover;
+            }
           }
           &__body {
             height:110px;

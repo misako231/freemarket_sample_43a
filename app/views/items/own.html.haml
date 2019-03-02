@@ -1,5 +1,4 @@
 #comment_delete_array
-  = render partial: "shared/comment_delete", collection: @comments, as: :comment
 .dialog-box
   .delete-dialog
     .delete-dialog__message
@@ -36,11 +35,15 @@
     .parent-item-container__item--main-content
       .parent-item-container__item--main-content__item-photo
         .parent-item-container__item--main-content__item-photo__main
-          = image_tag "#{@item.item_photos.first.image}", size: "300x300", alt: "写真"
+          %ul
+            - @item.item_photos.each do |photo|
+              %li
+                = image_tag "#{photo.image}", size: "300x300", alt: "写真"
         .parent-item-container__item--main-content__item-photo__sub
-          - @item.item_photos.each do |photo|
-            .parent-item-container__item--main-content__item-photo__sub-containts
-              = image_tag "#{photo.image}", size: "75x75", alt: "写真"
+          %ul
+            - @item.item_photos.each do |photo|
+              %li.parent-item-container__item--main-content__item-photo__sub-containts
+                = image_tag "#{photo.image}", size: "75x75", alt: "写真"
       %table.item-container__item-detail
         %tr.item-container__item-detail__tr
           %th 出品者
@@ -74,7 +77,8 @@
         %tr
           %th ブランド
           %td
-            = @item.brand.name
+            - if @item.brand.present?
+              = @item.brand.name
         - if @item.has_size?
           %tr
             %th サイズ
@@ -109,7 +113,7 @@
     .parent-item-container__item-description
       = @item.comment
   .parent-own-item-container
-    = link_to "商品の編集", "#", class: "parent-own-item-container__edit"
+    = link_to "商品の編集", edit_user_item_path(current_user.id, @item), class: "parent-own-item-container__edit"
     .parent-own-item-container__or
       or
     - if @item.closed?

@@ -8,21 +8,25 @@
       %li.bread-crumbs__items__value{itemscope: "", itemtype: ""}
         %span{itemprop: "title"}
           = breadcrumbs separator: " #{content_tag(:i, '', class: 'fa fa-angle-right')} "
-
 %main.profile
   = render 'shared/mypage-side-nav'
   .profile__content
     .profile__content__top
       プロフィール
-    %form.profile__content__middle{action: "#", method: "POST", novalidate: ""}
-      .profile__content__middle__info
-        .profile__content__middle__info__img
-          = image_tag 'beutiful.jpg', class: "profile__content__middle__info__img__in"
-        %input.profile__content__middle__info__nickname{name: "user_nickname", placeholder: "例AYA☆セール中", type: "text", value: "#{current_user.nickname}"}
-      .profile__content__middle__bottom
-        %textarea.profile__content__middle__bottom__text{name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
-        %input.profile__content__middle__bottom__htext{type: "hidden", value: "hidden", value: "https://www.mercari.com/jp/mypage/profile/", name: "after_save_callback"}
-        %button.profile__content__middle__bottom__btn{type: "submit"}
-          変更する
+    .profile__content__middle
+      = form_with model: current_user, url: user_edit_user_profiles_path, class: 'profile__content__middle', local: true do |f|
+        .profile__content__middle__info
+          %label.profile__content__middle__info__img
+            = f.label :avatar do
+              = f.file_field :avatar, class: "profile__content__middle__info__img__in", style: "display: none;", value: "#{current_user.avatar}"
+              -if current_user.avatar.present?
+                = image_tag "#{current_user.avatar}", class: "profile__content__middle__info__img__in"
+              -else
+                = image_tag 'member_photo_noimage_thumb.png', class: "profile__content__middle__info__img__in"
+          .profile__content__middle__info__nickname
+            =f.text_field :nickname, placeholder: "例AYA☆セール中", type: "text", value: "#{current_user.nickname}",class: "profile__content__middle__info__nickname__in"
+        .profile__content__middle__bottom
+          = f.text_area :comment, placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪", class: "profile__content__middle__bottom__text"
+          = f.submit "変更する", class: "profile__content__middle__bottom__btn"
 = render 'shared/footer'
 = render 'shared/sellbtn'

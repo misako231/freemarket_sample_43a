@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
   include GetCategories
   include GetPoints
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :get_root
-  before_action :set_item, only: [:show, :own, :buy]
+  before_action :set_item, only: [:show, :own, :buy, :edit]
   before_action :get_category_tree, only: [:show, :own]
   before_action :total_point, only: [:show, :buy]
 
@@ -45,12 +45,7 @@ class ItemsController < ApplicationController
   def create
     @item  = Item.new(item_params)
     if @item.save
-      # respond_to do |format|
-      #   format.html do
-      #     redirect_to
-      #   end
-      #   format.json
-      # end
+      render json: @item
     else
       render :new
     end
@@ -77,9 +72,25 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    category = Category.find(@item.category_id)
+    @categories = category.ancestry.split('/')
+    if @categories.length == 3
+      @parent_category, @child_category, @grandchild_category = Category.find(@categories)
+      @category = Category.find(@item.category_id)
+    else
+      @parent_category, @child_category = Category.find(@categories)
+      @grandchild_category = Category.find(@item.category_id)
+    end
+
   end
 
   def update
+    item = Item.find(params[:id])
+    if item.update(update_item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -103,7 +114,9 @@ class ItemsController < ApplicationController
       Item.create_charge_by_customer(price, user)
       item = Item.includes(:user).find(params[:id])
       o_status = OrderStatus.create(status: params[:item][:order_statuses_attributes][:"0"][:status], purchaser_id: params[:item][:order_statuses_attributes][:"0"][:purchaser_id], seller_id: params[:item][:order_statuses_attributes][:"0"][:seller_id], item_id: params[:item][:order_statuses_attributes][:"0"][:item_id])
-      p_record = PointRecord.create(point: params[:item][:point_records][:point], user_id: current_user.id, order_status_id: o_status.id) if params[:item][:point_records][:point].present?
+      if current_user.point_records.present? && params[:item][:point_records][:point].present?
+        p_record = PointRecord.create(point: params[:item][:point_records][:point], user_id: current_user.id, order_status_id: o_status.id)
+      end
       redirect_to root_path, flash: {bought: '商品を購入しました'}
     rescue => e
       redirect_to buy_item_path, flash: {credit_charge_error: '購入に失敗しました'}
@@ -114,6 +127,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :comment, :category_id, :brand_id, :shipping_fee, :prefecture_id, :days_to_ship, :price, :condition, :closed, :transportation, item_photos_attributes: [:image]).merge(user_id: current_user.id)
+  end
+
+  def update_item_params
+    params.require(:item).permit(:name, :comment, :category_id, :brand_id, :shipping_fee, :prefecture_id, :days_to_ship, :price, :condition, :closed, :transportation, item_photos_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
   def set_item
