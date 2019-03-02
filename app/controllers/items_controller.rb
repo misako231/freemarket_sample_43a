@@ -19,12 +19,6 @@ class ItemsController < ApplicationController
     @nike_items    = @items.where(brand_id: 2).first(4)
   end
 
-
-  def show
-    @comments = @item.comments.includes(:user)
-  end
-
-
   def new
     @item = Item.new
     @item.item_photos.build
@@ -60,7 +54,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @users_item = Item.item_includes.where(user_id: @item.user_id).all
     @previous = @item.next_to_item("previous")
     @next_item = @item.next_to_item("next_item")
